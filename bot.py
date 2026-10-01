@@ -1,0 +1,7 @@
+print("================================")
+print("   CARTOON FACEBOOK BOT STARTED")
+print("================================")
+print("Bot is running successfully.")
+print("Video generation module: pending")
+print("Facebook publishing module: pending")
+print("Analytics module: pending")
