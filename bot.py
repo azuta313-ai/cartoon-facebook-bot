@@ -1,17 +1,41 @@
+import subprocess
+from pathlib import Path
+
 print("======================================")
-print("      CARTOON VIDEO BOT")
+print("       BOBO CARTOON VIDEO BOT")
 print("======================================")
 
-print()
-print("Today's cartoon idea:")
-print("Bobo the monkey tries to steal a giant cookie!")
+clips = [
+    "bobo_01.mp4",
+    "bobo_02.mp4",
+    "bobo_03.mp4",
+    "bobo_04.mp4"
+]
+
+# Check that all clips exist
+for clip in clips:
+    if not Path(clip).exists():
+        raise FileNotFoundError(f"Missing video: {clip}")
+
+# Create FFmpeg concat file
+with open("clips.txt", "w") as f:
+    for clip in clips:
+        f.write(f"file '{clip}'\n")
+
+# Combine the clips
+subprocess.run([
+    "ffmpeg",
+    "-y",
+    "-f", "concat",
+    "-safe", "0",
+    "-i", "clips.txt",
+    "-c:v", "libx264",
+    "-preset", "veryfast",
+    "-pix_fmt", "yuv420p",
+    "-movflags", "+faststart",
+    "bobo_cake_reel.mp4"
+], check=True)
 
 print()
-print("Step 1: Story generated")
-print("Step 2: Cartoon scenes planned")
-print("Step 3: Voiceover planned")
-print("Step 4: Video rendering module ready")
-print("Step 5: Facebook publishing module pending")
-
-print()
-print("BOT TEST SUCCESSFUL")
+print("VIDEO CREATED SUCCESSFULLY!")
+print("Output: bobo_cake_reel.mp4")
