@@ -18,6 +18,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Run cartoon bot
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Create cartoon video
         run: |
           python bot.py
