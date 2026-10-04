@@ -2,7 +2,7 @@ import subprocess
 from pathlib import Path
 
 print("======================================")
-print("   BOBO 60 FPS SMOOTH CARTOON BOT")
+print("   BOBO IMPROVED PACING BOT")
 print("======================================")
 
 clips = [
@@ -16,9 +16,9 @@ for clip in clips:
     if not Path(clip).exists():
         raise FileNotFoundError(f"Missing video: {clip}")
 
+# STEP 1: Normalize and join the four continuous clips
 normalized = []
 
-# Normalize clips WITHOUT artificially forcing 30 FPS first
 for i, clip in enumerate(clips, start=1):
     output = f"normalized_{i}.mp4"
 
@@ -37,9 +37,6 @@ for i, clip in enumerate(clips, start=1):
 
     normalized.append(output)
 
-print("Clips normalized.")
-
-# Join the continuous clips
 with open("clips.txt", "w") as f:
     for clip in normalized:
         f.write(f"file '{clip}'\n")
@@ -49,16 +46,38 @@ subprocess.run([
     "-f", "concat",
     "-safe", "0",
     "-i", "clips.txt",
+    "-c:v", "libx264",
+    "-preset", "veryfast",
+    "-pix_fmt", "yuv420p",
+    "joined.mp4"
+], check=True)
 
-    # Create new intermediate motion frames
-    "-vf",
-    "minterpolate=fps=60:"
+# STEP 2:
+# 0–7 sec       = normal
+# 7–13 sec      = 25% faster
+# 13 sec–end    = normal
+#
+# This targets the repetitive cake-eating section.
+
+filter_graph = (
+    "[0:v]split=3[a][b][c];"
+    "[a]trim=start=0:end=7,setpts=PTS-STARTPTS[first];"
+    "[b]trim=start=7:end=13,setpts=(PTS-STARTPTS)/1.25[middle];"
+    "[c]trim=start=13,setpts=PTS-STARTPTS[last];"
+    "[first][middle][last]concat=n=3:v=1:a=0[paced];"
+    "[paced]minterpolate=fps=60:"
     "mi_mode=mci:"
     "mc_mode=aobmc:"
     "me_mode=bilat:"
     "me=epzs:"
-    "scd=fdiff",
+    "scd=fdiff[out]"
+)
 
+subprocess.run([
+    "ffmpeg", "-y",
+    "-i", "joined.mp4",
+    "-filter_complex", filter_graph,
+    "-map", "[out]",
     "-c:v", "libx264",
     "-preset", "veryfast",
     "-crf", "20",
@@ -68,6 +87,7 @@ subprocess.run([
 ], check=True)
 
 print("======================================")
-print("60 FPS MOTION-INTERPOLATED VIDEO READY")
+print("IMPROVED-PACING VIDEO CREATED")
+print("Cake section accelerated by 25%")
 print("Output: bobo_cake_reel.mp4")
 print("======================================")
