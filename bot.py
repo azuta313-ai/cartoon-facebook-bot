@@ -2,7 +2,7 @@ import subprocess
 from pathlib import Path
 
 print("======================================")
-print("   BOBO SMOOTH CARTOON VIDEO BOT")
+print("   BOBO CONTINUOUS CARTOON BOT")
 print("======================================")
 
 clips = [
@@ -12,13 +12,14 @@ clips = [
     "Bobo 4.mp4"
 ]
 
-# Check files
+# Check that every clip exists
 for clip in clips:
     if not Path(clip).exists():
         raise FileNotFoundError(f"Missing video: {clip}")
 
-# Normalize every clip first.
-# This gives all clips the same resolution, FPS and pixel format.
+# Normalize all clips so FFmpeg receives identical video properties
+normalized = []
+
 for i, clip in enumerate(clips, start=1):
     output = f"normalized_{i}.mp4"
 
@@ -32,42 +33,35 @@ for i, clip in enumerate(clips, start=1):
         "fps=30,format=yuv420p",
         "-c:v", "libx264",
         "-preset", "veryfast",
+        "-r", "30",
         output
     ], check=True)
 
+    normalized.append(output)
+
 print("All clips normalized.")
 
-# Each source clip is approximately 3.5 seconds.
-# Blend neighboring clips for 0.4 seconds.
-transition = 0.4
+# Create concat list
+with open("clips.txt", "w") as f:
+    for clip in normalized:
+        f.write(f"file '{clip}'\n")
 
-filter_complex = (
-    "[0:v][1:v]"
-    "xfade=transition=fade:duration=0.4:offset=3.1[v01];"
-    
-    "[v01][2:v]"
-    "xfade=transition=fade:duration=0.4:offset=6.2[v012];"
-    
-    "[v012][3:v]"
-    "xfade=transition=fade:duration=0.4:offset=9.3[vout]"
-)
-
+# Join clips directly — NO fade or transition
 subprocess.run([
     "ffmpeg", "-y",
-    "-i", "normalized_1.mp4",
-    "-i", "normalized_2.mp4",
-    "-i", "normalized_3.mp4",
-    "-i", "normalized_4.mp4",
-    "-filter_complex", filter_complex,
-    "-map", "[vout]",
+    "-f", "concat",
+    "-safe", "0",
+    "-i", "clips.txt",
     "-c:v", "libx264",
     "-preset", "veryfast",
     "-pix_fmt", "yuv420p",
+    "-r", "30",
     "-movflags", "+faststart",
     "bobo_cake_reel.mp4"
 ], check=True)
 
 print("======================================")
-print("SMOOTH VIDEO CREATED SUCCESSFULLY!")
+print("CONTINUOUS VIDEO CREATED!")
+print("NO CROSSFADE TRANSITIONS")
 print("Output: bobo_cake_reel.mp4")
 print("======================================")
