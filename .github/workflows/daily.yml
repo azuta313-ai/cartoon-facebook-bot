@@ -2,6 +2,31 @@ name: Daily Cartoon Bot
 
 on:
   workflow_dispatch:
+    inputs:
+      story_name:
+        description: 'Name of this Bobo story'
+        required: false
+        default: 'Bobo Cartoon'
+        type: string
+
+      add_captions:
+        description: 'Add funny captions?'
+        required: true
+        default: true
+        type: boolean
+
+      add_music:
+        description: 'Add background music?'
+        required: true
+        default: true
+        type: boolean
+
+      add_sfx:
+        description: 'Add cartoon sound effects?'
+        required: true
+        default: true
+        type: boolean
+
   schedule:
     - cron: '0 6 * * *'
 
@@ -24,9 +49,14 @@ jobs:
           sudo apt-get install -y ffmpeg
 
       - name: Create cartoon video
+        env:
+          STORY_NAME: ${{ inputs.story_name || 'Bobo Cartoon' }}
+          ADD_CAPTIONS: ${{ inputs.add_captions || 'true' }}
+          ADD_MUSIC: ${{ inputs.add_music || 'true' }}
+          ADD_SFX: ${{ inputs.add_sfx || 'true' }}
         run: |
           python bot.py
-          
+
       - name: Save finished cartoon
         uses: actions/upload-artifact@v4
         with:
