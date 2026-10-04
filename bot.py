@@ -2,7 +2,7 @@ import subprocess
 from pathlib import Path
 
 print("======================================")
-print("   BOBO IMPROVED PACING BOT")
+print("   BOBO FINAL VISUAL TEST")
 print("======================================")
 
 clips = [
@@ -12,11 +12,12 @@ clips = [
     "new bobo clip 4.mp4"
 ]
 
+# Check files
 for clip in clips:
     if not Path(clip).exists():
         raise FileNotFoundError(f"Missing video: {clip}")
 
-# STEP 1: Normalize and join the four continuous clips
+# Normalize clips
 normalized = []
 
 for i, clip in enumerate(clips, start=1):
@@ -32,15 +33,20 @@ for i, clip in enumerate(clips, start=1):
         "format=yuv420p",
         "-c:v", "libx264",
         "-preset", "veryfast",
+        "-crf", "20",
         output
     ], check=True)
 
     normalized.append(output)
 
+print("Clips normalized.")
+
+# Create list for direct joining
 with open("clips.txt", "w") as f:
     for clip in normalized:
         f.write(f"file '{clip}'\n")
 
+# Join clips directly
 subprocess.run([
     "ffmpeg", "-y",
     "-f", "concat",
@@ -48,36 +54,25 @@ subprocess.run([
     "-i", "clips.txt",
     "-c:v", "libx264",
     "-preset", "veryfast",
+    "-crf", "20",
     "-pix_fmt", "yuv420p",
     "joined.mp4"
 ], check=True)
 
-# STEP 2:
-# 0–7 sec       = normal
-# 7–13 sec      = 25% faster
-# 13 sec–end    = normal
-#
-# This targets the repetitive cake-eating section.
+print("Clips joined.")
 
-filter_graph = (
-    "[0:v]split=3[a][b][c];"
-    "[a]trim=start=0:end=7,setpts=PTS-STARTPTS[first];"
-    "[b]trim=start=7:end=13,setpts=(PTS-STARTPTS)/1.25[middle];"
-    "[c]trim=start=13,setpts=PTS-STARTPTS[last];"
-    "[first][middle][last]concat=n=3:v=1:a=0[paced];"
-    "[paced]minterpolate=fps=60:"
+# Smooth motion to 60 FPS
+subprocess.run([
+    "ffmpeg", "-y",
+    "-i", "joined.mp4",
+    "-vf",
+    "minterpolate=fps=60:"
     "mi_mode=mci:"
     "mc_mode=aobmc:"
     "me_mode=bilat:"
     "me=epzs:"
-    "scd=fdiff[out]"
-)
-
-subprocess.run([
-    "ffmpeg", "-y",
-    "-i", "joined.mp4",
-    "-filter_complex", filter_graph,
-    "-map", "[out]",
+    "vsbmc=1:"
+    "scd=fdiff",
     "-c:v", "libx264",
     "-preset", "veryfast",
     "-crf", "20",
@@ -87,7 +82,9 @@ subprocess.run([
 ], check=True)
 
 print("======================================")
-print("IMPROVED-PACING VIDEO CREATED")
-print("Cake section accelerated by 25%")
+print("FINAL VISUAL TEST CREATED")
+print("60 FPS")
+print("NO CROSSFADE")
+print("NO SPEED-UP")
 print("Output: bobo_cake_reel.mp4")
 print("======================================")
