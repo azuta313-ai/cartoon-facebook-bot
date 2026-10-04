@@ -130,6 +130,60 @@ Path("bobo_cake_reel.mp4").unlink()
 Path("bobo_captioned.mp4").rename("bobo_cake_reel.mp4")
 
 print("Funny captions added!")
+
+# ======================================
+# ADD CARTOON SOUND EFFECTS
+# ======================================
+
+audio_filter = (
+    # Pop when Bobo notices the cake — 1.0 sec
+    "[1:a]volume=0.55,adelay=1000|1000[pop];"
+
+    # Bite/taste sound — 7.4 sec
+    # Boosted because this file is quieter
+    "[2:a]volume=1.30,adelay=7400|7400[bite];"
+
+    # Boing for surprised reaction — 9.4 sec
+    "[3:a]volume=0.60,adelay=9400|9400[boing];"
+
+    # Mix the three effects
+    "[pop][bite][boing]"
+    "amix=inputs=3:duration=longest:dropout_transition=0,"
+    "apad=whole_dur=14.13[sfx]"
+)
+
+subprocess.run([
+    "ffmpeg", "-y",
+
+    "-i", "bobo_cake_reel.mp4",
+    "-i", "soundreality-pop-sound-423716.mp3",
+    "-i", "freesound_community-cartoon-bite-39234.mp3",
+    "-i", "universfield-cartoon-spring-boing-140378.mp3",
+
+    "-filter_complex", audio_filter,
+
+    "-map", "0:v",
+    "-map", "[sfx]",
+
+    # Don't re-encode the video
+    "-c:v", "copy",
+
+    # Encode audio
+    "-c:a", "aac",
+    "-b:a", "192k",
+
+    "-shortest",
+    "-movflags", "+faststart",
+
+    "bobo_with_sound.mp4"
+], check=True)
+
+# Replace previous output with sound version
+Path("bobo_cake_reel.mp4").unlink()
+Path("bobo_with_sound.mp4").rename("bobo_cake_reel.mp4")
+
+print("Cartoon sound effects added!")
+
 print("======================================")
 print("FINAL VISUAL TEST CREATED")
 print("60 FPS")
