@@ -26,3 +26,9 @@ jobs:
       - name: Create cartoon video
         run: |
           python bot.py
+          
+      - name: Save finished cartoon
+        uses: actions/upload-artifact@v4
+        with:
+          name: bobo-cartoon-video
+          path: bobo_cake_reel.mp4
