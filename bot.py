@@ -1,5 +1,29 @@
 import subprocess
+import os
 from pathlib import Path
+
+# ==========================================
+# WORKFLOW SETTINGS
+# ==========================================
+
+STORY_NAME = os.getenv("STORY_NAME", "Bobo Cartoon")
+
+ADD_CAPTIONS = os.getenv(
+    "ADD_CAPTIONS", "true"
+).lower() == "true"
+
+ADD_MUSIC = os.getenv(
+    "ADD_MUSIC", "true"
+).lower() == "true"
+
+ADD_SFX = os.getenv(
+    "ADD_SFX", "true"
+).lower() == "true"
+
+print("Story:", STORY_NAME)
+print("Captions:", ADD_CAPTIONS)
+print("Music:", ADD_MUSIC)
+print("Sound effects:", ADD_SFX)
 
 print("======================================")
 print("   BOBO FINAL VISUAL TEST")
