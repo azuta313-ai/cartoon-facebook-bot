@@ -7,9 +7,9 @@ print("======================================")
 
 clips = [
     "Bobo 1.mp4",
-    "Bobo 2.mp4",
-    "Bobo 3.mp4",
-    "Bobo 4.mp4"
+    "new bobo clip 2.mp4",
+    "new bobo clip 3.mp4",
+    "new bobo clip 4.mp4"
 ]
 
 # Check that every clip exists
