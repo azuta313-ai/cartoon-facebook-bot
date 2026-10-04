@@ -80,7 +80,56 @@ subprocess.run([
     "-movflags", "+faststart",
     "bobo_cake_reel.mp4"
 ], check=True)
+# Add timed funny captions
+caption_filter = (
+    "drawtext=text='OOOH... CAKE!':"
+    "fontsize=58:fontcolor=white:"
+    "box=1:boxcolor=black@0.65:boxborderw=18:"
+    "x=(w-text_w)/2:y=100:"
+    "enable='between(t,0.5,3.0)',"
 
+    "drawtext=text='JUST ONE TASTE...':"
+    "fontsize=52:fontcolor=white:"
+    "box=1:boxcolor=black@0.65:boxborderw=18:"
+    "x=(w-text_w)/2:y=100:"
+    "enable='between(t,4.0,6.5)',"
+
+    "drawtext=text='YUMMY!':"
+    "fontsize=60:fontcolor=white:"
+    "box=1:boxcolor=black@0.65:boxborderw=18:"
+    "x=(w-text_w)/2:y=100:"
+    "enable='between(t,7.0,9.5)',"
+
+    "drawtext=text='UH-OH!':"
+    "fontsize=64:fontcolor=white:"
+    "box=1:boxcolor=black@0.65:boxborderw=18:"
+    "x=(w-text_w)/2:y=100:"
+    "enable='between(t,9.5,11.5)',"
+
+    "drawtext=text='NOBODY SAW THAT...':"
+    "fontsize=48:fontcolor=white:"
+    "box=1:boxcolor=black@0.65:boxborderw=18:"
+    "x=(w-text_w)/2:y=100:"
+    "enable='between(t,11.5,13.8)'"
+)
+
+subprocess.run([
+    "ffmpeg", "-y",
+    "-i", "bobo_cake_reel.mp4",
+    "-vf", caption_filter,
+    "-c:v", "libx264",
+    "-preset", "veryfast",
+    "-crf", "20",
+    "-pix_fmt", "yuv420p",
+    "-movflags", "+faststart",
+    "bobo_captioned.mp4"
+], check=True)
+
+# Replace the non-captioned output with the captioned version
+Path("bobo_cake_reel.mp4").unlink()
+Path("bobo_captioned.mp4").rename("bobo_cake_reel.mp4")
+
+print("Funny captions added!")
 print("======================================")
 print("FINAL VISUAL TEST CREATED")
 print("60 FPS")
