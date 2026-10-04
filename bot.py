@@ -141,7 +141,7 @@ audio_filter = (
 
     # Bite/taste sound — 7.4 sec
     # Boosted because this file is quieter
-    "[2:a]volume=1.30,adelay=7400|7400[bite];"
+    "[2:a]volume=1.30,adelay=7150|7150[bite];"
 
     # Boing for surprised reaction — 9.4 sec
     "[3:a]volume=0.60,adelay=9400|9400[boing];"
