@@ -6,10 +6,10 @@ print("       BOBO CARTOON VIDEO BOT")
 print("======================================")
 
 clips = [
-    "bobo_01.mp4",
-    "bobo_02.mp4",
-    "bobo_03.mp4",
-    "bobo_04.mp4"
+    "Bobo 1.mp4",
+    "Bobo 2.mp4",
+    "Bobo 3.mp4",
+    "Bobo 4.mp4"
 ]
 
 # Check that all clips exist
