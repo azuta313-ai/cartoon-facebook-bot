@@ -38,8 +38,6 @@ clips = [
     "new bobo clip 4.mp4"
 ]
 
-random.shuffle(clips)
-
 # Check files
 for clip in clips:
     if not Path(clip).exists():
