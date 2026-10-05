@@ -41,9 +41,6 @@ random.shuffle(clips)
 
 # Check files
 for clip in clips:
-
-# Check files
-for clip in clips:
     if not Path(clip).exists():
         raise FileNotFoundError(f"Missing video: {clip}")
 
