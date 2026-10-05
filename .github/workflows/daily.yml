@@ -50,6 +50,7 @@ jobs:
 
       - name: Create cartoon video
         env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
           STORY_NAME: ${{ inputs.story_name || 'Bobo Cartoon' }}
           ADD_CAPTIONS: ${{ inputs.add_captions || 'true' }}
           ADD_MUSIC: ${{ inputs.add_music || 'true' }}
