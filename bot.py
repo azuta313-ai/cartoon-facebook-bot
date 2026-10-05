@@ -2,6 +2,7 @@ import subprocess
 import os
 import random
 from pathlib import Path
+from huggingface_hub import InferenceClient
 
 # ==========================================
 # WORKFLOW SETTINGS
