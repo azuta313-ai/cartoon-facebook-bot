@@ -168,13 +168,13 @@ else:
 if ADD_SFX:
     audio_filter = (
         # Pop when Bobo notices the cake - 1.0 sec
-        "[1:a]volume=0.55,adelay=1000|1000[pop];"
+        "[1:a]volume=1.20,adelay=1000|1000[pop];"
 
         # Bite/taste sound - 7.15 sec
-        "[2:a]volume=1.30,adelay=7150|7150[bite];"
+        "[2:a]volume=2.00,adelay=7150|7150[bite];"
 
         # Boing for surprised reaction - 9.4 sec
-        "[3:a]volume=0.60,adelay=9400|9400[boing];"
+        "[3:a]volume=1.30,adelay=9400|9400[boing];"
 
         # Mix the three effects
         "[pop][bite][boing]"
