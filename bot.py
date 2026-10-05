@@ -219,50 +219,36 @@ else:
 
 if ADD_MUSIC:
     music_filter = (
-    # Take only the part needed for the Reel
-    "[1:a]atrim=start=0:end=14.13,"
-    "asetpts=PTS-STARTPTS,"
+        "[1:a]atrim=start=0:end=14.13,"
+        "asetpts=PTS-STARTPTS,"
+        "volume=0.16,"
+        "afade=t=in:st=0:d=0.6,"
+        "afade=t=out:st=12.6:d=1.53[music];"
+        "[0:a][music]"
+        "amix=inputs=2:duration=first:"
+        "dropout_transition=0:"
+        "weights='1 1':normalize=0[audio]"
+    )
 
-    # Keep music quiet under the cartoon effects
-    "volume=0.16,"
+    subprocess.run([
+        "ffmpeg", "-y",
+        "-i", "bobo_cake_reel.mp4",
+        "-i", "alex-morgan-cartoon-bouncy-chase-antics-578472.mp3",
+        "-filter_complex", music_filter,
+        "-map", "0:v",
+        "-map", "[audio]",
+        "-c:v", "copy",
+        "-c:a", "aac",
+        "-b:a", "192k",
+        "-t", "14.13",
+        "-movflags", "+faststart",
+        "bobo_with_music.mp4"
+    ], check=True)
 
-    # Smooth beginning and ending
-    "afade=t=in:st=0:d=0.6,"
-    "afade=t=out:st=12.6:d=1.53[music];"
+    Path("bobo_cake_reel.mp4").unlink()
+    Path("bobo_with_music.mp4").rename("bobo_cake_reel.mp4")
 
-    # Existing SFX soundtrack + quiet background music
-    "[0:a][music]"
-    "amix=inputs=2:duration=first:"
-    "dropout_transition=0:"
-    "weights='1 1':normalize=0[audio]"
-)
-
-subprocess.run([
-    "ffmpeg", "-y",
-    "-i", "bobo_cake_reel.mp4",
-    "-i", "alex-morgan-cartoon-bouncy-chase-antics-578472.mp3",
-
-    "-filter_complex", music_filter,
-
-    "-map", "0:v",
-    "-map", "[audio]",
-
-    # Keep approved video unchanged
-    "-c:v", "copy",
-
-    "-c:a", "aac",
-    "-b:a", "192k",
-
-    "-t", "14.13",
-    "-movflags", "+faststart",
-
-    "bobo_with_music.mp4"
-], check=True)
-
-Path("bobo_cake_reel.mp4").unlink()
-Path("bobo_with_music.mp4").rename("bobo_cake_reel.mp4")
-
-print("Background music added!")
+    print("Background music added!")
 else:
     print("Background music skipped.")
 print("======================================")
