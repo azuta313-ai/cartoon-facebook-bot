@@ -217,7 +217,8 @@ else:
 # ADD BACKGROUND MUSIC
 # ======================================
 
-music_filter = (
+if ADD_MUSIC:
+    music_filter = (
     # Take only the part needed for the Reel
     "[1:a]atrim=start=0:end=14.13,"
     "asetpts=PTS-STARTPTS,"
@@ -262,6 +263,8 @@ Path("bobo_cake_reel.mp4").unlink()
 Path("bobo_with_music.mp4").rename("bobo_cake_reel.mp4")
 
 print("Background music added!")
+else:
+    print("Background music skipped.")
 print("======================================")
 print("FINAL VISUAL TEST CREATED")
 print("60 FPS")
