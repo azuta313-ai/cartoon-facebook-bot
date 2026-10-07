@@ -1,0 +1,29 @@
+name: Test Bobo Reference
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-bobo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download project
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate new Bobo scene
+        env:
+          POLLINATIONS_API_KEY: ${{ secrets.POLLINATIONS_API_KEY }}
+        run: |
+          python test_bobo_reference.py
+
+      - name: Save new Bobo image
+        uses: actions/upload-artifact@v4
+        with:
+          name: bobo-reference-test
+          path: bobo_reference_test.png
