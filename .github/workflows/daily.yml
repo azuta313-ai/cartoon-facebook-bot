@@ -68,3 +68,13 @@ jobs:
         with:
           name: bobo-cartoon-video
           path: bobo_cake_reel.mp4
+      - name: Publish cartoon to Facebook
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+        run: |
+          curl --fail-with-body -X POST \
+            "https://graph-video.facebook.com/v26.0/${FB_PAGE_ID}/videos" \
+            -F "access_token=${FB_PAGE_ACCESS_TOKEN}" \
+            -F "source=@bobo_cake_reel.mp4" \
+            -F "description=Bobo Cartoon 🎬"
