@@ -77,4 +77,4 @@ jobs:
             "https://graph-video.facebook.com/v26.0/${FB_PAGE_ID}/videos" \
             -F "access_token=${FB_PAGE_ACCESS_TOKEN}" \
             -F "source=@bobo_cake_reel.mp4" \
-            -F "description=Bobo Cartoon 🎬"
+            -F "description=😂 Bobo is back with another funny adventure! 🎬 Watch till the end and share the fun! 🐻✨ #BoboCartoon #FunnyCartoon #CartoonVideos #FunnyVideos #KidsCartoon #Animation #Comedy #FacebookReels"
