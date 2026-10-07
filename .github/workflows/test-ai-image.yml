@@ -1,0 +1,29 @@
+name: Test AI Bobo Image
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download project
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate Bobo AI image
+        env:
+          POLLINATIONS_API_KEY: ${{ secrets.POLLINATIONS_API_KEY }}
+        run: |
+          python test_pollinations.py
+
+      - name: Save Bobo test image
+        uses: actions/upload-artifact@v4
+        with:
+          name: bobo-ai-test-image
+          path: bobo_ai_test.jpg
