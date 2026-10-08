@@ -15,7 +15,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install free Blender and FFmpeg
         run: |
-          sudo apt-get update -qq
           sudo apt-get install -y blender ffmpeg
       - name: Render 3D walking waving jumping frames
         run: |
