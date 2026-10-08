@@ -1,0 +1,23 @@
+name: Bobo Video Free-Credit Discovery
+
+on:
+  pull_request:
+    paths:
+      - 'check_free_video_models.py'
+      - '.github/workflows/check-bobo-video-free.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  discover-models:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check video model catalog (no API key, no generation)
+        run: python check_free_video_models.py
