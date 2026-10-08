@@ -27,5 +27,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bobo-story-scenes
-          path: scene_*.png
+          path: bobo_scene_*.png
           if-no-files-found: error
