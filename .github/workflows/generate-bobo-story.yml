@@ -22,13 +22,10 @@ jobs:
         run: |
           python generate_bobo_story.py
 
-      - name: Save Bobo story scenes
+      
+      - name: Save five Bobo story scenes
         uses: actions/upload-artifact@v4
         with:
-          name: bobo-ai-story-scenes
-          path: |
-            bobo_scene_1.png
-            bobo_scene_2.png
-            bobo_scene_3.png
-            bobo_scene_4.png
-            bobo_scene_5.png
+          name: bobo-story-scenes
+          path: scene_*.png
+          if-no-files-found: error
