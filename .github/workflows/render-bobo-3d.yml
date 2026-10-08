@@ -1,0 +1,34 @@
+name: Render Free 3D Bobo Animation
+on:
+  pull_request:
+    paths:
+      - 'blender_bobo_3d.py'
+      - '.github/workflows/render-bobo-3d.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install free Blender and FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y blender ffmpeg
+      - name: Render 3D walking waving jumping frames
+        run: |
+          mkdir -p frames
+          blender -b -t 2 --python blender_bobo_3d.py
+          test "$(find frames -name '*.png' | wc -l)" -eq 72
+      - name: Assemble real 3D MP4
+        run: |
+          ffmpeg -y -framerate 12 -i frames/%04d.png -c:v libx264 -pix_fmt yuv420p -movflags +faststart bobo_3d_motion_test.mp4
+          test -s bobo_3d_motion_test.mp4
+          ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 bobo_3d_motion_test.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bobo-3d-motion-test
+          path: bobo_3d_motion_test.mp4
+          if-no-files-found: error
