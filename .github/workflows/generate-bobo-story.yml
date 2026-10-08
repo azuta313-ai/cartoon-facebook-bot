@@ -1,3 +1,4 @@
+
 name: Generate Bobo AI Story
 
 on:
@@ -16,16 +17,39 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
       - name: Generate five Bobo scenes
         env:
           POLLINATIONS_API_KEY: ${{ secrets.POLLINATIONS_API_KEY }}
         run: |
           python generate_bobo_story.py
 
-      
+      - name: Verify generated images
+        run: |
+          for i in 1 2 3 4 5; do
+            test -s "bobo_scene_${i}.png" || exit 1
+          done
+          echo "All five images verified"
+
+      - name: Create Bobo cartoon video
+        run: |
+          python make_bobo_video.py
+          test -s bobo_story_video.mp4
+
       - name: Save five Bobo story scenes
         uses: actions/upload-artifact@v4
         with:
           name: bobo-story-scenes
           path: bobo_scene_*.png
+          if-no-files-found: error
+
+      - name: Save Bobo cartoon video
+        uses: actions/upload-artifact@v4
+        with:
+          name: bobo-story-video
+          path: bobo_story_video.mp4
           if-no-files-found: error
