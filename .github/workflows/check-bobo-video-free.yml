@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'check_free_video_models.py'
+      - 'check_pollen_balance.py'
       - '.github/workflows/check-bobo-video-free.yml'
   workflow_dispatch:
 
@@ -21,3 +22,7 @@ jobs:
           python-version: '3.12'
       - name: Check video model catalog (no API key, no generation)
         run: python check_free_video_models.py
+      - name: Check balance without generating media
+        env:
+          POLLINATIONS_API_KEY: ${{ secrets.POLLINATIONS_API_KEY }}
+        run: python check_pollen_balance.py
