@@ -1,6 +1,6 @@
 """Generate one new Bobo animation using only free ZeroGPU allocation."""
-import hashlib, json, math, os, shutil, subprocess, wave
-from datetime import datetime
+import hashlib, json, math, os, re, shutil, subprocess, wave
+from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 import numpy as np
@@ -92,6 +92,11 @@ def main():
  token=os.getenv('HF_TOKEN','').strip()
  if not token: raise RuntimeError('HF_TOKEN is missing; a free Hugging Face account token is required.')
  now=datetime.now(ZoneInfo('Asia/Karachi'))
+ quota_path=Path('bobo_quota.json')
+ if quota_path.exists():
+  pause=json.loads(quota_path.read_text())
+  if now<datetime.fromisoformat(pause['retry_after']):
+   print('Free generation quota unavailable until '+pause['retry_after']+'; no GPU request or Facebook upload attempted.'); return
  slot=int(os.getenv('EPISODE_SLOT',str(0 if now.hour<21 else 1)))
  episode=int(now.strftime('%Y%m%d'))*2+slot
  episode_key=f'long-v2-{episode}'
@@ -112,7 +117,18 @@ def main():
  for shot in range(2):
   shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Smooth clear movements, fixed camera, no sudden scene changes. Complete in five seconds.')
   reference=OUT/('reference.png' if shot==0 else 'continuation.png')
-  result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake',duration_seconds=5,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
+  try:
+   result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake',duration_seconds=5,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
+  except Exception as exc:
+   message=str(exc)
+   if 'quota' in message.lower():
+    wait=re.search(r'Try again in (\d+):(\d+):(\d+)',message)
+    if wait:
+     hours,minutes,seconds=map(int,wait.groups())
+     retry=now+timedelta(hours=hours,minutes=minutes,seconds=seconds+120)
+     quota_path.write_text(json.dumps({'retry_after':retry.isoformat(),'reason':'Free ZeroGPU quota exhausted'},indent=2))
+     print('Free quota exhausted; pausing requests until '+retry.isoformat())
+   raise
   source=result[0]
   if isinstance(source,dict): source=source.get('video',source.get('path'))
   if not isinstance(source,str) or not Path(source).is_file(): raise RuntimeError('Generator did not return a video file.')
