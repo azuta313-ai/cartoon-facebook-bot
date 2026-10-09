@@ -22,18 +22,21 @@ STORIES=[
 def run(args): subprocess.run(args, check=True)
 
 def soundtrack(seconds, variant):
- sr=48000; audio=np.zeros(int(sr*seconds)); melodies=[[523.25,659.25,783.99,659.25,587.33,698.46,783.99,523.25],[587.33,739.99,880,739.99,659.25,783.99,880,587.33],[659.25,783.99,987.77,783.99,587.33,739.99,880,659.25],[523.25,783.99,659.25,880,698.46,587.33,783.99,523.25]]; notes=melodies[variant%4]; beat=[.375,.32,.42,.35][variant%4]
- for i,start in enumerate(np.arange(0,seconds,beat)):
-  n=min(int(.35*sr),len(audio)-int(start*sr)); t=np.arange(n)/sr
-  audio[int(start*sr):int(start*sr)+n]+=.14*np.sin(2*np.pi*notes[i%8]*t)*np.exp(-t*12)*np.minimum(t/.008,1)
- for start,freq in [(1,900),(4.8,250),(8.5,1100)]:
-  n=int(.3*sr);t=np.arange(n)/sr; k=int(start*sr)
-  sweep=(-1 if variant%2 else 1)*200
-  audio[k:k+n]+=.2*np.sin(2*np.pi*(freq*t-sweep*t*t))*np.exp(-t*12)
-  if variant%3==1: audio[k:k+n]+=.03*np.random.default_rng(variant).normal(size=n)*np.exp(-t*20)
- audio*=np.minimum(np.arange(len(audio))/sr/.1,1)*np.minimum((seconds-np.arange(len(audio))/sr)/.3,1)
- with wave.open(str(OUT/'audio.wav'),'wb') as w:
-  w.setnchannels(2);w.setsampwidth(2);w.setframerate(sr);w.writeframes((np.repeat(audio[:,None],2,1)*32767).astype('<i2').tobytes())
+ # Use the same musical/cartoon asset family as the uploaded reference.
+ music='alex-morgan-cartoon-bouncy-chase-antics-578472.mp3'
+ effects=['soundreality-pop-sound-423716.mp3','freesound_community-cartoon-bite-39234.mp3','universfield-cartoon-spring-boing-140378.mp3']
+ orders=[(0,1,2),(2,0,1),(0,2,0),(1,0,2)]
+ order=orders[variant%4]; offset=[0,16,32,48][variant%4]
+ args=['ffmpeg','-loglevel','error','-y','-ss',str(offset),'-i',music]
+ for index in order: args+=['-i',effects[index]]
+ times=[900,4800,8500]
+ mix=[f'[0:a]atrim=duration={seconds},asetpts=PTS-STARTPTS,volume=0.16,afade=t=in:st=0:d=0.3,afade=t=out:st={seconds-.6}:d=0.6[music]']
+ for i,delay in enumerate(times,1):
+  level=[.65,.8,.7][(i+variant)%3]
+  mix.append(f'[{i}:a]aresample=48000,aformat=channel_layouts=stereo,volume={level},adelay={delay}|{delay}[fx{i}]')
+ mix.append(f'[music][fx1][fx2][fx3]amix=inputs=4:duration=first:normalize=0,atrim=duration={seconds}[audio]')
+ args+=['-filter_complex',';'.join(mix),'-map','[audio]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(OUT/'audio.wav')]
+ run(args)
 
 def main():
  token=os.getenv('HF_TOKEN','').strip()
@@ -47,7 +50,7 @@ def main():
  if os.getenv('PUBLISH_FACEBOOK')=='true' and episode_key in ledger:
   print('This episode was already published; skipping generation and upload.'); return
  title,action,captions=STORIES[(now.toordinal()*2+slot)%len(STORIES)]
- run(['ffmpeg','-loglevel','error','-y','-i',os.getenv('BOBO_REFERENCE_VIDEO','Bobo 1.mp4'),'-frames:v','1',str(OUT/'reference.png')])
+ run(['ffmpeg','-loglevel','error','-y','-i',os.getenv('BOBO_REFERENCE_VIDEO','Bobo reel base.mp4'),'-frames:v','1',str(OUT/'reference.png')])
  prompt=('High quality 3D animated family comedy. Keep the exact little brown monkey in the red Bobo shirt and the detailed colorful kitchen from the reference. '+action+' Clear natural hand movement and expressive face, smooth motion, fixed camera. No extra characters, no text overlays. Complete the action within five seconds.')
  client=Client(SPACE, token=token, httpx_kwargs={'timeout':90})
  # Exactly two free-GPU requests per episode, with no paid fallback.
@@ -78,14 +81,14 @@ def main():
  if len(frames)<4 or np.abs(np.diff(frames,axis=0)).mean()<.5: raise RuntimeError('Generated clip is static; skipping publication.')
  soundtrack(11,episode)
  font='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
- filters=['scale=720:1280:force_original_aspect_ratio=increase','crop=720:1280','minterpolate=fps=30:mi_mode=mci:mc_mode=aobmc:me_mode=bilat:vsbmc=1','tpad=stop_mode=clone:stop_duration=1']
+ filters=['minterpolate=fps=60:mi_mode=mci:mc_mode=aobmc:me_mode=bilat:vsbmc=1:scd=fdiff','scale=720:1280:force_original_aspect_ratio=increase','crop=720:1280','tpad=stop_mode=clone:stop_duration=1.5']
  # Textfiles avoid shell/filter escaping for captions.
- for i,(text,start,end,y,size) in enumerate([(title,0,1.5,150,40)]+[(captions[0],0,4,1040,40),(captions[1],4,8,1040,40),(captions[2],8,11,1040,40)]):
+ for i,(text,start,end,y,size) in enumerate([(title,0,1.5,150,36)]+[(captions[0],0,4,1160,34),(captions[1],4,8,1160,34),(captions[2],8,11,1160,34)]):
   path=OUT/f'text{i}.txt';path.write_text(text)
-  filters.append(f"drawtext=fontfile={font}:textfile={path}:fontsize={size}:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=14:x=(w-text_w)/2:y={y}:enable='between(t,{start},{end})'")
- run(['ffmpeg','-loglevel','error','-y','-i',str(OUT/'generated.mp4'),'-i',str(OUT/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','fast','-crf','18','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(OUT/'bobo_fresh.mp4')])
+  filters.append(f"drawtext=fontfile={font}:textfile={path}:fontsize={size}:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y={y}:enable='between(t,{start},{end})'")
+ run(['ffmpeg','-loglevel','error','-y','-i',str(OUT/'generated.mp4'),'-i',str(OUT/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-20:TP=-1.5:LRA=9','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','fast','-crf','18','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(OUT/'bobo_fresh.mp4')])
  run(['ffmpeg','-v','error','-i',str(OUT/'bobo_fresh.mp4'),'-f','null','-'])
- metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat()}
+ metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':'Bobo reel base.mp4','export_fps':60,'audio_mix_variant':episode%4}
  (OUT/'episode.json').write_text(json.dumps(metadata,indent=2))
  print(f'New episode created: {title}. No paid API used.')
  if os.getenv('PUBLISH_FACEBOOK')=='true':
