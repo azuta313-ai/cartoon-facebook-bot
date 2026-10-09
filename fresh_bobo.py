@@ -81,7 +81,7 @@ def main():
  if len(frames)<4 or np.abs(np.diff(frames,axis=0)).mean()<.5: raise RuntimeError('Generated clip is static; skipping publication.')
  soundtrack(11,episode)
  font='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
- filters=['minterpolate=fps=60:mi_mode=mci:mc_mode=aobmc:me_mode=bilat:vsbmc=1:scd=fdiff','scale=720:1280:force_original_aspect_ratio=increase','crop=720:1280','tpad=stop_mode=clone:stop_duration=1']
+ filters=['minterpolate=fps=60:mi_mode=mci:mc_mode=aobmc:me_mode=bilat:vsbmc=1:scd=fdiff','scale=720:1280:force_original_aspect_ratio=increase','crop=720:1280','tpad=stop_mode=clone:stop_duration=1.5']
  # Textfiles avoid shell/filter escaping for captions.
  for i,(text,start,end,y,size) in enumerate([(title,0,1.5,150,36)]+[(captions[0],0,4,1160,34),(captions[1],4,8,1160,34),(captions[2],8,11,1160,34)]):
   path=OUT/f'text{i}.txt';path.write_text(text)
