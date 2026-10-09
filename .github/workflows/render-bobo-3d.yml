@@ -16,11 +16,11 @@ jobs:
       - name: Install free Blender and FFmpeg
         run: |
           sudo timeout 240 apt-get update -o Acquire::Retries=1 -o Acquire::http::Timeout=20
-          sudo apt-get install -y blender ffmpeg
+          sudo apt-get install -y blender ffmpeg libegl1 libgl1-mesa-dri xvfb xauth
       - name: Render 3D walking waving jumping frames
         run: |
           mkdir -p frames
-          blender -b -t 2 --python blender_bobo_3d.py
+          LIBGL_ALWAYS_SOFTWARE=1 xvfb-run -a blender -b -t 2 --python-exit-code 1 --python blender_bobo_3d.py
           test "$(find frames -name '*.png' | wc -l)" -eq 72
       - name: Assemble real 3D MP4
         run: |
