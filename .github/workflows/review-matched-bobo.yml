@@ -1,0 +1,58 @@
+name: Review Matched Bobo Episode
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/review-matched-bobo.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: free-bobo-generation
+  cancel-in-progress: false
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install video tools
+        run: |
+          pip install gradio_client numpy socksio
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+      - name: Generate updated video for review
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          PUBLISH_FACEBOOK: 'false'
+          EPISODE_SLOT: '0'
+        run: python fresh_bobo.py
+      - name: Render review frames and check audio
+        if: always()
+        run: |
+          python - <<'PY'
+          import subprocess,json,re,base64
+          from pathlib import Path
+          video=Path('fresh_output/bobo_fresh.mp4')
+          if not video.exists():
+              video=Path('fresh_output/shot0.mp4')
+              if not video.exists():
+                  print('NO_GENERATED_VIDEO'); raise SystemExit(0)
+              print('PARTIAL_EPISODE_ONLY')
+          info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=width,height,r_frame_rate,codec_name','-of','json',str(video)]))
+          print('REVIEW_REPORT='+json.dumps(info))
+          subprocess.run(['ffmpeg','-v','error','-y','-i',str(video),'-vf','fps=1,scale=180:320,tile=6x2','-frames:v','1','fresh_output/review.jpg'],check=True)
+          print('REVIEW_IMAGE='+base64.b64encode(Path('fresh_output/review.jpg').read_bytes()).decode())
+          if any(s['codec_name']=='aac' for s in info['streams']):
+              log=subprocess.run(['ffmpeg','-hide_banner','-i',str(video),'-af','loudnorm=I=-20:TP=-1.5:LRA=9:print_format=json','-vn','-f','null','-'],capture_output=True,text=True,check=True).stderr
+              match=re.search(r'\{\s*"input_i".*?\}',log,re.S)
+              if match: print('REVIEW_AUDIO='+match.group())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: matched-bobo-review
+          path: fresh_output/
+          retention-days: 7
