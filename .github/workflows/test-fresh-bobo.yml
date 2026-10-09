@@ -53,7 +53,7 @@ jobs:
               b.soundtrack(11,variant)
               data=(b.OUT/'audio.wav').read_bytes()
               Path(f'audio-hash-{variant}.txt').write_text(hashlib.sha256(data).hexdigest())
-          hashes={Path(f'audio-hash-{v}.txt').read_text() for v in range(4)}
+          hashes={Path(f'audio-hash-{v}.txt').read_text() for v in range(8)}
           assert len(hashes)==8
           p=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=width,height,codec_name,r_frame_rate','-of','json',str(b.OUT/'bobo_fresh.mp4')]))
           assert abs(float(p['format']['duration'])-11)<.1
