@@ -31,6 +31,17 @@ SCENES=[
  ('Art room paint surprise','a sunny art room with a small easel and paint palette','a colorful paintbrush','He makes a careful brush stroke, notices a little paint on his hand, and smiles sheepishly.','He proudly points at his colorful painting and bows playfully.',['Masterpiece coming!','Paint everywhere!','Artist Bobo!'],['ArtComedy','LittleArtist']),
 ]
 
+PROMOTION=[
+ ("Bobo vs. one tiny bubble... who wins? 🫧😂","One little puff starts a very big reaction.","Would you chase it or let it pop?"),
+ ("Big sandcastle dreams. Tiny bucket problems. 🏖️🐒","Bobo has a plan—and a bucket full of surprises.","What should he build next?"),
+ ("Bobo's snack has an escape plan! 🍎😂","A peaceful picnic turns into a tiny apple chase.","Which picnic snack would Bobo love most?"),
+ ("One more block... what could possibly happen? 🧱😆","Bobo's serious builder face deserves its own award.","Would you add another block?"),
+ ("Bobo found a puddle. You know what's coming! 💦🐒","That innocent little step has splashy consequences.","Are you team splash or team stay dry?"),
+ ("Someone gave Bobo a spaceship button... 🚀😂","Curiosity just got promoted to captain.","What would you name Bobo's spaceship?"),
+ ("The tiniest snowball. The proudest monkey. ❄️🏆","Bobo takes his winter championship very seriously.","Does this little champion deserve a medal?"),
+ ("Bobo's masterpiece comes with a messy surprise! 🎨😆","A little paint and a lot of confidence.","What should our little artist paint next?"),
+]
+
 def original_music(seconds, variant):
  # Original procedural tunes avoid paid downloads and repeated sections of one song.
  melodies=[
@@ -131,7 +142,8 @@ def main():
  run(['ffmpeg','-loglevel','error','-y','-i',str(OUT/'generated.mp4'),'-i',str(OUT/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-20:TP=-1.5:LRA=9','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','fast','-crf','18','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(OUT/'bobo_fresh.mp4')])
  run(['ffmpeg','-v','error','-i',str(OUT/'bobo_fresh.mp4'),'-f','null','-'])
  metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':'Bobo reel base.mp4','export_fps':60,'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
- social_caption=f"{title} 😂\n{captions[0]} {captions[-1]}\n"+['Which moment made you smile?','What should Bobo try next?','Would you try this too?','Who else loves Bobo?'][scene_id%4]+"\n"+' '.join('#'+tag for tag in ['Bobo','3DAnimation']+scene_tags+[['FunnyCartoon'],['CartoonComedy'],['AnimatedShorts'],['FunnyAnimation']][scene_id%4])
+ hook,teaser,question=PROMOTION[scene_id]
+ social_caption=f"{hook}\n\n{teaser}\n{question}\n\n"+' '.join('#'+tag for tag in ['Bobo','3DAnimation']+scene_tags+[['FunnyCartoon'],['CartoonComedy'],['AnimatedShorts'],['FunnyAnimation']][scene_id%4])
  metadata['social_caption']=social_caption
  (OUT/'facebook-caption.txt').write_text(social_caption)
  (OUT/'episode.json').write_text(json.dumps(metadata,indent=2))
