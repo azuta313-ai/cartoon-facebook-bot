@@ -1,0 +1,33 @@
+name: Inspect Bobo Quality Reference
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/analyze-bobo-base.yml', 'Bobo reel base.mp4']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect video and audio and render review frames
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python - <<'PY'
+          import subprocess,json,re,base64
+          from pathlib import Path
+          source='Bobo reel base.mp4'
+          probe=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_streams','-show_format','-of','json',source]))
+          report={'duration':probe['format']['duration'],'streams':[{k:s.get(k) for k in ['codec_name','width','height','r_frame_rate','bit_rate','sample_rate','channels']} for s in probe['streams']]}
+          audio=subprocess.run(['ffmpeg','-hide_banner','-i',source,'-af','volumedetect','-vn','-f','null','-'],capture_output=True,text=True,check=True).stderr
+          report['audio_levels']=re.findall(r'(?:mean_volume|max_volume):[^\n]+',audio)
+          loud=subprocess.run(['ffmpeg','-hide_banner','-i',source,'-af','loudnorm=I=-16:TP=-1.5:LRA=7:print_format=json','-vn','-f','null','-'],capture_output=True,text=True,check=True).stderr
+          match=re.search(r'\{\s*"input_i".*?\}',loud,re.S)
+          if match: report['loudness']=json.loads(match.group())
+          subprocess.run(['ffmpeg','-v','error','-y','-i',source,'-vf','fps=1/2,scale=180:320,tile=7x1','-frames:v','1','review.jpg'],check=True)
+          print('BASE_REPORT='+json.dumps(report))
+          print('BASE_REVIEW='+base64.b64encode(Path('review.jpg').read_bytes()).decode())
+          PY
