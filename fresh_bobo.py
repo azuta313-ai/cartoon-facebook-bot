@@ -41,24 +41,24 @@ def main():
  episode=int(now.strftime('%Y%m%d'))*4+slot
  title,action,captions=STORIES[episode%len(STORIES)]
  run(['ffmpeg','-loglevel','error','-y','-i','Bobo 1.mp4','-frames:v','1',str(OUT/'reference.png')])
- prompt=('High quality 3D animated family comedy. Keep the exact little brown monkey in the red Bobo shirt and the detailed colorful kitchen from the reference. '+action+' Clear natural hand movement and expressive face, smooth motion, fixed camera. No extra characters, no text overlays. Complete the action within six seconds.')
+ prompt=('High quality 3D animated family comedy. Keep the exact little brown monkey in the red Bobo shirt and the detailed colorful kitchen from the reference. '+action+' Clear natural hand movement and expressive face, smooth motion, fixed camera. No extra characters, no text overlays. Complete the action within five seconds.')
  client=Client(SPACE, token=token, httpx_kwargs={'timeout':90})
  # One request only. Never buy credits, retry against paid providers, or reuse old clips.
- result=client.predict(input_image=handle_file(str(OUT/'reference.png')),prompt=prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake',duration_seconds=6,guidance_scale=1,guidance_scale_2=1,seed=episode%2147483647,randomize_seed=False,api_name='/generate_video')
+ result=client.predict(input_image=handle_file(str(OUT/'reference.png')),prompt=prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake',duration_seconds=5,guidance_scale=1,guidance_scale_2=1,seed=episode%2147483647,randomize_seed=False,api_name='/generate_video')
  source=result[0]
  if isinstance(source,dict): source=source.get('video',source.get('path'))
  if not isinstance(source,str) or not Path(source).is_file(): raise RuntimeError('Generator did not return a video file.')
  shutil.copyfile(source,OUT/'generated.mp4')
  info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=width,height','-of','json',str(OUT/'generated.mp4')]))
  duration=float(info['format']['duration'])
- if not 5.5<=duration<=7: raise RuntimeError('Generated video duration is invalid.')
+ if not 4.8<=duration<=5.5: raise RuntimeError('Generated video duration is invalid.')
  # Reject static output using differences among four sampled frames.
  raw=subprocess.check_output(['ffmpeg','-loglevel','error','-i',str(OUT/'generated.mp4'),'-vf','fps=1,scale=64:64,format=gray','-f','rawvideo','-'])
  frames=np.frombuffer(raw,dtype=np.uint8).reshape(-1,64,64).astype(float)
  if len(frames)<4 or np.abs(np.diff(frames,axis=0)).mean()<.5: raise RuntimeError('Generated clip is static; skipping publication.')
  soundtrack(6)
  font='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
- filters=['scale=720:1280:force_original_aspect_ratio=increase','crop=720:1280','fps=30']
+ filters=['scale=720:1280:force_original_aspect_ratio=increase','crop=720:1280','fps=30','tpad=stop_mode=clone:stop_duration=1']
  # Textfiles avoid shell/filter escaping for captions.
  for i,(text,start,end,y,size) in enumerate([(title,0,1.5,150,40)]+[(c,i*2,(i+1)*2,1040,40) for i,c in enumerate(captions)]):
   path=OUT/f'text{i}.txt';path.write_text(text)
