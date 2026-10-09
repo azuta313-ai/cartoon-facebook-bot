@@ -51,8 +51,9 @@ jobs:
           p=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=width,height,codec_name,r_frame_rate','-of','json',str(b.OUT/'bobo_fresh.mp4')]))
           assert abs(float(p['format']['duration'])-11)<.1
           assert p['streams'][0]['width']==720 and p['streams'][0]['height']==1280
-          assert p['streams'][0]['r_frame_rate']=='30/1'
+          assert p['streams'][0]['r_frame_rate']=='60/1'
           assert any(s['codec_name']=='aac' for s in p['streams'])
           assert (b.OUT/'continuation.png').is_file()
-          print('Validated: two shots, continuation frame, 11-second export, four audio variants, captions, 720x1280, 30 FPS and AAC.')
+          assert (b.OUT/'reference.png').is_file()
+          print('Validated: two shots, continuation frame, 11-second export, four audio variants, captions, 720x1280, 60 FPS and AAC.')
           PY
