@@ -8,7 +8,7 @@ permissions:
   contents: read
 concurrency:
   group: free-bobo-generation
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   review:
     runs-on: ubuntu-latest
@@ -20,9 +20,11 @@ jobs:
           python-version: '3.12'
       - name: Install video tools
         run: |
-          pip install gradio_client numpy socksio
-          sudo apt-get update -qq
-          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          pip install --disable-pip-version-check --timeout 20 --retries 1 gradio_client numpy socksio
+          if ! command -v ffmpeg >/dev/null; then
+            sudo timeout 90 apt-get update -qq -o Acquire::Retries=1 -o Acquire::http::Timeout=20 || true
+            sudo timeout 120 apt-get install -y ffmpeg fonts-dejavu-core
+          fi
       - name: Generate updated video for review
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
