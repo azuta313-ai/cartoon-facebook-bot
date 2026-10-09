@@ -39,6 +39,10 @@ def main():
  now=datetime.now(ZoneInfo('Asia/Karachi'))
  slot=int(os.getenv('EPISODE_SLOT',str(max(0,min(3,(now.hour-9)//4)))))
  episode=int(now.strftime('%Y%m%d'))*4+slot
+ ledger_path=Path('published_bobo.json')
+ ledger=json.loads(ledger_path.read_text()) if ledger_path.exists() else {}
+ if os.getenv('PUBLISH_FACEBOOK')=='true' and str(episode) in ledger:
+  print('This episode was already published; skipping generation and upload.'); return
  title,action,captions=STORIES[episode%len(STORIES)]
  run(['ffmpeg','-loglevel','error','-y','-i','Bobo 1.mp4','-frames:v','1',str(OUT/'reference.png')])
  prompt=('High quality 3D animated family comedy. Keep the exact little brown monkey in the red Bobo shirt and the detailed colorful kitchen from the reference. '+action+' Clear natural hand movement and expressive face, smooth motion, fixed camera. No extra characters, no text overlays. Complete the action within five seconds.')
@@ -68,4 +72,15 @@ def main():
  metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':6,'generated_at':now.isoformat()}
  (OUT/'episode.json').write_text(json.dumps(metadata,indent=2))
  print(f'New episode created: {title}. No paid API used.')
+ if os.getenv('PUBLISH_FACEBOOK')=='true':
+  page=os.environ['FB_PAGE_ID']; fb_token=os.environ['FB_PAGE_ACCESS_TOKEN']
+  if not page or not fb_token: raise RuntimeError('Facebook credentials are missing.')
+  if any(v.get('generated_sha256')==metadata['generated_sha256'] for v in ledger.values()): raise RuntimeError('Duplicate generated video; skipping upload.')
+  response=subprocess.check_output(['curl','--silent','--show-error','--fail-with-body','--max-time','180','-X','POST',f'https://graph-video.facebook.com/v26.0/{page}/videos','-F',f'access_token={fb_token}','-F',f'source=@{OUT}/bobo_fresh.mp4','-F',f'description={title} | A new Bobo adventure! #Bobo #FunnyCartoon #3DAnimation'])
+  result=json.loads(response)
+  if not result.get('id'): raise RuntimeError('Facebook did not accept the video.')
+  metadata['facebook_video_id']=result['id']; ledger[str(episode)]=metadata
+  ledger_path.write_text(json.dumps(ledger,indent=2))
+  (OUT/'episode.json').write_text(json.dumps(metadata,indent=2))
+  print('Facebook accepted new video:',result['id'])
 if __name__=='__main__': main()
