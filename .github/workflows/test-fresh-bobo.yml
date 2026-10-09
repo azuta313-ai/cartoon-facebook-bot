@@ -2,6 +2,9 @@ name: Validate Longer Bobo Editing
 on:
   pull_request:
     paths: ['fresh_bobo.py', '.github/workflows/test-fresh-bobo.yml']
+  push:
+    branches: [main]
+    paths: ['fresh_bobo.py', '.github/workflows/test-fresh-bobo.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -42,12 +45,16 @@ jobs:
                   return str(path), kwargs['seed']
           b.Client=OfflineGenerator
           b.main()
-          for variant in range(4):
+          metadata=json.loads((b.OUT/'episode.json').read_text())
+          assert metadata['setting'] and metadata['scene_id'] in range(8)
+          assert '#'+b.SCENES[metadata['scene_id']][-1][0] in metadata['social_caption']
+          assert (b.OUT/'facebook-caption.txt').is_file()
+          for variant in range(8):
               b.soundtrack(11,variant)
               data=(b.OUT/'audio.wav').read_bytes()
               Path(f'audio-hash-{variant}.txt').write_text(hashlib.sha256(data).hexdigest())
           hashes={Path(f'audio-hash-{v}.txt').read_text() for v in range(4)}
-          assert len(hashes)==4
+          assert len(hashes)==8
           p=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=width,height,codec_name,r_frame_rate','-of','json',str(b.OUT/'bobo_fresh.mp4')]))
           assert abs(float(p['format']['duration'])-11)<.1
           assert p['streams'][0]['width']==720 and p['streams'][0]['height']==1280
@@ -55,5 +62,5 @@ jobs:
           assert any(s['codec_name']=='aac' for s in p['streams'])
           assert (b.OUT/'continuation.png').is_file()
           assert (b.OUT/'reference.png').is_file()
-          print('Validated: two shots, continuation frame, 11-second export, four audio variants, captions, 720x1280, 60 FPS and AAC.')
+          print('Validated: two shots, continuation frame, 11-second export, eight original music variants, captions, 720x1280, 60 FPS and AAC.')
           PY
