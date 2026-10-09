@@ -30,7 +30,7 @@ def soundtrack(seconds, variant):
  args=['ffmpeg','-loglevel','error','-y','-ss',str(offset),'-i',music]
  for index in order: args+=['-i',effects[index]]
  times=[900,4800,8500]
- mix=[f'[0:a]atrim=duration={seconds},asetpts=PTS-STARTPTS,volume=0.16,afade=t=in:st=0:d=0.3,afade=t=out:st={seconds-.6}:d=.6[music]']
+ mix=[f'[0:a]atrim=duration={seconds},asetpts=PTS-STARTPTS,volume=0.16,afade=t=in:st=0:d=0.3,afade=t=out:st={seconds-.6}:d=0.6[music]']
  for i,delay in enumerate(times,1):
   level=[.65,.8,.7][(i+variant)%3]
   mix.append(f'[{i}:a]aresample=48000,aformat=channel_layouts=stereo,volume={level},adelay={delay}|{delay}[fx{i}]')
