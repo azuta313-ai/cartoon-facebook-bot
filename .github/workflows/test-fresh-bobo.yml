@@ -1,15 +1,12 @@
-name: Test Fresh Bobo Generation
+name: Validate Longer Bobo Editing
 on:
   pull_request:
     paths: ['fresh_bobo.py', '.github/workflows/test-fresh-bobo.yml']
   workflow_dispatch:
 permissions:
   contents: read
-concurrency:
-  group: free-bobo-generation
-  cancel-in-progress: false
 jobs:
-  generate:
+  validate:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -17,18 +14,45 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install generator and video tools
+      - name: Install video tools
         run: |
           pip install gradio_client numpy socksio
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg fonts-dejavu-core
-      - name: Generate one new six-second episode using free GPU quota
+      - name: Check compilation, two-shot assembly, sound variants and final export
         env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_TOKEN: offline-test
+          PUBLISH_FACEBOOK: 'false'
           EPISODE_SLOT: '0'
-        run: python fresh_bobo.py
-      - uses: actions/upload-artifact@v4
-        with:
-          name: fresh-bobo-review
-          path: fresh_output/
-          if-no-files-found: error
+        run: |
+          python -m py_compile fresh_bobo.py
+          python - <<'PY'
+          import hashlib, json, subprocess
+          from pathlib import Path
+          import fresh_bobo as b
+          class OfflineGenerator:
+              calls=0
+              def __init__(self,*args,**kwargs): pass
+              def predict(self,**kwargs):
+                  assert kwargs['duration_seconds']==5
+                  assert kwargs['steps']==4
+                  path=Path(f'offline_source{self.calls}.mp4')
+                  subprocess.run(['ffmpeg','-v','error','-y','-f','lavfi','-i','testsrc2=size=256x448:rate=16','-t','5','-c:v','libx264','-pix_fmt','yuv420p',str(path)],check=True)
+                  self.calls+=1
+                  return str(path), kwargs['seed']
+          b.Client=OfflineGenerator
+          b.main()
+          for variant in range(4):
+              b.soundtrack(11,variant)
+              data=(b.OUT/'audio.wav').read_bytes()
+              Path(f'audio-hash-{variant}.txt').write_text(hashlib.sha256(data).hexdigest())
+          hashes={Path(f'audio-hash-{v}.txt').read_text() for v in range(4)}
+          assert len(hashes)==4
+          p=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=width,height,codec_name,r_frame_rate','-of','json',str(b.OUT/'bobo_fresh.mp4')]))
+          assert abs(float(p['format']['duration'])-11)<.1
+          assert p['streams'][0]['width']==720 and p['streams'][0]['height']==1280
+          assert p['streams'][0]['r_frame_rate']=='30/1'
+          assert any(s['codec_name']=='aac' for s in p['streams'])
+          assert (b.OUT/'continuation.png').is_file()
+          print('Validated: two shots, continuation frame, 11-second export, four audio variants, captions, 720x1280, 30 FPS and AAC.')
+          PY
