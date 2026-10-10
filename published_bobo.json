@@ -16,5 +16,21 @@
     "duration": 6,
     "generated_at": "2026-10-09T17:26:49.429486+05:00",
     "facebook_video_id": "1913077786331711"
+  },
+  "long-v2-40522020": {
+    "episode": 40522020,
+    "title": "Snowball tiny champion",
+    "space": "zerogpu-aoti/wan2-2-fp8da-aoti-faster",
+    "generated_sha256": "07e68be4f019e326ca2a44453a368f50eac62e8875601477f3959289ee2376ff",
+    "duration": 11,
+    "generated_at": "2026-10-10T17:29:57.767110+05:00",
+    "quality_reference": "Bobo reel base.mp4",
+    "export_fps": 60,
+    "audio_mix_variant": 6,
+    "scene_id": 6,
+    "setting": "a bright snowy playground beside a small snowman",
+    "music": "original procedural composition 6",
+    "social_caption": "The tiniest snowball. The proudest monkey. \u2744\ufe0f\ud83c\udfc6\n\nBobo takes his winter championship very seriously.\nDoes this little champion deserve a medal?\n\n#Bobo #3DAnimation #SnowDay #SnowmanFun #AnimatedShorts",
+    "facebook_video_id": "1458975912826279"
   }
 }
