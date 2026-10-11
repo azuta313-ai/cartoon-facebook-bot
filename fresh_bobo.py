@@ -11,7 +11,7 @@ OUT=Path('fresh_output'); OUT.mkdir(exist_ok=True)
 # Rotate complete settings and stories; preserve Bobo, not the old kitchen.
 SCENES=[
  ('Garden bubble trouble','a sunny flower garden beside a bubble wand','a floating soap bubble','He blows a bubble, follows it with his finger, and jumps in surprise when it pops.','He laughs at the popped bubble and gives a playful shrug.',['One perfect bubble!','Wait for it...','POP!'],['GardenFun','BubbleTrouble']),
- ('Beach bucket surprise','a colorful sandy beach beside a little sandcastle','a small beach bucket','He tips his bucket to make a sandcastle, lifts it proudly, and looks surprised at the tiny result.','He admires his tiny sandcastle and gives a proud thumbs up.',['Big castle coming!','Is that all?','Tiny but mighty!'],['BeachComedy','Sandcastle']),
+ ('Beach bucket surprise','a colorful sandy beach beside a little sandcastle','a small beach bucket','He tips his bucket to make a sandcastle, lifts it proudly, and looks surprised at the tiny result.','He admires his tiny sandcastle and gives a proud thumbs up.',['Big castle coming!','Careful... careful...','Tiny but mighty!'],['BeachComedy','Sandcastle']),
  ('Picnic apple escape','a leafy park with a picnic blanket and fruit basket','a rolling red apple','He reaches for an apple, watches it roll away, and quickly catches it with both hands.','He holds up the rescued apple and smiles proudly.',['Snack time!','Come back!','Got you!'],['PicnicFun','AppleAdventure']),
  ('Toy room tower wobble','a bright playroom with colorful wooden blocks','a wobbly block tower','He places a block on a tower, sees it wobble, and freezes with a funny wide eyed expression.','He steadies the tower gently and celebrates with a little shoulder dance.',['One more block!','Easy... easy...','Tower saved!'],['ToyRoom','BlockTower']),
  ('Rainy puddle splash','a cheerful garden path after rain with a shallow puddle','a shallow puddle','He cautiously taps a puddle with his foot, makes a small splash, then grins at the camera.','He does a playful little hop beside the puddle and laughs.',['Just a little splash!','Oops!','Worth it!'],['PuddleFun','RainyDay']),
@@ -176,12 +176,12 @@ def main():
  scene_reference=Path('assets/scenes')/f'scene{scene_id}.jpg'
  if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
- prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: establish the setup during seconds 0 to 2; show the main movement during seconds 2 to 5. Clear natural hand movement and expressive face, smooth motion, fixed camera. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
+ prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: establish the setup during seconds 0 to 2; show the main movement during seconds 2 to 5. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
  client=Client(SPACE, token=token, httpx_kwargs={'timeout':90})
  # Exactly two free-GPU requests per episode, with no paid fallback.
  clips=[]; shot_durations=[]
  for shot in range(2):
-  shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Smooth clear movements, fixed camera, no sudden scene changes. Complete in five seconds.')
+  shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Preserve clothing details exactly; no added shirt lettering. Smooth clear movements, fixed camera, no sudden scene changes. Complete in five seconds.')
   reference=OUT/('reference.png' if shot==0 else 'continuation.png')
   try:
    result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake',duration_seconds=5,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
