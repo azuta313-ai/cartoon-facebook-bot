@@ -48,5 +48,21 @@
     "music": "original procedural composition 7",
     "social_caption": "Bobo's masterpiece comes with a messy surprise! \ud83c\udfa8\ud83d\ude06\n\nA little paint and a lot of confidence.\nWhat should our little artist paint next?\n\n#Bobo #3DAnimation #ArtComedy #LittleArtist #FunnyAnimation",
     "facebook_video_id": "2212226773511644"
+  },
+  "long-v2-40522022": {
+    "episode": 40522022,
+    "title": "Garden bubble trouble",
+    "space": "zerogpu-aoti/wan2-2-fp8da-aoti-faster",
+    "generated_sha256": "6489d835f4e5a6e6f0f4c42eb9b0f56ebc4c2c0bdefb3e7c6eb21da59e503453",
+    "duration": 11,
+    "generated_at": "2026-10-11T09:27:22.635172+05:00",
+    "quality_reference": "Bobo reel base.mp4",
+    "export_fps": 60,
+    "audio_mix_variant": 0,
+    "scene_id": 0,
+    "setting": "a sunny flower garden beside a bubble wand",
+    "music": "original procedural composition 0",
+    "social_caption": "Bobo vs. one tiny bubble... who wins? \ud83e\udee7\ud83d\ude02\n\nOne little puff starts a very big reaction.\nWould you chase it or let it pop?\n\n#Bobo #3DAnimation #GardenFun #BubbleTrouble #FunnyCartoon",
+    "facebook_video_id": "2605709733211647"
   }
 }
