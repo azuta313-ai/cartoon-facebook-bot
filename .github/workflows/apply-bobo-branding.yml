@@ -1,0 +1,74 @@
+name: Apply Bobo Facebook Branding
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/apply-bobo-branding.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: facebook-page-branding
+  cancel-in-progress: false
+jobs:
+  branding:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install --disable-pip-version-check requests
+      - name: Apply selected cover and profile to the connected page
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          import requests
+          page=os.environ['FB_PAGE_ID']
+          token=os.environ['FB_PAGE_ACCESS_TOKEN']
+          session=requests.Session()
+          session.headers['Authorization']='Bearer '+token
+          base='https://graph.facebook.com/v26.0/'
+          def call(method, endpoint, **kwargs):
+           response=session.request(method,base+endpoint,timeout=90,**kwargs)
+           data=response.json()
+           if not response.ok or (isinstance(data,dict) and data.get('error')):
+            error=data.get('error',{})
+            raise RuntimeError('Facebook error '+str(error.get('code',response.status_code))+': '+str(error.get('message','Request failed')))
+           return data
+          identity=call('GET',page,params={'fields':'id,name'})
+          print('CONNECTED_PAGE='+json.dumps(identity))
+          results={'page':identity}
+          for kind in ['cover','profile']:
+           try:
+            path=Path('assets/branding/bobo-'+kind+'.jpg')
+            with path.open('rb') as source:
+             photo=call('POST',page+'/photos',data={'published':'false'},files={'source':(path.name,source,'image/jpeg')})
+            photo_id=photo['id']
+            if kind=='cover':
+             outcome=call('POST',page,data={'cover':photo_id,'no_feed_story':'true'})
+            else:
+             outcome=call('POST',page+'/picture',data={'photo':photo_id,'suppress_stories':'true'})
+            results[kind]={'updated':True,'photo_id':photo_id,'response':outcome}
+           except Exception as exc:
+            results[kind]={'updated':False,'error':str(exc)}
+           print('BRANDING_'+kind.upper()+'='+json.dumps(results[kind]))
+          try:
+           results['verification']=call('GET',page,params={'fields':'id,name,cover,picture.type(large)'})
+           print('BRANDING_VERIFICATION='+json.dumps(results['verification']))
+          except Exception as exc:
+           results['verification_error']=str(exc)
+          Path('branding-result.json').write_text(json.dumps(results,indent=2))
+          if not all(results[k].get('updated') for k in ['cover','profile']):
+           raise SystemExit('Facebook did not accept both branding updates; see results above.')
+          
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: facebook-branding-result
+          path: branding-result.json
