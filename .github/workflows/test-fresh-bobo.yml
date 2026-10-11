@@ -47,6 +47,12 @@ jobs:
           Path('bobo_quota.json').unlink(missing_ok=True)
           b.main()
           metadata=json.loads((b.OUT/'episode.json').read_text())
+          cues=metadata['caption_timing']
+          assert cues[0]['start']==0 and cues[-1]['end']==11
+          assert cues[1]['end']==cues[2]['start']
+          assert 4.8<=cues[2]['start']<=5.5
+          assert '\n' in (b.OUT/'captions.srt').read_text()
+          assert '-->' in (b.OUT/'captions.srt').read_text()
           assert metadata['music_check_dbfs'] > -30
           assert Path(metadata['quality_reference']).read_bytes() == (b.OUT/'reference.png').read_bytes()
           assert metadata['setting'] and metadata['scene_id'] in range(8)
