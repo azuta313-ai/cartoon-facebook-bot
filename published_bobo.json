@@ -64,5 +64,39 @@
     "music": "original procedural composition 0",
     "social_caption": "Bobo vs. one tiny bubble... who wins? \ud83e\udee7\ud83d\ude02\n\nOne little puff starts a very big reaction.\nWould you chase it or let it pop?\n\n#Bobo #3DAnimation #GardenFun #BubbleTrouble #FunnyCartoon",
     "facebook_video_id": "2605709733211647"
+  },
+  "long-v2-40522023": {
+    "episode": 40522023,
+    "title": "Beach bucket surprise",
+    "space": "zerogpu-aoti/wan2-2-fp8da-aoti-faster",
+    "generated_sha256": "975735d21e7c57d280be51229748377ff105cf470dd77daa20311d7822d9f9a8",
+    "duration": 11,
+    "generated_at": "2026-10-11T21:26:18.757031+05:00",
+    "quality_reference": "assets/scenes/scene1.jpg",
+    "music_check_dbfs": -15.15,
+    "export_fps": 60,
+    "caption_timing": [
+      {
+        "text": "Big castle coming!",
+        "start": 0,
+        "end": 2.0
+      },
+      {
+        "text": "Is that all?",
+        "start": 2.0,
+        "end": 5.0625
+      },
+      {
+        "text": "Tiny but mighty!",
+        "start": 5.0625,
+        "end": 11
+      }
+    ],
+    "audio_mix_variant": 1,
+    "scene_id": 1,
+    "setting": "a colorful sandy beach beside a little sandcastle",
+    "music": "original procedural composition 1",
+    "social_caption": "Big sandcastle dreams. Tiny bucket problems. \ud83c\udfd6\ufe0f\ud83d\udc12\n\nBobo has a plan\u2014and a bucket full of surprises.\nWhat should he build next?\n\n#Bobo #3DAnimation #BeachComedy #Sandcastle #CartoonComedy",
+    "facebook_video_id": "3160195454190831"
   }
 }
