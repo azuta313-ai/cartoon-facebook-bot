@@ -77,6 +77,32 @@ def soundtrack(seconds, variant):
  args+=['-filter_complex',';'.join(mix),'-map','[audio]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(OUT/'audio.wav')]
  run(args)
 
+def music_level(video):
+ result=subprocess.run(['ffmpeg','-v','error','-ss','2','-t','1','-i',str(video),'-vn','-ac','1','-ar','48000','-f','f32le','-'],capture_output=True)
+ samples=np.frombuffer(result.stdout,dtype='<f4') if result.returncode==0 else np.array([])
+ if not samples.size: return -180.0
+ return float(20*np.log10(max(float(np.sqrt(np.mean(samples**2))),1e-9)))
+
+def ensure_audible_music(video, variant):
+ level=music_level(video)
+ if not np.isfinite(level) or level < -24:
+  print('Automatically rebuilding quiet or missing soundtrack.')
+  soundtrack(11,variant)
+  repaired=video.with_name(video.stem+'-audio-repaired.mp4')
+  run(['ffmpeg','-v','error','-y','-i',str(video),'-i',str(OUT/'audio.wav'),'-map','0:v:0','-map','1:a:0','-c:v','copy','-af','loudnorm=I=-16:TP=-1.5:LRA=7','-c:a','aac','-b:a','192k','-ar','48000','-t','11','-movflags','+faststart',str(repaired)])
+  repaired.replace(video)
+  level=music_level(video)
+  if not np.isfinite(level) or level < -24:
+   # Correct a remaining low level with bounded gain and a peak limiter.
+   gain=min(24,max(0,-18-level))
+   run(['ffmpeg','-v','error','-y','-i',str(video),'-map','0:v:0','-map','0:a:0','-c:v','copy','-af',f'volume={gain}dB,alimiter=limit=0.84:level=false','-c:a','aac','-b:a','192k','-t','11','-movflags','+faststart',str(repaired)])
+   repaired.replace(video)
+   level=music_level(video)
+  if not np.isfinite(level) or level < -30:
+   raise RuntimeError('Soundtrack repair failed: audio is missing or unreadable.')
+ print(f'Exported music loudness between effects: {level:.1f} dBFS')
+ return level
+
 def main():
  token=os.getenv('HF_TOKEN','').strip()
  if not token: raise RuntimeError('HF_TOKEN is missing; a free Hugging Face account token is required.')
@@ -147,12 +173,7 @@ def main():
   filters.append(f"drawtext=fontfile={font}:textfile={path}:fontsize={size}:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y={y}:enable='between(t,{start},{end})'")
  run(['ffmpeg','-loglevel','error','-y','-i',str(OUT/'generated.mp4'),'-i',str(OUT/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','fast','-crf','18','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(OUT/'bobo_fresh.mp4')])
  run(['ffmpeg','-v','error','-i',str(OUT/'bobo_fresh.mp4'),'-f','null','-'])
- # Check actual AAC output between effects, where the music must be audible.
- audio_bytes=subprocess.check_output(['ffmpeg','-v','error','-ss','2','-t','1','-i',str(OUT/'bobo_fresh.mp4'),'-vn','-ac','1','-ar','48000','-f','f32le','-'])
- audio_samples=np.frombuffer(audio_bytes,dtype='<f4')
- music_db=20*np.log10(max(float(np.sqrt(np.mean(audio_samples**2))),1e-9))
- if not np.isfinite(music_db) or music_db < -30: raise RuntimeError('Background music too quiet in final export; skipping publication.')
- print(f'Exported music loudness between effects: {music_db:.1f} dBFS')
+ music_db=ensure_audible_music(OUT/'bobo_fresh.mp4',scene_id)
  metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':60,'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
  hook,teaser,question=PROMOTION[scene_id]
  social_caption=f"{hook}\n\n{teaser}\n{question}\n\n"+' '.join('#'+tag for tag in ['Bobo','3DAnimation']+scene_tags+[['FunnyCartoon'],['CartoonComedy'],['AnimatedShorts'],['FunnyAnimation']][scene_id%4])
