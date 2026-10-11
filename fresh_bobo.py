@@ -20,6 +20,31 @@ SCENES=[
  ('Art room paint surprise','a sunny art room with a small easel and paint palette','a colorful paintbrush','He makes a careful brush stroke, notices a little paint on his hand, and smiles sheepishly.','He proudly points at his colorful painting and bows playfully.',['Masterpiece coming!','Paint everywhere!','Artist Bobo!'],['ArtComedy','LittleArtist']),
 ]
 
+# Captions describe these visible beats, rather than unrelated fixed intervals.
+ACTION_BEATS=[
+ ('Bobo holds up the bubble wand and gently blows one bubble. He watches it float and slowly reaches toward it. Keep the bubble intact through this shot.',
+  'The floating bubble pops as Bobo reaches it. He jumps in surprise, then laughs and shrugs.'),
+ ('Bobo fills and tips his beach bucket onto the sand, pats it carefully, and prepares to lift it. Keep the bucket covering the result.',
+  'Bobo lifts the bucket to reveal a tiny sandcastle, looks surprised, then proudly gives a thumbs up.'),
+ ('Bobo reaches for the red apple on the picnic blanket. It starts rolling away and he reaches after it, looking surprised.',
+  'Bobo catches the rolling apple with both hands and holds it up proudly with a relieved smile.'),
+ ('Bobo carefully places one block on his tower. The tower starts wobbling and he freezes with wide eyes.',
+  'Bobo gently steadies the wobbling tower, then celebrates with a small shoulder dance.'),
+ ('Bobo notices the puddle and cautiously raises one foot over it, smiling mischievously. Keep the foot just above the water.',
+  'Bobo taps the puddle and splashes water, reacts with surprise, then does a playful hop and laughs.'),
+ ('Bobo studies the glowing spaceship button and slowly brings his finger close to it. Do not press it yet.',
+  'Bobo presses the button. The cockpit lights blink and he reacts with delight, then waves and winks.'),
+ ('Bobo rolls a tiny snowball and carefully raises it like a trophy, looking very serious.',
+  'Bobo beams proudly at the tiny snowball, places it beside the snowman and celebrates.'),
+ ('Bobo makes a careful brush stroke on his painting, then glances down toward his hand.',
+  'Bobo notices paint on his hand, smiles sheepishly, then proudly points at the painting and bows.'),
+]
+
+def caption_cues(captions, first_shot_duration, total=11):
+ split=float(first_shot_duration)
+ setup=min(2.0,split*.4)
+ return [(captions[0],0,setup),(captions[1],setup,split),(captions[2],split,total)]
+
 PROMOTION=[
  ("Bobo vs. one tiny bubble... who wins? 🫧😂","One little puff starts a very big reaction.","Would you chase it or let it pop?"),
  ("Big sandcastle dreams. Tiny bucket problems. 🏖️🐒","Bobo has a plan—and a bucket full of surprises.","What should he build next?"),
@@ -123,13 +148,14 @@ def main():
  scene_id=(now.toordinal()*2+slot)%len(SCENES)
  while scene_id in recent: scene_id=(scene_id+1)%len(SCENES)
  title,setting,prop,action,ending,captions,scene_tags=SCENES[scene_id]
+ action,ending=ACTION_BEATS[scene_id]
  scene_reference=Path('assets/scenes')/f'scene{scene_id}.jpg'
  if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
- prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Clear natural hand movement and expressive face, smooth motion, fixed camera. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
+ prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: establish the setup during seconds 0 to 2; show the main movement during seconds 2 to 5. Clear natural hand movement and expressive face, smooth motion, fixed camera. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
  client=Client(SPACE, token=token, httpx_kwargs={'timeout':90})
  # Exactly two free-GPU requests per episode, with no paid fallback.
- clips=[]
+ clips=[]; shot_durations=[]
  for shot in range(2):
   shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Smooth clear movements, fixed camera, no sudden scene changes. Complete in five seconds.')
   reference=OUT/('reference.png' if shot==0 else 'continuation.png')
@@ -150,6 +176,7 @@ def main():
   if not isinstance(source,str) or not Path(source).is_file(): raise RuntimeError('Generator did not return a video file.')
   clip=OUT/f'shot{shot}.mp4'; shutil.copyfile(source,clip); clips.append(clip)
   shot_info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','json',str(clip)]))
+  shot_durations.append(float(shot_info['format']['duration']))
   if not 4.8<=float(shot_info['format']['duration'])<=5.5: raise RuntimeError('Invalid generated shot duration.')
   shot_raw=subprocess.check_output(['ffmpeg','-loglevel','error','-i',str(clip),'-vf','fps=1,scale=64:64,format=gray','-f','rawvideo','-'])
   sampled=np.frombuffer(shot_raw,dtype=np.uint8).reshape(-1,64,64).astype(float)
@@ -167,14 +194,17 @@ def main():
  soundtrack(11,scene_id)
  font='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
  filters=['minterpolate=fps=60:mi_mode=mci:mc_mode=aobmc:me_mode=bilat:vsbmc=1:scd=fdiff','scale=720:1280:force_original_aspect_ratio=increase','crop=720:1280','tpad=stop_mode=clone:stop_duration=1.5']
+ cues=caption_cues(captions,shot_durations[0])
+ (OUT/'captions-timing.json').write_text(json.dumps([{'text':t,'start':a,'end':z} for t,a,z in cues],indent=2))
+ (OUT/'captions.srt').write_text(''.join(str(i+1)+'\n'+'00:00:'+f'{a:06.3f}'.replace('.',',')+' --> 00:00:'+f'{z:06.3f}'.replace('.',',')+'\n'+t+'\n\n' for i,(t,a,z) in enumerate(cues)))
  # Textfiles avoid shell/filter escaping for captions.
- for i,(text,start,end,y,size) in enumerate([(title,0,1.5,150,36)]+[(captions[0],0,4,1160,34),(captions[1],4,8,1160,34),(captions[2],8,11,1160,34)]):
+ for i,(text,start,end,y,size) in enumerate([(title,0,1.5,150,36)]+[(t,a,z,1160,34) for t,a,z in cues]):
   path=OUT/f'text{i}.txt';path.write_text(text)
-  filters.append(f"drawtext=fontfile={font}:textfile={path}:fontsize={size}:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y={y}:enable='between(t,{start},{end})'")
+  filters.append(f"drawtext=fontfile={font}:textfile={path}:fontsize={size}:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y={y}:enable='gte(t,{start})*lt(t,{end})'")
  run(['ffmpeg','-loglevel','error','-y','-i',str(OUT/'generated.mp4'),'-i',str(OUT/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','fast','-crf','18','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(OUT/'bobo_fresh.mp4')])
  run(['ffmpeg','-v','error','-i',str(OUT/'bobo_fresh.mp4'),'-f','null','-'])
  music_db=ensure_audible_music(OUT/'bobo_fresh.mp4',scene_id)
- metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':60,'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
+ metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':60,'caption_timing':[{'text':t,'start':a,'end':z} for t,a,z in cues],'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
  hook,teaser,question=PROMOTION[scene_id]
  social_caption=f"{hook}\n\n{teaser}\n{question}\n\n"+' '.join('#'+tag for tag in ['Bobo','3DAnimation']+scene_tags+[['FunnyCartoon'],['CartoonComedy'],['AnimatedShorts'],['FunnyAnimation']][scene_id%4])
  metadata['social_caption']=social_caption
