@@ -65,5 +65,12 @@ jobs:
           assert any(s['codec_name']=='aac' for s in p['streams'])
           assert (b.OUT/'continuation.png').is_file()
           assert (b.OUT/'reference.png').is_file()
+          for kind in ['quiet','silent','missing']:
+              target=b.OUT/(kind+'.mp4')
+              args=['ffmpeg','-v','error','-y','-i',str(b.OUT/'bobo_fresh.mp4'),'-c:v','copy']
+              args+=['-an'] if kind=='missing' else ['-af','volume='+('0' if kind=='silent' else '0.001'),'-c:a','aac']
+              subprocess.run(args+[str(target)],check=True)
+              assert b.music_level(target)<-30
+              assert b.ensure_audible_music(target,0)>-24
           print('Validated: two shots, continuation frame, 11-second export, eight original music variants, captions, 720x1280, 60 FPS and AAC.')
           PY
