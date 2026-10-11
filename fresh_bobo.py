@@ -8,17 +8,6 @@ from gradio_client import Client, handle_file
 
 SPACE='zerogpu-aoti/wan2-2-fp8da-aoti-faster'
 OUT=Path('fresh_output'); OUT.mkdir(exist_ok=True)
-STORIES=[
- ('The cherry trick', 'He carefully picks up a cherry from the cake, proudly raises it, accidentally drops it back onto the cake, then laughs at his mistake.', ['One tiny cherry...', 'Oops!', 'Still counts!']),
- ('Cake smells amazing', 'He leans forward to smell the cake, closes his eyes with a delighted smile, then suddenly sneezes and looks surprised before laughing.', ['Smells amazing!', 'Ah... ah...', 'ACHOO!']),
- ('Caught looking', 'He looks left and right suspiciously, reaches slowly toward the cake, suddenly freezes with wide eyes as if caught, then hides his hand and smiles innocently.', ['Nobody is watching...', 'Wait...', 'Who, me?']),
- ('The cake dance', 'He points excitedly at the cake, performs a small joyful shoulder dance with both hands raised, then proudly bows toward the cake and giggles.', ['Cake spotted!', 'Happy dance!', 'Thank you, cake!']),
- ('Too tempting', 'He shakes his head firmly while pushing his hand away from the cake, tries to look away, then immediately turns back with a huge delighted smile.', ['I can resist!', 'Definitely...', 'Maybe tomorrow!']),
- ('Cherry champion', 'He carefully takes one cherry from the cake, holds it like a tiny trophy, beams proudly, then celebrates with a little fist pump and laughs.', ['My tiny trophy!', 'Champion!', 'Best prize ever!']),
- ('Cake detective', 'He studies the cake very seriously, points at a cherry, tilts his head thoughtfully, then looks directly at the camera with a cheeky knowing grin.', ['A serious mystery...', 'Found a clue!', 'It looks delicious!']),
- ('The tiny bite plan', 'He measures a tiny imaginary bite between thumb and finger, looks at the large cake, opens his mouth exaggeratedly, then laughs and shrugs.', ['Just a tiny bite...', 'This tiny?', 'Oops... too big!']),
-]
-
 # Rotate complete settings and stories; preserve Bobo, not the old kitchen.
 SCENES=[
  ('Garden bubble trouble','a sunny flower garden beside a bubble wand','a floating soap bubble','He blows a bubble, follows it with his finger, and jumps in surprise when it pops.','He laughs at the popped bubble and gives a playful shrug.',['One perfect bubble!','Wait for it...','POP!'],['GardenFun','BubbleTrouble']),
@@ -72,7 +61,7 @@ def original_music(seconds, variant):
 def run(args): subprocess.run(args, check=True)
 
 def soundtrack(seconds, variant):
- # Use the same musical/cartoon asset family as the uploaded reference.
+ # Keep original music prominent and short cartoon effects underneath.
  music=original_music(seconds,variant)
  effects=['soundreality-pop-sound-423716.mp3','freesound_community-cartoon-bite-39234.mp3','universfield-cartoon-spring-boing-140378.mp3']
  orders=[(0,1,2),(2,0,1),(0,2,0),(1,0,2)]
@@ -80,9 +69,9 @@ def soundtrack(seconds, variant):
  args=['ffmpeg','-loglevel','error','-y','-ss',str(offset),'-i',music]
  for index in order: args+=['-i',effects[index]]
  times=[900,4800,8500]
- mix=[f'[0:a]atrim=duration={seconds},asetpts=PTS-STARTPTS,volume=0.16,afade=t=in:st=0:d=0.3,afade=t=out:st={seconds-.6}:d=0.6[music]']
+ mix=[f'[0:a]atrim=duration={seconds},asetpts=PTS-STARTPTS,loudnorm=I=-18:TP=-2:LRA=7,volume=1.0,afade=t=in:st=0:d=0.15,afade=t=out:st={seconds-.6}:d=0.6[music]']
  for i,delay in enumerate(times,1):
-  level=[.65,.8,.7][(i+variant)%3]
+  level=[.25,.30,.28][(i+variant)%3]
   mix.append(f'[{i}:a]aresample=48000,aformat=channel_layouts=stereo,volume={level},adelay={delay}|{delay}[fx{i}]')
  mix.append(f'[music][fx1][fx2][fx3]amix=inputs=4:duration=first:normalize=0,atrim=duration={seconds}[audio]')
  args+=['-filter_complex',';'.join(mix),'-map','[audio]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(OUT/'audio.wav')]
@@ -108,12 +97,13 @@ def main():
  scene_id=(now.toordinal()*2+slot)%len(SCENES)
  while scene_id in recent: scene_id=(scene_id+1)%len(SCENES)
  title,setting,prop,action,ending,captions,scene_tags=SCENES[scene_id]
- run(['ffmpeg','-loglevel','error','-y','-i',os.getenv('BOBO_REFERENCE_VIDEO','Bobo reel base.mp4'),'-frames:v','1',str(OUT/'reference.png')])
- prompt=('High quality 3D animated family comedy. Use the reference only for the exact little brown monkey character and red Bobo shirt. Start a NEW scene in '+setting+'. Replace the reference kitchen and cake completely; the main prop is '+prop+'. '+action+' Clear natural hand movement and expressive face, smooth motion, fixed camera. No extra characters, no text overlays. Complete the action within five seconds.')
+ scene_reference=Path('assets/scenes')/f'scene{scene_id}.jpg'
+ if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
+ shutil.copyfile(scene_reference,OUT/'reference.png')
+ prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Clear natural hand movement and expressive face, smooth motion, fixed camera. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
  client=Client(SPACE, token=token, httpx_kwargs={'timeout':90})
  # Exactly two free-GPU requests per episode, with no paid fallback.
  clips=[]
- endings=['He shrugs with a cheeky smile and laughs at his mistake.','He looks embarrassed after sneezing and giggles.','He hides his hand and smiles innocently at the camera.','He finishes his dance with a proud bow and wink.','He peeks back at the cake, then shrugs and grins.','He shows his cherry proudly and laughs.','He pretends to write a detective note, then smiles knowingly.','He makes a smaller imaginary bite gesture and giggles.']
  for shot in range(2):
   shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Smooth clear movements, fixed camera, no sudden scene changes. Complete in five seconds.')
   reference=OUT/('reference.png' if shot==0 else 'continuation.png')
@@ -155,9 +145,15 @@ def main():
  for i,(text,start,end,y,size) in enumerate([(title,0,1.5,150,36)]+[(captions[0],0,4,1160,34),(captions[1],4,8,1160,34),(captions[2],8,11,1160,34)]):
   path=OUT/f'text{i}.txt';path.write_text(text)
   filters.append(f"drawtext=fontfile={font}:textfile={path}:fontsize={size}:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y={y}:enable='between(t,{start},{end})'")
- run(['ffmpeg','-loglevel','error','-y','-i',str(OUT/'generated.mp4'),'-i',str(OUT/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-20:TP=-1.5:LRA=9','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','fast','-crf','18','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(OUT/'bobo_fresh.mp4')])
+ run(['ffmpeg','-loglevel','error','-y','-i',str(OUT/'generated.mp4'),'-i',str(OUT/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','fast','-crf','18','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(OUT/'bobo_fresh.mp4')])
  run(['ffmpeg','-v','error','-i',str(OUT/'bobo_fresh.mp4'),'-f','null','-'])
- metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':'Bobo reel base.mp4','export_fps':60,'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
+ # Check actual AAC output between effects, where the music must be audible.
+ audio_bytes=subprocess.check_output(['ffmpeg','-v','error','-ss','2','-t','1','-i',str(OUT/'bobo_fresh.mp4'),'-vn','-ac','1','-ar','48000','-f','f32le','-'])
+ audio_samples=np.frombuffer(audio_bytes,dtype='<f4')
+ music_db=20*np.log10(max(float(np.sqrt(np.mean(audio_samples**2))),1e-9))
+ if not np.isfinite(music_db) or music_db < -30: raise RuntimeError('Background music too quiet in final export; skipping publication.')
+ print(f'Exported music loudness between effects: {music_db:.1f} dBFS')
+ metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':60,'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
  hook,teaser,question=PROMOTION[scene_id]
  social_caption=f"{hook}\n\n{teaser}\n{question}\n\n"+' '.join('#'+tag for tag in ['Bobo','3DAnimation']+scene_tags+[['FunnyCartoon'],['CartoonComedy'],['AnimatedShorts'],['FunnyAnimation']][scene_id%4])
  metadata['social_caption']=social_caption
@@ -178,3 +174,4 @@ def main():
   (OUT/'episode.json').write_text(json.dumps(metadata,indent=2))
   print('Facebook accepted new video:',result['id'])
 if __name__=='__main__': main()
+

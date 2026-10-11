@@ -44,8 +44,11 @@ jobs:
                   self.calls+=1
                   return str(path), kwargs['seed']
           b.Client=OfflineGenerator
+          Path('bobo_quota.json').unlink(missing_ok=True)
           b.main()
           metadata=json.loads((b.OUT/'episode.json').read_text())
+          assert metadata['music_check_dbfs'] > -30
+          assert Path(metadata['quality_reference']).read_bytes() == (b.OUT/'reference.png').read_bytes()
           assert metadata['setting'] and metadata['scene_id'] in range(8)
           assert '#'+b.SCENES[metadata['scene_id']][-1][0] in metadata['social_caption']
           assert (b.OUT/'facebook-caption.txt').is_file()
