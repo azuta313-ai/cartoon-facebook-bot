@@ -153,6 +153,8 @@ def ensure_audible_music(video, variant):
  return level
 
 def main():
+ if Path('bobo_review_pending.json').exists():
+  print('A video is awaiting visual and audio review; generation and publication are paused.'); return
  token=os.getenv('HF_TOKEN','').strip()
  if not token: raise RuntimeError('HF_TOKEN is missing; a free Hugging Face account token is required.')
  now=datetime.now(ZoneInfo('Asia/Karachi'))
@@ -166,7 +168,7 @@ def main():
  episode_key=f'long-v2-{episode}'
  ledger_path=Path('published_bobo.json')
  ledger=json.loads(ledger_path.read_text()) if ledger_path.exists() else {}
- if os.getenv('PUBLISH_FACEBOOK')=='true' and episode_key in ledger:
+ if episode_key in ledger:
   print('This episode was already published; skipping generation and upload.'); return
  recent=[v.get('scene_id') for v in list(ledger.values())[-3:]]
  scene_id=(now.toordinal()*2+slot)%len(SCENES)
@@ -235,6 +237,10 @@ def main():
  (OUT/'facebook-caption.txt').write_text(social_caption)
  (OUT/'episode.json').write_text(json.dumps(metadata,indent=2))
  print(f'New episode created: {title}. No paid API used.')
+ # All new videos must be reviewed before any Facebook publication.
+ Path('bobo_review_pending.json').write_text(json.dumps({'episode':episode,'title':title,'generated_sha256':metadata['generated_sha256'],'status':'awaiting_visual_audio_review','artifact_run_id':os.getenv('GITHUB_RUN_ID'),'created_at':now.isoformat()},indent=2))
+ print('REVIEW REQUIRED: saved draft; no Facebook upload attempted.')
+ return
  if os.getenv('PUBLISH_FACEBOOK')=='true':
   page=os.environ['FB_PAGE_ID']; fb_token=os.environ['FB_PAGE_ACCESS_TOKEN']
   if not page or not fb_token: raise RuntimeError('Facebook credentials are missing.')
