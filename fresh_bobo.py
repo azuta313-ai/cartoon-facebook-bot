@@ -85,22 +85,46 @@ def original_music(seconds, variant):
 
 def run(args): subprocess.run(args, check=True)
 
-def soundtrack(seconds, variant):
- # Keep original music prominent and short cartoon effects underneath.
+def scene_effects(seconds, variant, first_shot_duration=5.0625):
+ # Original scene-specific effects; never reuse eating sounds for other actions.
+ rate=48000; audio=np.zeros(int(seconds*rate))
+ split=float(first_shot_duration); rng=np.random.default_rng(variant+31)
+ plans=[
+  [('air',1.1,.3),('pop',split+.25,.12)],
+  [('sand',2.4,.4),('sand',split+.25,.3),('chime',split+1,.35)],
+  [('roll',2.5,.6),('tap',split+.3,.12),('chime',split+1,.3)],
+  [('wood',2.3,.1),('wobble',3.3,.6),('wood',split+.35,.12)],
+  [('splash',split+.3,.45),('splash',split+1.5,.3)],
+  [('beep',split+.2,.15),('beep',split+.6,.15),('chime',split+1,.35)],
+  [('snow',2.3,.4),('snow',split+.7,.3),('chime',split+1.4,.3)],
+  [('brush',2.2,.5),('brush',split+.2,.3),('chime',split+1.5,.35)],
+ ]
+ for kind,start,length in plans[variant%8]:
+  t=np.arange(int(length*rate))/rate; noise=rng.normal(0,1,len(t))
+  smooth=np.convolve(noise,np.ones(12)/12,mode='same')
+  env=np.sin(np.pi*t/length)**2
+  if kind=='pop': signal=np.sin(2*np.pi*(750*t-1800*t*t))*np.exp(-t*45)+smooth*np.exp(-t*60)
+  elif kind=='beep': signal=np.sin(2*np.pi*850*t)*env*.55
+  elif kind=='chime': signal=(np.sin(2*np.pi*1047*t)+.4*np.sin(2*np.pi*1568*t))*np.exp(-t*9)*env
+  elif kind=='wood' or kind=='tap': signal=(np.sin(2*np.pi*360*t)+smooth)*np.exp(-t*55)
+  elif kind=='wobble': signal=np.sin(2*np.pi*(270*t+12*np.sin(2*np.pi*6*t)))*env*.4
+  elif kind=='roll': signal=smooth*env*(.4+.6*np.sin(2*np.pi*12*t)**2)
+  elif kind=='splash': signal=smooth*env+np.sin(2*np.pi*(600*t-350*t*t))*env*.15
+  else: signal=smooth*env*.6
+  signal=signal/max(1,float(np.max(np.abs(signal))))
+  a=int(start*rate); z=min(len(audio),a+len(signal))
+  if a<z: audio[a:z]+=signal[:z-a]*.35
+ path=OUT/'scene_effects.wav'
+ with wave.open(str(path),'wb') as wav:
+  wav.setnchannels(2); wav.setsampwidth(2); wav.setframerate(rate)
+  wav.writeframes((np.column_stack((audio,audio))*32767).astype('<i2').tobytes())
+ return str(path)
+
+def soundtrack(seconds, variant, first_shot_duration=5.0625):
  music=original_music(seconds,variant)
- effects=['soundreality-pop-sound-423716.mp3','freesound_community-cartoon-bite-39234.mp3','universfield-cartoon-spring-boing-140378.mp3']
- orders=[(0,1,2),(2,0,1),(0,2,0),(1,0,2)]
- order=orders[variant%4]; offset=0
- args=['ffmpeg','-loglevel','error','-y','-ss',str(offset),'-i',music]
- for index in order: args+=['-i',effects[index]]
- times=[900,4800,8500]
- mix=[f'[0:a]atrim=duration={seconds},asetpts=PTS-STARTPTS,loudnorm=I=-18:TP=-2:LRA=7,volume=1.0,afade=t=in:st=0:d=0.15,afade=t=out:st={seconds-.6}:d=0.6[music]']
- for i,delay in enumerate(times,1):
-  level=[.25,.30,.28][(i+variant)%3]
-  mix.append(f'[{i}:a]aresample=48000,aformat=channel_layouts=stereo,volume={level},adelay={delay}|{delay}[fx{i}]')
- mix.append(f'[music][fx1][fx2][fx3]amix=inputs=4:duration=first:normalize=0,atrim=duration={seconds}[audio]')
- args+=['-filter_complex',';'.join(mix),'-map','[audio]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(OUT/'audio.wav')]
- run(args)
+ effects=scene_effects(seconds,variant,first_shot_duration)
+ mix=f'[0:a]loudnorm=I=-18:TP=-2:LRA=7,aresample=48000,afade=t=in:st=0:d=0.15,afade=t=out:st={seconds-.6}:d=0.6[m];[1:a]aformat=channel_layouts=stereo[fx];[m][fx]amix=inputs=2:duration=first:normalize=0,atrim=duration={seconds}[audio]'
+ run(['ffmpeg','-loglevel','error','-y','-i',music,'-i',effects,'-filter_complex',mix,'-map','[audio]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(OUT/'audio.wav')])
 
 def music_level(video):
  result=subprocess.run(['ffmpeg','-v','error','-ss','2','-t','1','-i',str(video),'-vn','-ac','1','-ar','48000','-f','f32le','-'],capture_output=True)
@@ -183,7 +207,7 @@ def main():
   if len(sampled)<4 or np.abs(np.diff(sampled,axis=0)).mean()<.5: raise RuntimeError('Static generated shot; skipping publication.')
   if shot==0: run(['ffmpeg','-loglevel','error','-y','-sseof','-0.1','-i',str(clip),'-frames:v','1',str(OUT/'continuation.png')])
  (OUT/'shots.txt').write_text(''.join(f"file '{p.name}'\n" for p in clips))
- run(['ffmpeg','-loglevel','error','-y','-f','concat','-safe','0','-i',str(OUT/'shots.txt'),'-an','-c:v','libx264','-preset','fast','-crf','18',str(OUT/'generated.mp4')])
+ run(['ffmpeg','-loglevel','error','-y','-f','concat','-safe','0','-i',str(OUT/'shots.txt'),'-an','-c:v','libx264','-preset','medium','-crf','16',str(OUT/'generated.mp4')])
  info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=width,height','-of','json',str(OUT/'generated.mp4')]))
  duration=float(info['format']['duration'])
  if not 9.5<=duration<=11: raise RuntimeError('Generated video duration is invalid.')
@@ -191,9 +215,9 @@ def main():
  raw=subprocess.check_output(['ffmpeg','-loglevel','error','-i',str(OUT/'generated.mp4'),'-vf','fps=1,scale=64:64,format=gray','-f','rawvideo','-'])
  frames=np.frombuffer(raw,dtype=np.uint8).reshape(-1,64,64).astype(float)
  if len(frames)<4 or np.abs(np.diff(frames,axis=0)).mean()<.5: raise RuntimeError('Generated clip is static; skipping publication.')
- soundtrack(11,scene_id)
+ soundtrack(11,scene_id,shot_durations[0])
  font='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
- filters=['minterpolate=fps=60:mi_mode=mci:mc_mode=aobmc:me_mode=bilat:vsbmc=1:scd=fdiff','scale=720:1280:force_original_aspect_ratio=increase','crop=720:1280','tpad=stop_mode=clone:stop_duration=1.5']
+ filters=['hqdn3d=1.0:0.8:1.5:1.2','fps=30','scale=720:1280:force_original_aspect_ratio=increase:flags=lanczos','crop=720:1280','tpad=stop_mode=clone:stop_duration=1.5']
  cues=caption_cues(captions,shot_durations[0])
  (OUT/'captions-timing.json').write_text(json.dumps([{'text':t,'start':a,'end':z} for t,a,z in cues],indent=2))
  (OUT/'captions.srt').write_text(''.join(str(i+1)+'\n'+'00:00:'+f'{a:06.3f}'.replace('.',',')+' --> 00:00:'+f'{z:06.3f}'.replace('.',',')+'\n'+t+'\n\n' for i,(t,a,z) in enumerate(cues)))
@@ -201,10 +225,10 @@ def main():
  for i,(text,start,end,y,size) in enumerate([(title,0,1.5,150,36)]+[(t,a,z,1160,34) for t,a,z in cues]):
   path=OUT/f'text{i}.txt';path.write_text(text)
   filters.append(f"drawtext=fontfile={font}:textfile={path}:fontsize={size}:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y={y}:enable='gte(t,{start})*lt(t,{end})'")
- run(['ffmpeg','-loglevel','error','-y','-i',str(OUT/'generated.mp4'),'-i',str(OUT/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','fast','-crf','18','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(OUT/'bobo_fresh.mp4')])
+ run(['ffmpeg','-loglevel','error','-y','-i',str(OUT/'generated.mp4'),'-i',str(OUT/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','medium','-crf','16','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(OUT/'bobo_fresh.mp4')])
  run(['ffmpeg','-v','error','-i',str(OUT/'bobo_fresh.mp4'),'-f','null','-'])
  music_db=ensure_audible_music(OUT/'bobo_fresh.mp4',scene_id)
- metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':60,'caption_timing':[{'text':t,'start':a,'end':z} for t,a,z in cues],'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
+ metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':30,'effects':'original scene-specific effects; no bite sample','caption_timing':[{'text':t,'start':a,'end':z} for t,a,z in cues],'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
  hook,teaser,question=PROMOTION[scene_id]
  social_caption=f"{hook}\n\n{teaser}\n{question}\n\n"+' '.join('#'+tag for tag in ['Bobo','3DAnimation']+scene_tags+[['FunnyCartoon'],['CartoonComedy'],['AnimatedShorts'],['FunnyAnimation']][scene_id%4])
  metadata['social_caption']=social_caption
