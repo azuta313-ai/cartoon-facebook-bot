@@ -46,7 +46,8 @@ for entry in ledger.values():
 listed=get(page_id+'/videos',{'fields':'id,title,created_time','limit':100})
 for entry in listed.get('data',[]): known.setdefault(entry['id'],{'title':entry.get('title'),'generated_at':entry.get('created_time')})
 report['video_discovery_status']=listed.get('unavailable',False)
-metrics=['total_video_views','total_video_views_unique','total_video_avg_time_watched','total_video_view_total_time','total_video_complete_views','total_video_impressions']
+metrics=['total_video_views','total_video_avg_time_watched','total_video_view_total_time','total_video_complete_views']
+metrics += ['blue_reels_play_count','fb_reels_total_plays','fb_reels_replay_count','post_video_avg_time_watched','post_video_view_time','post_video_likes_by_reaction_type','post_video_social_actions','post_impressions_unique']
 old={v['id']:v for v in (previous or {}).get('videos',[])}
 for vid,meta in known.items():
     row={'id':vid,'title':meta.get('title'),'created_at':meta.get('generated_at'),'scene_id':meta.get('scene_id'),'duration_seconds':meta.get('duration'),'metrics':{},'unavailable_metrics':{}}
@@ -54,11 +55,11 @@ for vid,meta in known.items():
     if not details.get('unavailable'):
         row.update(url=details.get('permalink_url'),created_at=details.get('created_time',row['created_at']),duration_seconds=details.get('length',row['duration_seconds']))
     for metric in metrics:
-        result=get(vid+'/video_insights',{'metric':metric})
+        result=get(vid+'/video_insights',{'metric':metric,'period':'lifetime'})
         entries=result.get('data',[])
         if entries and entries[0].get('values'):
             row['metrics'][metric]=entries[0]['values'][-1].get('value')
-        else: row['unavailable_metrics'][metric]=result
+        else: row['unavailable_metrics'][metric]=result if result.get('unavailable') else {'unavailable':True,'reason':'empty_insights_response','period':'lifetime'}
     for kind in ['reactions','comments']:
         result=get(vid+'/'+kind,{'summary':'true','limit':0})
         count=result.get('summary',{}).get('total_count')
@@ -72,13 +73,13 @@ for vid,meta in known.items():
         before=old.get(vid,{}).get('metrics',{}).get(key)
         if isinstance(value,(int,float)) and isinstance(before,(int,float)):
             row['changes_since_previous'][key]=value-before
-    avg=row['metrics'].get('total_video_avg_time_watched')
+    avg=row['metrics'].get('post_video_avg_time_watched',row['metrics'].get('total_video_avg_time_watched'))
     duration=row.get('duration_seconds')
     if isinstance(avg,(int,float)) and isinstance(duration,(int,float)) and duration:
         row['estimated_average_watch_fraction']=avg/1000/duration
     report['videos'].append(row)
 report['previous_collected_at']=(previous or {}).get('collected_at')
-report['analytics_available']=any('total_video_views' in v['metrics'] for v in report['videos'])
+report['analytics_available']=any(any(k in v['metrics'] for k in ['total_video_views','blue_reels_play_count','fb_reels_total_plays']) for v in report['videos'])
 (OUT/'snapshot.json').write_text(json.dumps(report,indent=2))
 print('Videos checked:',len(report['videos']))
 print('View insights available:',report['analytics_available'])
