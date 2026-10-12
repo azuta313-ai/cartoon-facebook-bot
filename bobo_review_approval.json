@@ -1,14 +1,17 @@
 {
   "status": "approved",
-  "episode": 40522024,
-  "artifact_run_id": "38205815880",
-  "final_sha256": "6cb06eb5124d4ba462a6fc99cf874859c80fda225be33b8c3a867cec79afb95d",
+  "episode": 40522025,
+  "artifact_run_id": "38279922821",
+  "final_sha256": "289e0881933b0f01ff2a3e9b3f8caeb2e919e58dceac8ef5d740cbad591fa7a7",
   "review": {
-    "visual": "Sampled full story at 2fps and catch transition at 4fps; no material sampled defects; no added shirt text observed",
-    "caption": "Catch caption moved from 5.0625 to 5.7 seconds after visual inspection",
-    "audio": "Decoded successfully; audible RMS; scene-specific procedural roll/tap/chime only, no cake-bite asset; catch effects retimed",
-    "audio_listening": "No listening tool available; review covers waveform, decoding, effect provenance and timing, not subjective listening",
-    "repairs": "Re-rendered existing generated footage; no GPU regeneration or paid service",
-    "technical": "H264 720x1280 30fps, AAC 48kHz; exact repaired file SHA256 checked"
+    "visual": "Reviewed the full exact repaired 11-second render at 4 fps (44 samples) and the result-caption transition at 8 fps; tower wobble, steadying and celebration are visible with no material sampled pixel break-up.",
+    "dialogue": "No spoken dialogue is represented. Open-mouth frames read as surprise/laughter rather than transcribed speech; captions remain action captions.",
+    "observed_actions": "Top block/hand withdrawal 0.00-2.00; wobble 2.00-5.25; hand contact 5.63; visibly stable 6.50; release 7.38; celebration 7.63-10.00.",
+    "captions": "One more block 0.00-2.00; Easy... easy... 2.00-6.50; Tower saved only from visible stable outcome at 6.50 through celebration.",
+    "effects": "Scene-matched wood tap 2.30, wobble 3.30, contact tap 5.76, success chime 7.56; music ducking regenerated from the repaired effects track.",
+    "audio": "AAC stereo 48 kHz; final mean -18.5 dB and peak -1.6 dB; effect windows contain non-silent signal.",
+    "audio_listening": "No subjective listening tool available; review covers decoding, measured levels, source provenance, waveform presence and observed-action timing.",
+    "technical": "H264 720x1280 30 fps, 11.0 seconds; exact repaired artifact decoded and SHA256 verified.",
+    "repairs": "Re-rendered the same generated footage; result caption moved from 5.0625 to 6.50 seconds and effects retimed/expanded without paid generation."
   }
 }
