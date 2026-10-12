@@ -113,7 +113,7 @@ def scene_effects(seconds, variant, first_shot_duration=5.0625):
   else: signal=smooth*env*.6
   signal=signal/max(1,float(np.max(np.abs(signal))))
   a=int(start*rate); z=min(len(audio),a+len(signal))
-  if a<z: audio[a:z]+=signal[:z-a]*.35
+  if a<z: audio[a:z]+=signal[:z-a]*.60
  path=OUT/'scene_effects.wav'
  with wave.open(str(path),'wb') as wav:
   wav.setnchannels(2); wav.setsampwidth(2); wav.setframerate(rate)
@@ -123,7 +123,7 @@ def scene_effects(seconds, variant, first_shot_duration=5.0625):
 def soundtrack(seconds, variant, first_shot_duration=5.0625):
  music=original_music(seconds,variant)
  effects=scene_effects(seconds,variant,first_shot_duration)
- mix=f'[0:a]loudnorm=I=-18:TP=-2:LRA=7,aresample=48000,afade=t=in:st=0:d=0.15,afade=t=out:st={seconds-.6}:d=0.6[m];[1:a]aformat=channel_layouts=stereo[fx];[m][fx]amix=inputs=2:duration=first:normalize=0,atrim=duration={seconds}[audio]'
+ mix=f'[0:a]loudnorm=I=-18:TP=-2:LRA=7,aresample=48000,afade=t=in:st=0:d=0.15,afade=t=out:st={seconds-.6}:d=0.6,volume=0.80[m];[1:a]aformat=channel_layouts=stereo,asplit=2[fx][key];[m][key]sidechaincompress=threshold=0.035:ratio=3:attack=10:release=180[duck];[duck][fx]amix=inputs=2:duration=first:normalize=0,atrim=duration={seconds}[audio]'
  run(['ffmpeg','-loglevel','error','-y','-i',music,'-i',effects,'-filter_complex',mix,'-map','[audio]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(OUT/'audio.wav')])
 
 def music_level(video):
@@ -178,12 +178,12 @@ def main():
  scene_reference=Path('assets/scenes')/f'scene{scene_id}.jpg'
  if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
- prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: establish the setup during seconds 0 to 2; show the main movement during seconds 2 to 5. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
+ prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: establish the setup during seconds 0 to 2; show the main movement during seconds 2 to 5. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. Silent physical comedy: no speech, no talking or lip-sync mouth motions; use facial expressions and gestures. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
  client=Client(SPACE, token=token, httpx_kwargs={'timeout':90})
  # Exactly two free-GPU requests per episode, with no paid fallback.
  clips=[]; shot_durations=[]
  for shot in range(2):
-  shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Preserve clothing details exactly; no added shirt lettering. Smooth clear movements, fixed camera, no sudden scene changes. Complete in five seconds.')
+  shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Preserve clothing details exactly; no added shirt lettering. Silent physical comedy, no talking or lip-sync mouth motions. Smooth clear movements, fixed camera, no sudden scene changes. Complete in five seconds.')
   reference=OUT/('reference.png' if shot==0 else 'continuation.png')
   try:
    result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake',duration_seconds=5,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
@@ -230,7 +230,7 @@ def main():
  run(['ffmpeg','-loglevel','error','-y','-i',str(OUT/'generated.mp4'),'-i',str(OUT/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','medium','-crf','16','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(OUT/'bobo_fresh.mp4')])
  run(['ffmpeg','-v','error','-i',str(OUT/'bobo_fresh.mp4'),'-f','null','-'])
  music_db=ensure_audible_music(OUT/'bobo_fresh.mp4',scene_id)
- metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':30,'effects':'original scene-specific effects; no bite sample','caption_timing':[{'text':t,'start':a,'end':z} for t,a,z in cues],'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
+ metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':30,'effects':'original scene-specific effects; no bite sample','caption_kind':'action captions; no spoken dialogue','caption_review_required':True,'caption_timing':[{'text':t,'start':a,'end':z} for t,a,z in cues],'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
  hook,teaser,question=PROMOTION[scene_id]
  social_caption=f"{hook}\n\n{teaser}\n{question}\n\n"+' '.join('#'+tag for tag in ['Bobo','3DAnimation']+scene_tags+[['FunnyCartoon'],['CartoonComedy'],['AnimatedShorts'],['FunnyAnimation']][scene_id%4])
  metadata['social_caption']=social_caption
