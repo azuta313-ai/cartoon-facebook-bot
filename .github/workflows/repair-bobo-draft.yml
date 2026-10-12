@@ -28,45 +28,51 @@ jobs:
         with:
           name: fresh-bobo-video
           path: draft
-          run-id: 38203998286
+          run-id: 38277681586
           github-token: ${{ github.token }}
-      - name: Fix observed caption and catch sound timing
+      - name: Align tower result caption and scene effects to observed action
         env:
           REPAIR_RUN_ID: ${{ github.run_id }}
         run: |
           python - <<'PY'
           import hashlib,json,os,subprocess,sys,types
           from pathlib import Path
-          draft=Path('draft')
-          p=draft/'bobo_fresh.mp4'
-          assert hashlib.sha256(p.read_bytes()).hexdigest()=='3631470e71983c8f02435eee85e63e7152907e7fb92054367db020469de53261'
+          draft=Path('draft'); video=draft/'bobo_fresh.mp4'
+          assert hashlib.sha256(video.read_bytes()).hexdigest()=='744943a4bcd8f183ecbbf965f99b32dcef262019ddf3525cec68450382661818'
           pending=json.loads(Path('bobo_review_pending.json').read_text())
-          assert pending['episode']==40522024
+          assert pending['episode']==40522025 and pending['artifact_run_id']=='38277681586'
           sys.modules['gradio_client']=types.SimpleNamespace(Client=None,handle_file=None)
-          source=Path('fresh_bobo.py').read_text().replace("('tap',split+.3","('tap',split+.7").replace("('chime',split+1,.3)","('chime',split+1.2,.3)")
-          scope={'__name__':'repair'}
-          exec(compile(source,'fresh_bobo.py','exec'),scope)
-          scope['OUT']=draft
-          scope['soundtrack'](11,2,5.0625)
-          cues=[('Snack time!',0,2),('Come back!',2,5.7),('Got you!',5.7,11)]
+          source=Path('fresh_bobo.py').read_text().replace(
+              "[('wood',2.3,.1),('wobble',3.3,.6),('wood',split+.35,.12)]",
+              "[('wood',2.3,.1),('wobble',3.3,.6),('wood',split+.7,.12),('chime',split+2.5,.3)]")
+          scope={'__name__':'repair'}; exec(compile(source,'fresh_bobo.py','exec'),scope)
+          scope['OUT']=draft; scope['soundtrack'](11,3,5.0625)
+          cues=[('One more block!',0,2),('Easy... easy...',2,6.5),('Tower saved!',6.5,11)]
           filters=['hqdn3d=1.0:0.8:1.5:1.2','fps=30','scale=720:1280:force_original_aspect_ratio=increase:flags=lanczos','crop=720:1280','tpad=stop_mode=clone:stop_duration=1.5']
-          for i,(text,a,z,y,size) in enumerate([('Picnic apple escape',0,1.5,150,36)]+[(t,a,z,1160,34) for t,a,z in cues]):
-              path=draft/f'review-text{i}.txt';path.write_text(text)
+          overlays=[('Toy room tower wobble',0,1.5,150,36)]+[(t,a,z,1160,34) for t,a,z in cues]
+          for i,(text,a,z,y,size) in enumerate(overlays):
+              path=draft/f'review-text{i}.txt'; path.write_text(text)
               filters.append(f"drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:textfile={path}:fontsize={size}:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y={y}:enable='gte(t,{a})*lt(t,{z})'")
-          output=draft/'repaired.mp4'
-          subprocess.run(['ffmpeg','-v','error','-y','-i',str(draft/'generated.mp4'),'-i',str(draft/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','medium','-crf','16','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(output)],check=True)
-          output.replace(p)
-          subprocess.run(['ffmpeg','-v','error','-i',str(p),'-f','null','-'],check=True)
+          repaired=draft/'repaired.mp4'
+          subprocess.run(['ffmpeg','-v','error','-y','-i',str(draft/'generated.mp4'),'-i',str(draft/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','medium','-crf','16','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(repaired)],check=True)
+          repaired.replace(video); subprocess.run(['ffmpeg','-v','error','-i',str(video),'-f','null','-'],check=True)
           metadata=json.loads((draft/'episode.json').read_text())
           metadata['caption_timing']=[{'text':t,'start':a,'end':z} for t,a,z in cues]
-          metadata['review_repairs']=['Catch caption moved to 5.7s','Catch tap moved to 5.7625s; success chime moved to 6.2625s']
-          metadata['final_sha256']=hashlib.sha256(p.read_bytes()).hexdigest()
+          metadata['observed_action_timestamps']={'block_already_placed':'0.00','tower_wobble':'2.00-5.25','hands_contact_tower':'5.63','tower_visibly_stable':'6.50','hands_release':'7.38','celebration':'7.63-10.00'}
+          metadata['caption_effect_mapping']=[
+            {'caption':'One more block!','window':'0.00-2.00','observed_action':'Bobo withdraws hand from newly placed top block','effect':'wood tap 2.30'},
+            {'caption':'Easy... easy...','window':'2.00-6.50','observed_action':'tower leans; Bobo reacts and reaches to steady it','effect':'wobble 3.30; wood contact 5.76'},
+            {'caption':'Tower saved!','window':'6.50-11.00','observed_action':'tower is visibly stable, then Bobo releases and celebrates','effect':'success chime 7.56'}]
+          metadata['review_repairs']=['Result caption moved from 5.0625s to observed stable outcome at 6.50s','Contact tap aligned to 5.76s','Scene-matched success chime aligned to celebration at 7.56s','Music ducking regenerated from repaired effect track']
+          metadata['final_sha256']=hashlib.sha256(video.read_bytes()).hexdigest()
           (draft/'episode.json').write_text(json.dumps(metadata,indent=2))
           (draft/'captions-timing.json').write_text(json.dumps(metadata['caption_timing'],indent=2))
-          (draft/'captions.srt').write_text(''.join(str(i+1)+'\n'+'00:00:'+f'{a:06.3f}'.replace('.',',')+' --> 00:00:'+f'{z:06.3f}'.replace('.',',')+'\n'+t+'\n\n' for i,(t,a,z) in enumerate(cues)))
+          def stamp(t):
+              ms=round(t*1000); return f'{ms//3600000:02d}:{(ms//60000)%60:02d}:{(ms//1000)%60:02d},{ms%1000:03d}'
+          (draft/'captions.srt').write_text(''.join(f'{i+1}\n{stamp(a)} --> {stamp(z)}\n{t}\n\n' for i,(t,a,z) in enumerate(cues)))
           pending.update(artifact_run_id=os.environ['REPAIR_RUN_ID'],final_sha256=metadata['final_sha256'],status='repaired_awaiting_review')
           Path('bobo_review_pending.json').write_text(json.dumps(pending,indent=2))
-          print('Draft timing repaired; publication remains blocked pending review.')
+          print('Tower draft repaired; publication remains blocked pending review.')
           PY
       - uses: actions/upload-artifact@v4
         with:
@@ -78,5 +84,6 @@ jobs:
           git config user.name "Bobo automation"
           git config user.email "bobo-bot@users.noreply.github.com"
           git add bobo_review_pending.json
-          git commit -m "Record repaired picnic draft awaiting review"
+          git commit -m "Record repaired tower draft awaiting review"
+          git pull --rebase origin main
           git push origin HEAD:main
