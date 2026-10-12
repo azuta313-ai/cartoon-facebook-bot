@@ -38,7 +38,7 @@ jobs:
           import hashlib,json,os,subprocess,sys,types
           from pathlib import Path
           draft=Path('draft'); video=draft/'bobo_fresh.mp4'
-          assert hashlib.sha256(video.read_bytes()).hexdigest()=='744943a4bcd8f183ecbbf965f99b32dcef262019ddf3525cec68450382661818'
+          assert hashlib.sha256(video.read_bytes()).hexdigest()=='25bc4b79c20bf6f9a74a454659c42b37fd9db15c4a1d3ae1c4fe54c42f162691'
           pending=json.loads(Path('bobo_review_pending.json').read_text())
           assert pending['episode']==40522025 and pending['artifact_run_id']=='38277681586'
           sys.modules['gradio_client']=types.SimpleNamespace(Client=None,handle_file=None)
