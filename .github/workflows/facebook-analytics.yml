@@ -2,7 +2,7 @@ name: Collect Facebook Page Analytics
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/facebook-analytics.yml']
+    paths: ['.github/workflows/facebook-analytics.yml', 'collect_facebook_analytics.py']
   schedule:
     - cron: '20 23 * * *'
       timezone: Asia/Karachi
