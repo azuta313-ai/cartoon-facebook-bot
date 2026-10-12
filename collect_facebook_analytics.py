@@ -1,5 +1,5 @@
 """Read-only Facebook analytics; keep reports in private workflow artifacts."""
-import json, os, io, zipfile
+import json, os, io, zipfile, re
 from pathlib import Path
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -15,7 +15,7 @@ def get(path, params):
         data=response.json()
         if not response.ok or 'error' in data:
             e=data.get('error',{})
-            return {'unavailable':True,'code':e.get('code'),'subcode':e.get('error_subcode')}
+            return {'unavailable':True,'code':e.get('code'),'subcode':e.get('error_subcode'),'required_permissions':sorted(set(re.findall(r'\\b(?:read_insights|pages_[a-z_]+)\\b',e.get('message',''))))}
         return data
     except (requests.RequestException,ValueError):
         return {'unavailable':True,'reason':'request_failed'}
