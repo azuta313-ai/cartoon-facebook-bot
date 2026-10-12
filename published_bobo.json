@@ -98,5 +98,59 @@
     "music": "original procedural composition 1",
     "social_caption": "Big sandcastle dreams. Tiny bucket problems. \ud83c\udfd6\ufe0f\ud83d\udc12\n\nBobo has a plan\u2014and a bucket full of surprises.\nWhat should he build next?\n\n#Bobo #3DAnimation #BeachComedy #Sandcastle #CartoonComedy",
     "facebook_video_id": "3160195454190831"
+  },
+  "long-v2-40522024": {
+    "episode": 40522024,
+    "title": "Picnic apple escape",
+    "space": "zerogpu-aoti/wan2-2-fp8da-aoti-faster",
+    "generated_sha256": "d524ea788546cb65624afce18ceae4f549d90c2dd63a3b131e5406ade869fc84",
+    "duration": 11,
+    "generated_at": "2026-10-12T09:30:11.001023+05:00",
+    "quality_reference": "assets/scenes/scene2.jpg",
+    "music_check_dbfs": -15.11,
+    "export_fps": 30,
+    "effects": "original scene-specific effects; no bite sample",
+    "caption_timing": [
+      {
+        "text": "Snack time!",
+        "start": 0,
+        "end": 2
+      },
+      {
+        "text": "Come back!",
+        "start": 2,
+        "end": 5.7
+      },
+      {
+        "text": "Got you!",
+        "start": 5.7,
+        "end": 11
+      }
+    ],
+    "audio_mix_variant": 2,
+    "scene_id": 2,
+    "setting": "a leafy park with a picnic blanket and fruit basket",
+    "music": "original procedural composition 2",
+    "social_caption": "Bobo's snack has an escape plan! \ud83c\udf4e\ud83d\ude02\n\nA peaceful picnic turns into a tiny apple chase.\nWhich picnic snack would Bobo love most?\n\n#Bobo #3DAnimation #PicnicFun #AppleAdventure #AnimatedShorts",
+    "review_repairs": [
+      "Catch caption moved to 5.7s",
+      "Catch tap moved to 5.7625s; success chime moved to 6.2625s"
+    ],
+    "final_sha256": "6cb06eb5124d4ba462a6fc99cf874859c80fda225be33b8c3a867cec79afb95d",
+    "facebook_video_id": "1099436909480693",
+    "review": {
+      "status": "approved",
+      "episode": 40522024,
+      "artifact_run_id": "38205815880",
+      "final_sha256": "6cb06eb5124d4ba462a6fc99cf874859c80fda225be33b8c3a867cec79afb95d",
+      "review": {
+        "visual": "Sampled full story at 2fps and catch transition at 4fps; no material sampled defects; no added shirt text observed",
+        "caption": "Catch caption moved from 5.0625 to 5.7 seconds after visual inspection",
+        "audio": "Decoded successfully; audible RMS; scene-specific procedural roll/tap/chime only, no cake-bite asset; catch effects retimed",
+        "audio_listening": "No listening tool available; review covers waveform, decoding, effect provenance and timing, not subjective listening",
+        "repairs": "Re-rendered existing generated footage; no GPU regeneration or paid service",
+        "technical": "H264 720x1280 30fps, AAC 48kHz; exact repaired file SHA256 checked"
+      }
+    }
   }
 }
