@@ -1,0 +1,14 @@
+{
+  "status": "approved",
+  "episode": 40522024,
+  "artifact_run_id": "38205815880",
+  "final_sha256": "6cb06eb5124d4ba462a6fc99cf874859c80fda225be33b8c3a867cec79afb95d",
+  "review": {
+    "visual": "Sampled full story at 2fps and catch transition at 4fps; no material sampled defects; no added shirt text observed",
+    "caption": "Catch caption moved from 5.0625 to 5.7 seconds after visual inspection",
+    "audio": "Decoded successfully; audible RMS; scene-specific procedural roll/tap/chime only, no cake-bite asset; catch effects retimed",
+    "audio_listening": "No listening tool available; review covers waveform, decoding, effect provenance and timing, not subjective listening",
+    "repairs": "Re-rendered existing generated footage; no GPU regeneration or paid service",
+    "technical": "H264 720x1280 30fps, AAC 48kHz; exact repaired file SHA256 checked"
+  }
+}
