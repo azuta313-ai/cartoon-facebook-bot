@@ -1,0 +1,94 @@
+name: Publish Reviewed Bobo
+on:
+  push:
+    branches: [main]
+    paths: ['bobo_review_approval.json']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: free-bobo-generation
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - id: approval
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          a=json.loads(Path('bobo_review_approval.json').read_text())
+          assert a['status']=='approved'
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('run_id='+str(int(a['artifact_run_id']))+'\n')
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: fresh-bobo-video
+          path: reviewed
+          run-id: ${{ steps.approval.outputs.run_id }}
+          github-token: ${{ github.token }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - name: Publish exact approved file
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+        run: |
+          python - <<'PY'
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          import requests
+          a=json.loads(Path('bobo_review_approval.json').read_text())
+          ledger_path=Path('published_bobo.json')
+          ledger=json.loads(ledger_path.read_text())
+          key='long-v2-'+str(a['episode'])
+          if key in ledger:
+              print('Reviewed episode already published; no duplicate upload.')
+              raise SystemExit(0)
+          pending=json.loads(Path('bobo_review_pending.json').read_text())
+          assert pending['episode']==a['episode'] and pending['artifact_run_id']==str(a['artifact_run_id'])
+          video=Path('reviewed/bobo_fresh.mp4')
+          assert hashlib.sha256(video.read_bytes()).hexdigest()==a['final_sha256']
+          metadata=json.loads(Path('reviewed/episode.json').read_text())
+          assert metadata['episode']==a['episode']
+          assert not any(v.get('generated_sha256')==metadata['generated_sha256'] for v in ledger.values())
+          intent=Path('bobo_publish_intent.json')
+          if intent.exists():
+              old=json.loads(intent.read_text())
+              if old.get('episode')==a['episode'] and old.get('status')=='upload_started':
+                  raise RuntimeError('Previous upload outcome unknown; refusing an automatic duplicate.')
+          intent.write_text(json.dumps({'episode':a['episode'],'status':'upload_started','final_sha256':a['final_sha256']},indent=2))
+          subprocess.run(['git','config','user.name','Bobo automation'],check=True)
+          subprocess.run(['git','config','user.email','bobo-bot@users.noreply.github.com'],check=True)
+          subprocess.run(['git','add','bobo_publish_intent.json'],check=True)
+          subprocess.run(['git','commit','-m','Record reviewed upload intent'],check=True)
+          subprocess.run(['git','push','origin','HEAD:main'],check=True)
+          with video.open('rb') as f:
+              r=requests.post('https://graph-video.facebook.com/v26.0/'+os.environ['FB_PAGE_ID']+'/videos',headers={'Authorization':'Bearer '+os.environ['FB_PAGE_ACCESS_TOKEN']},files={'source':('bobo_fresh.mp4',f,'video/mp4')},data={'description':metadata['social_caption']},timeout=180)
+          try: result=r.json()
+          except ValueError: raise RuntimeError('Facebook returned an unreadable response; check upload outcome before retry.')
+          if not r.ok or not result.get('id'):
+              code=result.get('error',{}).get('code')
+              intent.write_text(json.dumps({'episode':a['episode'],'status':'rejected','facebook_error_code':code},indent=2))
+              subprocess.run(['git','add','bobo_publish_intent.json'],check=True)
+              subprocess.run(['git','commit','-m','Record rejected reviewed upload'],check=True)
+              subprocess.run(['git','push','origin','HEAD:main'],check=True)
+              raise RuntimeError('Facebook rejected reviewed upload; error code '+str(code))
+          metadata.update(facebook_video_id=result['id'],final_sha256=a['final_sha256'],review=a)
+          ledger[key]=metadata
+          ledger_path.write_text(json.dumps(ledger,indent=2))
+          intent.write_text(json.dumps({'episode':a['episode'],'status':'accepted','facebook_video_id':result['id']},indent=2))
+          Path('bobo_review_pending.json').unlink()
+          subprocess.run(['git','add','published_bobo.json','bobo_publish_intent.json','bobo_review_pending.json'],check=True)
+          subprocess.run(['git','commit','-m','Record reviewed Bobo publication and release generation gate'],check=True)
+          subprocess.run(['git','push','origin','HEAD:main'],check=True)
+          print('Facebook accepted reviewed video:',result['id'])
+          PY
