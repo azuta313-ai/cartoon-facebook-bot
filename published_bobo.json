@@ -152,5 +152,94 @@
         "technical": "H264 720x1280 30fps, AAC 48kHz; exact repaired file SHA256 checked"
       }
     }
+  },
+  "long-v2-40522025": {
+    "episode": 40522025,
+    "title": "Toy room tower wobble",
+    "space": "zerogpu-aoti/wan2-2-fp8da-aoti-faster",
+    "generated_sha256": "744943a4bcd8f183ecbbf965f99b32dcef262019ddf3525cec68450382661818",
+    "duration": 11,
+    "generated_at": "2026-10-12T21:29:27.832209+05:00",
+    "quality_reference": "assets/scenes/scene3.jpg",
+    "music_check_dbfs": -15.17,
+    "export_fps": 30,
+    "effects": "original scene-specific effects; no bite sample",
+    "caption_kind": "action captions; no spoken dialogue",
+    "caption_review_required": true,
+    "caption_timing": [
+      {
+        "text": "One more block!",
+        "start": 0,
+        "end": 2
+      },
+      {
+        "text": "Easy... easy...",
+        "start": 2,
+        "end": 6.5
+      },
+      {
+        "text": "Tower saved!",
+        "start": 6.5,
+        "end": 11
+      }
+    ],
+    "audio_mix_variant": 3,
+    "scene_id": 3,
+    "setting": "a bright playroom with colorful wooden blocks",
+    "music": "original procedural composition 3",
+    "social_caption": "One more block... what could possibly happen? \ud83e\uddf1\ud83d\ude06\n\nBobo's serious builder face deserves its own award.\nWould you add another block?\n\n#Bobo #3DAnimation #ToyRoom #BlockTower #FunnyAnimation",
+    "observed_action_timestamps": {
+      "block_already_placed": "0.00",
+      "tower_wobble": "2.00-5.25",
+      "hands_contact_tower": "5.63",
+      "tower_visibly_stable": "6.50",
+      "hands_release": "7.38",
+      "celebration": "7.63-10.00"
+    },
+    "caption_effect_mapping": [
+      {
+        "caption": "One more block!",
+        "window": "0.00-2.00",
+        "observed_action": "Bobo withdraws hand from newly placed top block",
+        "effect": "wood tap 2.30"
+      },
+      {
+        "caption": "Easy... easy...",
+        "window": "2.00-6.50",
+        "observed_action": "tower leans; Bobo reacts and reaches to steady it",
+        "effect": "wobble 3.30; wood contact 5.76"
+      },
+      {
+        "caption": "Tower saved!",
+        "window": "6.50-11.00",
+        "observed_action": "tower is visibly stable, then Bobo releases and celebrates",
+        "effect": "success chime 7.56"
+      }
+    ],
+    "review_repairs": [
+      "Result caption moved from 5.0625s to observed stable outcome at 6.50s",
+      "Contact tap aligned to 5.76s",
+      "Scene-matched success chime aligned to celebration at 7.56s",
+      "Music ducking regenerated from repaired effect track"
+    ],
+    "final_sha256": "289e0881933b0f01ff2a3e9b3f8caeb2e919e58dceac8ef5d740cbad591fa7a7",
+    "facebook_video_id": "1644102260411807",
+    "review": {
+      "status": "approved",
+      "episode": 40522025,
+      "artifact_run_id": "38279922821",
+      "final_sha256": "289e0881933b0f01ff2a3e9b3f8caeb2e919e58dceac8ef5d740cbad591fa7a7",
+      "review": {
+        "visual": "Reviewed the full exact repaired 11-second render at 4 fps (44 samples) and the result-caption transition at 8 fps; tower wobble, steadying and celebration are visible with no material sampled pixel break-up.",
+        "dialogue": "No spoken dialogue is represented. Open-mouth frames read as surprise/laughter rather than transcribed speech; captions remain action captions.",
+        "observed_actions": "Top block/hand withdrawal 0.00-2.00; wobble 2.00-5.25; hand contact 5.63; visibly stable 6.50; release 7.38; celebration 7.63-10.00.",
+        "captions": "One more block 0.00-2.00; Easy... easy... 2.00-6.50; Tower saved only from visible stable outcome at 6.50 through celebration.",
+        "effects": "Scene-matched wood tap 2.30, wobble 3.30, contact tap 5.76, success chime 7.56; music ducking regenerated from the repaired effects track.",
+        "audio": "AAC stereo 48 kHz; final mean -18.5 dB and peak -1.6 dB; effect windows contain non-silent signal.",
+        "audio_listening": "No subjective listening tool available; review covers decoding, measured levels, source provenance, waveform presence and observed-action timing.",
+        "technical": "H264 720x1280 30 fps, 11.0 seconds; exact repaired artifact decoded and SHA256 verified.",
+        "repairs": "Re-rendered the same generated footage; result caption moved from 5.0625 to 6.50 seconds and effects retimed/expanded without paid generation."
+      }
+    }
   }
 }
