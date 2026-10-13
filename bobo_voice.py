@@ -50,7 +50,7 @@ def prepare_voice(out,scene_id,total=11,start=.35):
 def mix_voice(out,total=11):
     out=Path(out); target=out/'audio-voiced.wav'
     # Duck existing music/effects mix only while dialogue is present.
-    graph=f'[1:a]asplit=2[voice][key];[0:a][key]sidechaincompress=threshold=0.025:ratio=8:attack=5:release=140[duck];[duck][voice]amix=inputs=2:normalize=0:duration=first,alimiter=limit=0.84:level=false,atrim=duration={total}[out]'
+    graph=f'[1:a]asplit=2[voice][key];[0:a][key]sidechaincompress=threshold=0.025:ratio=8:attack=5:release=140[duck];[duck][voice]amix=inputs=2:normalize=0:duration=first,alimiter=limit=0.84:level=false:latency=true,atrim=duration={total}[out]'
     run(['ffmpeg','-v','error','-y','-i',str(out/'audio.wav'),'-i',str(out/'voice-track.wav'),'-filter_complex',graph,'-map','[out]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(target)])
     target.replace(out/'audio.wav')
 
