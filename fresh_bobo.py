@@ -56,6 +56,8 @@ PROMOTION=[
  ("Bobo's masterpiece comes with a messy surprise! 🎨😆","A little paint and a lot of confidence.","What should our little artist paint next?"),
 ]
 
+MUSIC_STYLES=['soft marimba bounce','warm plucked strings','airy flute dance','muted piano shuffle','gentle bell waltz','round synth adventure','mellow electric keys','light pizzicato swing']
+
 def original_music(seconds, variant):
  # Original procedural tunes avoid paid downloads and repeated sections of one song.
  melodies=[
@@ -69,13 +71,22 @@ def original_music(seconds, variant):
   [0,7,12,4,9,2,7,5,11,4,7,0],
  ]
  rate=48000; t=np.arange(int(seconds*rate))/rate
- tune=np.zeros(len(t)); v=variant%len(melodies); beat=[.28,.34,.31,.25,.38,.27,.36,.30][v]
+ tune=np.zeros(len(t)); v=variant%len(melodies); cycle=variant//len(melodies)
+ beat=[.28,.34,.31,.25,.38,.27,.36,.30][v]*(1+0.025*(cycle%5))
  for n,start in enumerate(np.arange(0,seconds,beat)):
-  note=melodies[v][n%len(melodies[v])]; freq=220*2**((note+v%3)/12)
+  note=melodies[v][(n+cycle)%len(melodies[v])]; freq=[220,196,330,247,294,165,262,233][v]*2**((note+cycle%5)/12)
   u=t-start; active=(u>=0)&(u<beat*.9); local=np.maximum(u,0)
-  envelope=np.minimum(local/.008,1)*np.exp(-local*(9+v))
-  tone=np.sin(2*np.pi*freq*local)+(.15+v*.025)*np.sin(4*np.pi*freq*local)
-  tune+=active*envelope*tone*.22
+  envelope=np.minimum(local/[.012,.008,.04,.014,.02,.03,.02,.008][v],1)*np.exp(-local*[11,14,5,9,7,6,8,16][v])
+  phase=2*np.pi*freq*local
+  partials=[(0.15,0,0),(0.28,0.12,0.06),(0.04,0,0),(0.22,0.08,0),(0,0.24,0.12),(0.35,0,0),(0.12,0.15,0),(0.32,0.16,0.08)][v]
+  tone=np.sin(phase)+partials[0]*np.sin(2*phase)+partials[1]*np.sin(3*phase)+partials[2]*np.sin(4*phase)
+  if v==4: tone=np.sin(phase)+.22*np.sin(2.76*phase)
+  if v==5: tone=np.sin(phase+.8*np.sin(phase*.5))
+  accent=[1,.6,.85,.55][n%4]
+  tune+=active*envelope*tone*.19*accent
+  if n%4==0:
+   bass=np.sin(2*np.pi*(freq/2)*local)*np.minimum(local/.025,1)*np.exp(-local*9)
+   tune+=active*bass*.045
  tune=np.clip(tune,-.8,.8)
  stereo=np.column_stack((tune,tune))
  path=OUT/'original_music.wav'
@@ -109,19 +120,28 @@ def scene_effects(seconds, variant, first_shot_duration=5.0625):
   elif kind=='wood' or kind=='tap': signal=(np.sin(2*np.pi*360*t)+smooth)*np.exp(-t*55)
   elif kind=='wobble': signal=np.sin(2*np.pi*(270*t+12*np.sin(2*np.pi*6*t)))*env*.4
   elif kind=='roll': signal=smooth*env*(.4+.6*np.sin(2*np.pi*12*t)**2)
-  elif kind=='splash': signal=smooth*env+np.sin(2*np.pi*(600*t-350*t*t))*env*.15
+  elif kind=='splash':
+   # Soft water wash and scattered droplets; no loud descending cartoon tone.
+   water=np.convolve(noise,np.ones(48)/48,mode='same')
+   water_env=(1-np.exp(-t/0.025))*np.exp(-t/0.13)*np.minimum((length-t)/0.06,1)
+   signal=water*water_env
+   for delay in (.055,.11,.18):
+    u=np.maximum(t-delay,0)
+    drop=np.sin(2*np.pi*(1100*u-900*u*u))*np.exp(-u*70)
+    signal+=(t>=delay)*drop*.025
   else: signal=smooth*env*.6
   signal=signal/max(1,float(np.max(np.abs(signal))))
   a=int(start*rate); z=min(len(audio),a+len(signal))
-  if a<z: audio[a:z]+=signal[:z-a]*.60
+  gain=.22 if kind=='splash' else .60
+  if a<z: audio[a:z]+=signal[:z-a]*gain
  path=OUT/'scene_effects.wav'
  with wave.open(str(path),'wb') as wav:
   wav.setnchannels(2); wav.setsampwidth(2); wav.setframerate(rate)
   wav.writeframes((np.column_stack((audio,audio))*32767).astype('<i2').tobytes())
  return str(path)
 
-def soundtrack(seconds, variant, first_shot_duration=5.0625):
- music=original_music(seconds,variant)
+def soundtrack(seconds, variant, first_shot_duration=5.0625, music_variant=None):
+ music=original_music(seconds,variant if music_variant is None else music_variant)
  effects=scene_effects(seconds,variant,first_shot_duration)
  mix=f'[0:a]loudnorm=I=-18:TP=-2:LRA=7,aresample=48000,afade=t=in:st=0:d=0.15,afade=t=out:st={seconds-.6}:d=0.6,volume=0.80[m];[1:a]aformat=channel_layouts=stereo,asplit=2[fx][key];[m][key]sidechaincompress=threshold=0.035:ratio=3:attack=10:release=180[duck];[duck][fx]amix=inputs=2:duration=first:normalize=0,atrim=duration={seconds}[audio]'
  run(['ffmpeg','-loglevel','error','-y','-i',music,'-i',effects,'-filter_complex',mix,'-map','[audio]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(OUT/'audio.wav')])
@@ -132,11 +152,11 @@ def music_level(video):
  if not samples.size: return -180.0
  return float(20*np.log10(max(float(np.sqrt(np.mean(samples**2))),1e-9)))
 
-def ensure_audible_music(video, variant):
+def ensure_audible_music(video, variant, music_variant=None):
  level=music_level(video)
  if not np.isfinite(level) or level < -24:
   print('Automatically rebuilding quiet or missing soundtrack.')
-  soundtrack(11,variant)
+  soundtrack(11,variant,music_variant=music_variant)
   if (OUT/'dialogue-timing.json').exists() and (OUT/'voice-track.wav').exists():
    from bobo_voice import mix_voice
    mix_voice(OUT)
@@ -181,7 +201,7 @@ def main():
  scene_reference=Path('assets/scenes')/f'scene{scene_id}.jpg'
  if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
- prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: establish the setup during seconds 0 to 2; show the main movement during seconds 2 to 5. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. Silent physical comedy: no speech, no talking or lip-sync mouth motions; use facial expressions and gestures. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
+ prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: begin visible purposeful movement in the first half second; keep lively normal-speed movement throughout all five seconds, with a quick clear setup and no long pose or anticipatory pause. No slow motion. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. Silent physical comedy: no speech, no talking or lip-sync mouth motions; use facial expressions and gestures. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
  if slot==0 and os.getenv('BOBO_VOICE_TEST','false').lower()=='true':
   from bobo_voice import LINES
   prompt=prompt.replace('Silent physical comedy: no speech, no talking or lip-sync mouth motions; use facial expressions and gestures.',
@@ -190,7 +210,7 @@ def main():
  # Exactly two free-GPU requests per episode, with no paid fallback.
  clips=[]; shot_durations=[]
  for shot in range(2):
-  shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Preserve clothing details exactly; no added shirt lettering. Silent physical comedy, no talking or lip-sync mouth motions. Smooth clear movements, fixed camera, no sudden scene changes. Complete in five seconds.')
+  shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Preserve clothing details exactly; no added shirt lettering. Silent physical comedy, no talking or lip-sync mouth motions. Lively normal-speed action begins immediately and continues through the final frame, with a quick reaction and playful moving celebration; no slow motion or long frozen pose. Smooth clear movements, fixed camera, no sudden scene changes. Complete in five seconds.')
   reference=OUT/('reference.png' if shot==0 else 'continuation.png')
   try:
    result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake',duration_seconds=5,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
@@ -224,7 +244,12 @@ def main():
  raw=subprocess.check_output(['ffmpeg','-loglevel','error','-i',str(OUT/'generated.mp4'),'-vf','fps=1,scale=64:64,format=gray','-f','rawvideo','-'])
  frames=np.frombuffer(raw,dtype=np.uint8).reshape(-1,64,64).astype(float)
  if len(frames)<4 or np.abs(np.diff(frames,axis=0)).mean()<.5: raise RuntimeError('Generated clip is static; skipping publication.')
- soundtrack(11,scene_id,shot_durations[0])
+ # Separate music choice from the scene; avoid the last three published arrangements.
+ recent_music={v.get('music_variant',v.get('audio_mix_variant')) for v in list(ledger.values())[-3:]}
+ music_variant=(episode*5+scene_id)%64
+ while music_variant in recent_music or music_variant%8 in {v%8 for v in recent_music if isinstance(v,int)}:
+  music_variant=(music_variant+1)%64
+ soundtrack(11,scene_id,shot_durations[0],music_variant=music_variant)
  voice_record={'enabled':False,'experiment':'silent control'}
  if slot==0 and os.getenv('BOBO_VOICE_TEST','false').lower()=='true':
   from bobo_voice import prepare_voice,mix_voice
@@ -244,8 +269,9 @@ def main():
   filters.append(f"drawtext=fontfile={font}:textfile={path}:fontsize={size}:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y={y}:enable='gte(t,{start})*lt(t,{end})'")
  run(['ffmpeg','-loglevel','error','-y','-i',str(OUT/'generated.mp4'),'-i',str(OUT/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','medium','-crf','16','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(OUT/'bobo_fresh.mp4')])
  run(['ffmpeg','-v','error','-i',str(OUT/'bobo_fresh.mp4'),'-f','null','-'])
- music_db=ensure_audible_music(OUT/'bobo_fresh.mp4',scene_id)
+ music_db=ensure_audible_music(OUT/'bobo_fresh.mp4',scene_id,music_variant=music_variant)
  metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':30,'effects':'original scene-specific effects; no bite sample','voice':voice_record,'voice_review_required':voice_record['enabled'],'caption_kind':'spoken subtitle plus separate action captions' if voice_record['enabled'] else 'action captions; no spoken dialogue','caption_review_required':True,'caption_timing':[{'text':t,'start':a,'end':z} for t,a,z in cues],'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
+ metadata.update(music_variant=music_variant,music_style=MUSIC_STYLES[music_variant%8],music='original procedural arrangement '+str(music_variant),sound_design_version=2,pacing_review_required=True)
  hook,teaser,question=PROMOTION[scene_id]
  social_caption=f"{hook}\n\n{teaser}\n{question}\n\n"+' '.join('#'+tag for tag in ['Bobo','3DAnimation']+scene_tags+[['FunnyCartoon'],['CartoonComedy'],['AnimatedShorts'],['FunnyAnimation']][scene_id%4])
  metadata['social_caption']=social_caption
@@ -270,4 +296,5 @@ def main():
   (OUT/'episode.json').write_text(json.dumps(metadata,indent=2))
   print('Facebook accepted new video:',result['id'])
 if __name__=='__main__': main()
+
 
