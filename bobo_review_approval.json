@@ -77,5 +77,6 @@
     "technical": "11.000 seconds H264 720x1280 30fps AAC; exact SHA256 verified.",
     "cost": 0,
     "repairs": "Retimed captions/effects on same generated footage, removed chime, retained full duration and music variant; no regeneration."
-  }
+  },
+  "retry_reason": "First attempt stopped before upload because ffprobe was missing; installed ffmpeg. Retry same reviewed SHA."
 }
