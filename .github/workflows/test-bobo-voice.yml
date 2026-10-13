@@ -1,0 +1,64 @@
+name: Validate Free Bobo Voice
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/test-bobo-voice.yml', 'bobo_voice.py']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          pip install numpy piper-tts==1.3.0
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          mkdir -p voice_models
+          cd voice_models
+          python -m piper.download_voices en_US-ljspeech-medium
+      - name: Synthesize actual voice samples and verify mix and caption timing
+        run: |
+          python - <<'PY'
+          import json,subprocess,wave
+          from pathlib import Path
+          import numpy as np
+          from bobo_voice import prepare_voice,mix_voice,subtitle_cues
+          results=[]
+          for scene in range(8):
+              out=Path('voice_test')/str(scene)
+              record=prepare_voice(out,scene)
+              cue=record['cues'][0]
+              assert cue['text'] and .35<cue['end']<2.85
+              subprocess.run(['ffmpeg','-v','error','-y','-f','lavfi','-i','sine=frequency=330:sample_rate=48000:duration=11','-af','volume=0.3','-ac','2',str(out/'audio.wav')],check=True)
+              with wave.open(str(out/'audio.wav'),'rb') as wav:
+                  baseline=np.frombuffer(wav.readframes(wav.getnframes()),dtype='<i2').reshape(-1,2).astype(float)
+              mix_voice(out)
+              with wave.open(str(out/'audio.wav'),'rb') as wav:
+                  mixed=np.frombuffer(wav.readframes(wav.getnframes()),dtype='<i2').reshape(-1,2).astype(float)
+              assert len(mixed)==528000 and np.abs(mixed).max()<32767
+              cues=subtitle_cues([('Setup',0,2),('Action',2,5),('Result',5,11)],record)
+              assert cues[0]==(cue['text'],cue['start'],cue['end'])
+              assert all(a>=cue['end']+.079 for _,a,_ in cues[1:])
+              # Verify music ducking during actual speech by reconstructing the isolated voice.
+              with wave.open(str(out/'voice-track.wav'),'rb') as wav:
+                  voice=np.frombuffer(wav.readframes(wav.getnframes()),dtype='<i2').reshape(-1,2).astype(float)
+              active=np.abs(voice[:,0])>2000
+              assert active.sum()>1000
+              bed=mixed-voice
+              assert np.sqrt(np.mean(bed[active]**2))<np.sqrt(np.mean(baseline[active]**2))*.95
+              results.append({'scene':scene,'text':cue['text'],'subtitle_start':cue['start'],'subtitle_end':cue['end'],'status':'technical_pass','subjective_listening':'not performed','lip_sync':'requires actual draft review'})
+          Path('voice_test/validation.json').write_text(json.dumps(results,indent=2))
+          print('Eight actual local voice lines synthesized; timed subtitles, stereo mix and speech ducking verified.')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bobo-voice-test
+          path: voice_test/
+          retention-days: 14
