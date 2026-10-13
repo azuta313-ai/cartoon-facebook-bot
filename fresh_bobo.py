@@ -182,6 +182,10 @@ def main():
  if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
  prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: establish the setup during seconds 0 to 2; show the main movement during seconds 2 to 5. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. Silent physical comedy: no speech, no talking or lip-sync mouth motions; use facial expressions and gestures. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
+ if slot==0 and os.getenv('BOBO_VOICE_TEST','false').lower()=='true':
+  from bobo_voice import LINES
+  prompt=prompt.replace('Silent physical comedy: no speech, no talking or lip-sync mouth motions; use facial expressions and gestures.',
+   'Bobo says the brief English reaction "'+LINES[scene_id]+'" near the start: a brief natural speaking mouth movement during seconds 0.35 to 1.2, then close his mouth. Use expressive gestures for the remaining physical comedy. No prolonged talking.')
  client=Client(SPACE, token=token, httpx_kwargs={'timeout':90})
  # Exactly two free-GPU requests per episode, with no paid fallback.
  clips=[]; shot_durations=[]
