@@ -102,23 +102,25 @@ def scene_effects(seconds, variant, first_shot_duration=5.0625):
  split=float(first_shot_duration); rng=np.random.default_rng(variant+31)
  plans=[
   [('air',1.1,.3),('pop',split+.25,.12)],
-  [('sand',2.4,.4),('sand',split+.25,.3),('chime',split+1,.35)],
-  [('roll',2.5,.6),('tap',split+.3,.12),('chime',split+1,.3)],
-  [('wood',2.3,.1),('wobble',3.3,.6),('wood',split+.35,.12)],
+  [('sand',2.4,.4),('sand',split+.25,.3)],
+  [('roll',2.5,.6),('tap',split+.3,.12)],
+  [('wood',2.3,.1),('wood_creak',3.3,.6),('wood',split+.35,.12)],
   [('splash',split+.3,.45),('splash',split+1.5,.3)],
   [('beep',split+.2,.15),('beep',split+.6,.15),('chime',split+1,.35)],
-  [('snow',2.3,.4),('snow',split+.7,.3),('chime',split+1.4,.3)],
-  [('brush',2.2,.5),('brush',split+.2,.3),('chime',split+1.5,.35)],
+  [('snow',2.3,.4),('snow',split+.7,.3)],
+  [('brush',2.2,.5),('brush',split+.2,.3)],
  ]
  for kind,start,length in plans[variant%8]:
   t=np.arange(int(length*rate))/rate; noise=rng.normal(0,1,len(t))
   smooth=np.convolve(noise,np.ones(12)/12,mode='same')
   env=np.sin(np.pi*t/length)**2
-  if kind=='pop': signal=np.sin(2*np.pi*(750*t-1800*t*t))*np.exp(-t*45)+smooth*np.exp(-t*60)
+  if kind=='pop': signal=smooth*(1-np.exp(-t/0.002))*np.exp(-t*65)
   elif kind=='beep': signal=np.sin(2*np.pi*850*t)*env*.55
   elif kind=='chime': signal=(np.sin(2*np.pi*1047*t)+.4*np.sin(2*np.pi*1568*t))*np.exp(-t*9)*env
-  elif kind=='wood' or kind=='tap': signal=(np.sin(2*np.pi*360*t)+smooth)*np.exp(-t*55)
-  elif kind=='wobble': signal=np.sin(2*np.pi*(270*t+12*np.sin(2*np.pi*6*t)))*env*.4
+  elif kind=='wood' or kind=='tap':
+   attack=1-np.exp(-t/0.002)
+   signal=(smooth*.7+np.sin(2*np.pi*190*t)*.12+np.sin(2*np.pi*430*t)*.05)*attack*np.exp(-t*55)
+  elif kind=='wood_creak': signal=smooth*env*(.45+.15*np.sin(2*np.pi*9*t))
   elif kind=='roll': signal=smooth*env*(.4+.6*np.sin(2*np.pi*12*t)**2)
   elif kind=='splash':
    # Soft water wash and scattered droplets; no loud descending cartoon tone.
@@ -132,7 +134,7 @@ def scene_effects(seconds, variant, first_shot_duration=5.0625):
   else: signal=smooth*env*.6
   signal=signal/max(1,float(np.max(np.abs(signal))))
   a=int(start*rate); z=min(len(audio),a+len(signal))
-  gain=.22 if kind=='splash' else .60
+  gain={'splash':.22,'pop':.28,'wood':.30,'tap':.24,'wood_creak':.28,'roll':.30,'sand':.28,'snow':.30,'brush':.24,'air':.25,'beep':.20,'chime':.18}.get(kind,.25)
   if a<z: audio[a:z]+=signal[:z-a]*gain
  path=OUT/'scene_effects.wav'
  with wave.open(str(path),'wb') as wav:
