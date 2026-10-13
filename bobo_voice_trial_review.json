@@ -1,22 +1,23 @@
 {
   "episode": 40522026,
-  "artifact_run_id": "38337772575",
-  "status": "held_for_material_visual_repair",
-  "speech": "A puddle!",
+  "artifact_run_id": "38338612528",
+  "status": "repaired_review_passed_publication_auth_blocked",
+  "speech": "Oh!",
   "speech_window": [
-    0.35,
-    0.7988
+    3.875,
+    4.1409
   ],
   "review": {
-    "sample_rate_fps": 4,
-    "speech_window_sample_rate_fps": 8,
-    "observed": "Bobo balances with raised foot for approximately first five seconds; lowers foot approximately 5.5s; reacts/laughs approximately 6.5-10s.",
-    "defects": [
-      "Spoken line at 0.35-0.80 has no matching speaking mouth motion.",
-      "Oops caption at 2.00 precedes actual step and reaction.",
-      "First shot contains prolonged near-static balancing instead of clear intended motion."
-    ],
-    "audio": "Actual free Piper voice track exists; all eight independent voice lines passed CPU synthesis, subtitle and ducking tests; no subjective listening performed.",
-    "publication": "Not approved or published. Pending gate retained. Do not treat this as a successful talking-character video."
-  }
+    "full_render_sample_fps": 4,
+    "transition_sample_fps": 8,
+    "observed_actions": {
+      "landing": "2.5-2.875",
+      "mouth_open": "3.875-4.5",
+      "celebration": "5.0-7.125"
+    },
+    "repair": "Trim first 3 seconds and freeze tail; use brief single-vowel reaction on observed mouth opening, exact spoken subtitle, retime action captions and splash effects.",
+    "limitations": "Brief reaction timing is visually appropriate; full phoneme lip synchronization and subjective audio listening are not verified.",
+    "publication": "Facebook rejected exact reviewed file with authentication error code 190; no accepted video ID. Pending file retained for retry with valid token."
+  },
+  "final_sha256": "1543188004fa8d111a1caf7e370b5d56f3f35863573d89be38d3c2900434b7f8"
 }
