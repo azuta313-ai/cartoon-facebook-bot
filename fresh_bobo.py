@@ -192,7 +192,7 @@ def main():
   pause=json.loads(quota_path.read_text())
   if now<datetime.fromisoformat(pause['retry_after']):
    print('Free generation quota unavailable until '+pause['retry_after']+'; no GPU request or Facebook upload attempted.'); return
- slot=int(os.getenv('EPISODE_SLOT',str(0 if now.hour<21 else 1)))
+ slot=int(os.getenv('EPISODE_SLOT',str(0 if now.hour<17 else 1)))
  episode=int(now.strftime('%Y%m%d'))*2+slot
  episode_key=f'long-v2-{episode}'
  ledger_path=Path('published_bobo.json')
