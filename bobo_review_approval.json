@@ -26,5 +26,6 @@
     "technical": "H264 720x1280 30fps AAC stereo; 7.133 seconds; SHA256 verified on downloaded repaired artifact.",
     "cost": 0,
     "repairs": "Same generated footage trimmed, captions replaced/retimed, actual voice regenerated and shifted to observed reaction; scene effects and ducking rebuilt. No paid services or GPU regeneration."
-  }
+  },
+  "retry_reason": "User renewed Facebook Page token on 13 October; previous attempt explicitly rejected with code 190."
 }
