@@ -1,5 +1,5 @@
 {
   "episode": 40522026,
-  "status": "upload_started",
-  "final_sha256": "1543188004fa8d111a1caf7e370b5d56f3f35863573d89be38d3c2900434b7f8"
+  "status": "rejected",
+  "facebook_error_code": 190
 }
