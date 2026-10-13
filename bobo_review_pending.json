@@ -2,8 +2,9 @@
   "episode": 40522026,
   "title": "Rainy puddle splash",
   "generated_sha256": "7831864251565b81f3d6053750d367d349858f543a1ccd76897f9d801785cb24",
-  "status": "awaiting_visual_audio_review",
-  "artifact_run_id": "38337772575",
+  "status": "repaired_awaiting_review",
+  "artifact_run_id": "38338612528",
   "created_at": "2026-10-13T07:38:34.143960+05:00",
-  "voice_review_required": true
+  "voice_review_required": true,
+  "final_sha256": "1543188004fa8d111a1caf7e370b5d56f3f35863573d89be38d3c2900434b7f8"
 }
