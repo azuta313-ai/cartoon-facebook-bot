@@ -26,8 +26,8 @@ ACTION_BEATS=[
   'The floating bubble pops as Bobo reaches it. He jumps in surprise, then laughs and shrugs.'),
  ('Bobo fills and tips his beach bucket onto the sand, pats it carefully, and prepares to lift it. Keep the bucket covering the result.',
   'Bobo lifts the bucket to reveal a tiny sandcastle, looks surprised, then proudly gives a thumbs up.'),
- ('Bobo reaches for the red apple on the picnic blanket. It starts rolling away and he reaches after it, looking surprised.',
-  'Bobo catches the rolling apple with both hands and holds it up proudly with a relieved smile.'),
+ ('The red apple is already rolling within the first half second. Bobo immediately reaches after it with lively natural movement and nearly catches it before it escapes again.',
+  'Bobo catches the rolling apple with both hands within the first 1.5 seconds, then keeps the remaining shot active by showing it proudly, doing a relieved little bounce and sharing a playful look with the camera.'),
  ('Bobo carefully places one block on his tower. The tower starts wobbling and he freezes with wide eyes.',
   'Bobo gently steadies the wobbling tower, then celebrates with a small shoulder dance.'),
  ('Bobo notices the puddle and cautiously raises one foot over it, smiling mischievously. Keep the foot just above the water.',
@@ -276,8 +276,10 @@ def main():
  metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':30,'effects':'original scene-specific effects; no bite sample','voice':voice_record,'voice_review_required':voice_record['enabled'],'caption_kind':'spoken subtitle plus separate action captions' if voice_record['enabled'] else 'action captions; no spoken dialogue','caption_review_required':True,'caption_timing':[{'text':t,'start':a,'end':z} for t,a,z in cues],'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
  metadata.update(music_variant=music_variant,music_style=MUSIC_STYLES[music_variant%8],music='original procedural arrangement '+str(music_variant),sound_design_version=3,pacing_review_required=True)
  hook,teaser,question=PROMOTION[scene_id]
- social_caption=f"{hook}\n\n{teaser}\n{question}\n\n"+' '.join('#'+tag for tag in ['Bobo','3DAnimation']+scene_tags+[['FunnyCartoon'],['CartoonComedy'],['AnimatedShorts'],['FunnyAnimation']][scene_id%4])
+ follow_line="Follow Bobo Giggle Grove for tomorrow's little adventure. 🌳🐒"
+ social_caption=f"{hook}\n\n{teaser}\n{question}\n{follow_line}\n\n"+' '.join('#'+tag for tag in ['Bobo','3DAnimation']+scene_tags+[['FunnyCartoon'],['CartoonComedy'],['AnimatedShorts'],['FunnyAnimation']][scene_id%4])
  metadata['social_caption']=social_caption
+ metadata['growth_experiment']={'version':'retention-follow-v1','evidence_snapshot':'2026-10-13T23:43:42+05:00','content_change':'Apple catch occurs early in shot two with active celebration; other scenes remain unchanged','promotion_change':'one concise follow invitation after the scene-specific question','primary_metrics':['post_video_retention_graph','blue_reels_play_count','fb_reels_total_plays','followers_count'],'cost':0}
  (OUT/'facebook-caption.txt').write_text(social_caption)
  (OUT/'episode.json').write_text(json.dumps(metadata,indent=2))
  print(f'New episode created: {title}. No paid API used.')
