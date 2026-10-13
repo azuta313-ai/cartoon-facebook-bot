@@ -355,5 +355,164 @@
       },
       "retry_reason": "User renewed Facebook Page token on 13 October; previous attempt explicitly rejected with code 190."
     }
+  },
+  "long-v2-40522027": {
+    "episode": 40522027,
+    "title": "Space button surprise",
+    "space": "zerogpu-aoti/wan2-2-fp8da-aoti-faster",
+    "generated_sha256": "33203acde33fec8b8b4fcd0863640076b7167dac5ef4c3fb20f67ece8517ae84",
+    "duration": 11,
+    "generated_at": "2026-10-13T21:30:58.080543+05:00",
+    "quality_reference": "assets/scenes/scene5.jpg",
+    "music_check_dbfs": -14.78,
+    "export_fps": 30,
+    "effects": "original scene-specific effects; no bite sample",
+    "voice": {
+      "enabled": false,
+      "experiment": "silent control"
+    },
+    "voice_review_required": false,
+    "caption_kind": "action captions; no spoken dialogue",
+    "caption_review_required": true,
+    "caption_timing": [
+      {
+        "text": "Curious Bobo",
+        "start": 0,
+        "end": 2.5
+      },
+      {
+        "text": "Beep!",
+        "start": 2.625,
+        "end": 3.25
+      },
+      {
+        "text": "One more press",
+        "start": 4.5,
+        "end": 5.625
+      },
+      {
+        "text": "Beep!",
+        "start": 5.625,
+        "end": 6.125
+      },
+      {
+        "text": "Captain Bobo!",
+        "start": 7,
+        "end": 9.75
+      }
+    ],
+    "audio_mix_variant": 5,
+    "scene_id": 5,
+    "setting": "a playful colorful toy spaceship cockpit",
+    "music": "original procedural arrangement 29",
+    "music_variant": 29,
+    "music_style": "round synth adventure",
+    "sound_design_version": 3,
+    "pacing_review_required": true,
+    "social_caption": "Someone gave Bobo a spaceship button... \ud83d\ude80\ud83d\ude02\n\nCuriosity just got promoted to captain.\nWhat would you name Bobo's spaceship?\n\n#Bobo #3DAnimation #SpaceComedy #CaptainBobo #CartoonComedy",
+    "final_sha256": "fa4efceb0e966f65fbe5f5d2d727e3251e644fe68722c496c9068a0aca58454f",
+    "observed_action_timestamps": {
+      "hand_gestures": "0-2.5",
+      "first_button_contact": "2.625-3.25",
+      "second_button_contact": "5.625-6.125",
+      "turn_and_wave": "6.875-9.75",
+      "ending_pose": "9.75-11"
+    },
+    "caption_effect_mapping": {
+      "beeps": [
+        2.65,
+        5.7
+      ],
+      "Captain Bobo!": "7-9.75 actual turn and wave"
+    },
+    "review_repairs": [
+      "Retimed button captions to observed contacts",
+      "Aligned restrained electronic beeps to contacts",
+      "Removed arbitrary chime",
+      "Preserved distinct music arrangement 29 and 11-second duration"
+    ],
+    "facebook_video_id": "1083742357611561",
+    "review": {
+      "status": "approved",
+      "episode": 40522027,
+      "artifact_run_id": "38435683228",
+      "final_sha256": "fa4efceb0e966f65fbe5f5d2d727e3251e644fe68722c496c9068a0aca58454f",
+      "review": {
+        "full_render_sample_fps": 8,
+        "transition_sample_fps": 8,
+        "visual": "Reviewed all 88 samples of exact repaired render. Purposeful hand gestures from first half-second; button interactions then turn/wave. Short closing pose retained; no extended opening wait. No prolonged speech-like mouth motion.",
+        "observed_actions": {
+          "hand_gestures": [
+            0,
+            2.5
+          ],
+          "first_button_contact": [
+            2.625,
+            3.25
+          ],
+          "second_button_contact": [
+            5.625,
+            6.125
+          ],
+          "turn_wave": [
+            6.875,
+            9.75
+          ],
+          "closing_pose": [
+            9.75,
+            11
+          ]
+        },
+        "captions": [
+          {
+            "text": "Curious Bobo",
+            "start": 0,
+            "end": 2.5
+          },
+          {
+            "text": "Beep!",
+            "start": 2.625,
+            "end": 3.25
+          },
+          {
+            "text": "One more press",
+            "start": 4.5,
+            "end": 5.625
+          },
+          {
+            "text": "Beep!",
+            "start": 5.625,
+            "end": 6.125
+          },
+          {
+            "text": "Captain Bobo!",
+            "start": 7,
+            "end": 9.75
+          }
+        ],
+        "effects": [
+          {
+            "type": "restrained electronic beep",
+            "start": 2.65,
+            "duration": 0.15,
+            "visible_action": "button contact"
+          },
+          {
+            "type": "restrained electronic beep",
+            "start": 5.7,
+            "duration": 0.15,
+            "visible_action": "button contact"
+          }
+        ],
+        "music": "Original arrangement 29, round synth adventure; retained distinct timbre, ducking during effects",
+        "audio": "AAC stereo 48kHz; mean -18.3dBFS, peak -6.3dBFS; decoding passes. Source waveform/effect mappings inspected. No cake sounds, no extra celebration chime.",
+        "listening_verified": false,
+        "voice": "Silent control; no spoken subtitle or lip-sync claim.",
+        "technical": "11.000 seconds H264 720x1280 30fps AAC; exact SHA256 verified.",
+        "cost": 0,
+        "repairs": "Retimed captions/effects on same generated footage, removed chime, retained full duration and music variant; no regeneration."
+      },
+      "retry_reason": "First attempt stopped before upload because ffprobe was missing; installed ffmpeg. Retry same reviewed SHA."
+    }
   }
 }
