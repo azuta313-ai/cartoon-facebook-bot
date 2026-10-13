@@ -137,6 +137,9 @@ def ensure_audible_music(video, variant):
  if not np.isfinite(level) or level < -24:
   print('Automatically rebuilding quiet or missing soundtrack.')
   soundtrack(11,variant)
+  if (OUT/'dialogue-timing.json').exists() and (OUT/'voice-track.wav').exists():
+   from bobo_voice import mix_voice
+   mix_voice(OUT)
   repaired=video.with_name(video.stem+'-audio-repaired.mp4')
   run(['ffmpeg','-v','error','-y','-i',str(video),'-i',str(OUT/'audio.wav'),'-map','0:v:0','-map','1:a:0','-c:v','copy','-af','loudnorm=I=-16:TP=-1.5:LRA=7','-c:a','aac','-b:a','192k','-ar','48000','-t','11','-movflags','+faststart',str(repaired)])
   repaired.replace(video)
