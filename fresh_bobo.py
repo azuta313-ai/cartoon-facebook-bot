@@ -135,6 +135,7 @@ def scene_effects(seconds, variant, first_shot_duration=5.0625):
   signal=signal/max(1,float(np.max(np.abs(signal))))
   a=int(start*rate); z=min(len(audio),a+len(signal))
   gain={'splash':.22,'pop':.28,'wood':.30,'tap':.24,'wood_creak':.28,'roll':.30,'sand':.28,'snow':.30,'brush':.24,'air':.25,'beep':.20,'chime':.18}.get(kind,.25)
+  gain=min(gain,.14/max(float(np.max(np.abs(signal))),1e-9))
   if a<z: audio[a:z]+=signal[:z-a]*gain
  path=OUT/'scene_effects.wav'
  with wave.open(str(path),'wb') as wav:
