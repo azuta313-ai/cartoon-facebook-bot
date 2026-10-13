@@ -1,12 +1,9 @@
 {
   "episode": 40522026,
   "artifact_run_id": "38338612528",
-  "status": "repaired_review_passed_publication_auth_blocked",
+  "status": "published",
   "speech": "Oh!",
-  "speech_window": [
-    3.875,
-    4.1409
-  ],
+  "speech_window": [3.875, 4.1409],
   "review": {
     "full_render_sample_fps": 4,
     "transition_sample_fps": 8,
@@ -16,8 +13,9 @@
       "celebration": "5.0-7.125"
     },
     "repair": "Trim first 3 seconds and freeze tail; use brief single-vowel reaction on observed mouth opening, exact spoken subtitle, retime action captions and splash effects.",
-    "limitations": "Brief reaction timing is visually appropriate; full phoneme lip synchronization and subjective audio listening are not verified.",
-    "publication": "Facebook rejected exact reviewed file with authentication error code 190; no accepted video ID. Pending file retained for retry with valid token."
+    "limitations": "Brief reaction timing is visually appropriate; full phoneme lip synchronization and subjective audio listening are not verified. This published trial predates the restored 11-second requirement and is not a template for future duration.",
+    "publication": "Facebook accepted the exact reviewed file after Page token renewal.",
+    "facebook_video_id": "1798208838164038"
   },
   "final_sha256": "1543188004fa8d111a1caf7e370b5d56f3f35863573d89be38d3c2900434b7f8"
 }
