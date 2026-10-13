@@ -36,7 +36,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install requests
+      - name: Install publication tools
+        run: |
+          pip install requests
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
       - name: Publish exact approved file
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
