@@ -57,6 +57,12 @@ jobs:
           assert pending['episode']==a['episode'] and pending['artifact_run_id']==str(a['artifact_run_id'])
           video=Path('reviewed/bobo_fresh.mp4')
           assert hashlib.sha256(video.read_bytes()).hexdigest()==a['final_sha256']
+          duration=float(subprocess.check_output([
+              'ffprobe','-v','error','-show_entries','format=duration',
+              '-of','default=noprint_wrappers=1:nokey=1',str(video)
+          ],text=True).strip())
+          if not 10.95 <= duration <= 11.05:
+              raise RuntimeError(f'Reviewed video duration {duration:.3f}s is outside the required 11-second target.')
           metadata=json.loads(Path('reviewed/episode.json').read_text())
           assert metadata['episode']==a['episode']
           assert not any(v.get('generated_sha256')==metadata['generated_sha256'] for v in ledger.values())
