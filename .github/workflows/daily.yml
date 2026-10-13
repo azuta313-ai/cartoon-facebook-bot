@@ -63,6 +63,7 @@ jobs:
             if [ -f bobo_review_pending.json ]; then git add bobo_review_pending.json; fi
             if ! git diff --cached --quiet; then
               git commit -m "Record fresh Bobo Facebook publication"
+              git pull --rebase origin main
               git push origin HEAD:main
             fi
           fi
