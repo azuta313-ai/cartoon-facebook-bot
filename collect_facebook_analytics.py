@@ -47,6 +47,7 @@ listed=get(page_id+'/videos',{'fields':'id,title,created_time','limit':100})
 for entry in listed.get('data',[]): known.setdefault(entry['id'],{'title':entry.get('title'),'generated_at':entry.get('created_time')})
 report['video_discovery_status']=listed.get('unavailable',False)
 metrics=['total_video_views','total_video_avg_time_watched','total_video_view_total_time','total_video_complete_views']
+metrics += ['post_video_retention_graph','post_video_complete_views_organic']
 metrics += ['blue_reels_play_count','fb_reels_total_plays','fb_reels_replay_count','post_video_avg_time_watched','post_video_view_time','post_video_likes_by_reaction_type','post_video_social_actions','post_impressions_unique']
 old={v['id']:v for v in (previous or {}).get('videos',[])}
 for vid,meta in known.items():
@@ -60,6 +61,15 @@ for vid,meta in known.items():
         if entries and entries[0].get('values'):
             row['metrics'][metric]=entries[0]['values'][-1].get('value')
         else: row['unavailable_metrics'][metric]=result if result.get('unavailable') else {'unavailable':True,'reason':'empty_insights_response','period':'lifetime'}
+    # Preserve native retention bins without guessing time units or completion.
+    curve=row['metrics'].get('post_video_retention_graph')
+    row['retention']={
+        'status':'available_raw' if isinstance(curve,(dict,list)) and curve else 'unavailable',
+        'metric':'post_video_retention_graph',
+        'raw':curve,
+        'bin_time_mapping':'Unverified; do not infer seconds or halfway exits from keys.',
+        'causal_explanation':'Not supplied by Facebook; requires a controlled content experiment.'
+    }
     for kind in ['reactions','comments']:
         result=get(vid+'/'+kind,{'summary':'true','limit':0})
         count=result.get('summary',{}).get('total_count')
@@ -78,6 +88,11 @@ for vid,meta in known.items():
     if isinstance(avg,(int,float)) and isinstance(duration,(int,float)) and duration:
         row['estimated_average_watch_fraction']=avg/1000/duration
     report['videos'].append(row)
+report['page_changes_since_previous']={}
+for key,value in report['page'].items():
+    before=(previous or {}).get('page',{}).get(key)
+    if isinstance(value,(int,float)) and isinstance(before,(int,float)):
+        report['page_changes_since_previous'][key]=value-before
 report['previous_collected_at']=(previous or {}).get('collected_at')
 report['analytics_available']=any(any(k in v['metrics'] for k in ['total_video_views','blue_reels_play_count','fb_reels_total_plays']) for v in report['videos'])
 (OUT/'snapshot.json').write_text(json.dumps(report,indent=2))
