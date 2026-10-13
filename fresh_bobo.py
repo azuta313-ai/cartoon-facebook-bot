@@ -207,11 +207,8 @@ def main():
  scene_reference=Path('assets/scenes')/f'scene{scene_id}.jpg'
  if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
- prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: begin visible purposeful movement in the first half second; keep lively normal-speed movement throughout all five seconds, with a quick clear setup and no long pose or anticipatory pause. No slow motion. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. Silent physical comedy: no speech, no talking or lip-sync mouth motions; use facial expressions and gestures. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
- if slot==0 and os.getenv('BOBO_VOICE_TEST','false').lower()=='true':
-  from bobo_voice import LINES
-  prompt=prompt.replace('Silent physical comedy: no speech, no talking or lip-sync mouth motions; use facial expressions and gestures.',
-   'Bobo says the brief English reaction "'+LINES[scene_id]+'" near the start: a brief natural speaking mouth movement during seconds 0.35 to 1.2, then close his mouth. Use expressive gestures for the remaining physical comedy. No prolonged talking.')
+ from bobo_voice import LINES
+ prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: begin visible purposeful movement in the first half second; keep lively normal-speed movement throughout all five seconds, with a quick clear setup and no long pose or anticipatory pause. No slow motion. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. Bobo says the brief English reaction "'+LINES[scene_id]+'" near the start: a brief natural speaking mouth movement during seconds 0.35 to 1.2, then close his mouth. Use expressive gestures for the remaining physical comedy. No prolonged talking. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
  client=Client(SPACE, token=token, httpx_kwargs={'timeout':90})
  # Exactly two free-GPU requests per episode, with no paid fallback.
  clips=[]; shot_durations=[]
@@ -256,11 +253,11 @@ def main():
  while music_variant in recent_music or music_variant%8 in {v%8 for v in recent_music if isinstance(v,int)}:
   music_variant=(music_variant+1)%64
  soundtrack(11,scene_id,shot_durations[0],music_variant=music_variant)
- voice_record={'enabled':False,'experiment':'silent control'}
- if slot==0 and os.getenv('BOBO_VOICE_TEST','false').lower()=='true':
-  from bobo_voice import prepare_voice,mix_voice
-  voice_record=prepare_voice(OUT,scene_id)
-  mix_voice(OUT)
+ from bobo_voice import prepare_voice,mix_voice
+ voice_record=prepare_voice(OUT,scene_id)
+ if not voice_record.get('enabled'):
+  raise RuntimeError('Bobo voice is required for every video; holding silent draft.')
+ mix_voice(OUT)
  font='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
  filters=['hqdn3d=1.0:0.8:1.5:1.2','fps=30','scale=720:1280:force_original_aspect_ratio=increase:flags=lanczos','crop=720:1280','tpad=stop_mode=clone:stop_duration=1.5']
  cues=caption_cues(captions,shot_durations[0])
