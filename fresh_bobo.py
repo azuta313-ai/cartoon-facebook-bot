@@ -132,10 +132,13 @@ def scene_effects(seconds, variant, first_shot_duration=5.0625):
     drop=np.sin(2*np.pi*(1100*u-900*u*u))*np.exp(-u*70)
     signal+=(t>=delay)*drop*.025
   else: signal=smooth*env*.6
+  from bobo_foley import recorded_effect
+  recorded=recorded_effect(kind,length,OUT)
+  if recorded is not None: signal=recorded
   signal=signal/max(1,float(np.max(np.abs(signal))))
   a=int(start*rate); z=min(len(audio),a+len(signal))
   gain={'splash':.22,'pop':.28,'wood':.30,'tap':.24,'wood_creak':.28,'roll':.30,'sand':.28,'snow':.30,'brush':.24,'air':.25,'beep':.20,'chime':.18}.get(kind,.25)
-  gain=min(gain,.14/max(float(np.max(np.abs(signal))),1e-9))
+  gain=min(gain,(.06 if kind=='splash' else .14)/max(float(np.max(np.abs(signal))),1e-9))
   if a<z: audio[a:z]+=signal[:z-a]*gain
  path=OUT/'scene_effects.wav'
  with wave.open(str(path),'wb') as wav:
@@ -274,7 +277,7 @@ def main():
  run(['ffmpeg','-v','error','-i',str(OUT/'bobo_fresh.mp4'),'-f','null','-'])
  music_db=ensure_audible_music(OUT/'bobo_fresh.mp4',scene_id,music_variant=music_variant)
  metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':30,'effects':'original scene-specific effects; no bite sample','voice':voice_record,'voice_review_required':voice_record['enabled'],'caption_kind':'spoken subtitle plus separate action captions' if voice_record['enabled'] else 'action captions; no spoken dialogue','caption_review_required':True,'caption_timing':[{'text':t,'start':a,'end':z} for t,a,z in cues],'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
- metadata.update(music_variant=music_variant,music_style=MUSIC_STYLES[music_variant%8],music='original procedural arrangement '+str(music_variant),sound_design_version=2,pacing_review_required=True)
+ metadata.update(music_variant=music_variant,music_style=MUSIC_STYLES[music_variant%8],music='original procedural arrangement '+str(music_variant),sound_design_version=3,pacing_review_required=True)
  hook,teaser,question=PROMOTION[scene_id]
  social_caption=f"{hook}\n\n{teaser}\n{question}\n\n"+' '.join('#'+tag for tag in ['Bobo','3DAnimation']+scene_tags+[['FunnyCartoon'],['CartoonComedy'],['AnimatedShorts'],['FunnyAnimation']][scene_id%4])
  metadata['social_caption']=social_caption
