@@ -1,0 +1,22 @@
+{
+  "episode": 40522026,
+  "artifact_run_id": "38337772575",
+  "status": "held_for_material_visual_repair",
+  "speech": "A puddle!",
+  "speech_window": [
+    0.35,
+    0.7988
+  ],
+  "review": {
+    "sample_rate_fps": 4,
+    "speech_window_sample_rate_fps": 8,
+    "observed": "Bobo balances with raised foot for approximately first five seconds; lowers foot approximately 5.5s; reacts/laughs approximately 6.5-10s.",
+    "defects": [
+      "Spoken line at 0.35-0.80 has no matching speaking mouth motion.",
+      "Oops caption at 2.00 precedes actual step and reaction.",
+      "First shot contains prolonged near-static balancing instead of clear intended motion."
+    ],
+    "audio": "Actual free Piper voice track exists; all eight independent voice lines passed CPU synthesis, subtitle and ducking tests; no subjective listening performed.",
+    "publication": "Not approved or published. Pending gate retained. Do not treat this as a successful talking-character video."
+  }
+}
