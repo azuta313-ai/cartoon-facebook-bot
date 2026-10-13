@@ -21,60 +21,47 @@ jobs:
         with:
           python-version: '3.12'
       - run: |
-          pip install numpy piper-tts==1.3.0
+          pip install numpy
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg fonts-dejavu-core
-          mkdir -p voice_models
-          cd voice_models
-          python -m piper.download_voices en_US-ljspeech-medium
       - uses: actions/download-artifact@v4
         with:
           name: fresh-bobo-video
           path: draft
-          run-id: 38337772575
+          run-id: 38431045557
           github-token: ${{ github.token }}
-      - name: Repair actual observed reaction and remove prolonged balancing pause
+      - name: Align observed button contacts and preserve 11 seconds
         env:
           REPAIR_RUN_ID: ${{ github.run_id }}
         run: |
           python - <<'PY'
           import hashlib,json,os,subprocess,sys,types
           from pathlib import Path
-          import bobo_voice as voice
           draft=Path('draft')
           source=draft/'generated.mp4'
-          assert hashlib.sha256(source.read_bytes()).hexdigest()=='7831864251565b81f3d6053750d367d349858f543a1ccd76897f9d801785cb24'
+          assert hashlib.sha256(source.read_bytes()).hexdigest()=='33203acde33fec8b8b4fcd0863640076b7167dac5ef4c3fb20f67ece8517ae84'
           pending=json.loads(Path('bobo_review_pending.json').read_text())
-          assert pending['episode']==40522026
-          total=7.125
+          assert pending['episode']==40522027
           sys.modules['gradio_client']=types.SimpleNamespace(Client=None,handle_file=None)
           scope={'__name__':'repair'}
-          src=Path('fresh_bobo.py').read_text().replace("[('splash',split+.3,.45),('splash',split+1.5,.3)]","[('splash',2.65,.35),('splash',6.25,.25)]")
+          src=Path('fresh_bobo.py').read_text().replace("[('beep',split+.2,.15),('beep',split+.6,.15),('chime',split+1,.35)]","[('beep',2.65,.15),('beep',5.70,.15)]")
           exec(compile(src,'fresh_bobo.py','exec'),scope)
           scope['OUT']=draft
-          scope['soundtrack'](total,4,2.0625)
-          voice.LINES[4]='Oh!'
-          dialogue=voice.prepare_voice(draft,4,total,start=3.875)
-          voice.mix_voice(draft,total)
-          cue=dialogue['cues'][0]
-          assert cue['end']<4.5
-          cues=[('Careful...',0,2.625),(cue['text'],cue['start'],cue['end']),('Worth it!',5.0,total)]
-          filters=['trim=start=3:end=10.125','setpts=PTS-STARTPTS','hqdn3d=1.0:0.8:1.5:1.2','fps=30','scale=720:1280:force_original_aspect_ratio=increase:flags=lanczos','crop=720:1280']
+          scope['soundtrack'](11,5,5.0625,music_variant=29)
+          cues=[('Curious Bobo',0,2.5),('Beep!',2.625,3.25),('One more press',4.5,5.625),('Beep!',5.625,6.125),('Captain Bobo!',7,9.75)]
+          filters=['hqdn3d=1.0:0.8:1.5:1.2','fps=30','scale=720:1280:force_original_aspect_ratio=increase:flags=lanczos','crop=720:1280','tpad=stop_mode=clone:stop_duration=1.5']
           for i,(text,a,z) in enumerate(cues):
-              p=draft/f'fixed-text{i}.txt';p.write_text(text)
-              filters.append(f"drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:textfile={p}:fontsize=34:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y=1160:enable='gte(t,{a})*lt(t,{z})'")
-          subprocess.run(['ffmpeg','-v','error','-y','-i',str(source),'-i',str(draft/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','medium','-crf','16','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t',str(total),'-movflags','+faststart',str(draft/'bobo_fresh.mp4')],check=True)
+           p=draft/f'fixed-text{i}.txt';p.write_text(text)
+           filters.append(f"drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:textfile={p}:fontsize=34:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y=1160:enable='gte(t,{a})*lt(t,{z})'")
+          subprocess.run(['ffmpeg','-v','error','-y','-i',str(source),'-i',str(draft/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','medium','-crf','16','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(draft/'bobo_fresh.mp4')],check=True)
           subprocess.run(['ffmpeg','-v','error','-i',str(draft/'bobo_fresh.mp4'),'-f','null','-'],check=True)
           meta=json.loads((draft/'episode.json').read_text())
-          meta.update(duration=total,voice=dialogue,caption_timing=[{'text':t,'start':a,'end':z} for t,a,z in cues],final_sha256=hashlib.sha256((draft/'bobo_fresh.mp4').read_bytes()).hexdigest())
-          meta['observed_action_timestamps']={'source_trim':'original seconds 3.00-10.125','landing':'2.625-2.875','mouth_open_reaction':'3.875-4.50','celebration':'5.00-7.125'}
-          meta['caption_effect_mapping']={'Careful...':'0-2.625 raised boot','Oh!':f"{cue['start']}-{cue['end']} actual open-mouth reaction",'Worth it!':'5.0-7.125 celebration','splash_effects':[2.65,6.25]}
-          meta['review_repairs']=['Removed first 3 seconds of prolonged balancing and freeze tail','Replaced early A puddle with brief Oh at visible mouth-opening reaction','Removed premature Oops caption','Rebuilt synchronized splash effects and speech ducking']
+          meta.update(caption_timing=[{'text':t,'start':a,'end':z} for t,a,z in cues],final_sha256=hashlib.sha256((draft/'bobo_fresh.mp4').read_bytes()).hexdigest())
+          meta['observed_action_timestamps']={'hand_gestures':'0-2.5','first_button_contact':'2.625-3.25','second_button_contact':'5.625-6.125','turn_and_wave':'6.875-9.75','ending_pose':'9.75-11'}
+          meta['caption_effect_mapping']={'beeps':[2.65,5.70],'Captain Bobo!':'7-9.75 actual turn and wave'}
+          meta['review_repairs']=['Retimed button captions to observed contacts','Aligned restrained electronic beeps to contacts','Removed arbitrary chime','Preserved distinct music arrangement 29 and 11-second duration']
           (draft/'episode.json').write_text(json.dumps(meta,indent=2))
           (draft/'captions-timing.json').write_text(json.dumps(meta['caption_timing'],indent=2))
-          def stamp(t):
-              ms=round(t*1000);return f'00:00:{ms//1000:02d},{ms%1000:03d}'
-          (draft/'captions.srt').write_text(''.join(f'{i+1}\n{stamp(a)} --> {stamp(z)}\n{t}\n\n' for i,(t,a,z) in enumerate(cues)))
           pending.update(status='repaired_awaiting_review',artifact_run_id=os.environ['REPAIR_RUN_ID'],final_sha256=meta['final_sha256'])
           Path('bobo_review_pending.json').write_text(json.dumps(pending,indent=2))
           PY
@@ -87,6 +74,6 @@ jobs:
           git config user.name "Bobo automation"
           git config user.email "bobo-bot@users.noreply.github.com"
           git add bobo_review_pending.json
-          git commit -m "Record repaired voiced puddle awaiting exact review"
+          git commit -m "Record repaired space button draft awaiting exact review"
           git pull --rebase origin main
           git push origin HEAD:main
