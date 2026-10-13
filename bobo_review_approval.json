@@ -1,31 +1,81 @@
 {
   "status": "approved",
-  "episode": 40522026,
-  "artifact_run_id": "38338612528",
-  "final_sha256": "1543188004fa8d111a1caf7e370b5d56f3f35863573d89be38d3c2900434b7f8",
+  "episode": 40522027,
+  "artifact_run_id": "38435683228",
+  "final_sha256": "fa4efceb0e966f65fbe5f5d2d727e3251e644fe68722c496c9068a0aca58454f",
   "review": {
-    "visual": "Full exact render sampled at 4fps; entire render additionally sampled at 8fps covering all caption, reaction and effect transitions. Removed long opening pause and freeze tail; clear landing and celebration.",
-    "voice": "Brief single-vowel Oh at 3.875-4.1409 coincides with observed opening mouth at 3.875 through 4.50. Acceptable short cartoon reaction timing; full phoneme lip synchronization is not claimed.",
+    "full_render_sample_fps": 8,
+    "transition_sample_fps": 8,
+    "visual": "Reviewed all 88 samples of exact repaired render. Purposeful hand gestures from first half-second; button interactions then turn/wave. Short closing pose retained; no extended opening wait. No prolonged speech-like mouth motion.",
     "observed_actions": {
-      "raised_boot": "0-2.5",
-      "landing": "2.5-2.875",
-      "mouth_open": "3.875-4.5",
-      "celebration": "5.0-7.125"
-    },
-    "caption_effect_mapping": {
-      "Careful": "0-2.625 raised boot and landing",
-      "Oh": "3.875-4.1409 exact spoken reaction subtitle",
-      "Worth_it": "5.0-7.125 visible celebration",
-      "splash": [
-        2.65,
-        6.25
+      "hand_gestures": [
+        0,
+        2.5
+      ],
+      "first_button_contact": [
+        2.625,
+        3.25
+      ],
+      "second_button_contact": [
+        5.625,
+        6.125
+      ],
+      "turn_wave": [
+        6.875,
+        9.75
+      ],
+      "closing_pose": [
+        9.75,
+        11
       ]
     },
-    "audio": "Final mean -18.9 dBFS, peak -1.5 dBFS; speech window mean -15.0 dBFS; actual Piper source text Oh; speech ducking and stereo decoding checked.",
-    "audio_listening": "Subjective listening unavailable; do not claim heard or independently transcribed dialogue.",
-    "technical": "H264 720x1280 30fps AAC stereo; 7.133 seconds; SHA256 verified on downloaded repaired artifact.",
+    "captions": [
+      {
+        "text": "Curious Bobo",
+        "start": 0,
+        "end": 2.5
+      },
+      {
+        "text": "Beep!",
+        "start": 2.625,
+        "end": 3.25
+      },
+      {
+        "text": "One more press",
+        "start": 4.5,
+        "end": 5.625
+      },
+      {
+        "text": "Beep!",
+        "start": 5.625,
+        "end": 6.125
+      },
+      {
+        "text": "Captain Bobo!",
+        "start": 7,
+        "end": 9.75
+      }
+    ],
+    "effects": [
+      {
+        "type": "restrained electronic beep",
+        "start": 2.65,
+        "duration": 0.15,
+        "visible_action": "button contact"
+      },
+      {
+        "type": "restrained electronic beep",
+        "start": 5.7,
+        "duration": 0.15,
+        "visible_action": "button contact"
+      }
+    ],
+    "music": "Original arrangement 29, round synth adventure; retained distinct timbre, ducking during effects",
+    "audio": "AAC stereo 48kHz; mean -18.3dBFS, peak -6.3dBFS; decoding passes. Source waveform/effect mappings inspected. No cake sounds, no extra celebration chime.",
+    "listening_verified": false,
+    "voice": "Silent control; no spoken subtitle or lip-sync claim.",
+    "technical": "11.000 seconds H264 720x1280 30fps AAC; exact SHA256 verified.",
     "cost": 0,
-    "repairs": "Same generated footage trimmed, captions replaced/retimed, actual voice regenerated and shifted to observed reaction; scene effects and ducking rebuilt. No paid services or GPU regeneration."
-  },
-  "retry_reason": "User renewed Facebook Page token on 13 October; previous attempt explicitly rejected with code 190."
+    "repairs": "Retimed captions/effects on same generated footage, removed chime, retained full duration and music variant; no regeneration."
+  }
 }
