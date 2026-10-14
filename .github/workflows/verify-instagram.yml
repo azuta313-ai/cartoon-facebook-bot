@@ -1,0 +1,45 @@
+name: Verify Instagram Connection
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/verify-instagram.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - name: Read connected professional account
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os,requests
+          s=requests.Session();s.headers['Authorization']='Bearer '+os.environ['FB_PAGE_ACCESS_TOKEN']
+          base='https://graph.facebook.com/v26.0/'
+          def get(path,params):
+              r=s.get(base+path,params=params,timeout=30);d=r.json()
+              if not r.ok:
+                  e=d.get('error',{})
+                  print('Connection check failed: code',e.get('code'),'subcode',e.get('error_subcode'))
+                  raise SystemExit(1)
+              return d
+          page=get(os.environ['FB_PAGE_ID'],{'fields':'instagram_business_account'})
+          account=page.get('instagram_business_account',{})
+          if not account.get('id'):
+              print('No Instagram professional account visible to the configured Page token. instagram_basic and Page authorization need checking.')
+              raise SystemExit(1)
+          info=get(account['id'],{'fields':'username,account_type'})
+          print('Connected Instagram username:',info.get('username'),'type:',info.get('account_type'))
+          permissions=get('me/permissions',{}).get('data',[])
+          granted={p.get('permission') for p in permissions if p.get('status')=='granted'}
+          print('instagram_basic granted:', 'instagram_basic' in granted)
+          print('instagram_content_publish granted:', 'instagram_content_publish' in granted)
+          print('Connection lookup verified; no content posted.')
+          PY
