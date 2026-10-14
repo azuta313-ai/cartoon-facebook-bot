@@ -56,6 +56,31 @@ PROMOTION=[
  ("Bobo's masterpiece comes with a messy surprise! 🎨😆","A little paint and a lot of confidence.","What should our little artist paint next?"),
 ]
 
+
+SERIES=['Bobo vs Everyday Things','Bobo Helps... Almost!','Bobo\'s Silly Inventions']
+SERIES_LINES=[
+ ['Too big for me!','Tiny castle, big dreams!','My snack is running!','One block too many!','My feet are wet!','Captain needs instructions!','Small ball, big champion!','I painted myself!'],
+ ['Where did it go?','A tiny surprise!','Snack rescued!','Stay there, tower!','That tickles!','Oh, shiny lights!','Meet your little friend!','That is my masterpiece!'],
+]
+
+def comedy_series(slot,scene_id,episode):
+ return {
+  'name':SERIES[(episode//2)%len(SERIES)],
+  'format':'Bobo\'s Mischief' if slot==0 else 'Bobo\'s Surprise',
+  'voice_line':SERIES_LINES[slot%2][scene_id],
+  'direction':(
+   'Comedy structure: Bobo confidently attempts this simple task, makes a small believable mistake with the existing prop, then gives a sheepish funny reaction. Keep the gag readable and tied to the supplied scene.'
+   if slot==0 else
+   'Comedy structure: the existing object produces an unexpected small result, Bobo reacts with surprise, then treats the result with playful pride. Show a visible twist using only the existing props.'
+  ),
+  'follow_invitation':[
+   'Follow for Bobo\'s next little adventure. 🌳🐒',
+   'More tiny adventures with Bobo—follow along! 🐒✨',
+   'Join Bobo Giggle Grove for the next giggle. 🌳😄',
+  ][episode%3],
+  'cost':0,
+ }
+
 MUSIC_STYLES=['soft marimba bounce','warm plucked strings','airy flute dance','muted piano shuffle','gentle bell waltz','round synth adventure','mellow electric keys','light pizzicato swing']
 
 def original_music(seconds, variant):
@@ -204,11 +229,13 @@ def main():
  while scene_id in recent: scene_id=(scene_id+1)%len(SCENES)
  title,setting,prop,action,ending,captions,scene_tags=SCENES[scene_id]
  action,ending=ACTION_BEATS[scene_id]
+ series=comedy_series(slot,scene_id,episode)
+ action+=' '+series['direction']
+ ending+=' End with an expressive reaction to the same gag; keep it active and visually understandable.'
  scene_reference=Path('assets/scenes')/f'scene{scene_id}.jpg'
  if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
- from bobo_voice import LINES
- prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: begin visible purposeful movement in the first half second; keep lively normal-speed movement throughout all five seconds, with a quick clear setup and no long pose or anticipatory pause. No slow motion. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. Bobo says the brief English reaction "'+LINES[scene_id]+'" near the start: a brief natural speaking mouth movement during seconds 0.35 to 1.2, then close his mouth. Use expressive gestures for the remaining physical comedy. No prolonged talking. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
+ prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: begin visible purposeful movement in the first half second; keep lively normal-speed movement throughout all five seconds, with a quick clear setup and no long pose or anticipatory pause. No slow motion. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. Bobo says the brief English reaction "'+series['voice_line']+'" near the start: a brief natural speaking mouth movement during seconds 0.35 to 1.2, then close his mouth. Use expressive gestures for the remaining physical comedy. No prolonged talking. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
  client=Client(SPACE, token=token, httpx_kwargs={'timeout':90})
  # Exactly two free-GPU requests per episode, with no paid fallback.
  clips=[]; shot_durations=[]
@@ -254,7 +281,7 @@ def main():
   music_variant=(music_variant+1)%64
  soundtrack(11,scene_id,shot_durations[0],music_variant=music_variant)
  from bobo_voice import prepare_voice,mix_voice
- voice_record=prepare_voice(OUT,scene_id)
+ voice_record=prepare_voice(OUT,scene_id,text=series['voice_line'])
  if not voice_record.get('enabled'):
   raise RuntimeError('Bobo voice is required for every video; holding silent draft.')
  mix_voice(OUT)
@@ -276,10 +303,12 @@ def main():
  metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':30,'effects':'original scene-specific effects; no bite sample','voice':voice_record,'voice_review_required':voice_record['enabled'],'caption_kind':'spoken subtitle plus separate action captions' if voice_record['enabled'] else 'action captions; no spoken dialogue','caption_review_required':True,'caption_timing':[{'text':t,'start':a,'end':z} for t,a,z in cues],'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
  metadata.update(music_variant=music_variant,music_style=MUSIC_STYLES[music_variant%8],music='original procedural arrangement '+str(music_variant),sound_design_version=3,pacing_review_required=True)
  hook,teaser,question=PROMOTION[scene_id]
- follow_line="Follow Bobo Giggle Grove for tomorrow's little adventure. 🌳🐒"
+ follow_line=series['follow_invitation']
+ teaser=series['format']+' • '+series['name']+'\n'+teaser
+ metadata['comedy_series']=series
  social_caption=f"{hook}\n\n{teaser}\n{question}\n{follow_line}\n\n"+' '.join('#'+tag for tag in ['Bobo','3DAnimation']+scene_tags+[['FunnyCartoon'],['CartoonComedy'],['AnimatedShorts'],['FunnyAnimation']][scene_id%4])
  metadata['social_caption']=social_caption
- metadata['growth_experiment']={'version':'retention-follow-v1','evidence_snapshot':'2026-10-13T23:43:42+05:00','content_change':'Apple catch occurs early in shot two with active celebration; other scenes remain unchanged','promotion_change':'one concise follow invitation after the scene-specific question','primary_metrics':['post_video_retention_graph','blue_reels_play_count','fb_reels_total_plays','followers_count'],'cost':0}
+ metadata['growth_experiment']={'version':'tiny-comedy-series-v2','evidence_snapshot':'2026-10-13T23:43:42+05:00','content_change':'Morning mischief and evening surprise formats with rotating series identity and short scene-specific reaction dialogue; evaluate at comparable ages without causal claims','promotion_change':'one concise follow invitation after the scene-specific question','primary_metrics':['post_video_retention_graph','blue_reels_play_count','fb_reels_total_plays','followers_count'],'cost':0}
  (OUT/'facebook-caption.txt').write_text(social_caption)
  (OUT/'episode.json').write_text(json.dumps(metadata,indent=2))
  print(f'New episode created: {title}. No paid API used.')
