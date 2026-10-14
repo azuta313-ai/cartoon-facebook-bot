@@ -28,7 +28,7 @@ jobs:
         with:
           name: fresh-bobo-video
           path: draft
-          run-id: 38516894146
+          run-id: 38517117443
           github-token: ${{ github.token }}
       - name: Align Bobo voice, captions and natural snow contacts
         env:
@@ -42,7 +42,7 @@ jobs:
           expected='e63045ee21870a2904f415a8cf3516d65ca54a3813e78782a354275d51bb4676'
           assert hashlib.sha256(source.read_bytes()).hexdigest()==expected
           pending=json.loads(Path('bobo_review_pending.json').read_text())
-          assert pending['episode']==40522028 and pending['artifact_run_id']=='38516894146'
+          assert pending['episode']==40522028 and pending['artifact_run_id']=='38517117443'
           dialogue=json.loads((draft/'dialogue-timing.json').read_text())
           old=dialogue['cues'][0]; duration=old['end']-old['start']
           voice_start=8.0; voice_end=round(voice_start+duration,4)
