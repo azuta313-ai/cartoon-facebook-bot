@@ -28,38 +28,51 @@ jobs:
         with:
           name: fresh-bobo-video
           path: draft
-          run-id: 38431045557
+          run-id: 38512593033
           github-token: ${{ github.token }}
-      - name: Align observed button contacts and preserve 11 seconds
+      - name: Align Bobo voice, captions and natural snow contacts
         env:
           REPAIR_RUN_ID: ${{ github.run_id }}
         run: |
           python - <<'PY'
-          import hashlib,json,os,subprocess,sys,types
+          import hashlib,json,os,subprocess,wave
           from pathlib import Path
           draft=Path('draft')
           source=draft/'generated.mp4'
-          assert hashlib.sha256(source.read_bytes()).hexdigest()=='33203acde33fec8b8b4fcd0863640076b7167dac5ef4c3fb20f67ece8517ae84'
+          expected='e63045ee21870a2904f415a8cf3516d65ca54a3813e78782a354275d51bb4676'
+          assert hashlib.sha256(source.read_bytes()).hexdigest()==expected
           pending=json.loads(Path('bobo_review_pending.json').read_text())
-          assert pending['episode']==40522027
-          sys.modules['gradio_client']=types.SimpleNamespace(Client=None,handle_file=None)
-          scope={'__name__':'repair'}
-          src=Path('fresh_bobo.py').read_text().replace("[('beep',split+.2,.15),('beep',split+.6,.15),('chime',split+1,.35)]","[('beep',2.65,.15),('beep',5.70,.15)]")
-          exec(compile(src,'fresh_bobo.py','exec'),scope)
-          scope['OUT']=draft
-          scope['soundtrack'](11,5,5.0625,music_variant=29)
-          cues=[('Curious Bobo',0,2.5),('Beep!',2.625,3.25),('One more press',4.5,5.625),('Beep!',5.625,6.125),('Captain Bobo!',7,9.75)]
+          assert pending['episode']==40522028 and pending['artifact_run_id']=='38512593033'
+          dialogue=json.loads((draft/'dialogue-timing.json').read_text())
+          old=dialogue['cues'][0]; duration=old['end']-old['start']
+          voice_start=8.0; voice_end=round(voice_start+duration,4)
+          subprocess.run(['ffmpeg','-v','error','-y','-i',str(draft/'voice-line.wav'),'-af',f'adelay={int(voice_start*1000)}|{int(voice_start*1000)},apad=pad_dur=11,atrim=0:11','-ar','48000','-ac','2','-c:a','pcm_s16le',str(draft/'voice-track.wav')],check=True)
+          snow=draft/'foley-sources/footstep_snow_000.ogg'
+          graph="[0:a]atrim=0:0.30,asetpts=PTS-STARTPTS,afade=t=in:st=0:d=.03,afade=t=out:st=.22:d=.08,volume=.25,adelay=6400|6400[a];[0:a]atrim=0:0.30,asetpts=PTS-STARTPTS,afade=t=in:st=0:d=.03,afade=t=out:st=.22:d=.08,volume=.20,adelay=7250|7250[b];[a][b]amix=inputs=2:normalize=0,apad=pad_dur=11,atrim=0:11[out]"
+          subprocess.run(['ffmpeg','-v','error','-y','-i',str(snow),'-filter_complex',graph,'-map','[out]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(draft/'scene_effects.wav')],check=True)
+          mix='[0:a]loudnorm=I=-18:TP=-2:LRA=7,aresample=48000,afade=t=in:st=0:d=.15,afade=t=out:st=10.4:d=.6,volume=.80[m];[1:a]aformat=channel_layouts=stereo,asplit=2[fx][key];[m][key]sidechaincompress=threshold=.035:ratio=3:attack=10:release=180[duck];[duck][fx]amix=inputs=2:duration=first:normalize=0,atrim=duration=11[audio]'
+          subprocess.run(['ffmpeg','-v','error','-y','-i',str(draft/'original_music.wav'),'-i',str(draft/'scene_effects.wav'),'-filter_complex',mix,'-map','[audio]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(draft/'audio.wav')],check=True)
+          from bobo_voice import mix_voice
+          mix_voice(draft)
+          cues=[('Tiny snowball!',0,2),('Trophy pose!',2,4.5),('Careful...',4.5,6.25),('Snowman delivery',6.25,7.75),(old['text'],voice_start,voice_end),('Champion celebration!',8.75,9.75),('Champion bow!',10,11)]
           filters=['hqdn3d=1.0:0.8:1.5:1.2','fps=30','scale=720:1280:force_original_aspect_ratio=increase:flags=lanczos','crop=720:1280','tpad=stop_mode=clone:stop_duration=1.5']
+          title=draft/'fixed-title.txt'; title.write_text('Snowball tiny champion')
+          filters.append("drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:textfile="+str(title)+":fontsize=36:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y=150:enable='gte(t,0)*lt(t,1.5)'")
           for i,(text,a,z) in enumerate(cues):
-           p=draft/f'fixed-text{i}.txt';p.write_text(text)
+           p=draft/f'fixed-text{i}.txt'; p.write_text(text)
            filters.append(f"drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:textfile={p}:fontsize=34:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y=1160:enable='gte(t,{a})*lt(t,{z})'")
           subprocess.run(['ffmpeg','-v','error','-y','-i',str(source),'-i',str(draft/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','medium','-crf','16','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(draft/'bobo_fresh.mp4')],check=True)
           subprocess.run(['ffmpeg','-v','error','-i',str(draft/'bobo_fresh.mp4'),'-f','null','-'],check=True)
+          dialogue['cues'][0].update(start=voice_start,end=voice_end,placement='observed open-mouth celebration window; not phoneme lip-sync')
+          dialogue['lip_sync_verified']=False
+          dialogue['mouth_action_alignment_review']='Voice occupies continuous open-mouth celebration observed at 8 fps from 8.0 through 8.6879 seconds; phoneme lip-sync not claimed.'
+          (draft/'dialogue-timing.json').write_text(json.dumps(dialogue,indent=2))
           meta=json.loads((draft/'episode.json').read_text())
+          meta['voice']=dialogue
           meta.update(caption_timing=[{'text':t,'start':a,'end':z} for t,a,z in cues],final_sha256=hashlib.sha256((draft/'bobo_fresh.mp4').read_bytes()).hexdigest())
-          meta['observed_action_timestamps']={'hand_gestures':'0-2.5','first_button_contact':'2.625-3.25','second_button_contact':'5.625-6.125','turn_and_wave':'6.875-9.75','ending_pose':'9.75-11'}
-          meta['caption_effect_mapping']={'beeps':[2.65,5.70],'Captain Bobo!':'7-9.75 actual turn and wave'}
-          meta['review_repairs']=['Retimed button captions to observed contacts','Aligned restrained electronic beeps to contacts','Removed arbitrary chime','Preserved distinct music arrangement 29 and 11-second duration']
+          meta['observed_action_timestamps']={'opening_snowball_display':'0-2','trophy_pose':'2-4.5','lowering_snowball':'4.5-6.25','kneel_and_place':'6.25-7.75','open_mouth_celebration':'8-9.75','closing_bow':'10-11'}
+          meta['caption_effect_mapping']={'natural_snow_crunch_1':{'time':6.4,'level':.25,'visible_action':'kneeling/contact with snow'},'natural_snow_crunch_2':{'time':7.25,'level':.20,'visible_action':'snowball placement'},'spoken_subtitle':{'text':old['text'],'time':[voice_start,voice_end]}}
+          meta['review_repairs']=['Moved existing Bobo voice and exact subtitle to observed open-mouth celebration','Retimed action captions to visible actions','Moved restrained CC0 snow crunches to observed snow contacts','Preserved airy flute arrangement 34 and eleven-second duration']
           (draft/'episode.json').write_text(json.dumps(meta,indent=2))
           (draft/'captions-timing.json').write_text(json.dumps(meta['caption_timing'],indent=2))
           pending.update(status='repaired_awaiting_review',artifact_run_id=os.environ['REPAIR_RUN_ID'],final_sha256=meta['final_sha256'])
@@ -74,6 +87,6 @@ jobs:
           git config user.name "Bobo automation"
           git config user.email "bobo-bot@users.noreply.github.com"
           git add bobo_review_pending.json
-          git commit -m "Record repaired space button draft awaiting exact review"
+          git commit -m "Record repaired snowball voice draft awaiting exact review"
           git pull --rebase origin main
           git push origin HEAD:main
