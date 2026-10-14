@@ -28,7 +28,7 @@ jobs:
         with:
           name: fresh-bobo-video
           path: draft
-          run-id: 38517117443
+          run-id: 38517503763
           github-token: ${{ github.token }}
       - name: Align Bobo voice, captions and natural snow contacts
         env:
@@ -42,7 +42,7 @@ jobs:
           expected='e63045ee21870a2904f415a8cf3516d65ca54a3813e78782a354275d51bb4676'
           assert hashlib.sha256(source.read_bytes()).hexdigest()==expected
           pending=json.loads(Path('bobo_review_pending.json').read_text())
-          assert pending['episode']==40522028 and pending['artifact_run_id']=='38517117443'
+          assert pending['episode']==40522028 and pending['artifact_run_id']=='38517503763'
           dialogue=json.loads((draft/'dialogue-timing.json').read_text())
           old=dialogue['cues'][0]; duration=old['end']-old['start']
           voice_start=8.0; voice_end=round(voice_start+duration,4)
@@ -50,7 +50,7 @@ jobs:
           snow=draft/'foley-sources/footstep_snow_000.ogg'
           graph="[0:a]asplit=2[s1][s2];[s1]atrim=0:0.30,asetpts=PTS-STARTPTS,afade=t=in:st=0:d=0.03,afade=t=out:st=0.22:d=0.08,volume=0.25,adelay=6400|6400[a];[s2]atrim=0:0.30,asetpts=PTS-STARTPTS,afade=t=in:st=0:d=0.03,afade=t=out:st=0.22:d=0.08,volume=0.20,adelay=7250|7250[b];[a][b]amix=inputs=2:normalize=0,apad=whole_dur=11,atrim=duration=11[out]"
           subprocess.run(['ffmpeg','-v','error','-y','-i',str(snow),'-filter_complex',graph,'-map','[out]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(draft/'scene_effects.wav')],check=True)
-          mix='[0:a]loudnorm=I=-18:TP=-2:LRA=7,aresample=48000,afade=t=in:st=0:d=0.15,afade=t=out:st=10.4:d=0.6,volume=0.80[m];[1:a]aformat=channel_layouts=stereo,asplit=2[fx][key];[m][key]sidechaincompress=threshold=0.035:ratio=3:attack=10:release=180[duck];[duck][fx]amix=inputs=2:duration=longest:normalize=0,apad=whole_dur=11,atrim=duration=11[audio]'
+          mix=\"[0:a]loudnorm=I=-18:TP=-2:LRA=7,aresample=48000,afade=t=in:st=0:d=0.15,afade=t=out:st=10.4:d=0.6,volume=0.80,volume=enable='between(t,6.32,6.78)+between(t,7.17,7.63)':volume=0.58[m];[1:a]aformat=channel_layouts=stereo,apad=whole_dur=11,atrim=duration=11[fx];[m][fx]amix=inputs=2:duration=first:normalize=0,apad=whole_dur=11,atrim=duration=11[audio]\"
           subprocess.run(['ffmpeg','-v','error','-y','-i',str(draft/'original_music.wav'),'-i',str(draft/'scene_effects.wav'),'-filter_complex',mix,'-map','[audio]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(draft/'audio.wav')],check=True)
           # Overlay the repositioned voice onto the full 11-second bed. Avoid\n          # sidechain end-of-stream truncation when the voice is near the ending.\n          voiced=\"[0:a]volume=enable='between(t,7.90,8.85)':volume=0.32[bed];[bed][1:a]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.84:level=false:latency=true,apad=whole_dur=11,atrim=duration=11[out]\"\n          subprocess.run(['ffmpeg','-v','error','-y','-i',str(draft/'audio.wav'),'-i',str(draft/'voice-track.wav'),'-filter_complex',voiced,'-map','[out]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(draft/'audio-voiced.wav')],check=True)\n          (draft/'audio-voiced.wav').replace(draft/'audio.wav')
           cues=[('Tiny snowball!',0,2),('Trophy pose!',2,4.5),('Careful...',4.5,6.25),('Snowman delivery',6.25,7.75),(old['text'],voice_start,voice_end),('Champion celebration!',8.75,9.75),('Champion bow!',10,11)]
@@ -71,7 +71,7 @@ jobs:
           meta.update(caption_timing=[{'text':t,'start':a,'end':z} for t,a,z in cues],final_sha256=hashlib.sha256((draft/'bobo_fresh.mp4').read_bytes()).hexdigest())
           meta['observed_action_timestamps']={'opening_snowball_display':'0-2','trophy_pose':'2-4.5','lowering_snowball':'4.5-6.25','kneel_and_place':'6.25-7.75','open_mouth_celebration':'8-9.75','closing_bow':'10-11'}
           meta['caption_effect_mapping']={'natural_snow_crunch_1':{'time':6.4,'level':.25,'visible_action':'kneeling/contact with snow'},'natural_snow_crunch_2':{'time':7.25,'level':.20,'visible_action':'snowball placement'},'spoken_subtitle':{'text':old['text'],'time':[voice_start,voice_end]}}
-          meta['review_repairs']=['Moved existing Bobo voice and exact subtitle to observed open-mouth celebration','Retimed action captions to visible actions','Moved restrained CC0 snow crunches to observed snow contacts','Preserved airy flute arrangement 34 and eleven-second duration','Rebuilt voice overlay to preserve continuous music through the full ending']
+          meta['review_repairs']=['Moved existing Bobo voice and exact subtitle to observed open-mouth celebration','Retimed action captions to visible actions','Moved restrained CC0 snow crunches to observed snow contacts','Preserved airy flute arrangement 34 and eleven-second duration','Rebuilt timestamped effect and voice ducking to preserve continuous music through the full ending']
           (draft/'episode.json').write_text(json.dumps(meta,indent=2))
           (draft/'captions-timing.json').write_text(json.dumps(meta['caption_timing'],indent=2))
           pending.update(status='repaired_awaiting_review',artifact_run_id=os.environ['REPAIR_RUN_ID'],final_sha256=meta['final_sha256'])
