@@ -8,13 +8,15 @@ LINES=['Look at that!','Let us try!','My apple!','Careful now!','A puddle!','Wha
 def run(args):
     subprocess.run(args,check=True)
 
-def prepare_voice(out,scene_id,total=11,start=.35):
+def prepare_voice(out,scene_id,total=11,start=.35,text=None):
     from piper import PiperVoice
     out=Path(out); out.mkdir(parents=True,exist_ok=True)
     model=Path('voice_models')/VOICE_MODEL
     if not model.is_file():
         raise RuntimeError('Free local voice model missing; no paid fallback permitted.')
-    text=LINES[scene_id%8]
+    text=LINES[scene_id%8] if text is None else text
+    if not isinstance(text,str) or not text.strip() or len(text)>90:
+        raise RuntimeError('Bobo dialogue must be one short scene-specific line.')
     raw=out/'voice-raw.wav'
     voice=PiperVoice.load(str(model),use_cuda=False)
     with wave.open(str(raw),'wb') as wav:
