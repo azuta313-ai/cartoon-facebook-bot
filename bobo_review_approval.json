@@ -1,82 +1,130 @@
 {
   "status": "approved",
-  "episode": 40522027,
-  "artifact_run_id": "38435683228",
-  "final_sha256": "fa4efceb0e966f65fbe5f5d2d727e3251e644fe68722c496c9068a0aca58454f",
+  "episode": 40522028,
+  "artifact_run_id": "38518972499",
+  "final_sha256": "f5a2a33db4c20992a65ffe92e40cbeb5bb0fc6c65cc758c61c4319d3928fe4f9",
   "review": {
-    "full_render_sample_fps": 8,
+    "full_render_sample_fps": 4,
     "transition_sample_fps": 8,
-    "visual": "Reviewed all 88 samples of exact repaired render. Purposeful hand gestures from first half-second; button interactions then turn/wave. Short closing pose retained; no extended opening wait. No prolonged speech-like mouth motion.",
+    "visual": "Reviewed the full 11-second repaired render at 4 fps and every caption/action transition at 8 fps. Purposeful snowball display begins immediately; Bobo raises, lowers, kneels, places, celebrates and bows without a prolonged anticipatory hold. No material pixel breakup observed in sampled frames.",
     "observed_actions": {
-      "hand_gestures": [
+      "opening_snowball_display": [
         0,
-        2.5
+        2
       ],
-      "first_button_contact": [
-        2.625,
-        3.25
+      "trophy_pose": [
+        2,
+        4.5
       ],
-      "second_button_contact": [
-        5.625,
-        6.125
+      "lowering_snowball": [
+        4.5,
+        6.25
       ],
-      "turn_wave": [
-        6.875,
+      "kneel_and_place": [
+        6.25,
+        7.75
+      ],
+      "open_mouth_reaction": [
+        8,
+        8.6879
+      ],
+      "celebration": [
+        8.75,
         9.75
       ],
-      "closing_pose": [
-        9.75,
+      "closing_bow": [
+        10,
         11
       ]
     },
     "captions": [
       {
-        "text": "Curious Bobo",
+        "text": "Tiny snowball!",
         "start": 0,
-        "end": 2.5
+        "end": 2,
+        "action": "snowball display"
       },
       {
-        "text": "Beep!",
-        "start": 2.625,
-        "end": 3.25
+        "text": "Trophy pose!",
+        "start": 2,
+        "end": 4.5,
+        "action": "raised snowball pose"
       },
       {
-        "text": "One more press",
+        "text": "Careful...",
         "start": 4.5,
-        "end": 5.625
+        "end": 6.25,
+        "action": "controlled lowering"
       },
       {
-        "text": "Beep!",
-        "start": 5.625,
-        "end": 6.125
+        "text": "Snowman delivery",
+        "start": 6.25,
+        "end": 7.75,
+        "action": "kneel and snowball placement"
       },
       {
-        "text": "Captain Bobo!",
-        "start": 7,
-        "end": 9.75
+        "text": "My snowball!",
+        "start": 8,
+        "end": 8.6879,
+        "action": "spoken line on observed open-mouth reaction"
+      },
+      {
+        "text": "Champion celebration!",
+        "start": 8.75,
+        "end": 9.75,
+        "action": "arms-up celebration"
+      },
+      {
+        "text": "Champion bow!",
+        "start": 10,
+        "end": 11,
+        "action": "bow toward snowman"
       }
     ],
+    "voice": {
+      "engine": "Piper local CPU",
+      "text": "My snowball!",
+      "start": 8,
+      "end": 8.6879,
+      "subtitle_exact": true,
+      "track_present": true,
+      "music_ducked": true,
+      "mouth_action_alignment": "Placed on continuous visible open-mouth reaction; phoneme lip synchronization is not claimed.",
+      "listening_verified": false
+    },
     "effects": [
       {
-        "type": "restrained electronic beep",
-        "start": 2.65,
-        "duration": 0.15,
-        "visible_action": "button contact"
+        "source": "Kenney Impact Sounds CC0 / footstep_snow_000.ogg",
+        "type": "soft natural snow contact",
+        "start": 6.4,
+        "level": 0.25,
+        "visible_action": "kneeling/contact with snow"
       },
       {
-        "type": "restrained electronic beep",
-        "start": 5.7,
-        "duration": 0.15,
-        "visible_action": "button contact"
+        "source": "Kenney Impact Sounds CC0 / footstep_snow_000.ogg",
+        "type": "soft natural snow placement",
+        "start": 7.25,
+        "level": 0.2,
+        "visible_action": "snowball placement"
       }
     ],
-    "music": "Original arrangement 29, round synth adventure; retained distinct timbre, ducking during effects",
-    "audio": "AAC stereo 48kHz; mean -18.3dBFS, peak -6.3dBFS; decoding passes. Source waveform/effect mappings inspected. No cake sounds, no extra celebration chime.",
-    "listening_verified": false,
-    "voice": "Silent control; no spoken subtitle or lip-sync claim.",
-    "technical": "11.000 seconds H264 720x1280 30fps AAC; exact SHA256 verified.",
+    "music": "Original arrangement 34, airy flute dance; preserved through repairs, gently ducked only at mapped snow contacts and dialogue, and objectively present through the ending.",
+    "audio": {
+      "codec": "AAC stereo 48kHz",
+      "objective_gate": {
+        "opening_rms": 0.06790850020135127,
+        "snow_contact_1_rms": 0.05795013873727554,
+        "snow_contact_2_rms": 0.05095310732292036,
+        "voice_window_rms": 0.08030359405240657,
+        "post_voice_rms": 0.058436983807086645,
+        "ending_rms": 0.0585431638854186,
+        "pre_encode_peak": 0.28302001953125
+      },
+      "verification": "Decoded successfully; voice window is active; post-voice and ending windows are non-silent; no clipping by objective waveform gate. Perceptual naturalness is not claimed because subjective listening was unavailable.",
+      "listening_verified": false
+    },
+    "technical": "11.000 seconds, H264 720x1280 30fps, AAC stereo 48kHz; generated source SHA256 e63045ee21870a2904f415a8cf3516d65ca54a3813e78782a354275d51bb4676; exact approved file SHA256 f5a2a33db4c20992a65ffe92e40cbeb5bb0fc6c65cc758c61c4319d3928fe4f9.",
     "cost": 0,
-    "repairs": "Retimed captions/effects on same generated footage, removed chime, retained full duration and music variant; no regeneration."
-  },
-  "retry_reason": "First attempt stopped before upload because ffprobe was missing; installed ffmpeg. Retry same reviewed SHA."
+    "repairs": "Kept the same generated footage; moved the existing voice and exact subtitle to the observed reaction, retimed action captions, moved restrained CC0 snow contacts to observed contacts, replaced fragile sidechain ducking with timestamped ducking, and preserved the distinct airy-flute music continuously for the full 11 seconds."
+  }
 }
