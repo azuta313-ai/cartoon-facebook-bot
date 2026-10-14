@@ -1,8 +1,5 @@
 name: Repair Bobo Review Draft
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/repair-bobo-draft.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -53,7 +50,11 @@ jobs:
           subprocess.run(['ffmpeg','-v','error','-y','-i',str(snow),'-filter_complex',graph,'-map','[out]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(draft/'scene_effects.wav')],check=True)
           mix="[0:a]loudnorm=I=-18:TP=-2:LRA=7,aresample=48000,afade=t=in:st=0:d=0.15,afade=t=out:st=10.4:d=0.6,volume=0.80,volume=enable='between(t,6.32,6.78)+between(t,7.17,7.63)':volume=0.58[m];[1:a]aformat=channel_layouts=stereo,apad=whole_dur=11,atrim=duration=11[fx];[m][fx]amix=inputs=2:duration=first:normalize=0,apad=whole_dur=11,atrim=duration=11[audio]"
           subprocess.run(['ffmpeg','-v','error','-y','-i',str(draft/'original_music.wav'),'-i',str(draft/'scene_effects.wav'),'-filter_complex',mix,'-map','[audio]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(draft/'audio.wav')],check=True)
-          # Overlay the repositioned voice onto the full 11-second bed. Avoid\n          # sidechain end-of-stream truncation when the voice is near the ending.\n          voiced="[0:a]volume=enable='between(t,7.90,8.85)':volume=0.32[bed];[bed][1:a]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.84:level=false:latency=true,apad=whole_dur=11,atrim=duration=11[out]"\n          subprocess.run(['ffmpeg','-v','error','-y','-i',str(draft/'audio.wav'),'-i',str(draft/'voice-track.wav'),'-filter_complex',voiced,'-map','[out]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(draft/'audio-voiced.wav')],check=True)\n          (draft/'audio-voiced.wav').replace(draft/'audio.wav')
+          # Persist the revised cue before mixing the mandatory voice.
+          dialogue['cues'][0].update(start=voice_start,end=voice_end)
+          (draft/'dialogue-timing.json').write_text(json.dumps(dialogue,indent=2))
+          from bobo_voice import mix_voice
+          mix_voice(draft)
           cues=[('Tiny snowball!',0,2),('Trophy pose!',2,4.5),('Careful...',4.5,6.25),('Snowman delivery',6.25,7.75),(old['text'],voice_start,voice_end),('Champion celebration!',8.75,9.75),('Champion bow!',10,11)]
           filters=['hqdn3d=1.0:0.8:1.5:1.2','fps=30','scale=720:1280:force_original_aspect_ratio=increase:flags=lanczos','crop=720:1280','tpad=stop_mode=clone:stop_duration=1.5']
           title=draft/'fixed-title.txt'; title.write_text('Snowball tiny champion')
