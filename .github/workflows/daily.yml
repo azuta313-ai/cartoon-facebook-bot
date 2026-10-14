@@ -1,3 +1,4 @@
+# Retry the outstanding evening slot after deliberate visual rejection, 2026-10-14.
 name: Daily Fresh Bobo
 on:
   workflow_dispatch:
