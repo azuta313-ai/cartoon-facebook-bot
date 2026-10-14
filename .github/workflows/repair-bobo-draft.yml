@@ -28,7 +28,7 @@ jobs:
         with:
           name: fresh-bobo-video
           path: draft
-          run-id: 38517503763
+          run-id: 38518523633
           github-token: ${{ github.token }}
       - name: Align Bobo voice, captions and natural snow contacts
         env:
@@ -42,7 +42,7 @@ jobs:
           expected='e63045ee21870a2904f415a8cf3516d65ca54a3813e78782a354275d51bb4676'
           assert hashlib.sha256(source.read_bytes()).hexdigest()==expected
           pending=json.loads(Path('bobo_review_pending.json').read_text())
-          assert pending['episode']==40522028 and pending['artifact_run_id']=='38517503763'
+          assert pending['episode']==40522028 and pending['artifact_run_id']=='38518523633'
           dialogue=json.loads((draft/'dialogue-timing.json').read_text())
           old=dialogue['cues'][0]; duration=old['end']-old['start']
           voice_start=8.0; voice_end=round(voice_start+duration,4)
@@ -62,6 +62,19 @@ jobs:
            filters.append(f"drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:textfile={p}:fontsize=34:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y=1160:enable='gte(t,{a})*lt(t,{z})'")
           subprocess.run(['ffmpeg','-v','error','-y','-i',str(source),'-i',str(draft/'audio.wav'),'-vf',','.join(filters),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset','medium','-crf','16','-c:a','aac','-b:a','192k','-ar','48000','-pix_fmt','yuv420p','-t','11','-movflags','+faststart',str(draft/'bobo_fresh.mp4')],check=True)
           subprocess.run(['ffmpeg','-v','error','-i',str(draft/'bobo_fresh.mp4'),'-f','null','-'],check=True)
+          # Objective mix gate: voice is present, music continues after dialogue,
+          # and the ending is not silent or clipped.
+          with wave.open(str(draft/'audio.wav'),'rb') as wav:
+           rate=wav.getframerate(); channels=wav.getnchannels()
+           samples=np.frombuffer(wav.readframes(wav.getnframes()),dtype='<i2').astype(float).reshape(-1,channels)/32768
+          def rms(a,b):
+           part=samples[int(a*rate):int(b*rate)]
+           return float(np.sqrt(np.mean(part*part)))
+          levels={'opening_rms':rms(0,.5),'snow_contact_1_rms':rms(6.2,6.8),'snow_contact_2_rms':rms(7.0,7.6),'voice_window_rms':rms(7.9,8.69),'post_voice_rms':rms(9,9.5),'ending_rms':rms(10.3,10.8),'peak':float(np.max(np.abs(samples)))}
+          assert levels['voice_window_rms']>.025
+          assert levels['post_voice_rms']>.02 and levels['ending_rms']>.02
+          assert levels['peak']<.90
+          print('OBJECTIVE_AUDIO_GATE='+json.dumps(levels,sort_keys=True))
           dialogue['cues'][0].update(start=voice_start,end=voice_end,placement='observed open-mouth celebration window; not phoneme lip-sync')
           dialogue['lip_sync_verified']=False
           dialogue['mouth_action_alignment_review']='Voice occupies continuous open-mouth celebration observed at 8 fps from 8.0 through 8.6879 seconds; phoneme lip-sync not claimed.'
