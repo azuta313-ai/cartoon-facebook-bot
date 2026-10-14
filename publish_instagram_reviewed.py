@@ -35,6 +35,8 @@ def main():
     def save():
         ledger_path.write_text(json.dumps(ledger,indent=2))
         subprocess.run(['git','add','published_bobo.json'],check=True)
+        if subprocess.run(['git','diff','--cached','--quiet']).returncode==0:
+            return
         subprocess.run(['git','commit','-m','Record exact reviewed Bobo Instagram status'],check=True)
         subprocess.run(['git','pull','--rebase','origin','main'],check=True)
         subprocess.run(['git','push','origin','HEAD:main'],check=True)
@@ -64,7 +66,8 @@ def main():
         record['instagram']['permalink']=info.get('permalink');save()
         print('Instagram accepted reviewed Reel:',result['id'])
     except Exception as exc:
-        record['instagram'].update(status='held',reason=str(exc)[:200]);save()
+        if record['instagram'].get('status')!='accepted':
+            record['instagram'].update(status='held',reason=str(exc)[:200]);save()
         raise
 
 if __name__=='__main__':
