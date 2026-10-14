@@ -50,8 +50,25 @@ jobs:
                   voice=np.frombuffer(wav.readframes(wav.getnframes()),dtype='<i2').reshape(-1,2).astype(float)
               active=np.abs(voice[:,0])>2000
               assert active.sum()>1000
-              bed=mixed-voice
+              # Fit actual voice gain rather than assuming gain stayed at one.
+              lo=round(cue['start']*48000); hi=round(cue['end']*48000)
+              ref=voice[lo:hi,0]; actual=mixed[lo:hi,0]
+              gain=float(np.dot(ref,actual)/np.dot(ref,ref))
+              correlation=float(np.corrcoef(ref,actual)[0,1])
+              assert correlation>.65 and gain>0
+              bed=mixed-gain*voice
               assert np.sqrt(np.mean(bed[active]**2))<np.sqrt(np.mean(baseline[active]**2))*.95
+              # Verify AAC export, not only the unencoded mix.
+              encoded=out/'encoded.m4a'
+              subprocess.run(['ffmpeg','-v','error','-y','-i',str(out/'audio.wav'),'-af','loudnorm=I=-16:TP=-1.5:LRA=7','-c:a','aac','-b:a','192k',str(encoded)],check=True)
+              raw=subprocess.check_output(['ffmpeg','-v','error','-i',str(encoded),'-ar','48000','-ac','1','-f','s16le','-'])
+              decoded=np.frombuffer(raw,dtype='<i2').astype(float)
+              actual=decoded[lo:hi]
+              correlation=float(np.corrcoef(ref,actual)[0,1])
+              gain=float(np.dot(ref,actual)/np.dot(ref,ref))
+              speech_rms=gain*float(np.sqrt(np.mean(ref*ref)))/32768
+              assert correlation>.65 and speech_rms>.035
+              assert np.sqrt(np.mean(decoded[9*48000:10*48000]**2))/32768>.005
               results.append({'scene':scene,'text':cue['text'],'subtitle_start':cue['start'],'subtitle_end':cue['end'],'status':'technical_pass','subjective_listening':'not performed','lip_sync':'requires actual draft review'})
           Path('voice_test/validation.json').write_text(json.dumps(results,indent=2))
           print('Eight actual local voice lines synthesized; timed subtitles, stereo mix and speech ducking verified.')
