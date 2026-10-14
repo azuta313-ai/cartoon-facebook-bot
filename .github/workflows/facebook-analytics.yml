@@ -38,3 +38,5 @@ jobs:
           path: analytics_output/
           retention-days: 90
 # Revalidate Page insights after the user updated the token on 2026-10-13.
+
+# Refresh the missing 14 October daily snapshot without changing collection cadence.
