@@ -514,5 +514,269 @@
       },
       "retry_reason": "First attempt stopped before upload because ffprobe was missing; installed ffmpeg. Retry same reviewed SHA."
     }
+  },
+  "long-v2-40522028": {
+    "episode": 40522028,
+    "title": "Snowball tiny champion",
+    "space": "zerogpu-aoti/wan2-2-fp8da-aoti-faster",
+    "generated_sha256": "e63045ee21870a2904f415a8cf3516d65ca54a3813e78782a354275d51bb4676",
+    "duration": 11,
+    "generated_at": "2026-10-14T09:40:59.041923+05:00",
+    "quality_reference": "assets/scenes/scene6.jpg",
+    "music_check_dbfs": -15.3,
+    "export_fps": 30,
+    "effects": "original scene-specific effects; no bite sample",
+    "voice": {
+      "enabled": true,
+      "engine": "Piper local CPU",
+      "model": "en_US-ljspeech-medium.onnx",
+      "model_sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22",
+      "voice_sha256": "8b0d2daa286c4c4cf69078b4276bff936d2a53150207676e39b0a9fe0b71571e",
+      "language": "en-US",
+      "pitch_factor": 1.15,
+      "cost": 0,
+      "lip_sync_verified": false,
+      "listening_verified": false,
+      "cues": [
+        {
+          "text": "My snowball!",
+          "start": 8.0,
+          "end": 8.6879,
+          "kind": "spoken dialogue",
+          "placement": "observed open-mouth celebration window; not phoneme lip-sync"
+        }
+      ],
+      "license": "Piper GPL-3.0; voice repository MIT; LJ Speech source public domain",
+      "license_source": "https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD",
+      "mouth_action_alignment_review": "Voice occupies continuous open-mouth celebration observed at 8 fps from 8.0 through 8.6879 seconds; phoneme lip-sync not claimed."
+    },
+    "voice_review_required": true,
+    "caption_kind": "spoken subtitle plus separate action captions",
+    "caption_review_required": true,
+    "caption_timing": [
+      {
+        "text": "Tiny snowball!",
+        "start": 0,
+        "end": 2
+      },
+      {
+        "text": "Trophy pose!",
+        "start": 2,
+        "end": 4.5
+      },
+      {
+        "text": "Careful...",
+        "start": 4.5,
+        "end": 6.25
+      },
+      {
+        "text": "Snowman delivery",
+        "start": 6.25,
+        "end": 7.75
+      },
+      {
+        "text": "My snowball!",
+        "start": 8.0,
+        "end": 8.6879
+      },
+      {
+        "text": "Champion celebration!",
+        "start": 8.75,
+        "end": 9.75
+      },
+      {
+        "text": "Champion bow!",
+        "start": 10,
+        "end": 11
+      }
+    ],
+    "audio_mix_variant": 6,
+    "scene_id": 6,
+    "setting": "a bright snowy playground beside a small snowman",
+    "music": "original procedural arrangement 34",
+    "music_variant": 34,
+    "music_style": "airy flute dance",
+    "sound_design_version": 3,
+    "pacing_review_required": true,
+    "social_caption": "The tiniest snowball. The proudest monkey. \u2744\ufe0f\ud83c\udfc6\n\nBobo takes his winter championship very seriously.\nDoes this little champion deserve a medal?\nFollow Bobo Giggle Grove for tomorrow's little adventure. \ud83c\udf33\ud83d\udc12\n\n#Bobo #3DAnimation #SnowDay #SnowmanFun #AnimatedShorts",
+    "growth_experiment": {
+      "version": "retention-follow-v1",
+      "evidence_snapshot": "2026-10-13T23:43:42+05:00",
+      "content_change": "Apple catch occurs early in shot two with active celebration; other scenes remain unchanged",
+      "promotion_change": "one concise follow invitation after the scene-specific question",
+      "primary_metrics": [
+        "post_video_retention_graph",
+        "blue_reels_play_count",
+        "fb_reels_total_plays",
+        "followers_count"
+      ],
+      "cost": 0
+    },
+    "final_sha256": "f5a2a33db4c20992a65ffe92e40cbeb5bb0fc6c65cc758c61c4319d3928fe4f9",
+    "observed_action_timestamps": {
+      "opening_snowball_display": "0-2",
+      "trophy_pose": "2-4.5",
+      "lowering_snowball": "4.5-6.25",
+      "kneel_and_place": "6.25-7.75",
+      "open_mouth_celebration": "8-9.75",
+      "closing_bow": "10-11"
+    },
+    "caption_effect_mapping": {
+      "natural_snow_crunch_1": {
+        "time": 6.4,
+        "level": 0.25,
+        "visible_action": "kneeling/contact with snow"
+      },
+      "natural_snow_crunch_2": {
+        "time": 7.25,
+        "level": 0.2,
+        "visible_action": "snowball placement"
+      },
+      "spoken_subtitle": {
+        "text": "My snowball!",
+        "time": [
+          8.0,
+          8.6879
+        ]
+      }
+    },
+    "review_repairs": [
+      "Moved existing Bobo voice and exact subtitle to observed open-mouth celebration",
+      "Retimed action captions to visible actions",
+      "Moved restrained CC0 snow crunches to observed snow contacts",
+      "Preserved airy flute arrangement 34 and eleven-second duration",
+      "Rebuilt timestamped effect and voice ducking to preserve continuous music through the full ending"
+    ],
+    "facebook_video_id": "1346834400720252",
+    "review": {
+      "status": "approved",
+      "episode": 40522028,
+      "artifact_run_id": "38518972499",
+      "final_sha256": "f5a2a33db4c20992a65ffe92e40cbeb5bb0fc6c65cc758c61c4319d3928fe4f9",
+      "review": {
+        "full_render_sample_fps": 4,
+        "transition_sample_fps": 8,
+        "visual": "Reviewed the full 11-second repaired render at 4 fps and every caption/action transition at 8 fps. Purposeful snowball display begins immediately; Bobo raises, lowers, kneels, places, celebrates and bows without a prolonged anticipatory hold. No material pixel breakup observed in sampled frames.",
+        "observed_actions": {
+          "opening_snowball_display": [
+            0,
+            2
+          ],
+          "trophy_pose": [
+            2,
+            4.5
+          ],
+          "lowering_snowball": [
+            4.5,
+            6.25
+          ],
+          "kneel_and_place": [
+            6.25,
+            7.75
+          ],
+          "open_mouth_reaction": [
+            8,
+            8.6879
+          ],
+          "celebration": [
+            8.75,
+            9.75
+          ],
+          "closing_bow": [
+            10,
+            11
+          ]
+        },
+        "captions": [
+          {
+            "text": "Tiny snowball!",
+            "start": 0,
+            "end": 2,
+            "action": "snowball display"
+          },
+          {
+            "text": "Trophy pose!",
+            "start": 2,
+            "end": 4.5,
+            "action": "raised snowball pose"
+          },
+          {
+            "text": "Careful...",
+            "start": 4.5,
+            "end": 6.25,
+            "action": "controlled lowering"
+          },
+          {
+            "text": "Snowman delivery",
+            "start": 6.25,
+            "end": 7.75,
+            "action": "kneel and snowball placement"
+          },
+          {
+            "text": "My snowball!",
+            "start": 8,
+            "end": 8.6879,
+            "action": "spoken line on observed open-mouth reaction"
+          },
+          {
+            "text": "Champion celebration!",
+            "start": 8.75,
+            "end": 9.75,
+            "action": "arms-up celebration"
+          },
+          {
+            "text": "Champion bow!",
+            "start": 10,
+            "end": 11,
+            "action": "bow toward snowman"
+          }
+        ],
+        "voice": {
+          "engine": "Piper local CPU",
+          "text": "My snowball!",
+          "start": 8,
+          "end": 8.6879,
+          "subtitle_exact": true,
+          "track_present": true,
+          "music_ducked": true,
+          "mouth_action_alignment": "Placed on continuous visible open-mouth reaction; phoneme lip synchronization is not claimed.",
+          "listening_verified": false
+        },
+        "effects": [
+          {
+            "source": "Kenney Impact Sounds CC0 / footstep_snow_000.ogg",
+            "type": "soft natural snow contact",
+            "start": 6.4,
+            "level": 0.25,
+            "visible_action": "kneeling/contact with snow"
+          },
+          {
+            "source": "Kenney Impact Sounds CC0 / footstep_snow_000.ogg",
+            "type": "soft natural snow placement",
+            "start": 7.25,
+            "level": 0.2,
+            "visible_action": "snowball placement"
+          }
+        ],
+        "music": "Original arrangement 34, airy flute dance; preserved through repairs, gently ducked only at mapped snow contacts and dialogue, and objectively present through the ending.",
+        "audio": {
+          "codec": "AAC stereo 48kHz",
+          "objective_gate": {
+            "opening_rms": 0.06790850020135127,
+            "snow_contact_1_rms": 0.05795013873727554,
+            "snow_contact_2_rms": 0.05095310732292036,
+            "voice_window_rms": 0.08030359405240657,
+            "post_voice_rms": 0.058436983807086645,
+            "ending_rms": 0.0585431638854186,
+            "pre_encode_peak": 0.28302001953125
+          },
+          "verification": "Decoded successfully; voice window is active; post-voice and ending windows are non-silent; no clipping by objective waveform gate. Perceptual naturalness is not claimed because subjective listening was unavailable.",
+          "listening_verified": false
+        },
+        "technical": "11.000 seconds, H264 720x1280 30fps, AAC stereo 48kHz; generated source SHA256 e63045ee21870a2904f415a8cf3516d65ca54a3813e78782a354275d51bb4676; exact approved file SHA256 f5a2a33db4c20992a65ffe92e40cbeb5bb0fc6c65cc758c61c4319d3928fe4f9.",
+        "cost": 0,
+        "repairs": "Kept the same generated footage; moved the existing voice and exact subtitle to the observed reaction, retimed action captions, moved restrained CC0 snow contacts to observed contacts, replaced fragile sidechain ducking with timestamped ducking, and preserved the distinct airy-flute music continuously for the full 11 seconds."
+      }
+    }
   }
 }
