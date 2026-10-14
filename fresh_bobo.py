@@ -225,6 +225,11 @@ def main():
  if episode_key in ledger:
   print('This episode was already published; skipping generation and upload.'); return
  recent=[v.get('scene_id') for v in list(ledger.values())[-3:]]
+ review_path=Path('bobo_review_approval.json')
+ if review_path.exists():
+  previous_review=json.loads(review_path.read_text())
+  if previous_review.get('status')=='rejected' and previous_review.get('episode')==episode:
+   recent.append(previous_review.get('scene_id'))
  scene_id=(now.toordinal()*2+slot)%len(SCENES)
  while scene_id in recent: scene_id=(scene_id+1)%len(SCENES)
  title,setting,prop,action,ending,captions,scene_tags=SCENES[scene_id]
