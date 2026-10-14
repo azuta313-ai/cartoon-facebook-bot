@@ -53,11 +53,21 @@ def mix_voice(out,total=11):
     # short stream can truncate the bed on some ffmpeg builds.
     dialogue=json.loads((out/'dialogue-timing.json').read_text())
     cue=dialogue['cues'][0]
+    with wave.open(str(out/'voice-track.wav'),'rb') as wav:
+        rate=wav.getframerate(); channels=wav.getnchannels()
+        samples=np.frombuffer(wav.readframes(wav.getnframes()),dtype='<i2').astype(float).reshape(-1,channels)/32768
+    speech=samples[round(float(cue['start'])*rate):round(float(cue['end'])*rate)]
+    rms=float(np.sqrt(np.mean(speech*speech)))
+    peak=float(np.max(np.abs(speech)))
+    if rms<.015:
+        raise RuntimeError('Mandatory Bobo speech is silent or too quiet.')
+    # Aim for clear speech while retaining peak headroom.
+    voice_gain=min(2.5,max(1.0,.12/rms),.75/max(peak,1e-9))
     duck_start=max(0,float(cue['start'])-.10)
     duck_end=min(float(total),float(cue['end'])+.16)
     graph=(f"[0:a]apad=whole_dur={total},atrim=duration={total},"
-           f"volume=enable='between(t,{duck_start:.4f},{duck_end:.4f})':volume=0.32[bed];"
-           f"[1:a]apad=whole_dur={total},atrim=duration={total}[voice];"
+           f"volume=enable='between(t,{duck_start:.4f},{duck_end:.4f})':volume=0.22[bed];"
+           f"[1:a]volume={voice_gain:.5f},apad=whole_dur={total},atrim=duration={total}[voice];"
            f"[bed][voice]amix=inputs=2:normalize=0:duration=first,"
            f"alimiter=limit=0.84:level=false:latency=true,"
            f"apad=whole_dur={total},atrim=duration={total}[out]")
