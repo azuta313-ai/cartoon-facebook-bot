@@ -35,15 +35,11 @@ jobs:
           if not account.get('id'):
               print('No Instagram professional account visible to the configured Page token. instagram_basic and Page authorization need checking.')
               raise SystemExit(1)
-          info=get(account['id'],{'fields':'username,account_type'})
-          print('Connected Instagram username:',info.get('username'),'type:',info.get('account_type'))
+          info=get(account['id'],{'fields':'username'})
+          print('Connected Instagram username:',info.get('username'))
           # Page tokens do not reliably expose the user permissions edge.
           limit=get(account['id']+'/content_publishing_limit',{'fields':'config,quota_usage'})
           print('Instagram content-publishing access verified:',bool(limit.get('data')))
-          permissions=[]
-          granted={p.get('permission') for p in permissions if p.get('status')=='granted'}
-          print('instagram_basic granted:', 'instagram_basic' in granted)
-          print('instagram_content_publish granted:', 'instagram_content_publish' in granted)
           print('Connection lookup verified; no content posted.')
           PY
 
