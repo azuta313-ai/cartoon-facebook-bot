@@ -35,7 +35,7 @@ jobs:
           REPAIR_RUN_ID: ${{ github.run_id }}
         run: |
           python - <<'PY'
-          import hashlib,json,os,subprocess,wave
+          import hashlib,json,os,subprocess,wave\n          import numpy as np
           from pathlib import Path
           draft=Path('draft')
           source=draft/'generated.mp4'
