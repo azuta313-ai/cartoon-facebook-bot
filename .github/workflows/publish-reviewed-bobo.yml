@@ -47,7 +47,7 @@ jobs:
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
         run: |
           python - <<'PY'
-          import hashlib,json,os,subprocess
+          import hashlib,json,os,subprocess,math,array
           from pathlib import Path
           import requests
           a=json.loads(Path('bobo_review_approval.json').read_text())
@@ -69,6 +69,33 @@ jobs:
               raise RuntimeError(f'Reviewed video duration {duration:.3f}s is outside the required 11-second target.')
           metadata=json.loads(Path('reviewed/episode.json').read_text())
           assert metadata['episode']==a['episode']
+          # Validate speech in the actual encoded video, not merely a source WAV.
+          dialogue=json.loads(Path('reviewed/dialogue-timing.json').read_text())
+          assert dialogue.get('enabled') and metadata.get('voice',{}).get('enabled'), 'Mandatory Bobo voice missing'
+          cues=dialogue.get('cues',[])
+          assert len(cues)==1 and cues[0].get('text'), 'Exact spoken line missing'
+          cue=cues[0]; start=float(cue['start']); end=float(cue['end'])
+          assert 0<=start<end<=duration and .25<=end-start<=2.5
+          captions=json.loads(Path('reviewed/captions-timing.json').read_text())
+          assert any(x['text']==cue['text'] and abs(float(x['start'])-start)<.05 and abs(float(x['end'])-end)<.05 for x in captions), 'Spoken subtitle missing or mistimed'
+          assert a['review'].get('voice',{}).get('subtitle_exact') and a['review']['voice'].get('track_present'), 'Voice/action review missing'
+          def pcm(path):
+              raw=subprocess.check_output(['ffmpeg','-v','error','-i',str(path),'-vn','-ar','48000','-ac','1','-f','s16le','-'])
+              samples=array.array('h'); samples.frombytes(raw)
+              return samples
+          final=pcm(video); reference=pcm(Path('reviewed/voice-track.wav'))
+          lo=round(start*48000); hi=round(end*48000)
+          ref=reference[lo:hi]; actual=final[lo:hi]
+          assert len(ref)==hi-lo and len(actual)==len(ref), 'Rendered dialogue truncated'
+          energy=sum(float(x)*x for x in ref)
+          assert energy/len(ref)>(32768*.025)**2, 'Voice reference too quiet'
+          dot=sum(float(x)*y for x,y in zip(ref,actual))
+          actual_energy=sum(float(x)*x for x in actual)
+          correlation=dot/math.sqrt(max(1,energy*actual_energy))
+          speech_gain=dot/energy
+          speech_rms=speech_gain*math.sqrt(energy/len(ref))/32768
+          assert correlation>.65 and speech_rms>.035, 'Encoded Bobo speech absent, masked or too quiet'
+          print('Encoded speech gate passed:',round(correlation,3),round(speech_rms,4))
           assert not any(v.get('generated_sha256')==metadata['generated_sha256'] for v in ledger.values())
           intent=Path('bobo_publish_intent.json')
           if intent.exists():
