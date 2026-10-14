@@ -49,8 +49,18 @@ def prepare_voice(out,scene_id,total=11,start=.35):
 
 def mix_voice(out,total=11):
     out=Path(out); target=out/'audio-voiced.wav'
-    # Duck existing music/effects mix only while dialogue is present.
-    graph=f'[1:a]asplit=2[voice][key];[0:a][key]sidechaincompress=threshold=0.025:ratio=8:attack=5:release=140[duck];[duck][voice]amix=inputs=2:normalize=0:duration=first,alimiter=limit=0.84:level=false:latency=true,atrim=duration={total}[out]'
+    # Use the measured cue window for reliable ducking. A sidechain driven by a
+    # short stream can truncate the bed on some ffmpeg builds.
+    dialogue=json.loads((out/'dialogue-timing.json').read_text())
+    cue=dialogue['cues'][0]
+    duck_start=max(0,float(cue['start'])-.10)
+    duck_end=min(float(total),float(cue['end'])+.16)
+    graph=(f"[0:a]apad=whole_dur={total},atrim=duration={total},"
+           f"volume=enable='between(t,{duck_start:.4f},{duck_end:.4f})':volume=0.32[bed];"
+           f"[1:a]apad=whole_dur={total},atrim=duration={total}[voice];"
+           f"[bed][voice]amix=inputs=2:normalize=0:duration=first,"
+           f"alimiter=limit=0.84:level=false:latency=true,"
+           f"apad=whole_dur={total},atrim=duration={total}[out]")
     run(['ffmpeg','-v','error','-y','-i',str(out/'audio.wav'),'-i',str(out/'voice-track.wav'),'-filter_complex',graph,'-map','[out]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(target)])
     target.replace(out/'audio.wav')
 
