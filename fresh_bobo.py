@@ -240,12 +240,15 @@ def main():
  scene_reference=Path('assets/scenes')/f'scene{scene_id}.jpg'
  if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
- prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: begin visible purposeful movement in the first half second; keep lively normal-speed movement throughout all five seconds, with a quick clear setup and no long pose or anticipatory pause. No slow motion. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. Bobo says the brief English reaction "'+series['voice_line']+'" near the start: a brief natural speaking mouth movement during seconds 0.35 to 1.2, then close his mouth. Use expressive gestures for the remaining physical comedy. No prolonged talking. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
+ from bobo_voice import prepare_voice,mix_voice
+ voice_record=prepare_voice(OUT,scene_id,text=series['voice_line'])
+ voice_end=voice_record['cues'][0]['end']
+ prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: begin visible purposeful movement in the first half second; keep lively normal-speed movement throughout all five seconds, with a quick clear setup and no long pose or anticipatory pause. No slow motion. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. Bobo says the brief English reaction "'+series['voice_line']+'" near the start: a brief natural speaking mouth movement during seconds 0.35 to '+str(voice_end)+', then keep lips closed for all remaining frames. No repeated open-close jaw motions outside this measured speech window. Use expressive gestures for the remaining physical comedy. No prolonged talking. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
  client=Client(SPACE, token=token, httpx_kwargs={'timeout':90})
  # Exactly two free-GPU requests per episode, with no paid fallback.
  clips=[]; shot_durations=[]
  for shot in range(2):
-  shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Preserve clothing details exactly; no added shirt lettering. Silent physical comedy, no talking or lip-sync mouth motions. Lively normal-speed action begins immediately and continues through the final frame, with a quick reaction and playful moving celebration; no slow motion or long frozen pose. Smooth clear movements, fixed camera, no sudden scene changes. Complete in five seconds.')
+  shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Preserve clothing details exactly; no added shirt lettering. Silent physical comedy with closed-lip smiles throughout. Keep lips closed in every frame; show surprise using eyebrows, eyes and body gestures. No jaw flapping, no open-mouth laughing, no talking or lip-sync mouth motions. Lively normal-speed action begins immediately and continues through the final frame, with a quick reaction and playful moving celebration; no slow motion or long frozen pose. Smooth clear movements, fixed camera, no sudden scene changes. Complete in five seconds.')
   reference=OUT/('reference.png' if shot==0 else 'continuation.png')
   try:
    result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake',duration_seconds=5,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
@@ -286,7 +289,6 @@ def main():
   music_variant=(music_variant+1)%64
  soundtrack(11,scene_id,shot_durations[0],music_variant=music_variant)
  from bobo_voice import prepare_voice,mix_voice
- voice_record=prepare_voice(OUT,scene_id,text=series['voice_line'])
  if not voice_record.get('enabled'):
   raise RuntimeError('Bobo voice is required for every video; holding silent draft.')
  mix_voice(OUT)
