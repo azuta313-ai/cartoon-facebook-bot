@@ -10,6 +10,8 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - run: python -m py_compile publish_instagram_reviewed.py
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -40,7 +42,16 @@ jobs:
           # Page tokens do not reliably expose the user permissions edge.
           limit=get(account['id']+'/content_publishing_limit',{'fields':'config,quota_usage'})
           print('Instagram content-publishing access verified:',bool(limit.get('data')))
-          print('Connection lookup verified; no content posted.')
+          response=s.get(base+account['id'],params={'fields':'account_type'},timeout=30)
+          details=response.json()
+          if response.ok:
+              print('Instagram account type:',details.get('account_type'))
+              print('Story Business-account requirement met:',details.get('account_type')=='BUSINESS')
+          else:
+              print('Account-type probe unavailable; code:',details.get('error',{}).get('code'))
+          response=s.get(base+account['id']+'/stories',params={'fields':'id','limit':1},timeout=30)
+          print('Story read access verified:',response.ok and 'data' in response.json())
+          print('Publishing script compiled; connection checked; no content posted. End-to-end Story acceptance requires an approved artifact.')
           PY
 
 # Verify renewed Page token after user authorization, 2026-10-15.
