@@ -11,6 +11,20 @@ def slot_time(episode):
     day, slot = divmod(int(episode), 2)
     return datetime.strptime(str(day), '%Y%m%d').replace(hour=9 if slot == 0 else 17, tzinfo=TZ)
 
+def validate_ready(record, now):
+    # Earlier one-off exceptions remain historical; never authorize future files.
+    if int(record['episode']) < 40522032:
+        return
+    review=record['review']
+    assert review.get('quality_passed') is True and not record.get('publication_exception'), 'Future quality review must pass'
+    completed=datetime.fromisoformat(review['completed_at'])
+    assert completed.tzinfo is not None, 'Review completion must include timezone'
+    assert completed<=now and completed<=slot_time(record['episode'])-timedelta(hours=1), 'Review missed one-hour readiness deadline'
+    speech=review.get('voice',{})
+    assert speech.get('intelligibility_verified') is True, 'Actual final-mix speech verification required'
+    assert speech.get('verification_method') in ('actual_listening','independent_asr'), 'Waveform-only approval is insufficient'
+    assert speech.get('verification_evidence'), 'Speech verification evidence missing'
+
 def approvals(root=Path('.')):
     return {int(p.stem): json.loads(p.read_text()) for p in (root/'bobo_reserve').glob('*.json')}
 
@@ -35,6 +49,7 @@ def stage_and_select(root=Path('.'), now=None):
     current = json.loads(path.read_text()) if path.exists() else {}
     if current.get('status') == 'approved':
         assert current['review']['reviewed_sha256'] == current['final_sha256']
+        validate_ready(current,now)
         episode = int(current['episode'])
         directory = root/'bobo_reserve'; directory.mkdir(exist_ok=True)
         target = directory/f'{episode}.json'
@@ -55,6 +70,7 @@ def stage_and_select(root=Path('.'), now=None):
         return None
     for episode, record in sorted(approvals(root).items()):
         if f'long-v2-{episode}' not in ledger and slot_time(episode) <= now:
+            validate_ready(record,now)
             return record
     return None
 
