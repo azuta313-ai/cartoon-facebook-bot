@@ -49,6 +49,37 @@ jobs:
           pip install requests
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg
+      - name: Download explicitly requested repaired file
+        if: steps.approval.outputs.ready == 'true'
+        run: |
+          python - <<'PY'
+          import json,os,urllib.request,zipfile,io,shutil,subprocess
+          from pathlib import Path
+          a=json.loads(Path('bobo_review_approval.json').read_text())
+          if not a.get('publication_exception'): raise SystemExit(0)
+          assert a['episode']==40522030 and a['final_sha256']=='4cd9323bc57889a1cf73e4d4f38a06811bda3280fe6f8f8b36c57c85abb34b68'
+          assert a['repair_artifact_run_id']==38795391196
+          base='https://api.github.com/repos/'+os.environ['GITHUB_REPOSITORY']
+          headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'}
+          def get(url):
+              with urllib.request.urlopen(urllib.request.Request(url,headers=headers),timeout=60) as response: return response.read()
+          artifacts=json.loads(get(base+'/actions/runs/38795391196/artifacts'))['artifacts']
+          artifact=next(x for x in artifacts if x['name']=='bobo-code-repair-held' and not x['expired'])
+          with zipfile.ZipFile(io.BytesIO(get(artifact['archive_download_url']))) as archive:
+              Path('reviewed/bobo_fresh.mp4').write_bytes(archive.read('bobo_code_repaired.mp4'))
+          out=Path('reviewed')
+          subprocess.run(['ffmpeg','-v','error','-y','-i',str(out/'voice-track.wav'),'-af','adelay=300|300,atrim=duration=11','-c:a','pcm_s16le',str(out/'shifted.wav')],check=True)
+          (out/'shifted.wav').replace(out/'voice-track.wav')
+          voice=json.loads((out/'dialogue-timing.json').read_text())
+          voice['cues'][0].update(start=.65,end=1.3671)
+          (out/'dialogue-timing.json').write_text(json.dumps(voice))
+          (out/'captions-timing.json').write_text(json.dumps([{'text':'Careful now!','start':.65,'end':1.3671}]))
+          metadata=json.loads((out/'episode.json').read_text())
+          metadata.update(voice=voice,social_caption="A tiny tower and Bobo's very careful hands. 🐒🧱\\nLittle adventures. Big giggles.\\nFollow Bobo Giggle Grove for the next adventure.\\n#Bobo #3DAnimation #CartoonComedy",publication_quality_status='user_requested_exception',production_strategy='observe-repair-reserve-v1')
+          (out/'episode.json').write_text(json.dumps(metadata))
+          PY
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: Publish exact approved file
         if: steps.approval.outputs.ready == 'true'
         env:
@@ -80,7 +111,12 @@ jobs:
               raise RuntimeError(f'Reviewed video duration {duration:.3f}s is outside the required 11-second target.')
           metadata=json.loads(Path('reviewed/episode.json').read_text())
           assert metadata['episode']==a['episode']
-          assert not metadata.get('finishing_required',False), 'Observed-action finishing required before approval'
+          exception=a.get('publication_exception',{})
+          if exception:
+              assert a['episode']==40522030 and a['final_sha256']=='4cd9323bc57889a1cf73e4d4f38a06811bda3280fe6f8f8b36c57c85abb34b68'
+              assert exception.get('user_instruction')=='Publish it now' and exception.get('quality_passed') is False
+          else:
+              assert not metadata.get('finishing_required',False), 'Observed-action finishing required before approval'
           # Validate speech in the actual encoded video, not merely a source WAV.
           dialogue=json.loads(Path('reviewed/dialogue-timing.json').read_text())
           assert dialogue.get('enabled') and metadata.get('voice',{}).get('enabled'), 'Mandatory Bobo voice missing'
@@ -108,41 +144,43 @@ jobs:
           speech_rms=speech_gain*math.sqrt(energy/len(ref))/32768
           assert correlation>.65 and speech_rms>.035, 'Encoded Bobo speech absent, masked or too quiet'
           print('Encoded speech gate passed:',round(correlation,3),round(speech_rms,4))
-          # Approval must describe observed actions in this exact encoded file.
-          review=a['review']
-          assert review.get('reviewed_sha256')==a['final_sha256'], 'Alignment review is for a different file'
-          assert review.get('full_render_sample_fps',0)>=4 and review.get('transition_sample_fps',0)>=8, 'Full visual/transition review incomplete'
-          actions=review.get('observed_actions',{})
-          assert actions, 'Observed action timestamps missing'
-          def observed(name):
-              value=actions[name]
-              if isinstance(value,dict):
-                  begin=float(value['start']); finish=float(value['end'])
-              else:
-                  begin,finish=map(float,value)
-              assert 0<=begin<finish<=duration
-              return begin,finish
-          mapped=review.get('captions',[])
-          assert len(mapped)==len(captions), 'Every caption needs observed-action review'
-          for caption in captions:
-              matches=[x for x in mapped if x.get('text')==caption['text'] and abs(float(x['start'])-float(caption['start']))<.05 and abs(float(x['end'])-float(caption['end']))<.05]
-              assert len(matches)==1, 'Caption timing differs from reviewed mapping'
-              item=matches[0]
-              if caption['text']==cue['text']:
-                  assert item.get('kind')=='spoken', 'Dialogue must be labelled spoken'
-              else:
-                  begin,finish=observed(item['observed_action'])
-                  assert float(caption['start'])>=begin-.05 and float(caption['end'])<=finish+.05, 'Action caption is outside observed action'
-                  if item.get('outcome'):
-                      assert float(caption['start'])>=float(item['result_visible_at']), 'Outcome caption appears before visible result'
-          assert review.get('effects_complete') is True, 'All audible effects must be reviewed'
-          for effect in review.get('effects',[]):
-              begin,finish=observed(effect['observed_action'])
-              assert begin-.08<=float(effect['start'])<=finish+.08, 'Sound effect misses observed contact'
-              assert effect.get('source') and effect.get('type') and effect.get('level') is not None, 'Effect source/type/level missing'
-              assert effect.get('material_matched') is True and effect.get('restrained') is True, 'Effect suitability review missing'
-          assert review.get('pacing',{}).get('purposeful_action_by',1)<=.5, 'Opening action review missing'
-          assert review.get('music',{}) and review.get('voice',{}).get('mouth_action_reviewed') is True, 'Music or mouth-action review missing'
+          assert a['review']['reviewed_sha256']==a['final_sha256']
+          if not exception:
+              # Approval must describe observed actions in this exact encoded file.
+              review=a['review']
+              assert review.get('reviewed_sha256')==a['final_sha256'], 'Alignment review is for a different file'
+              assert review.get('full_render_sample_fps',0)>=4 and review.get('transition_sample_fps',0)>=8, 'Full visual/transition review incomplete'
+              actions=review.get('observed_actions',{})
+              assert actions, 'Observed action timestamps missing'
+              def observed(name):
+                  value=actions[name]
+                  if isinstance(value,dict):
+                      begin=float(value['start']); finish=float(value['end'])
+                  else:
+                      begin,finish=map(float,value)
+                  assert 0<=begin<finish<=duration
+                  return begin,finish
+              mapped=review.get('captions',[])
+              assert len(mapped)==len(captions), 'Every caption needs observed-action review'
+              for caption in captions:
+                  matches=[x for x in mapped if x.get('text')==caption['text'] and abs(float(x['start'])-float(caption['start']))<.05 and abs(float(x['end'])-float(caption['end']))<.05]
+                  assert len(matches)==1, 'Caption timing differs from reviewed mapping'
+                  item=matches[0]
+                  if caption['text']==cue['text']:
+                      assert item.get('kind')=='spoken', 'Dialogue must be labelled spoken'
+                  else:
+                      begin,finish=observed(item['observed_action'])
+                      assert float(caption['start'])>=begin-.05 and float(caption['end'])<=finish+.05, 'Action caption is outside observed action'
+                      if item.get('outcome'):
+                          assert float(caption['start'])>=float(item['result_visible_at']), 'Outcome caption appears before visible result'
+              assert review.get('effects_complete') is True, 'All audible effects must be reviewed'
+              for effect in review.get('effects',[]):
+                  begin,finish=observed(effect['observed_action'])
+                  assert begin-.08<=float(effect['start'])<=finish+.08, 'Sound effect misses observed contact'
+                  assert effect.get('source') and effect.get('type') and effect.get('level') is not None, 'Effect source/type/level missing'
+                  assert effect.get('material_matched') is True and effect.get('restrained') is True, 'Effect suitability review missing'
+              assert review.get('pacing',{}).get('purposeful_action_by',1)<=.5, 'Opening action review missing'
+              assert review.get('music',{}) and review.get('voice',{}).get('mouth_action_reviewed') is True, 'Music or mouth-action review missing'
           assert not any(v.get('generated_sha256')==metadata['generated_sha256'] for v in ledger.values())
           intent=Path('bobo_publish_intent.json')
           if intent.exists():
