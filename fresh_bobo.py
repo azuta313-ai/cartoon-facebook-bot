@@ -135,7 +135,9 @@ def scene_effects(seconds, variant, first_shot_duration=5.0625):
   [('snow',2.3,.4),('snow',split+.7,.3)],
   [('brush',2.2,.5),('brush',split+.2,.3)],
  ]
- for kind,start,length in plans[variant%8]:
+ observed_plan=OUT/'observed-effects.json'
+ selected=json.loads(observed_plan.read_text()) if observed_plan.exists() else plans[variant%8]
+ for kind,start,length in selected:
   t=np.arange(int(length*rate))/rate; noise=rng.normal(0,1,len(t))
   smooth=np.convolve(noise,np.ones(12)/12,mode='same')
   env=np.sin(np.pi*t/length)**2
@@ -207,8 +209,12 @@ def ensure_audible_music(video, variant, music_variant=None):
  return level
 
 def main():
+ from bobo_pipeline import approvals,next_episode
+ reserve=approvals()
  if Path('bobo_review_pending.json').exists():
-  print('A video is awaiting visual and audio review; generation and publication are paused.'); return
+  pending=json.loads(Path('bobo_review_pending.json').read_text())
+  if int(pending['episode']) not in reserve:
+   print('Unreviewed draft exists: repair/review this artifact before spending more quota.'); return
  token=os.getenv('HF_TOKEN','').strip()
  if not token: raise RuntimeError('HF_TOKEN is missing; a free Hugging Face account token is required.')
  now=datetime.now(ZoneInfo('Asia/Karachi'))
@@ -217,11 +223,13 @@ def main():
   pause=json.loads(quota_path.read_text())
   if now<datetime.fromisoformat(pause['retry_after']):
    print('Free generation quota unavailable until '+pause['retry_after']+'; no GPU request or Facebook upload attempted.'); return
- slot=int(os.getenv('EPISODE_SLOT',str(0 if now.hour<17 else 1)))
- episode=int(now.strftime('%Y%m%d'))*2+slot
- episode_key=f'long-v2-{episode}'
  ledger_path=Path('published_bobo.json')
  ledger=json.loads(ledger_path.read_text()) if ledger_path.exists() else {}
+ episode=next_episode(now,ledger,reserve)
+ if episode is None:
+  print('Four reviewed reserve entries ready; conserving free quota.'); return
+ slot=episode%2
+ episode_key=f'long-v2-{episode}'
  if episode_key in ledger:
   print('This episode was already published; skipping generation and upload.'); return
  recent=[v.get('scene_id') for v in list(ledger.values())[-3:]]
@@ -231,12 +239,25 @@ def main():
   if previous_review.get('status')=='rejected' and previous_review.get('episode')==episode:
    recent.extend(previous_review.get('rejected_scene_ids',[previous_review.get('scene_id')]))
  scene_id=(now.toordinal()*2+slot)%len(SCENES)
- while scene_id in recent: scene_id=(scene_id+1)%len(SCENES)
+ eligible=[n for n in (5,6,4,3,7,0,1,2) if n not in recent]
+ if not eligible:
+  print('All scenes exhausted for this episode; hold for repair rather than loop.'); return
+ scene_id=eligible[0]
  title,setting,prop,action,ending,captions,scene_tags=SCENES[scene_id]
- action,ending=ACTION_BEATS[scene_id]
+ simple=[
+  ('Bobo gently moves the existing bubble wand left and right and follows it with his eyes.', 'Bobo lowers the wand, then playfully tries to balance it in his hand.'),
+  ('Bobo pats sand in the existing bucket with his hand.', 'Bobo adjusts the bucket handle and gives it a playful little wobble without pouring or revealing anything.'),
+  ('Bobo holds the existing apple and turns it slowly in his hands.', 'Bobo lifts the apple, then lowers it and gives a playful shoulder wiggle. No rolling, catching or eating.'),
+  ('Bobo gently taps the existing wooden block with one finger.', 'Bobo moves his hand around the block and gives a little shoulder wiggle. No tower collapse or rescue.'),
+  ('Bobo makes one small foot tap in the existing shallow puddle.', 'Bobo makes another small foot tap then steps beside the puddle. No large splash.'),
+  ('Bobo immediately presses the existing toy button once and watches the existing lights.', 'Bobo points between the existing button and lights, then moves his hand away. No new objects.'),
+  ('Bobo gently pats the existing snowball with both hands.', 'Bobo turns the snowball in his hands then carefully lowers it beside himself.'),
+  ('Bobo moves his brush gently across the existing painting.', 'Bobo lifts the brush and examines its tip, then lowers it toward the palette. No new paint accident or reveal.'),
+ ]
+ action,ending=simple[scene_id]
  series=comedy_series(slot,scene_id,episode)
- action+=' '+series['direction']
- ending+=' End with an expressive reaction to the same gag; keep it active and visually understandable.'
+ series['direction']='One simple prop interaction; final joke and dialogue chosen after observing rendered action.'
+ series['voice_line']=['Look at that!','Let us try!','My apple!','Careful now!','A puddle!','What is this?','My snowball!','Time to paint!'][scene_id]
  scene_reference=Path('assets/scenes')/f'scene{scene_id}.jpg'
  if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
@@ -251,7 +272,7 @@ def main():
   shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Preserve clothing details exactly; no added shirt lettering. Silent physical comedy with closed-lip smiles throughout. Keep lips closed in every frame; show surprise using eyebrows, eyes and body gestures. No jaw flapping, no open-mouth laughing, no talking or lip-sync mouth motions. Lively normal-speed action begins immediately and continues through the final frame, with a quick reaction and playful moving celebration; no slow motion or long frozen pose. Smooth clear movements, fixed camera, no sudden scene changes. Complete in five seconds.')
   reference=OUT/('reference.png' if shot==0 else 'continuation.png')
   try:
-   result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake',duration_seconds=5,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
+   result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake, repeated talking, jaw flapping, open mouth laughter',duration_seconds=6,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
   except Exception as exc:
    message=str(exc)
    if 'quota' in message.lower():
@@ -268,7 +289,7 @@ def main():
   clip=OUT/f'shot{shot}.mp4'; shutil.copyfile(source,clip); clips.append(clip)
   shot_info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','json',str(clip)]))
   shot_durations.append(float(shot_info['format']['duration']))
-  if not 4.8<=float(shot_info['format']['duration'])<=5.5: raise RuntimeError('Invalid generated shot duration.')
+  if not 5.8<=float(shot_info['format']['duration'])<=6.5: raise RuntimeError('Invalid generated shot duration; no freeze padding allowed.')
   shot_raw=subprocess.check_output(['ffmpeg','-loglevel','error','-i',str(clip),'-vf','fps=1,scale=64:64,format=gray','-f','rawvideo','-'])
   sampled=np.frombuffer(shot_raw,dtype=np.uint8).reshape(-1,64,64).astype(float)
   if len(sampled)<4 or np.abs(np.diff(sampled,axis=0)).mean()<.5: raise RuntimeError('Static generated shot; skipping publication.')
@@ -277,7 +298,7 @@ def main():
  run(['ffmpeg','-loglevel','error','-y','-f','concat','-safe','0','-i',str(OUT/'shots.txt'),'-an','-c:v','libx264','-preset','medium','-crf','16',str(OUT/'generated.mp4')])
  info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=width,height','-of','json',str(OUT/'generated.mp4')]))
  duration=float(info['format']['duration'])
- if not 9.5<=duration<=11: raise RuntimeError('Generated video duration is invalid.')
+ if duration<11: raise RuntimeError('Insufficient active footage for eleven seconds; no freeze padding allowed.')
  # Reject static output using differences among four sampled frames.
  raw=subprocess.check_output(['ffmpeg','-loglevel','error','-i',str(OUT/'generated.mp4'),'-vf','fps=1,scale=64:64,format=gray','-f','rawvideo','-'])
  frames=np.frombuffer(raw,dtype=np.uint8).reshape(-1,64,64).astype(float)
@@ -293,8 +314,9 @@ def main():
   raise RuntimeError('Bobo voice is required for every video; holding silent draft.')
  mix_voice(OUT)
  font='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
- filters=['hqdn3d=1.0:0.8:1.5:1.2','fps=30','scale=720:1280:force_original_aspect_ratio=increase:flags=lanczos','crop=720:1280','tpad=stop_mode=clone:stop_duration=1.5']
- cues=caption_cues(captions,shot_durations[0])
+ filters=['hqdn3d=1.0:0.8:1.5:1.2','fps=30','scale=720:1280:force_original_aspect_ratio=increase:flags=lanczos','crop=720:1280']
+ # No invented action captions. Add only after observing source footage.
+ cues=[]
  if voice_record['enabled']:
   from bobo_voice import subtitle_cues
   cues=subtitle_cues(cues,voice_record)
@@ -309,6 +331,7 @@ def main():
  music_db=ensure_audible_music(OUT/'bobo_fresh.mp4',scene_id,music_variant=music_variant)
  metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':30,'effects':'original scene-specific effects; no bite sample','voice':voice_record,'voice_review_required':voice_record['enabled'],'caption_kind':'spoken subtitle plus separate action captions' if voice_record['enabled'] else 'action captions; no spoken dialogue','caption_review_required':True,'caption_timing':[{'text':t,'start':a,'end':z} for t,a,z in cues],'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
  metadata.update(music_variant=music_variant,music_style=MUSIC_STYLES[music_variant%8],music='original procedural arrangement '+str(music_variant),sound_design_version=3,pacing_review_required=True)
+ metadata.update(production_strategy='observe-repair-reserve-v1',finishing_required=True,planned_effects_unverified=True,reserve_target=4)
  hook,teaser,question=PROMOTION[scene_id]
  follow_line=series['follow_invitation']
  teaser=series['format']+' • '+series['name']+'\n'+teaser
@@ -337,5 +360,6 @@ def main():
   (OUT/'episode.json').write_text(json.dumps(metadata,indent=2))
   print('Facebook accepted new video:',result['id'])
 if __name__=='__main__': main()
+
 
 
