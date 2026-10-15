@@ -264,15 +264,16 @@ def main():
  from bobo_voice import prepare_voice,mix_voice
  voice_record=prepare_voice(OUT,scene_id,text=series['voice_line'])
  voice_end=voice_record['cues'][0]['end']
- prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: begin visible purposeful movement in the first half second; keep lively normal-speed movement throughout all five seconds, with a quick clear setup and no long pose or anticipatory pause. No slow motion. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. Bobo says the brief English reaction "'+series['voice_line']+'" near the start: a brief natural speaking mouth movement during seconds 0.35 to '+str(voice_end)+', then keep lips closed for all remaining frames. No repeated open-close jaw motions outside this measured speech window. Use expressive gestures for the remaining physical comedy. No prolonged talking. No cake, no kitchen, no extra characters, no text overlays. Complete the action within five seconds.')
+ prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: begin visible purposeful movement in the first half second; keep lively normal-speed movement throughout all four seconds, with a quick clear setup and no long pose or anticipatory pause. No slow motion. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. Bobo says the brief English reaction "'+series['voice_line']+'" near the start: a brief natural speaking mouth movement during seconds 0.35 to '+str(voice_end)+', then keep lips closed for all remaining frames. No repeated open-close jaw motions outside this measured speech window. Use expressive gestures for the remaining physical comedy. No prolonged talking. No cake, no kitchen, no extra characters, no text overlays. Complete the action within four seconds.')
  client=Client(SPACE, token=token, httpx_kwargs={'timeout':90})
- # Exactly two free-GPU requests per episode, with no paid fallback.
+ # Provider caps each request at five seconds. Three four-second shots supply
+ # active footage beyond eleven seconds without freeze padding or speed changes.
  clips=[]; shot_durations=[]
- for shot in range(2):
-  shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Preserve clothing details exactly; no added shirt lettering. Silent physical comedy with closed-lip smiles throughout. Keep lips closed in every frame; show surprise using eyebrows, eyes and body gestures. No jaw flapping, no open-mouth laughing, no talking or lip-sync mouth motions. Lively normal-speed action begins immediately and continues through the final frame, with a quick reaction and playful moving celebration; no slow motion or long frozen pose. Smooth clear movements, fixed camera, no sudden scene changes. Complete in five seconds.')
+ for shot in range(3):
+  shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Preserve clothing details exactly; no added shirt lettering. Silent physical comedy with closed-lip smiles throughout. Keep lips closed in every frame; show surprise using eyebrows, eyes and body gestures. No jaw flapping, no open-mouth laughing, no talking or lip-sync mouth motions. Lively normal-speed action begins immediately and continues through the final frame, with a quick reaction and playful moving celebration; no slow motion or long frozen pose. Smooth clear movements, fixed camera, no sudden scene changes. Complete in four seconds.')
   reference=OUT/('reference.png' if shot==0 else 'continuation.png')
   try:
-   result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake, repeated talking, jaw flapping, open mouth laughter',duration_seconds=6,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
+   result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake, repeated talking, jaw flapping, open mouth laughter',duration_seconds=4,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
   except Exception as exc:
    message=str(exc)
    if 'quota' in message.lower():
@@ -289,11 +290,11 @@ def main():
   clip=OUT/f'shot{shot}.mp4'; shutil.copyfile(source,clip); clips.append(clip)
   shot_info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','json',str(clip)]))
   shot_durations.append(float(shot_info['format']['duration']))
-  if not 5.8<=float(shot_info['format']['duration'])<=6.5: raise RuntimeError('Invalid generated shot duration; no freeze padding allowed.')
+  if not 3.8<=float(shot_info['format']['duration'])<=4.5: raise RuntimeError('Invalid generated shot duration; no freeze padding allowed.')
   shot_raw=subprocess.check_output(['ffmpeg','-loglevel','error','-i',str(clip),'-vf','fps=1,scale=64:64,format=gray','-f','rawvideo','-'])
   sampled=np.frombuffer(shot_raw,dtype=np.uint8).reshape(-1,64,64).astype(float)
   if len(sampled)<4 or np.abs(np.diff(sampled,axis=0)).mean()<.5: raise RuntimeError('Static generated shot; skipping publication.')
-  if shot==0: run(['ffmpeg','-loglevel','error','-y','-sseof','-0.1','-i',str(clip),'-frames:v','1',str(OUT/'continuation.png')])
+  if shot<2: run(['ffmpeg','-loglevel','error','-y','-sseof','-0.1','-i',str(clip),'-frames:v','1',str(OUT/'continuation.png')])
  (OUT/'shots.txt').write_text(''.join(f"file '{p.name}'\n" for p in clips))
  run(['ffmpeg','-loglevel','error','-y','-f','concat','-safe','0','-i',str(OUT/'shots.txt'),'-an','-c:v','libx264','-preset','medium','-crf','16',str(OUT/'generated.mp4')])
  info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=width,height','-of','json',str(OUT/'generated.mp4')]))
