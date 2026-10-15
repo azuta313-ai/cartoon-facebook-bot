@@ -15,7 +15,7 @@ def get(path, params):
         data=response.json()
         if not response.ok or 'error' in data:
             e=data.get('error',{})
-            return {'unavailable':True,'code':e.get('code'),'subcode':e.get('error_subcode'),'message':e.get('message','')[:500].replace(os.environ['FB_PAGE_ACCESS_TOKEN'],'[redacted]').replace(os.environ['FB_PAGE_ID'],'[page]'),'required_permissions':sorted(set(re.findall(r'\\b(?:read_insights|pages_[a-z_]+)\\b',e.get('message',''))))}
+            return {'unavailable':True,'code':e.get('code'),'subcode':e.get('error_subcode'),'message':e.get('message','')[:500].replace(os.environ['FB_PAGE_ACCESS_TOKEN'],'[redacted]').replace(os.environ['FB_PAGE_ID'],'[page]'),'required_permissions':sorted(set(re.findall(r'\b(?:read_insights|pages_[a-z_]+|instagram_[a-z_]+|business_management)\b',e.get('message',''))))}
         return data
     except (requests.RequestException,ValueError):
         return {'unavailable':True,'reason':'request_failed'}
@@ -83,10 +83,7 @@ for vid,meta in known.items():
         before=old.get(vid,{}).get('metrics',{}).get(key)
         if isinstance(value,(int,float)) and isinstance(before,(int,float)):
             row['changes_since_previous'][key]=value-before
-    avg=row['metrics'].get('post_video_avg_time_watched',row['metrics'].get('total_video_avg_time_watched'))
-    duration=row.get('duration_seconds')
-    if isinstance(avg,(int,float)) and isinstance(duration,(int,float)) and duration:
-        row['estimated_average_watch_fraction']=avg/1000/duration
+    row['watch_time_interpretation']={'unit':'milliseconds','average_includes_replays':True,'average_is_completion_rate':False,'exact_exit_timestamp':None}
     report['videos'].append(row)
 report['page_changes_since_previous']={}
 for key,value in report['page'].items():
@@ -95,6 +92,20 @@ for key,value in report['page'].items():
         report['page_changes_since_previous'][key]=value-before
 report['previous_collected_at']=(previous or {}).get('collected_at')
 report['analytics_available']=any(any(k in v['metrics'] for k in ['total_video_views','blue_reels_play_count','fb_reels_total_plays']) for v in report['videos'])
+experiment={
+    'recorded_at':now.isoformat(),
+    'evidence_snapshot':report['collected_at'],
+    'decision':'Retain existing experiment; no new creative variable added.',
+    'reason':'Observe-repair-reserve production and mandatory speech must first yield reviewed published episodes; historical replay/watch metrics cannot establish a voice effect.',
+    'strategy':'observe-repair-reserve-v1',
+    'primary_metrics':['blue_reels_play_count','fb_reels_total_plays','fb_reels_replay_count','post_video_view_time','post_video_retention_graph','followers_count'],
+    'comparison':'Match actual publication ages and duration; record time-of-day, story exposure and production differences; small samples are exploratory.',
+    'retention_mapping_verified':False,
+    'completion_available':any(isinstance(v['metrics'].get('post_video_complete_views_organic'),(int,float)) or isinstance(v['metrics'].get('total_video_complete_views'),(int,float)) for v in report['videos']),
+    'new_strategy_published_video_ids':[v['facebook_video_id'] for v in ledger.values() if v.get('production_strategy')=='observe-repair-reserve-v1' and v.get('facebook_video_id')],
+    'spend':0
+}
+(OUT/'experiment-status.json').write_text(json.dumps(experiment,indent=2))
 (OUT/'snapshot.json').write_text(json.dumps(report,indent=2))
 print('Videos checked:',len(report['videos']))
 print('View insights available:',report['analytics_available'])
