@@ -243,6 +243,12 @@ def main():
  if not eligible:
   print('All scenes exhausted for this episode; hold for repair rather than loop.'); return
  scene_id=eligible[0]
+ board_path=Path('bobo_storyboard_pilot.json')
+ board=json.loads(board_path.read_text()) if board_path.exists() else {}
+ if board.get('episode')==episode:
+  assert board.get('cost')==0 and len(board['shots'])==3
+  scene_id=int(board['scene_id'])
+ else: board={}
  title,setting,prop,action,ending,captions,scene_tags=SCENES[scene_id]
  simple=[
   ('Bobo gently moves the existing bubble wand left and right and follows it with his eyes.', 'Bobo lowers the wand, then playfully tries to balance it in his hand.'),
@@ -258,6 +264,10 @@ def main():
  series=comedy_series(slot,scene_id,episode)
  series['direction']='One simple prop interaction; final joke and dialogue chosen after observing rendered action.'
  series['voice_line']=['Look at that!','Let us try!','My apple!','Careful now!','A puddle!','What is this?','My snowball!','Time to paint!'][scene_id]
+ if board:
+  title=board['title']; series['voice_line']=board['voice_line']
+  action=board['shots'][0]['action']
+  (OUT/'storyboard.json').write_text(json.dumps(board,indent=2))
  scene_reference=Path('assets/scenes')/f'scene{scene_id}.jpg'
  if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
@@ -271,6 +281,8 @@ def main():
  clips=[]; shot_durations=[]
  for shot in range(3):
   shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Preserve clothing details exactly; no added shirt lettering. Silent physical comedy with closed-lip smiles throughout. Keep lips closed in every frame; show surprise using eyebrows, eyes and body gestures. No jaw flapping, no open-mouth laughing, no talking or lip-sync mouth motions. Lively normal-speed action begins immediately and continues through the final frame, with a quick reaction and playful moving celebration; no slow motion or long frozen pose. Smooth clear movements, fixed camera, no sudden scene changes. Complete in four seconds.')
+  if board:
+   shot_prompt=('Original 3D Bobo family comedy. Preserve the supplied Bobo, red shirt, room and existing props. '+board['shots'][shot]['action']+' Required ending pose: '+board['shots'][shot]['end_pose']+' Fixed camera. Normal-speed purposeful action starts immediately. No added objects, no melting, no text, no prolonged pose. '+('Only one brief speaking window from 0.35 to '+str(voice_end)+' seconds; lips closed afterward.' if shot==0 else 'Lips closed throughout; express emotion with eyes, arms and shoulders. No talking or open-mouth laughter.'))
   reference=OUT/('reference.png' if shot==0 else 'continuation.png')
   try:
    result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake, repeated talking, jaw flapping, open mouth laughter',duration_seconds=4,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
@@ -338,6 +350,10 @@ def main():
  teaser=series['format']+' • '+series['name']+'\n'+teaser
  metadata['comedy_series']=series
  social_caption=f"{hook}\n\n{teaser}\n{question}\n{follow_line}\n\n"+' '.join('#'+tag for tag in ['Bobo','3DAnimation']+scene_tags+[['FunnyCartoon'],['CartoonComedy'],['AnimatedShorts'],['FunnyAnimation']][scene_id%4])
+ if board:
+  social_caption=board['social_caption']
+  metadata['storyboard_version']=board['version']
+  metadata['planned_shot_evidence']=[s['required_evidence'] for s in board['shots']]
  metadata['social_caption']=social_caption
  metadata['growth_experiment']={'version':'tiny-comedy-series-v2','evidence_snapshot':'2026-10-13T23:43:42+05:00','content_change':'Morning mischief and evening surprise formats with rotating series identity and short scene-specific reaction dialogue; evaluate at comparable ages without causal claims','promotion_change':'one concise follow invitation after the scene-specific question','primary_metrics':['post_video_retention_graph','blue_reels_play_count','fb_reels_total_plays','followers_count'],'cost':0}
  (OUT/'facebook-caption.txt').write_text(social_caption)
