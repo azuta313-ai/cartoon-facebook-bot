@@ -51,7 +51,15 @@ jobs:
               print('Account-type probe unavailable; code:',details.get('error',{}).get('code'))
           response=s.get(base+account['id']+'/stories',params={'fields':'id','limit':1},timeout=30)
           print('Story read access verified:',response.ok and 'data' in response.json())
-          print('Publishing script compiled; connection checked; no content posted. End-to-end Story acceptance requires an approved artifact.')
+          response=s.post(base+account['id']+'/media',data={'media_type':'STORIES','upload_type':'resumable'},timeout=30)
+          probe=response.json()
+          supported=response.ok and bool(probe.get('id')) and bool(probe.get('uri') or probe.get('upload_uri'))
+          print('Unpublished Story upload-session creation verified:',supported)
+          if not supported:
+              err=probe.get('error',{})
+              print('Story eligibility error:',err.get('code'),err.get('error_subcode'),str(err.get('message',''))[:240])
+              raise SystemExit(1)
+          print('No binary uploaded and no media_publish called. Public Story acceptance awaits a reviewed artifact.')
           PY
 
 # Verify renewed Page token after user authorization, 2026-10-15.
