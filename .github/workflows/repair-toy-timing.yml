@@ -1,0 +1,34 @@
+name: Repair Toy Timing Without Generation
+on:
+  push:
+    paths: ['.github/workflows/repair-toy-timing.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: fresh-bobo-video
+          path: source
+          run-id: 38783061265
+          github-token: ${{ github.token }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          python repair_toy_timing.py source
+          ffmpeg -v error -i source/bobo_code_repaired.mp4 -f null -
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bobo-code-repair-held
+          path: |
+            source/bobo_code_repaired.mp4
+            source/code-repair-review.json
+          retention-days: 30
