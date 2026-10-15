@@ -41,9 +41,6 @@ def main():
         raise RuntimeError('Connected Instagram account is not visible to Page token; authorize instagram_basic and instagram_content_publish.')
     info=request('GET',account,params={'fields':'username'})
     assert info.get('username')=='bobogigglegrove', 'Connected Instagram username differs; refusing wrong-account upload'
-    if story:
-        account_info=request('GET',account,params={'fields':'account_type'})
-        assert account_info.get('account_type')=='BUSINESS', 'Instagram Story API requires a Business account'
     def save():
         ledger_path.write_text(json.dumps(ledger,indent=2))
         subprocess.run(['git','add','published_bobo.json'],check=True)
