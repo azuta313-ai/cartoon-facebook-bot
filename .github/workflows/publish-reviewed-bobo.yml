@@ -49,6 +49,13 @@ jobs:
           pip install requests
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg
+      - uses: actions/download-artifact@v4
+        if: steps.approval.outputs.ready == 'true' && steps.approval.outputs.run_id == '38783061265'
+        with:
+          name: bobo-code-repair-held
+          path: repaired_extra
+          run-id: 38795391196
+          github-token: ${{ github.token }}
       - name: Download explicitly requested repaired file
         if: steps.approval.outputs.ready == 'true'
         run: |
@@ -59,14 +66,7 @@ jobs:
           if not a.get('publication_exception'): raise SystemExit(0)
           assert a['episode']==40522030 and a['final_sha256']=='4cd9323bc57889a1cf73e4d4f38a06811bda3280fe6f8f8b36c57c85abb34b68'
           assert a['repair_artifact_run_id']==38795391196
-          base='https://api.github.com/repos/'+os.environ['GITHUB_REPOSITORY']
-          headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'}
-          def get(url):
-              with urllib.request.urlopen(urllib.request.Request(url,headers=headers),timeout=60) as response: return response.read()
-          artifacts=json.loads(get(base+'/actions/runs/38795391196/artifacts'))['artifacts']
-          artifact=next(x for x in artifacts if x['name']=='bobo-code-repair-held' and not x['expired'])
-          with zipfile.ZipFile(io.BytesIO(get(artifact['archive_download_url']))) as archive:
-              Path('reviewed/bobo_fresh.mp4').write_bytes(archive.read('bobo_code_repaired.mp4'))
+          shutil.copyfile('repaired_extra/bobo_code_repaired.mp4','reviewed/bobo_fresh.mp4')
           out=Path('reviewed')
           subprocess.run(['ffmpeg','-v','error','-y','-i',str(out/'voice-track.wav'),'-af','adelay=300|300,atrim=duration=11','-c:a','pcm_s16le',str(out/'shifted.wav')],check=True)
           (out/'shifted.wav').replace(out/'voice-track.wav')
