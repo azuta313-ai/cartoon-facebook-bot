@@ -95,3 +95,5 @@ jobs:
               assert b.ensure_audible_music(target,0)>-24
           print('Validated: mandatory local Bobo voice, exact spoken subtitle timing, three shots, 11-second export, distinct music, 720x1280, 30 FPS and AAC.')
           PY
+
+# Recheck storyboard pilot caption/setting consistency.
