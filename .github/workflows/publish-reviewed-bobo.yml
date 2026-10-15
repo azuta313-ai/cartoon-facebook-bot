@@ -4,6 +4,9 @@ on:
     branches: [main]
     paths: ['bobo_review_approval.json']
   workflow_dispatch:
+  schedule:
+    - cron: '0,20,40 9,17 * * *'
+      timezone: Asia/Karachi
 permissions:
   contents: write
   actions: read
@@ -19,29 +22,35 @@ jobs:
           ref: main
       - id: approval
         run: |
-          python - <<'PY'
-          import json,os
-          from pathlib import Path
-          a=json.loads(Path('bobo_review_approval.json').read_text())
-          assert a['status']=='approved'
-          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
-              f.write('run_id='+str(int(a['artifact_run_id']))+'\n')
-          PY
+          python bobo_pipeline.py
+          git config user.name 'Bobo automation'
+          git config user.email 'bobo-bot@users.noreply.github.com'
+          for directory in bobo_reserve bobo_pending; do
+            if [ -d "$directory" ]; then git add "$directory"; fi
+          done
+          if ! git diff --cached --quiet; then
+            git commit -m 'Stage exact reviewed Bobo reserve and preserve pending records'
+            git push origin HEAD:main
+          fi
       - uses: actions/download-artifact@v4
+        if: steps.approval.outputs.ready == 'true'
         with:
           name: fresh-bobo-video
           path: reviewed
           run-id: ${{ steps.approval.outputs.run_id }}
           github-token: ${{ github.token }}
       - uses: actions/setup-python@v5
+        if: steps.approval.outputs.ready == 'true'
         with:
           python-version: '3.12'
       - name: Install publication tools
+        if: steps.approval.outputs.ready == 'true'
         run: |
           pip install requests
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg
       - name: Publish exact approved file
+        if: steps.approval.outputs.ready == 'true'
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
@@ -57,7 +66,9 @@ jobs:
           if key in ledger:
               print('Reviewed episode already published; no duplicate upload.')
               raise SystemExit(0)
-          pending=json.loads(Path('bobo_review_pending.json').read_text())
+          pending_path=Path('bobo_pending')/(str(a['episode'])+'.json')
+          if not pending_path.exists(): pending_path=Path('bobo_review_pending.json')
+          pending=json.loads(pending_path.read_text())
           assert pending['episode']==a['episode'] and pending['artifact_run_id']==str(a['artifact_run_id'])
           video=Path('reviewed/bobo_fresh.mp4')
           assert hashlib.sha256(video.read_bytes()).hexdigest()==a['final_sha256']
@@ -69,6 +80,7 @@ jobs:
               raise RuntimeError(f'Reviewed video duration {duration:.3f}s is outside the required 11-second target.')
           metadata=json.loads(Path('reviewed/episode.json').read_text())
           assert metadata['episode']==a['episode']
+          assert not metadata.get('finishing_required',False), 'Observed-action finishing required before approval'
           # Validate speech in the actual encoded video, not merely a source WAV.
           dialogue=json.loads(Path('reviewed/dialogue-timing.json').read_text())
           assert dialogue.get('enabled') and metadata.get('voice',{}).get('enabled'), 'Mandatory Bobo voice missing'
@@ -154,18 +166,26 @@ jobs:
               subprocess.run(['git','commit','-m','Record rejected reviewed upload'],check=True)
               subprocess.run(['git','push','origin','HEAD:main'],check=True)
               raise RuntimeError('Facebook rejected reviewed upload; error code '+str(code))
-          metadata.update(facebook_video_id=result['id'],final_sha256=a['final_sha256'],review=a)
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          metadata.update(facebook_video_id=result['id'],final_sha256=a['final_sha256'],review=a,published_at=datetime.now(ZoneInfo('Asia/Karachi')).isoformat())
           ledger[key]=metadata
           ledger_path.write_text(json.dumps(ledger,indent=2))
           intent.write_text(json.dumps({'episode':a['episode'],'status':'accepted','facebook_video_id':result['id']},indent=2))
-          Path('bobo_review_pending.json').unlink()
-          subprocess.run(['git','add','published_bobo.json','bobo_publish_intent.json','bobo_review_pending.json'],check=True)
+          pending_path.unlink()
+          current_pending=Path('bobo_review_pending.json')
+          if current_pending.exists() and json.loads(current_pending.read_text()).get('episode')==a['episode']:
+              current_pending.unlink()
+          subprocess.run(['git','add','published_bobo.json','bobo_publish_intent.json'],check=True)
+          tracked=subprocess.check_output(['git','ls-files','bobo_pending/','bobo_review_pending.json'],text=True).splitlines()
+          if tracked: subprocess.run(['git','add','-u','--']+tracked,check=True)
           subprocess.run(['git','commit','-m','Record reviewed Bobo publication and release generation gate'],check=True)
           subprocess.run(['git','push','origin','HEAD:main'],check=True)
           print('Facebook accepted reviewed video:',result['id'])
           PY
 
       - name: Publish exact approved video to Instagram
+        if: steps.approval.outputs.ready == 'true'
         continue-on-error: true
         timeout-minutes: 7
         env:
@@ -173,6 +193,7 @@ jobs:
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
         run: python publish_instagram_reviewed.py
       - name: Publish exact approved video as Instagram Story
+        if: steps.approval.outputs.ready == 'true'
         continue-on-error: true
         timeout-minutes: 7
         env:
@@ -181,6 +202,7 @@ jobs:
           INSTAGRAM_MEDIA_TYPE: STORIES
         run: python publish_instagram_reviewed.py
       - name: Share approved Bobo video as a Story
+        if: steps.approval.outputs.ready == 'true'
         continue-on-error: true
         timeout-minutes: 5
         env:
@@ -255,3 +277,4 @@ jobs:
               save()
               raise
           PY
+
