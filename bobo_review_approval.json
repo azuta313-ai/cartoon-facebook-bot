@@ -1,60 +1,128 @@
 {
   "status": "rejected",
   "episode": 40522029,
-  "scene_id": 1,
+  "scene_id": 2,
   "rejected_scene_ids": [
     7,
     0,
-    1
+    1,
+    2
   ],
-  "artifact_run_id": "38605210336",
-  "final_sha256": "d8cb028e38616acff7c38c59fec7dee7838e22d0ecc19ebdc490189cc8885c0d",
+  "artifact_run_id": "38613382122",
+  "final_sha256": "2382a05f5d9ba76a0bf4b6417579be4e736ea59a61fc235ed7efa924cb6c74ce",
   "previous_rejections": [
     {
       "status": "rejected",
       "episode": 40522029,
-      "scene_id": 0,
+      "scene_id": 1,
       "rejected_scene_ids": [
         7,
-        0
+        0,
+        1
       ],
-      "artifact_run_id": "38600131123",
-      "final_sha256": "2748a081305c3faf6b506974f0019db55ffcbc1e573c9b12ed838d4da0539857",
+      "artifact_run_id": "38605210336",
+      "final_sha256": "d8cb028e38616acff7c38c59fec7dee7838e22d0ecc19ebdc490189cc8885c0d",
       "previous_rejections": [
         {
           "status": "rejected",
           "episode": 40522029,
-          "artifact_run_id": "38566402739",
-          "scene_id": 7,
-          "final_sha256": "8df2641150248c05c000be8770663f7583bf884b5b6be064969a0c5fd1e7efc7",
+          "scene_id": 0,
+          "rejected_scene_ids": [
+            7,
+            0
+          ],
+          "artifact_run_id": "38600131123",
+          "final_sha256": "2748a081305c3faf6b506974f0019db55ffcbc1e573c9b12ed838d4da0539857",
+          "previous_rejections": [
+            {
+              "status": "rejected",
+              "episode": 40522029,
+              "artifact_run_id": "38566402739",
+              "scene_id": 7,
+              "final_sha256": "8df2641150248c05c000be8770663f7583bf884b5b6be064969a0c5fd1e7efc7",
+              "review": {
+                "full_render_sample_fps": 4,
+                "transition_sample_fps": 8,
+                "observations": {
+                  "0-1.125": "Brush initially contacts canvas then lowers; mouth mostly closed while voice starts.",
+                  "1.25-5": "Repeated open/close speech-like mouth animation without dialogue after 1.5869.",
+                  "5-9.75": "Repeated speech-like mouth animation while gesturing; no paint-on-hand mishap visible.",
+                  "10-11": "Closing pose with minimal activity."
+                },
+                "caption_defects": [
+                  "Paint everywhere! at 2-5.0625 unsupported by actual action"
+                ],
+                "effects": "Brush effects planned at 2.2 and about 5.26 do not match visible canvas contact; cannot approve.",
+                "voice": {
+                  "text": "That is my masterpiece!",
+                  "start": 0.35,
+                  "end": 1.5869,
+                  "encoded_correlation": 0.99077,
+                  "estimated_speech_rms": 0.1304,
+                  "track_present": true,
+                  "listening_verified": false
+                },
+                "music": {
+                  "variant": 40,
+                  "style": "soft marimba bounce"
+                },
+                "duration": 11,
+                "rejection_reason": "Repeated unvoiced speech-like mouth animation, unsupported action caption, contact effects not aligned and weak physical-comedy payoff. Caption/audio-only repair cannot fix the visual mouth animation throughout eleven seconds.",
+                "cost": 0
+              }
+            }
+          ],
           "review": {
-            "full_render_sample_fps": 4,
+            "full_render_sample_fps": 8,
             "transition_sample_fps": 8,
-            "observations": {
-              "0-1.125": "Brush initially contacts canvas then lowers; mouth mostly closed while voice starts.",
-              "1.25-5": "Repeated open/close speech-like mouth animation without dialogue after 1.5869.",
-              "5-9.75": "Repeated speech-like mouth animation while gesturing; no paint-on-hand mishap visible.",
-              "10-11": "Closing pose with minimal activity."
+            "observed_actions": {
+              "bubble_visible": [
+                0,
+                7.25
+              ],
+              "jump": [
+                6.75,
+                7.5
+              ],
+              "landing": [
+                7.5,
+                8
+              ],
+              "reaction": [
+                8,
+                9.75
+              ],
+              "closing_hold": [
+                10,
+                11
+              ]
             },
-            "caption_defects": [
-              "Paint everywhere! at 2-5.0625 unsupported by actual action"
+            "captions": [
+              {
+                "text": "Where did it go?",
+                "start": 0.35,
+                "end": 1.1686,
+                "defect": "Bubble remains visible; spoken reaction semantically premature"
+              },
+              {
+                "text": "POP!",
+                "start": 5.0625,
+                "end": 11,
+                "defect": "Bubble remains clearly visible through roughly 7.25; not a verified pop at planned boundary"
+              }
             ],
-            "effects": "Brush effects planned at 2.2 and about 5.26 do not match visible canvas contact; cannot approve.",
             "voice": {
-              "text": "That is my masterpiece!",
-              "start": 0.35,
-              "end": 1.5869,
-              "encoded_correlation": 0.99077,
-              "estimated_speech_rms": 0.1304,
-              "track_present": true,
+              "encoded_correlation": 0.99029,
+              "estimated_speech_rms": 0.16667,
               "listening_verified": false
             },
             "music": {
-              "variant": 40,
-              "style": "soft marimba bounce"
+              "variant": 33,
+              "style": "warm plucked strings"
             },
-            "duration": 11,
-            "rejection_reason": "Repeated unvoiced speech-like mouth animation, unsupported action caption, contact effects not aligned and weak physical-comedy payoff. Caption/audio-only repair cannot fix the visual mouth animation throughout eleven seconds.",
+            "effects": "Planned pop near 5.31 precedes bubble disappearance; cannot approve source/timestamp mapping.",
+            "technical": "11.000 seconds; exact final SHA recorded",
+            "rejection_reason": "Unvoiced speech-like mouth motion repeats after dialogue; premature spoken reaction and outcome caption; long closing hold. Cannot repair all visual defects with caption/audio-only changes while preserving useful eleven seconds.",
             "cost": 0
           }
         }
@@ -63,53 +131,42 @@
         "full_render_sample_fps": 8,
         "transition_sample_fps": 8,
         "observed_actions": {
-          "bubble_visible": [
-            0,
-            7.25
+          "bucket_handling": [
+            0.375,
+            2.25
           ],
-          "jump": [
-            6.75,
+          "palm_gestures": [
+            2.5,
+            3.5
+          ],
+          "bucket_lift_turn": [
+            4,
             7.5
           ],
-          "landing": [
-            7.5,
-            8
-          ],
-          "reaction": [
-            8,
-            9.75
+          "thumbs_up": [
+            7.75,
+            10
           ],
           "closing_hold": [
             10,
             11
           ]
         },
-        "captions": [
-          {
-            "text": "Where did it go?",
-            "start": 0.35,
-            "end": 1.1686,
-            "defect": "Bubble remains visible; spoken reaction semantically premature"
-          },
-          {
-            "text": "POP!",
-            "start": 5.0625,
-            "end": 11,
-            "defect": "Bubble remains clearly visible through roughly 7.25; not a verified pop at planned boundary"
-          }
-        ],
         "voice": {
-          "encoded_correlation": 0.99029,
-          "estimated_speech_rms": 0.16667,
-          "listening_verified": false
+          "text": "A tiny surprise!",
+          "start": 0.35,
+          "end": 1.4985,
+          "encoded_correlation": 0.99023,
+          "listening_verified": false,
+          "defect": "Speech plays over closed-mouth downward bucket-handling pose"
         },
+        "captions": "Tiny but mighty! begins 5.0625 before any clear new sandcastle reveal; pre-existing sandcastle is already visible from the first frame.",
+        "effects": "Sand sound near 2.4 occurs after visible packing ended; planned reveal effect lacks confirmed corresponding reveal.",
         "music": {
-          "variant": 33,
-          "style": "warm plucked strings"
+          "variant": 35,
+          "style": "muted piano shuffle"
         },
-        "effects": "Planned pop near 5.31 precedes bubble disappearance; cannot approve source/timestamp mapping.",
-        "technical": "11.000 seconds; exact final SHA recorded",
-        "rejection_reason": "Unvoiced speech-like mouth motion repeats after dialogue; premature spoken reaction and outcome caption; long closing hold. Cannot repair all visual defects with caption/audio-only changes while preserving useful eleven seconds.",
+        "rejection_reason": "Missing speaking mouth action during actual line; repeated unvoiced jaw movement later; absent reveal and late closing hold. Caption/audio-only repair cannot satisfy all visual requirements.",
         "cost": 0
       }
     }
@@ -118,42 +175,26 @@
     "full_render_sample_fps": 8,
     "transition_sample_fps": 8,
     "observed_actions": {
-      "bucket_handling": [
-        0.375,
-        2.25
+      "apple_escapes": [
+        0.25,
+        1
       ],
-      "palm_gestures": [
-        2.5,
-        3.5
+      "actual_catch": [
+        1,
+        1.375
       ],
-      "bucket_lift_turn": [
-        4,
-        7.5
-      ],
-      "thumbs_up": [
-        7.75,
-        10
-      ],
-      "closing_hold": [
-        10,
+      "apple_held": [
+        1.375,
         11
       ]
     },
-    "voice": {
-      "text": "A tiny surprise!",
-      "start": 0.35,
-      "end": 1.4985,
-      "encoded_correlation": 0.99023,
-      "listening_verified": false,
-      "defect": "Speech plays over closed-mouth downward bucket-handling pose"
-    },
-    "captions": "Tiny but mighty! begins 5.0625 before any clear new sandcastle reveal; pre-existing sandcastle is already visible from the first frame.",
-    "effects": "Sand sound near 2.4 occurs after visible packing ended; planned reveal effect lacks confirmed corresponding reveal.",
-    "music": {
-      "variant": 35,
-      "style": "muted piano shuffle"
-    },
-    "rejection_reason": "Missing speaking mouth action during actual line; repeated unvoiced jaw movement later; absent reveal and late closing hold. Caption/audio-only repair cannot satisfy all visual requirements.",
+    "defects": [
+      "Snack rescued! is spoken at .35-1.2616 before the catch completes",
+      "Come back! remains 2-5.0625 while apple is already held",
+      "Repeated unvoiced open-close mouth motion after dialogue, including 2-3.5, 4.5-5.75 and 7.25-10",
+      "Long static open-mouth final pose; cannot fix by shortening below eleven seconds"
+    ],
+    "decision": "Hold; no publication approval. Caption-only correction cannot resolve repeated visual mouth mismatch.",
     "cost": 0
   }
 }
