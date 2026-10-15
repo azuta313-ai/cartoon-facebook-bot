@@ -1,0 +1,17 @@
+name: Test Bobo Production Pipeline
+on:
+  push:
+    paths: ['bobo_pipeline.py', 'test_bobo_pipeline.py', 'finish_bobo_observed.py', '.github/workflows/test-bobo-pipeline.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m py_compile fresh_bobo.py bobo_pipeline.py finish_bobo_observed.py
+      - run: python -m unittest -v test_bobo_pipeline
