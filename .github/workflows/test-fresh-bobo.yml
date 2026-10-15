@@ -24,7 +24,7 @@ jobs:
           (cd voice_models && python -m piper.download_voices en_US-ljspeech-medium)
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg fonts-dejavu-core
-      - name: Check compilation, two-shot assembly, sound variants and final export
+      - name: Check compilation, three-shot assembly, sound variants and final export
         env:
           HF_TOKEN: offline-test
           PUBLISH_FACEBOOK: 'false'
@@ -39,13 +39,15 @@ jobs:
               calls=0
               def __init__(self,*args,**kwargs): pass
               def predict(self,**kwargs):
-                  assert kwargs['duration_seconds']==5
+                  assert kwargs['duration_seconds']==4
                   assert kwargs['steps']==4
                   path=Path(f'offline_source{self.calls}.mp4')
-                  subprocess.run(['ffmpeg','-v','error','-y','-f','lavfi','-i','testsrc2=size=256x448:rate=16','-t','5','-c:v','libx264','-pix_fmt','yuv420p',str(path)],check=True)
+                  subprocess.run(['ffmpeg','-v','error','-y','-f','lavfi','-i','testsrc2=size=256x448:rate=16','-t',str(kwargs['duration_seconds']),'-c:v','libx264','-pix_fmt','yuv420p',str(path)],check=True)
                   self.calls+=1
                   return str(path), kwargs['seed']
           b.Client=OfflineGenerator
+          import bobo_pipeline
+          bobo_pipeline.approvals=lambda: {}
           Path('bobo_quota.json').unlink(missing_ok=True)
           Path('bobo_review_pending.json').unlink(missing_ok=True)
           Path('published_bobo.json').write_text('{}')
@@ -53,6 +55,11 @@ jobs:
           metadata=json.loads((b.OUT/'episode.json').read_text())
           cues=metadata['caption_timing']
           assert metadata['voice']['enabled'] is True
+          assert metadata['finishing_required'] is True
+          assert len(cues)==1, 'Only exact speech subtitle before observed finishing'
+          assert (b.OUT/'shot2.mp4').is_file()
+          source_info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','json',str(b.OUT/'generated.mp4')]))
+          assert float(source_info['format']['duration'])>=11, 'No frozen padding'
           dialogue=json.loads((b.OUT/'dialogue-timing.json').read_text())
           spoken=dialogue['cues'][0]
           assert cues[0]['text']==spoken['text']
@@ -86,5 +93,5 @@ jobs:
               subprocess.run(args+[str(target)],check=True)
               assert b.music_level(target)<-30
               assert b.ensure_audible_music(target,0)>-24
-          print('Validated: mandatory local Bobo voice, exact spoken subtitle timing, two shots, 11-second export, distinct music, 720x1280, 30 FPS and AAC.')
+          print('Validated: mandatory local Bobo voice, exact spoken subtitle timing, three shots, 11-second export, distinct music, 720x1280, 30 FPS and AAC.')
           PY
