@@ -1402,10 +1402,12 @@
     },
     "story": {
       "date": "2026-10-16",
-      "status": "upload_started",
+      "status": "accepted",
       "source_sha256": "4cd9323bc57889a1cf73e4d4f38a06811bda3280fe6f8f8b36c57c85abb34b68",
       "strategy": "One reviewed, captioned, voiced mini-adventure per slot; no extra generation; test Story exposure and follower growth without attributing causation.",
-      "video_id": "970929786059534"
+      "video_id": "970929786059534",
+      "post_id": "1514505690484789",
+      "accepted_at": "2026-10-16T00:49:01.022319+05:00"
     }
   }
 }
