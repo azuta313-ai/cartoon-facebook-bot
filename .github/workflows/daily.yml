@@ -77,3 +77,5 @@ jobs:
           retention-days: 30
 
 # Resume morning generation after deliberate stale-draft rejection, 2026-10-15.
+
+# Retry after saved free-quota cooldown, 2026-10-15 21:45 PK.
