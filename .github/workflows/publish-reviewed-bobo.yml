@@ -172,6 +172,14 @@ jobs:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
         run: python publish_instagram_reviewed.py
+      - name: Publish exact approved video as Instagram Story
+        continue-on-error: true
+        timeout-minutes: 7
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          INSTAGRAM_MEDIA_TYPE: STORIES
+        run: python publish_instagram_reviewed.py
       - name: Share approved Bobo video as a Story
         continue-on-error: true
         timeout-minutes: 5
