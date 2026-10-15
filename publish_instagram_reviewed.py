@@ -47,7 +47,7 @@ def main():
         if subprocess.run(['git','diff','--cached','--quiet']).returncode==0:
             return
         subprocess.run(['git','commit','-m','Record exact reviewed Bobo Instagram status'],check=True)
-        subprocess.run(['git','pull','--rebase','origin','main'],check=True)
+        subprocess.run(['git','pull','--rebase','--autostash','origin','main'],check=True)
         subprocess.run(['git','push','origin','HEAD:main'],check=True)
     record[kind]={'status':'attempt_started','source_sha256':a['final_sha256'],'date':today}
     save()
