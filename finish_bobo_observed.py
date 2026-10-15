@@ -50,7 +50,12 @@ def finish(source, plan, output):
         text=output/f'finish-caption-{index}.txt'; text.write_text(caption['text'])
         filters.append(f"drawtext=fontfile={font}:textfile={text}:fontsize=34:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y=1160:enable='gte(t,{caption['start']})*lt(t,{caption['end']})'")
     subprocess.run(['ffmpeg','-v','error','-y','-i',str(raw),'-i',str(output/'audio.wav'),'-vf',','.join(filters),'-map','0:v:0','-map','1:a:0','-af','loudnorm=I=-16:TP=-1.5:LRA=7','-c:v','libx264','-crf','16','-pix_fmt','yuv420p','-c:a','aac','-b:a','192k','-t','11','-movflags','+faststart',str(output/'bobo_fresh.mp4')],check=True)
-    metadata.update(voice=voice,caption_timing=captions,social_caption=plan['social_caption'],finishing_required=False,review_required=True,finishing_source_sha256=plan['source_sha256'])
+    metadata.update(voice=voice,caption_timing=captions,social_caption=plan['social_caption'],finishing_required=False,planned_effects_unverified=False,observed_effects=plan['effects'],review_required=True,finishing_source_sha256=plan['source_sha256'])
+    def stamp(value):
+        milliseconds=round(float(value)*1000)
+        return f"00:00:{milliseconds//1000:02d},{milliseconds%1000:03d}"
+    (output/'captions.srt').write_text(''.join(str(i+1)+'\n'+stamp(x['start'])+' --> '+stamp(x['end'])+'\n'+x['text']+'\n\n' for i,x in enumerate(captions)))
+    (output/'facebook-caption.txt').write_text(plan['social_caption'])
     (output/'episode.json').write_text(json.dumps(metadata,indent=2))
     (output/'captions-timing.json').write_text(json.dumps(captions,indent=2))
     (output/'observed-finishing-plan.json').write_text(json.dumps(plan,indent=2))
