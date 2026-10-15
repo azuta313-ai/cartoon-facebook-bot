@@ -519,5 +519,6 @@
         }
       }
     }
-  }
+  },
+  "publication_attempt_note": "Retry artifact retrieval only; previous attempt stopped before any platform upload."
 }
