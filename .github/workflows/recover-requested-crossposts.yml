@@ -1,0 +1,171 @@
+name: Finish Requested Bobo Crossposts
+on:
+  push:
+    paths: ['.github/workflows/recover-requested-crossposts.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: free-bobo-generation
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - id: approval
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          record=json.loads(Path('published_bobo.json').read_text())['long-v2-40522030']
+          assert record['facebook_video_id']=='1642016747285887'
+          assert record['final_sha256']=='4cd9323bc57889a1cf73e4d4f38a06811bda3280fe6f8f8b36c57c85abb34b68'
+          Path('bobo_review_approval.json').write_text(json.dumps(record['review']))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('ready=true\nrun_id=38783061265\n')
+          PY
+      - uses: actions/download-artifact@v4
+        if: steps.approval.outputs.ready == 'true'
+        with:
+          name: fresh-bobo-video
+          path: reviewed
+          run-id: ${{ steps.approval.outputs.run_id }}
+          github-token: ${{ github.token }}
+      - uses: actions/setup-python@v5
+        if: steps.approval.outputs.ready == 'true'
+        with:
+          python-version: '3.12'
+      - name: Install publication tools
+        if: steps.approval.outputs.ready == 'true'
+        run: |
+          pip install requests
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+      - uses: actions/download-artifact@v4
+        if: steps.approval.outputs.ready == 'true' && steps.approval.outputs.run_id == '38783061265'
+        with:
+          name: bobo-code-repair-held
+          path: repaired_extra
+          run-id: 38795391196
+          github-token: ${{ github.token }}
+      - name: Download explicitly requested repaired file
+        if: steps.approval.outputs.ready == 'true'
+        run: |
+          python - <<'PY'
+          import json,os,urllib.request,zipfile,io,shutil,subprocess
+          from pathlib import Path
+          a=json.loads(Path('bobo_review_approval.json').read_text())
+          if not a.get('publication_exception'): raise SystemExit(0)
+          assert a['episode']==40522030 and a['final_sha256']=='4cd9323bc57889a1cf73e4d4f38a06811bda3280fe6f8f8b36c57c85abb34b68'
+          assert a['repair_artifact_run_id']==38795391196
+          shutil.copyfile('repaired_extra/bobo_code_repaired.mp4','reviewed/bobo_fresh.mp4')
+          out=Path('reviewed')
+          subprocess.run(['ffmpeg','-v','error','-y','-i',str(out/'voice-track.wav'),'-af','adelay=300|300,atrim=duration=11','-c:a','pcm_s16le',str(out/'shifted.wav')],check=True)
+          (out/'shifted.wav').replace(out/'voice-track.wav')
+          voice=json.loads((out/'dialogue-timing.json').read_text())
+          voice['cues'][0].update(start=.65,end=1.3671)
+          (out/'dialogue-timing.json').write_text(json.dumps(voice))
+          (out/'captions-timing.json').write_text(json.dumps([{'text':'Careful now!','start':.65,'end':1.3671}]))
+          metadata=json.loads((out/'episode.json').read_text())
+          metadata.update(voice=voice,social_caption="A tiny tower and Bobo's very careful hands. 🐒🧱\\nLittle adventures. Big giggles.\\nFollow Bobo Giggle Grove for the next adventure.\\n#Bobo #3DAnimation #CartoonComedy",publication_quality_status='user_requested_exception',production_strategy='observe-repair-reserve-v1')
+          (out/'episode.json').write_text(json.dumps(metadata))
+          PY
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Publish exact approved video to Instagram
+        if: steps.approval.outputs.ready == 'true'
+        continue-on-error: true
+        timeout-minutes: 7
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+        run: python publish_instagram_reviewed.py
+      - name: Publish exact approved video as Instagram Story
+        if: steps.approval.outputs.ready == 'true'
+        continue-on-error: true
+        timeout-minutes: 7
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          INSTAGRAM_MEDIA_TYPE: STORIES
+        run: python publish_instagram_reviewed.py
+      - name: Share approved Bobo video as a Story
+        if: steps.approval.outputs.ready == 'true'
+        continue-on-error: true
+        timeout-minutes: 5
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+        run: |
+          python - <<'PY'
+          import hashlib,json,os,subprocess,time
+          from pathlib import Path
+          from urllib.parse import urlparse
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          import requests
+          approval=json.loads(Path('bobo_review_approval.json').read_text())
+          ledger_path=Path('published_bobo.json')
+          ledger=json.loads(ledger_path.read_text())
+          key='long-v2-'+str(approval['episode'])
+          record=ledger[key]
+          assert record.get('facebook_video_id'), 'Main video must publish first'
+          video=Path('reviewed/bobo_fresh.mp4')
+          assert hashlib.sha256(video.read_bytes()).hexdigest()==approval['final_sha256']
+          assert approval['review'].get('reviewed_sha256')==approval['final_sha256']
+          # One Story per reviewed episode, maximum two in each Pakistan day.
+          today=datetime.now(ZoneInfo('Asia/Karachi')).date().isoformat()
+          if record.get('story'):
+              print('Story already attempted; refusing duplicate.')
+              raise SystemExit(0)
+          attempts=sum(1 for x in ledger.values() if x.get('story',{}).get('date')==today)
+          if attempts>=2:
+              print('Two-Story daily limit reached.')
+              raise SystemExit(0)
+          headers={'Authorization':'Bearer '+os.environ['FB_PAGE_ACCESS_TOKEN']}
+          base='https://graph.facebook.com/v26.0'
+          edge=base+'/'+os.environ['FB_PAGE_ID']+'/video_stories'
+          def save():
+              ledger_path.write_text(json.dumps(ledger,indent=2))
+              subprocess.run(['git','add','published_bobo.json'],check=True)
+              subprocess.run(['git','commit','-m','Record reviewed Bobo Story status'],check=True)
+              subprocess.run(['git','pull','--rebase','--autostash','origin','main'],check=True)
+              subprocess.run(['git','push','origin','HEAD:main'],check=True)
+          def checked(response):
+              try: result=response.json()
+              except ValueError: raise RuntimeError('Story response unreadable; no automatic duplicate retry')
+              if not response.ok or result.get('error'):
+                  err=result.get('error',{})
+                  raise RuntimeError('Story API error code '+str(err.get('code'))+' subcode '+str(err.get('error_subcode')))
+              return result
+          record['story']={'date':today,'status':'attempt_started','source_sha256':approval['final_sha256'],'strategy':'One reviewed, captioned, voiced mini-adventure per slot; no extra generation; test Story exposure and follower growth without attributing causation.'}
+          save()
+          try:
+              result=checked(requests.post(edge,headers=headers,data={'upload_phase':'start'},timeout=30))
+              sid=str(result['video_id']); url=result['upload_url']
+              parsed=urlparse(url)
+              assert parsed.scheme=='https' and parsed.hostname=='rupload.facebook.com', 'Unexpected Story upload host'
+              record['story'].update(video_id=sid,status='upload_started'); save()
+              with video.open('rb') as source:
+                  checked(requests.post(url,headers={'Authorization':'OAuth '+os.environ['FB_PAGE_ACCESS_TOKEN'],'offset':'0','file_size':str(video.stat().st_size),'Content-Type':'application/octet-stream'},data=source,timeout=90))
+              for _ in range(12):
+                  status=checked(requests.get(base+'/'+sid,headers=headers,params={'fields':'status'},timeout=20)).get('status',{})
+                  if status.get('uploading_phase',{}).get('status')=='complete':
+                      break
+                  time.sleep(3)
+              else:
+                  raise RuntimeError('Story upload not ready; held without duplicate retry')
+              result=checked(requests.post(edge,headers=headers,data={'upload_phase':'finish','video_id':sid},timeout=30))
+              assert result.get('success'), 'Facebook did not confirm Story acceptance'
+              record['story'].update(status='accepted',post_id=result.get('post_id'),accepted_at=datetime.now(ZoneInfo('Asia/Karachi')).isoformat())
+              save()
+              print('Facebook accepted reviewed Story:',sid)
+          except Exception as exc:
+              record['story'].update(status='held',reason=type(exc).__name__+': '+str(exc)[:180])
+              save()
+              raise
+          PY
+
