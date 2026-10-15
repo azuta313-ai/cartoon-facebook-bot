@@ -1,0 +1,39 @@
+{
+  "version": "bobo-storyboard-pilot-v1",
+  "episode": 40522032,
+  "title": "Bobo's Stubborn Block",
+  "scene_id": 3,
+  "voice_line": "Just a little push!",
+  "social_caption": "One little block. One very determined Bobo. 🐒🧱\nLittle adventures. Big giggles.\nFollow Bobo Giggle Grove for the next adventure.\n#Bobo #3DAnimation #CartoonComedy",
+  "shots": [
+    {
+      "action": "Bobo immediately crouches toward the existing loose yellow floor block. He puts one palm against its side and pushes gently. The block barely moves. Keep the tall tower untouched.",
+      "required_evidence": [
+        "Hand reaches toward existing floor block within 0.5 seconds",
+        "Palm visibly contacts the same block",
+        "Block remains nearly in its original position"
+      ],
+      "end_pose": "Bobo crouched beside the block, one palm resting against it."
+    },
+    {
+      "action": "Starting from the supplied pose, Bobo places both palms against that same loose floor block and leans forward. The block slides a short distance away from him. Bobo takes one small balancing step forward. Tower remains untouched.",
+      "required_evidence": [
+        "Both palms contact same floor block",
+        "Short visible slide",
+        "One small balance adjustment; no collapse"
+      ],
+      "end_pose": "Bobo beside the shifted block with both feet on the floor."
+    },
+    {
+      "action": "Bobo eases the same block into place with one final small push, withdraws both hands, then alternates pointing at the block and himself with a small shoulder wiggle. Keep the final three seconds visibly active. No open-mouth laughing.",
+      "required_evidence": [
+        "Final brief contact",
+        "Hands withdraw",
+        "Purposeful pointing and shoulder movement through ending"
+      ],
+      "end_pose": "Bobo and the block both clearly visible."
+    }
+  ],
+  "review_policy": "Planned evidence is not observed evidence. Observe actual source at >=4fps, transitions8fps; finish captions, one mandatory voice line and natural foley only from actual actions. No automatic quality approval.",
+  "cost": 0
+}
