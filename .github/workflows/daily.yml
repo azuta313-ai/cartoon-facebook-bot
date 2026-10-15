@@ -75,3 +75,5 @@ jobs:
           name: fresh-bobo-video
           path: fresh_output/
           retention-days: 30
+
+# Resume morning generation after deliberate stale-draft rejection, 2026-10-15.
