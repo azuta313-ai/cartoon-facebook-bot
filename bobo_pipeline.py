@@ -46,7 +46,7 @@ def next_episode(now, ledger, reserve):
         day = int((now + timedelta(days=offset)).strftime('%Y%m%d'))
         for slot in (0, 1):
             episode = day*2+slot
-            if episode not in occupied:
+            if episode not in occupied and now < slot_time(episode)-timedelta(hours=1):
                 return episode
     return None
 
