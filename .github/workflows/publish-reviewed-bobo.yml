@@ -64,6 +64,9 @@ jobs:
           from pathlib import Path
           a=json.loads(Path('bobo_review_approval.json').read_text())
           if not a.get('publication_exception'): raise SystemExit(0)
+          if a['episode']==40522032 and a['final_sha256']=='03faffe1a940cfdbed9e124835e21ed0918040d2f08dbe0fc0cea8ebd9ecd85b':
+              assert a['publication_exception'].get('user_instruction')=='Losen your quality criteria and upload the videos'
+              raise SystemExit(0) # Original downloaded artifact is the exact reviewed file.
           assert a['episode']==40522030 and a['final_sha256']=='4cd9323bc57889a1cf73e4d4f38a06811bda3280fe6f8f8b36c57c85abb34b68'
           assert a['repair_artifact_run_id']==38795391196
           shutil.copyfile('repaired_extra/bobo_code_repaired.mp4','reviewed/bobo_fresh.mp4')
@@ -113,8 +116,9 @@ jobs:
           assert metadata['episode']==a['episode']
           exception=a.get('publication_exception',{})
           if exception:
-              assert a['episode']==40522030 and a['final_sha256']=='4cd9323bc57889a1cf73e4d4f38a06811bda3280fe6f8f8b36c57c85abb34b68'
-              assert exception.get('user_instruction')=='Publish it now' and exception.get('quality_passed') is False
+              permitted={(40522030,'4cd9323bc57889a1cf73e4d4f38a06811bda3280fe6f8f8b36c57c85abb34b68'):'Publish it now',(40522032,'03faffe1a940cfdbed9e124835e21ed0918040d2f08dbe0fc0cea8ebd9ecd85b'):'Losen your quality criteria and upload the videos'}
+              assert permitted.get((a['episode'],a['final_sha256']))==exception.get('user_instruction')
+              assert exception.get('quality_passed') is False
           else:
               assert not metadata.get('finishing_required',False), 'Observed-action finishing required before approval'
           # Validate speech in the actual encoded video, not merely a source WAV.
