@@ -1,0 +1,122 @@
+{
+  "status": "rejected",
+  "episode": 40522032,
+  "title": "Rainy puddle splash",
+  "artifact_run_id": "38936216467",
+  "artifact_id": 12061186928,
+  "scene_id": 4,
+  "rejected_scene_ids": [
+    3,
+    4
+  ],
+  "generated_sha256": "92aaeafaec3f7e95b916274e1f13c44ec64d7bc6c007db0f1e5a1f58f92d21a9",
+  "final_sha256": "15710040a75d91228b6b16a529dd1e049d62937a2cb338d8d9882fb3f4ee8511",
+  "review": {
+    "completed_at": "2026-10-16T17:05:10.675Z",
+    "reviewed_sha256": "15710040a75d91228b6b16a529dd1e049d62937a2cb338d8d9882fb3f4ee8511",
+    "duration": 11,
+    "full_render_sample_fps": 8,
+    "transition_sample_fps": 8,
+    "quality_passed": false,
+    "observed_actions": {
+      "opening_boot_lift_and_lower": [
+        0,
+        0.5
+      ],
+      "stationary_face_reaction": [
+        1.5,
+        4.375
+      ],
+      "second_boot_lift_and_lower": [
+        4.375,
+        5.625
+      ],
+      "standing_jaw_changes": [
+        5.625,
+        8.375
+      ],
+      "third_boot_lift_and_lower": [
+        8.375,
+        9.375
+      ],
+      "closing_face_reaction": [
+        9.375,
+        11
+      ]
+    },
+    "voice": {
+      "text": "A puddle!",
+      "start": 0.35,
+      "end": 0.7548,
+      "mouth_action_reviewed": true,
+      "mouth_alignment_pass": false,
+      "intelligibility_verified": false,
+      "verification_method": "independent_asr_attempt_failed_match",
+      "verification_evidence": {
+        "model": "Systran/faster-whisper-tiny.en",
+        "input": "entire encoded mix decoded16kHzmono",
+        "transcript": "a cuddle",
+        "avg_logprob": -0.5124462644259135,
+        "no_speech_prob": 0.19358183443546295,
+        "reference_text_not_provided": true,
+        "interpretation": "Short ambiguous line not reliably verified by this recognizer; not proof of silence or inability of a listener to understand it."
+      },
+      "listening_verified": false,
+      "reason": "Repeated open/closed jaw reactions after .7548; exact final speech words not independently confirmed."
+    },
+    "captions": [
+      {
+        "text": "A puddle!",
+        "start": 0.35,
+        "end": 0.7548,
+        "kind": "spoken",
+        "verdict": "Subtitle matches planned cue metadata, but encoded spoken words not verified."
+      }
+    ],
+    "effects_complete": false,
+    "effects": [
+      {
+        "type": "splash",
+        "start": 4.3625,
+        "duration": 0.45,
+        "source": "BigSoundBank Joseph Sardin CC0 1530.mp3; excerpt onset .1160625sec, provenance in artifact",
+        "level": {
+          "stem_rms_dbfs": -57.7,
+          "stem_peak_dbfs": -24.44
+        },
+        "aligned": false,
+        "reason": "Boot begins lifting at4.375, rather than water contact; actual lowering near5.3-5.625.",
+        "perceptual_realism_verified": false
+      },
+      {
+        "type": "splash",
+        "start": 5.5625,
+        "duration": 0.3,
+        "source": "same BigSoundBank1530",
+        "level": {
+          "stem_rms_dbfs": -57.7,
+          "stem_peak_dbfs": -24.44
+        },
+        "alignment": "near end of foot lowering; requires final observed finishing; all other visible boot/water events unmapped",
+        "perceptual_realism_verified": false
+      }
+    ],
+    "music": {
+      "variant": 52,
+      "style": "gentle bell waltz",
+      "preserved": true,
+      "source_rms_dbfs": -27.48,
+      "source_peak_dbfs": -13.12,
+      "subjective_audibility_verified": false
+    },
+    "pacing": {
+      "purposeful_action_by": 0,
+      "pass": false,
+      "reason": "Three short boot-lift gestures with prolonged stationary facial reactions between; visibly active purposeful11sec requirement not met."
+    },
+    "repair_assessment": "Foley alignment and line replacement can be repaired, but do not remove repeated unvoiced jaw motion or stationary middle. No shortening, blind speedup, freeze padding or old-visual reuse approved.",
+    "cost": 0,
+    "decision": "Deliberate rejection; no platform publication."
+  },
+  "previous_review_record": "bobo_reviews/40522032-38935041435.json"
+}
