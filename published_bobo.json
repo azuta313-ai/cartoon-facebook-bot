@@ -1409,5 +1409,233 @@
       "post_id": "1514505690484789",
       "accepted_at": "2026-10-16T00:49:01.022319+05:00"
     }
+  },
+  "long-v2-40522032": {
+    "episode": 40522032,
+    "title": "Bobo's Stubborn Block",
+    "space": "zerogpu-aoti/wan2-2-fp8da-aoti-faster",
+    "generated_sha256": "26173d4989484e4f4034f08e321bb2309c3876e8de316c5c7ad5e043b46b350a",
+    "duration": 11,
+    "generated_at": "2026-10-16T21:50:53.870118+05:00",
+    "quality_reference": "assets/scenes/scene3.jpg",
+    "music_check_dbfs": -17.18,
+    "export_fps": 30,
+    "effects": "original scene-specific effects; no bite sample",
+    "voice": {
+      "enabled": true,
+      "engine": "Piper local CPU",
+      "model": "en_US-ljspeech-medium.onnx",
+      "model_sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22",
+      "voice_sha256": "2213d652975ad0dc8e3172722e037cde33747410c7af8cd225e0ae34a9c3251a",
+      "language": "en-US",
+      "pitch_factor": 1.15,
+      "cost": 0,
+      "lip_sync_verified": false,
+      "listening_verified": false,
+      "cues": [
+        {
+          "text": "Just a little push!",
+          "start": 0.35,
+          "end": 1.2711,
+          "kind": "spoken dialogue",
+          "placement": "provisional; requires actual rendered mouth/action review"
+        }
+      ],
+      "license": "Piper GPL-3.0; voice repository MIT; LJ Speech source public domain",
+      "license_source": "https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD"
+    },
+    "voice_review_required": true,
+    "caption_kind": "spoken subtitle plus separate action captions",
+    "caption_review_required": true,
+    "caption_timing": [
+      {
+        "text": "Just a little push!",
+        "start": 0.35,
+        "end": 1.2711
+      }
+    ],
+    "audio_mix_variant": 3,
+    "scene_id": 3,
+    "setting": "a bright playroom with colorful wooden blocks",
+    "music": "original procedural arrangement 51",
+    "music_variant": 51,
+    "music_style": "muted piano shuffle",
+    "sound_design_version": 3,
+    "pacing_review_required": true,
+    "production_strategy": "observe-repair-reserve-v1",
+    "finishing_required": true,
+    "planned_effects_unverified": true,
+    "reserve_target": 4,
+    "comedy_series": {
+      "name": "Bobo vs Everyday Things",
+      "format": "Bobo's Mischief",
+      "voice_line": "Just a little push!",
+      "direction": "One simple prop interaction; final joke and dialogue chosen after observing rendered action.",
+      "follow_invitation": "Follow for Bobo's next little adventure. \ud83c\udf33\ud83d\udc12",
+      "cost": 0
+    },
+    "storyboard_version": "bobo-storyboard-pilot-v1",
+    "planned_shot_evidence": [
+      [
+        "Hand reaches toward existing floor block within 0.5 seconds",
+        "Palm visibly contacts the same block",
+        "Block remains nearly in its original position"
+      ],
+      [
+        "Both palms contact same floor block",
+        "Short visible slide",
+        "One small balance adjustment; no collapse"
+      ],
+      [
+        "Final brief contact",
+        "Hands withdraw",
+        "Purposeful pointing and shoulder movement through ending"
+      ]
+    ],
+    "social_caption": "One little block. One very determined Bobo. \ud83d\udc12\ud83e\uddf1\nLittle adventures. Big giggles.\nFollow Bobo Giggle Grove for the next adventure.\n#Bobo #3DAnimation #CartoonComedy #ToyRoom",
+    "growth_experiment": {
+      "version": "tiny-comedy-series-v2",
+      "evidence_snapshot": "2026-10-13T23:43:42+05:00",
+      "content_change": "Morning mischief and evening surprise formats with rotating series identity and short scene-specific reaction dialogue; evaluate at comparable ages without causal claims",
+      "promotion_change": "one concise follow invitation after the scene-specific question",
+      "primary_metrics": [
+        "post_video_retention_graph",
+        "blue_reels_play_count",
+        "fb_reels_total_plays",
+        "followers_count"
+      ],
+      "cost": 0
+    },
+    "facebook_video_id": "2299015844180049",
+    "final_sha256": "03faffe1a940cfdbed9e124835e21ed0918040d2f08dbe0fc0cea8ebd9ecd85b",
+    "review": {
+      "status": "approved",
+      "episode": 40522032,
+      "title": "Bobo's Stubborn Block",
+      "artifact_run_id": "38935041435",
+      "artifact_id": 12060911079,
+      "scene_id": 3,
+      "rejected_scene_ids": [
+        3
+      ],
+      "generated_sha256": "26173d4989484e4f4034f08e321bb2309c3876e8de316c5c7ad5e043b46b350a",
+      "final_sha256": "03faffe1a940cfdbed9e124835e21ed0918040d2f08dbe0fc0cea8ebd9ecd85b",
+      "review": {
+        "reviewed_sha256": "03faffe1a940cfdbed9e124835e21ed0918040d2f08dbe0fc0cea8ebd9ecd85b",
+        "full_render_sample_fps": 8,
+        "transition_sample_fps": 8,
+        "duration": 11,
+        "quality_passed": false,
+        "observed_actions": {
+          "opening_lower_to_floor": [
+            0.125,
+            0.875
+          ],
+          "floor_block_contact": [
+            1.375,
+            2.25
+          ],
+          "near_stationary_hands_on_block": [
+            3.125,
+            4.125
+          ],
+          "hand_withdrawal_and_stand": [
+            5.125,
+            6.25
+          ],
+          "standing_reaction_with_repeated_jaw_changes": [
+            6.25,
+            11
+          ]
+        },
+        "voice": {
+          "text": "Just a little push!",
+          "start": 0.35,
+          "end": 1.2711,
+          "source_track_rms_dbfs": -30.41,
+          "mouth_action_reviewed": true,
+          "mouth_alignment_pass": false,
+          "intelligibility_verified": true,
+          "listening_verified": false,
+          "reason": "Independent ASR recovered exact words from final mix; repeated unvoiced jaw animation and pacing still fail.",
+          "verification_method": "independent_asr",
+          "verification_evidence": {
+            "model": "Systran/faster-whisper-tiny.en",
+            "input": "entire final encoded mix decoded mono16kHz",
+            "transcript": "Just a little push",
+            "avg_logprob": -0.3165706821850368,
+            "no_speech_prob": 0.03415268659591675,
+            "reference_text_not_provided": true,
+            "limitations": "Punctuation normalized; ASR segment0-2sec is not exact word timing or lip synchronization. No subjective listening."
+          },
+          "subtitle_exact": true,
+          "track_present": true
+        },
+        "captions": [
+          {
+            "text": "Just a little push!",
+            "start": 0.35,
+            "end": 1.2711,
+            "kind": "spoken",
+            "verdict": "Exact text/timing in cue metadata and visible subtitle; physical floor-block contact begins later. Needs repositioning if visual sequence were salvageable."
+          }
+        ],
+        "effects": [
+          {
+            "type": "wood",
+            "start": 2.3,
+            "duration": 0.1,
+            "source": "Kenney CC0 impactWood_light_000.ogg, provenance retained in artifact",
+            "level": "stem RMS -45.25 dBFS, peak -17.08 dBFS",
+            "aligned": false,
+            "reason": "Cue follows observed brief floor-block contact."
+          },
+          {
+            "type": "wood_creak",
+            "start": 3.3,
+            "duration": 0.6,
+            "source": "procedural filtered noise modulation",
+            "level": "same measured effect stem",
+            "aligned": false,
+            "perceptual_realism_verified": false,
+            "reason": "Cue overlaps near-stationary hand pose; no verified sliding contact."
+          },
+          {
+            "type": "wood",
+            "start": 4.4125,
+            "duration": 0.12,
+            "source": "Kenney CC0 impactWood_light_000.ogg",
+            "level": "same measured effect stem",
+            "aligned": false,
+            "reason": "No distinct impact confirmed at this timestamp."
+          }
+        ],
+        "effects_complete": false,
+        "music": {
+          "variant": 51,
+          "style": "muted piano shuffle",
+          "preserved": true,
+          "source_rms_dbfs": -26.75,
+          "source_peak_dbfs": -14.49,
+          "subjective_audibility_verified": false
+        },
+        "pacing": {
+          "purposeful_action_by": 0.125,
+          "pass": false,
+          "reason": "Brief lowering/contact, prolonged near-stationary pose, then standing mouth/face reaction dominates final4.75sec; required ongoing purposeful block action absent."
+        },
+        "repair_assessment": "Caption/voice reposition and foley changes are technically possible but do not repair prolonged unvoiced jaw animation and missing purposeful action throughout11sec. No shortened, freeze-padded, sped-up or old-footage replacement approved.",
+        "decision": "Deliberate rejection; no Facebook/Instagram video or Story publication.",
+        "cost": 0
+      },
+      "publication_exception": {
+        "user_instruction": "Losen your quality criteria and upload the videos",
+        "authorized_at": "2026-10-16T22:08:41+05:00",
+        "quality_passed": false,
+        "scope": "Exact block pilot artifact38935041435 and SHA03faffe only; user accepts disclosed repeated unvoiced jaw animation, weak pacing, provisional subtitle placement and unverified effect realism. Retain duration, speech presence, exact hash, duplicate and daily-cap checks. Not a quality pass."
+      },
+      "previous_review_record": "bobo_reviews/40522032-38935041435.json"
+    },
+    "published_at": "2026-10-16T22:11:03.755401+05:00"
   }
 }
