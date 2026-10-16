@@ -15,6 +15,14 @@ def validate_ready(record, now):
     # Earlier one-off exceptions remain historical; never authorize future files.
     if int(record['episode']) < 40522032:
         return
+    # Explicit user exception on 16 October; bound to one already-reviewed file.
+    if record.get('publication_exception'):
+        assert int(record['episode'])==40522032 and record.get('final_sha256')=='03faffe1a940cfdbed9e124835e21ed0918040d2f08dbe0fc0cea8ebd9ecd85b', 'Unrecognized quality exception'
+        assert record['publication_exception'].get('user_instruction')=='Losen your quality criteria and upload the videos'
+        assert record['review'].get('reviewed_sha256')==record['final_sha256']
+        assert record['review'].get('quality_passed') is False
+        assert record['review'].get('voice',{}).get('intelligibility_verified') is True
+        return
     review=record['review']
     assert review.get('quality_passed') is True and not record.get('publication_exception'), 'Future quality review must pass'
     completed=datetime.fromisoformat(review['completed_at'])
