@@ -14,7 +14,8 @@
       "url": "https://www.facebook.com/photo/?fbid=122245341704281151"
     },
     "instagram": {
-      "status": "attempt_started"
+      "status": "processing",
+      "container_id": "17915701335533114"
     }
   }
 }
