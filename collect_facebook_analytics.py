@@ -39,6 +39,15 @@ report={'collected_at':now.isoformat(),'page':{},'videos':[],'monetization_statu
 for field in ['name','followers_count','fan_count']:
     report['page'][field]=get(page_id,{'fields':field}).get(field)
 ledger=json.loads(Path('published_bobo.json').read_text())
+story_ids={str(v['story']['video_id']) for v in ledger.values() if v.get('story',{}).get('video_id')}
+def strategy_cohort(meta):
+    if meta.get('review',{}).get('publication_exception'):
+        return 'user_exception_not_quality_pass'
+    if meta.get('production_strategy')=='observe-repair-reserve-v1' and meta.get('review',{}).get('review',{}).get('quality_passed') is True:
+        return 'qualified_strategy'
+    return 'historical_or_unverified'
+def reel_completion_available(rows):
+    return any(v.get('media_kind')!='story' and any(isinstance(v['metrics'].get(k),(int,float)) for k in ('post_video_complete_views_organic','total_video_complete_views')) for v in rows)
 known={}
 for entry in ledger.values():
     vid=entry.get('facebook_video_id')
@@ -52,6 +61,7 @@ metrics += ['blue_reels_play_count','fb_reels_total_plays','fb_reels_replay_coun
 old={v['id']:v for v in (previous or {}).get('videos',[])}
 for vid,meta in known.items():
     row={'id':vid,'title':meta.get('title'),'created_at':meta.get('generated_at'),'scene_id':meta.get('scene_id'),'duration_seconds':meta.get('duration'),'metrics':{},'unavailable_metrics':{}}
+    row.update(media_kind='story' if str(vid) in story_ids else 'video',strategy_cohort=strategy_cohort(meta),published_at=meta.get('published_at'))
     details=get(vid,{'fields':'permalink_url,created_time,length'})
     if not details.get('unavailable'):
         row.update(url=details.get('permalink_url'),created_at=details.get('created_time',row['created_at']),duration_seconds=details.get('length',row['duration_seconds']))
@@ -101,8 +111,10 @@ experiment={
     'primary_metrics':['blue_reels_play_count','fb_reels_total_plays','fb_reels_replay_count','post_video_view_time','post_video_retention_graph','followers_count'],
     'comparison':'Match actual publication ages and duration; record time-of-day, story exposure and production differences; small samples are exploratory.',
     'retention_mapping_verified':False,
-    'completion_available':any(isinstance(v['metrics'].get('post_video_complete_views_organic'),(int,float)) or isinstance(v['metrics'].get('total_video_complete_views'),(int,float)) for v in report['videos']),
-    'new_strategy_published_video_ids':[v['facebook_video_id'] for v in ledger.values() if v.get('production_strategy')=='observe-repair-reserve-v1' and v.get('facebook_video_id')],
+    'completion_available':reel_completion_available(report['videos']),
+    'story_completion_counter_ids':[v['id'] for v in report['videos'] if v.get('media_kind')=='story' and 'total_video_complete_views' in v['metrics']],
+    'new_strategy_published_video_ids':[v['facebook_video_id'] for v in ledger.values() if strategy_cohort(v)=='qualified_strategy' and v.get('facebook_video_id')],
+    'exception_video_ids':[v['facebook_video_id'] for v in ledger.values() if strategy_cohort(v)=='user_exception_not_quality_pass' and v.get('facebook_video_id')],
     'spend':0
 }
 (OUT/'experiment-status.json').write_text(json.dumps(experiment,indent=2))
