@@ -8,7 +8,10 @@
     "photo_sha256": "b7fb8c015b98656131cd0b1a465988f99c14f4797b4555f66f0242f7303e2f68",
     "created_at": "2026-10-16T22:41:46.681255+05:00",
     "facebook": {
-      "status": "attempt_started"
+      "status": "accepted",
+      "photo_id": "122245341704281151",
+      "post_id": "291002347429967_122245341734281151",
+      "url": "https://www.facebook.com/photo/?fbid=122245341704281151"
     }
   }
 }
