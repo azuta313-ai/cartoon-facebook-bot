@@ -45,9 +45,19 @@
       "source_track_rms_dbfs": -30.41,
       "mouth_action_reviewed": true,
       "mouth_alignment_pass": false,
-      "intelligibility_verified": false,
+      "intelligibility_verified": true,
       "listening_verified": false,
-      "reason": "Short provisional line ends1.2711; repeated mouth opening after line across2.25-3.125 and6.25-11. No actual listening or independent final-mix ASR completed; no intelligibility claim."
+      "reason": "Independent ASR recovered exact words from final mix; repeated unvoiced jaw animation and pacing still fail.",
+      "verification_method": "independent_asr",
+      "verification_evidence": {
+        "model": "Systran/faster-whisper-tiny.en",
+        "input": "entire final encoded mix decoded mono16kHz",
+        "transcript": "Just a little push",
+        "avg_logprob": -0.3165706821850368,
+        "no_speech_prob": 0.03415268659591675,
+        "reference_text_not_provided": true,
+        "limitations": "Punctuation normalized; ASR segment0-2sec is not exact word timing or lip synchronization. No subjective listening."
+      }
     },
     "captions": [
       {
@@ -104,7 +114,6 @@
     },
     "repair_assessment": "Caption/voice reposition and foley changes are technically possible but do not repair prolonged unvoiced jaw animation and missing purposeful action throughout11sec. No shortened, freeze-padded, sped-up or old-footage replacement approved.",
     "decision": "Deliberate rejection; no Facebook/Instagram video or Story publication.",
-    "cost": 0,
-    "completed_at": "2026-10-16T16:59:25.421Z"
+    "cost": 0
   }
 }
