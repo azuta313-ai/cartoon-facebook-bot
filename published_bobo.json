@@ -1636,6 +1636,11 @@
       },
       "previous_review_record": "bobo_reviews/40522032-38935041435.json"
     },
-    "published_at": "2026-10-16T22:11:03.755401+05:00"
+    "published_at": "2026-10-16T22:11:03.755401+05:00",
+    "instagram": {
+      "status": "attempt_started",
+      "source_sha256": "03faffe1a940cfdbed9e124835e21ed0918040d2f08dbe0fc0cea8ebd9ecd85b",
+      "date": "2026-10-16"
+    }
   }
 }
