@@ -1,110 +1,122 @@
 {
   "status": "rejected",
   "episode": 40522032,
-  "title": "Bobo's Stubborn Block",
-  "artifact_run_id": "38935041435",
-  "artifact_id": 12060911079,
-  "scene_id": 3,
+  "title": "Rainy puddle splash",
+  "artifact_run_id": "38936216467",
+  "artifact_id": 12061186928,
+  "scene_id": 4,
   "rejected_scene_ids": [
-    3
+    3,
+    4
   ],
-  "generated_sha256": "26173d4989484e4f4034f08e321bb2309c3876e8de316c5c7ad5e043b46b350a",
-  "final_sha256": "03faffe1a940cfdbed9e124835e21ed0918040d2f08dbe0fc0cea8ebd9ecd85b",
+  "generated_sha256": "92aaeafaec3f7e95b916274e1f13c44ec64d7bc6c007db0f1e5a1f58f92d21a9",
+  "final_sha256": "15710040a75d91228b6b16a529dd1e049d62937a2cb338d8d9882fb3f4ee8511",
   "review": {
-    "reviewed_sha256": "03faffe1a940cfdbed9e124835e21ed0918040d2f08dbe0fc0cea8ebd9ecd85b",
+    "completed_at": "2026-10-16T17:05:10.675Z",
+    "reviewed_sha256": "15710040a75d91228b6b16a529dd1e049d62937a2cb338d8d9882fb3f4ee8511",
+    "duration": 11,
     "full_render_sample_fps": 8,
     "transition_sample_fps": 8,
-    "duration": 11,
     "quality_passed": false,
     "observed_actions": {
-      "opening_lower_to_floor": [
-        0.125,
-        0.875
+      "opening_boot_lift_and_lower": [
+        0,
+        0.5
       ],
-      "floor_block_contact": [
-        1.375,
-        2.25
+      "stationary_face_reaction": [
+        1.5,
+        4.375
       ],
-      "near_stationary_hands_on_block": [
-        3.125,
-        4.125
+      "second_boot_lift_and_lower": [
+        4.375,
+        5.625
       ],
-      "hand_withdrawal_and_stand": [
-        5.125,
-        6.25
+      "standing_jaw_changes": [
+        5.625,
+        8.375
       ],
-      "standing_reaction_with_repeated_jaw_changes": [
-        6.25,
+      "third_boot_lift_and_lower": [
+        8.375,
+        9.375
+      ],
+      "closing_face_reaction": [
+        9.375,
         11
       ]
     },
     "voice": {
-      "text": "Just a little push!",
+      "text": "A puddle!",
       "start": 0.35,
-      "end": 1.2711,
-      "source_track_rms_dbfs": -30.41,
+      "end": 0.7548,
       "mouth_action_reviewed": true,
       "mouth_alignment_pass": false,
       "intelligibility_verified": false,
+      "verification_method": "independent_asr_attempt_failed_match",
+      "verification_evidence": {
+        "model": "Systran/faster-whisper-tiny.en",
+        "input": "entire encoded mix decoded16kHzmono",
+        "transcript": "a cuddle",
+        "avg_logprob": -0.5124462644259135,
+        "no_speech_prob": 0.19358183443546295,
+        "reference_text_not_provided": true,
+        "interpretation": "Short ambiguous line not reliably verified by this recognizer; not proof of silence or inability of a listener to understand it."
+      },
       "listening_verified": false,
-      "reason": "Short provisional line ends1.2711; repeated mouth opening after line across2.25-3.125 and6.25-11. No actual listening or independent final-mix ASR completed; no intelligibility claim."
+      "reason": "Repeated open/closed jaw reactions after .7548; exact final speech words not independently confirmed."
     },
     "captions": [
       {
-        "text": "Just a little push!",
+        "text": "A puddle!",
         "start": 0.35,
-        "end": 1.2711,
+        "end": 0.7548,
         "kind": "spoken",
-        "verdict": "Exact text/timing in cue metadata and visible subtitle; physical floor-block contact begins later. Needs repositioning if visual sequence were salvageable."
-      }
-    ],
-    "effects": [
-      {
-        "type": "wood",
-        "start": 2.3,
-        "duration": 0.1,
-        "source": "Kenney CC0 impactWood_light_000.ogg, provenance retained in artifact",
-        "level": "stem RMS -45.25 dBFS, peak -17.08 dBFS",
-        "aligned": false,
-        "reason": "Cue follows observed brief floor-block contact."
-      },
-      {
-        "type": "wood_creak",
-        "start": 3.3,
-        "duration": 0.6,
-        "source": "procedural filtered noise modulation",
-        "level": "same measured effect stem",
-        "aligned": false,
-        "perceptual_realism_verified": false,
-        "reason": "Cue overlaps near-stationary hand pose; no verified sliding contact."
-      },
-      {
-        "type": "wood",
-        "start": 4.4125,
-        "duration": 0.12,
-        "source": "Kenney CC0 impactWood_light_000.ogg",
-        "level": "same measured effect stem",
-        "aligned": false,
-        "reason": "No distinct impact confirmed at this timestamp."
+        "verdict": "Subtitle matches planned cue metadata, but encoded spoken words not verified."
       }
     ],
     "effects_complete": false,
+    "effects": [
+      {
+        "type": "splash",
+        "start": 4.3625,
+        "duration": 0.45,
+        "source": "BigSoundBank Joseph Sardin CC0 1530.mp3; excerpt onset .1160625sec, provenance in artifact",
+        "level": {
+          "stem_rms_dbfs": -57.7,
+          "stem_peak_dbfs": -24.44
+        },
+        "aligned": false,
+        "reason": "Boot begins lifting at4.375, rather than water contact; actual lowering near5.3-5.625.",
+        "perceptual_realism_verified": false
+      },
+      {
+        "type": "splash",
+        "start": 5.5625,
+        "duration": 0.3,
+        "source": "same BigSoundBank1530",
+        "level": {
+          "stem_rms_dbfs": -57.7,
+          "stem_peak_dbfs": -24.44
+        },
+        "alignment": "near end of foot lowering; requires final observed finishing; all other visible boot/water events unmapped",
+        "perceptual_realism_verified": false
+      }
+    ],
     "music": {
-      "variant": 51,
-      "style": "muted piano shuffle",
+      "variant": 52,
+      "style": "gentle bell waltz",
       "preserved": true,
-      "source_rms_dbfs": -26.75,
-      "source_peak_dbfs": -14.49,
+      "source_rms_dbfs": -27.48,
+      "source_peak_dbfs": -13.12,
       "subjective_audibility_verified": false
     },
     "pacing": {
-      "purposeful_action_by": 0.125,
+      "purposeful_action_by": 0,
       "pass": false,
-      "reason": "Brief lowering/contact, prolonged near-stationary pose, then standing mouth/face reaction dominates final4.75sec; required ongoing purposeful block action absent."
+      "reason": "Three short boot-lift gestures with prolonged stationary facial reactions between; visibly active purposeful11sec requirement not met."
     },
-    "repair_assessment": "Caption/voice reposition and foley changes are technically possible but do not repair prolonged unvoiced jaw animation and missing purposeful action throughout11sec. No shortened, freeze-padded, sped-up or old-footage replacement approved.",
-    "decision": "Deliberate rejection; no Facebook/Instagram video or Story publication.",
+    "repair_assessment": "Foley alignment and line replacement can be repaired, but do not remove repeated unvoiced jaw motion or stationary middle. No shortening, blind speedup, freeze padding or old-visual reuse approved.",
     "cost": 0,
-    "completed_at": "2026-10-16T16:59:25.421Z"
-  }
+    "decision": "Deliberate rejection; no platform publication."
+  },
+  "previous_review_record": "bobo_reviews/40522032-38935041435.json"
 }
