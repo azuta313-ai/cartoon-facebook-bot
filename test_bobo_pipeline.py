@@ -14,6 +14,12 @@ class ReserveTests(unittest.TestCase):
         self.assertEqual(next_episode(now,{},{}),40522030)
         self.assertEqual(next_episode(now,{'long-v2-40522030':{}},{}),40522031)
 
+    def test_expired_preparation_slots_are_skipped(self):
+        now=datetime(2026,10,16,23,21,tzinfo=TZ)
+        self.assertEqual(next_episode(now,{},{}),40522034)
+        self.assertEqual(next_episode(datetime(2026,10,17,8,tzinfo=TZ),{},{}),40522035)
+        self.assertEqual(next_episode(datetime(2026,10,17,7,59,tzinfo=TZ),{},{}),40522034)
+
     def test_approval_waits_and_pending_preserved(self):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder)
