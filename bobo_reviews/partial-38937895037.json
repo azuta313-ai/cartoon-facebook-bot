@@ -1,0 +1,43 @@
+{
+  "status": "incomplete_not_approved",
+  "artifact_run_id": 38937895037,
+  "artifact_id": 12062360424,
+  "reviewed_at": "2026-10-16T23:25:00+05:00",
+  "available_files": [
+    "shot0.mp4",
+    "reference.png",
+    "continuation.png",
+    "dialogue-timing.json",
+    "voice-line.wav",
+    "voice-track.wav"
+  ],
+  "missing": [
+    "remaining shots",
+    "bobo_fresh.mp4",
+    "episode.json",
+    "final mix and final subtitles"
+  ],
+  "provider_result": "No GPU was available after 60s; transient allocation failure, not evidence of exhausted daily quota.",
+  "visual_sample_fps": 8,
+  "observed_actions": {
+    "reach_to_button": [
+      0.125,
+      0.375
+    ],
+    "button_contact": [
+      0.375,
+      1.125
+    ],
+    "withdrawal": [
+      1.125,
+      1.375
+    ],
+    "repeated_jaw_and_gestures": [
+      1.375,
+      4
+    ]
+  },
+  "repair_assessment": "Retain partial source artifact; opening contact may be reusable. Remaining jaw/gestures need review and replacement or suitable editing; do not loop, freeze-pad or publish partial as eleven seconds. No final-mix intelligibility review possible.",
+  "publication_authorized": false,
+  "cost": 0
+}
