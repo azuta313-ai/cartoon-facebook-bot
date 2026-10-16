@@ -245,7 +245,7 @@ def main():
  scene_id=eligible[0]
  board_path=Path('bobo_storyboard_pilot.json')
  board=json.loads(board_path.read_text()) if board_path.exists() else {}
- if board.get('episode')==episode:
+ if board.get('episode')==episode and int(board.get('scene_id',-1)) not in recent:
   assert board.get('cost')==0 and len(board['shots'])==3
   scene_id=int(board['scene_id'])
  else: board={}
