@@ -1,0 +1,21 @@
+{
+  "episode": 40522036,
+  "artifact_run_id": 39055545716,
+  "artifact_id": 12109442272,
+  "final_sha256": "66a93f0388af77f69a3851268f37bc833cc98d9e9d7a699a2f4840de388cb813",
+  "facebook_video_id": "2064912157561876",
+  "accepted_at": "2026-10-17T23:34:08.729280+05:00",
+  "acceptance_workflow_run": 39058653457,
+  "status": "accepted_under_explicit_user_defect_exception",
+  "quality_passed": false,
+  "instagram_status": "not_confirmed",
+  "stories_status": "not_confirmed",
+  "pending_record": {
+    "episode": 40522036,
+    "title": "Bobo's Puddle Surprise",
+    "generated_sha256": "00a8fb3a37453bb6f57456993ea3109a59e68749f146d1f459279da990bcbd9e",
+    "status": "awaiting_visual_audio_review",
+    "artifact_run_id": "39055545716",
+    "created_at": "2026-10-17T22:51:37.548649+05:00"
+  }
+}
