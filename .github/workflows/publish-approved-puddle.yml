@@ -1,0 +1,65 @@
+name: Publish approved defective puddle video
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/publish-approved-puddle.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: publish-puddle-40522036
+  cancel-in-progress: false
+jobs:
+  publish-existing-artifact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download exact original generated artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/${{ github.repository }}/actions/artifacts/12109442272/zip > /tmp/puddle.zip
+          mkdir -p /tmp/puddle
+          unzip -q /tmp/puddle.zip -d /tmp/puddle
+          test -s /tmp/puddle/bobo_fresh.mp4
+      - name: Publish exact existing video with user-authorized defect exception
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+        run: |
+          python - <<'PY'
+          import json,os,subprocess,hashlib
+          from pathlib import Path
+          ledger=Path('published_bobo.json')
+          data=json.loads(ledger.read_text())
+          key='long-v2-40522036'
+          expected='00a8fb3a37453bb6f57456993ea3109a59e68749f146d1f459279da990bcbd9e'
+          episode=json.loads(Path('/tmp/puddle/episode.json').read_text())
+          assert episode['generated_sha256']==expected,'Wrong artifact'
+          if key in data and data[key].get('facebook_video_id'):
+              print('Already published on Facebook:',data[key]['facebook_video_id'])
+              raise SystemExit(0)
+          token=os.environ['FB_PAGE_ACCESS_TOKEN']
+          page=os.environ['FB_PAGE_ID']
+          caption=Path('/tmp/puddle/facebook-caption.txt').read_text()
+          response=subprocess.check_output(['curl','--silent','--show-error','--fail-with-body','--max-time','180','-X','POST',f'https://graph-video.facebook.com/v26.0/{page}/videos','-F',f'access_token={token}','-F','source=@/tmp/puddle/bobo_fresh.mp4','-F',f'description={caption}'])
+          obj=json.loads(response)
+          assert obj.get('id'),'Facebook did not return a post ID'
+          episode['facebook_video_id']=obj['id']
+          episode['publication_exception']='User approved known visual and audio defects for this exact episode; not a quality pass'
+          data[key]=episode
+          ledger.write_text(json.dumps(data,indent=2))
+          print('Facebook accepted video ID:',obj['id'])
+          PY
+      - name: Commit confirmed Facebook publication
+        run: |
+          git config user.name "Bobo automation"
+          git config user.email "bobo-bot@users.noreply.github.com"
+          git add published_bobo.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record user-authorized puddle publication"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
