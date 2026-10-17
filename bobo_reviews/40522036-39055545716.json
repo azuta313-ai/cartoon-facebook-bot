@@ -1,0 +1,73 @@
+{
+  "status": "held_for_story_repair",
+  "episode": 40522036,
+  "story_serial": 1,
+  "title": "Bobo's Puddle Surprise",
+  "artifact_run_id": 39055545716,
+  "artifact_id": 12109442272,
+  "final_sha256": "66a93f0388af77f69a3851268f37bc833cc98d9e9d7a699a2f4840de388cb813",
+  "review": {
+    "reviewed_sha256": "66a93f0388af77f69a3851268f37bc833cc98d9e9d7a699a2f4840de388cb813",
+    "full_render_sample_fps": 8,
+    "transition_sample_fps": 8,
+    "duration": 11,
+    "technical": "H264720x1280 AAC; decoded, mean-19.3dB peak-1.5dB",
+    "observed_actions": {
+      "opening_boot_lift_and_lower": [
+        0,
+        0.75
+      ],
+      "look_down_and_face_reaction": [
+        0.75,
+        3
+      ],
+      "crouched_reaction": [
+        3,
+        5
+      ],
+      "hand_water_contact_and_reaction": [
+        5,
+        7.25
+      ],
+      "arm_gesture": [
+        7.25,
+        8.5
+      ],
+      "boot_tap_and_crouch": [
+        8.5,
+        11
+      ]
+    },
+    "missing_story_evidence": [
+      "No clear jump followed by single small drop",
+      "No confirmed drop landing on nose"
+    ],
+    "voice": {
+      "text": "Big splash!",
+      "start": 0.35,
+      "end": 1.0516,
+      "intelligibility_verified": false,
+      "listening_verified": false,
+      "reason": "Source metadata present; independent final-mix ASR not yet completed. No listening claim."
+    },
+    "captions": [
+      {
+        "text": "Big splash!",
+        "start": 0.35,
+        "end": 1.0516,
+        "kind": "spoken",
+        "assessment": "Provisional exact spoken subtitle visible; planned final reaction currently placed at opening."
+      }
+    ],
+    "music": {
+      "variant": 8,
+      "style": "soft marimba bounce",
+      "preserved": true,
+      "subjective_audibility_verified": false
+    },
+    "effects_complete": false,
+    "quality_passed": false,
+    "assessment": "Apply relaxed Snowball cosmetic standard: minor sync/brief poses are not sole blockers. Hold due to missing approved story payoff and unfinished observed audio/subtitle mapping, not cosmetic perfection. Retain source shots; no publication or quota regeneration requested by this review.",
+    "cost": 0
+  }
+}
