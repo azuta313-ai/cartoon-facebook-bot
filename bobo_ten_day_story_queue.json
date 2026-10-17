@@ -1,0 +1,214 @@
+{
+  "series": "Bobo Giggle Grove ten-day serial story queue",
+  "created_on": "2026-10-17",
+  "duration_seconds": 11,
+  "strict_serial_order": true,
+  "advance_only_after_verified_facebook_and_instagram_publication": true,
+  "avoid_duplicate_publication": true,
+  "free_quota_only": true,
+  "character_reference": "User-uploaded Bobo portrait in conversation 2026-10-17: golden-brown spiky fur, large brown eyes and ears, red t-shirt; maintain same recognizable character every episode.",
+  "quality_reference": "The tiniest snowball. The proudest monkey. (production quality only, not a story to repeat)",
+  "status": "story plan only; not yet integrated with generation/publishing pipeline",
+  "stories": [
+    {
+      "serial": 1,
+      "original_target_date": "2026-10-17",
+      "title": "Bobo's Puddle Surprise",
+      "beats": [
+        {
+          "seconds": "0-3",
+          "action": "Bobo wears bright yellow rain boots beside a tiny puddle."
+        },
+        {
+          "seconds": "3-8",
+          "action": "He jumps expecting a huge splash; only one little drop rises."
+        },
+        {
+          "seconds": "8-11",
+          "action": "The drop lands on his nose. Bobo says: Big splash!"
+        }
+      ],
+      "publication_status": "not_verified"
+    },
+    {
+      "serial": 2,
+      "original_target_date": "2026-10-18",
+      "title": "Bobo's Upside-Down Umbrella",
+      "beats": [
+        {
+          "seconds": "0-3",
+          "action": "Bobo opens a tiny umbrella as leaves fall."
+        },
+        {
+          "seconds": "3-8",
+          "action": "A gentle breeze flips the umbrella inside out into a bowl."
+        },
+        {
+          "seconds": "8-11",
+          "action": "A leaf lands inside. Bobo says: Leaf catcher!"
+        }
+      ],
+      "publication_status": "not_verified"
+    },
+    {
+      "serial": 3,
+      "original_target_date": "2026-10-19",
+      "title": "Bobo's Flying Pancake",
+      "beats": [
+        {
+          "seconds": "0-3",
+          "action": "Bobo prepares to flip a pancake in a colorful kitchen."
+        },
+        {
+          "seconds": "3-8",
+          "action": "He tosses it too high and watches it disappear above the frame."
+        },
+        {
+          "seconds": "8-11",
+          "action": "It lands on his head. Bobo says: New hat!"
+        }
+      ],
+      "publication_status": "not_verified"
+    },
+    {
+      "serial": 4,
+      "original_target_date": "2026-10-20",
+      "title": "Bobo's Bubble Mustache",
+      "beats": [
+        {
+          "seconds": "0-3",
+          "action": "Bobo blows a floating soap bubble."
+        },
+        {
+          "seconds": "3-8",
+          "action": "It drifts back and pops softly on his face."
+        },
+        {
+          "seconds": "8-11",
+          "action": "Foam makes a mustache. Bobo says: I'm Grandpa Bobo!"
+        }
+      ],
+      "publication_status": "not_verified"
+    },
+    {
+      "serial": 5,
+      "original_target_date": "2026-10-21",
+      "title": "Bobo's Kite That Wouldn't Fly",
+      "beats": [
+        {
+          "seconds": "0-3",
+          "action": "Bobo runs with a colorful little kite."
+        },
+        {
+          "seconds": "3-8",
+          "action": "The kite flops onto his back like a cape."
+        },
+        {
+          "seconds": "8-11",
+          "action": "Bobo poses and says: Super Bobo!"
+        }
+      ],
+      "publication_status": "not_verified"
+    },
+    {
+      "serial": 6,
+      "original_target_date": "2026-10-22",
+      "title": "Bobo's Drum Solo",
+      "beats": [
+        {
+          "seconds": "0-3",
+          "action": "Bobo picks up drumsticks beside a tiny drum."
+        },
+        {
+          "seconds": "3-8",
+          "action": "He performs a dramatic drumroll."
+        },
+        {
+          "seconds": "8-11",
+          "action": "His final tap makes his hat bounce off. Bobo says: Encore!"
+        }
+      ],
+      "publication_status": "not_verified"
+    },
+    {
+      "serial": 7,
+      "original_target_date": "2026-10-23",
+      "title": "Bobo's Mighty Carrot",
+      "beats": [
+        {
+          "seconds": "0-3",
+          "action": "Bobo grabs a carrot top in the garden."
+        },
+        {
+          "seconds": "3-8",
+          "action": "He pulls hard, leaning backward."
+        },
+        {
+          "seconds": "8-11",
+          "action": "A tiny carrot pops free. Bobo says: So strong!"
+        }
+      ],
+      "publication_status": "not_verified"
+    },
+    {
+      "serial": 8,
+      "original_target_date": "2026-10-24",
+      "title": "Bobo's Boomerang Plane",
+      "beats": [
+        {
+          "seconds": "0-3",
+          "action": "Bobo folds and launches a paper airplane."
+        },
+        {
+          "seconds": "3-8",
+          "action": "It circles through the air and returns."
+        },
+        {
+          "seconds": "8-11",
+          "action": "The plane lands in his hands. Bobo says: Delivery for Bobo!"
+        }
+      ],
+      "publication_status": "not_verified"
+    },
+    {
+      "serial": 9,
+      "original_target_date": "2026-10-25",
+      "title": "Bobo's Butterfly Crown",
+      "beats": [
+        {
+          "seconds": "0-3",
+          "action": "Bobo spots a butterfly among flowers."
+        },
+        {
+          "seconds": "3-8",
+          "action": "He follows it gently."
+        },
+        {
+          "seconds": "8-11",
+          "action": "It lands on his head. Bobo whispers: I'm the king!"
+        }
+      ],
+      "publication_status": "not_verified"
+    },
+    {
+      "serial": 10,
+      "original_target_date": "2026-10-26",
+      "title": "Bobo's Balloon Tail",
+      "beats": [
+        {
+          "seconds": "0-3",
+          "action": "Bobo ties a colorful balloon to his tail."
+        },
+        {
+          "seconds": "3-8",
+          "action": "He turns in circles looking for the balloon."
+        },
+        {
+          "seconds": "8-11",
+          "action": "He spots it and says: My tail can fly!"
+        }
+      ],
+      "publication_status": "not_verified"
+    }
+  ]
+}
