@@ -290,7 +290,7 @@ def main():
  if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
  from bobo_voice import prepare_voice,mix_voice
- voice_record=prepare_voice(OUT,scene_id,text=series['voice_line'])
+ voice_record=prepare_voice(OUT,scene_id,start=8.15 if serial==1 else .35,text=series['voice_line'])
  voice_end=voice_record['cues'][0]['end']
  if serial==1:
   action=('Bobo bends his knees, JUMPS clearly into the air, and lands in his bright yellow boots beside the tiny puddle. Exactly ONE little droplet rises; NO large splash.')
