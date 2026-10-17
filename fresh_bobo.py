@@ -276,11 +276,15 @@ def main():
   action=board['shots'][0]['action']
   (OUT/'storyboard.json').write_text(json.dumps(board,indent=2))
  # Never substitute an unrelated scene for an approved serial story.
+ if serial==1:
+  scene_id=4
+  setting='a cheerful garden path after rain with a tiny puddle'
+  prop='a tiny puddle and bright yellow rain boots'
  title=story['title']
  action=' '.join(b['action'] for b in story['beats'][:2])
  ending=story['beats'][2]['action']
  series['voice_line']=(ending.split('Bobo says: ')[-1].split('Bobo whispers: ')[-1].strip() if ('Bobo says: ' in ending or 'Bobo whispers: ' in ending) else 'Oh wow!')
- scene_reference=Path('assets/story_queue')/f'story{serial:02d}.png'
+ scene_reference=(Path('assets/scenes/scene4.jpg') if serial==1 else Path('assets/story_queue')/f'story{serial:02d}.png')
  if not scene_reference.is_file():
   raise RuntimeError(f'Story {serial} missing matching Bobo reference at {scene_reference}; do not waste free quota on unrelated footage.')
  if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
