@@ -401,10 +401,31 @@ def main():
  (OUT/'facebook-caption.txt').write_text(social_caption)
  (OUT/'episode.json').write_text(json.dumps(metadata,indent=2))
  print(f'New episode created: {title}. No paid API used.')
- # All new videos must be reviewed before any Facebook publication.
+ # One-artifact exception: the user explicitly authorized publication of the existing
+ # defective Puddle Surprise video. This must never waive review for other videos.
+ if os.getenv('BOBO_APPROVED_DEFECT_EXCEPTION')=='true' and episode==40522036:
+  print('User-approved defect exception for exact Puddle Surprise episode; publishing without quality-pass claim.')
+ else:
+
  Path('bobo_review_pending.json').write_text(json.dumps({'episode':episode,'title':title,'generated_sha256':metadata['generated_sha256'],'status':'awaiting_visual_audio_review','artifact_run_id':os.getenv('GITHUB_RUN_ID'),'created_at':now.isoformat()},indent=2))
  print('REVIEW REQUIRED: saved draft; no Facebook upload attempted.')
  return
+ if os.getenv('PUBLISH_FACEBOOK')=='true':
+  page=os.environ['FB_PAGE_ID']; fb_token=os.environ['FB_PAGE_ACCESS_TOKEN']
+  if not page or not fb_token: raise RuntimeError('Facebook credentials are missing.')
+  if any(v.get('generated_sha256')==metadata['generated_sha256'] for v in ledger.values()): raise RuntimeError('Duplicate generated video; skipping upload.')
+  metadata['social_caption']=social_caption
+  (OUT/'facebook-caption.txt').write_text(social_caption)
+  response=subprocess.check_output(['curl','--silent','--show-error','--fail-with-body','--max-time','180','-X','POST',f'https://graph-video.facebook.com/v26.0/{page}/videos','-F',f'access_token={fb_token}','-F',f'source=@{OUT}/bobo_fresh.mp4','-F',f'description={social_caption}'])
+  result=json.loads(response)
+  if not result.get('id'): raise RuntimeError('Facebook did not accept the video.')
+  metadata['facebook_video_id']=result['id']; ledger[episode_key]=metadata
+  ledger_path.write_text(json.dumps(ledger,indent=2))
+  (OUT/'episode.json').write_text(json.dumps(metadata,indent=2))
+  print('Facebook accepted new video:',result['id'])
+if __name__=='__main__': main()
+
+
  if os.getenv('PUBLISH_FACEBOOK')=='true':
   page=os.environ['FB_PAGE_ID']; fb_token=os.environ['FB_PAGE_ACCESS_TOKEN']
   if not page or not fb_token: raise RuntimeError('Facebook credentials are missing.')
