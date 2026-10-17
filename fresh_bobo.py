@@ -292,6 +292,9 @@ def main():
  from bobo_voice import prepare_voice,mix_voice
  voice_record=prepare_voice(OUT,scene_id,text=series['voice_line'])
  voice_end=voice_record['cues'][0]['end']
+ if serial==1:
+  action=('Bobo bends his knees, JUMPS clearly into the air, and lands in his bright yellow boots beside the tiny puddle. Exactly ONE little droplet rises; NO large splash.')
+  ending=('The ONE tiny droplet visibly arcs and lands on the TIP OF Bobo\'s NOSE. He looks cross-eyed at the droplet and smiles with comic pride.')
  prompt=('High quality 3D animated family comedy. Animate this exact supplied scene in '+setting+'. Preserve the Bobo monkey and red shirt and the main prop '+prop+'. '+action+' Timing: begin visible purposeful movement in the first half second; keep lively normal-speed movement throughout all four seconds, with a quick clear setup and no long pose or anticipatory pause. No slow motion. Clear natural hand movement and expressive face, smooth motion, fixed camera. Preserve clothing details exactly; do not add or change lettering on the shirt. Bobo says the brief English reaction "'+series['voice_line']+'" near the start: a brief natural speaking mouth movement during seconds 0.35 to '+str(voice_end)+', then keep lips closed for all remaining frames. No repeated open-close jaw motions outside this measured speech window. Use expressive gestures for the remaining physical comedy. No prolonged talking. No cake, no kitchen, no extra characters, no text overlays. Complete the action within four seconds.')
  client=Client(SPACE, token=token, httpx_kwargs={'timeout':90})
  # Provider caps each request at five seconds. Three four-second shots supply
@@ -301,6 +304,19 @@ def main():
   shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Preserve clothing details exactly; no added shirt lettering. Silent physical comedy with closed-lip smiles throughout. Keep lips closed in every frame; show surprise using eyebrows, eyes and body gestures. No jaw flapping, no open-mouth laughing, no talking or lip-sync mouth motions. Lively normal-speed action begins immediately and continues through the final frame, with a quick reaction and playful moving celebration; no slow motion or long frozen pose. Smooth clear movements, fixed camera, no sudden scene changes. Complete in four seconds.')
   if board:
    shot_prompt=('Original 3D Bobo family comedy. Preserve the supplied Bobo, red shirt, room and existing props. '+board['shots'][shot]['action']+' Required ending pose: '+board['shots'][shot]['end_pose']+' Fixed camera. Normal-speed purposeful action starts immediately. No added objects, no melting, no text, no prolonged pose. '+('Only one brief speaking window from 0.35 to '+str(voice_end)+' seconds; lips closed afterward.' if shot==0 else 'Lips closed throughout; express emotion with eyes, arms and shoulders. No talking or open-mouth laughter.'))
+  if serial==1:
+   if shot==0:
+    shot_prompt=('High-quality 3D Bobo, red shirt and yellow rain boots, same sunny puddle garden. '
+                 'He visibly bends knees and JUMPS into the air, landing by the tiny puddle. '
+                 'Exactly ONE tiny drop starts to rise. NO talking, no big splash, no scene change.')
+   elif shot==1:
+    shot_prompt=('Continue same 3D Bobo, red shirt, yellow boots, same garden and puddle. '
+                 'The SINGLE tiny droplet rises from the puddle, travels visibly toward his nose. '
+                 'Bobo tracks it with his eyes. No big spray, no talking, natural motion.')
+   else:
+    shot_prompt=('Continue same 3D Bobo and same garden. Show the ONE tiny droplet visibly LAND '
+                 'on the TIP of his NOSE. He looks cross-eyed at it and gives a delighted comic smile. '
+                 'Keep the droplet visible. No scene change, smooth motion.')
   reference=OUT/('reference.png' if shot==0 else 'continuation.png')
   try:
    result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake, repeated talking, jaw flapping, open mouth laughter',duration_seconds=4,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
