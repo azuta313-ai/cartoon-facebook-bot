@@ -1,0 +1,270 @@
+{
+  "version": "ten-original-stories-v1",
+  "timezone": "Asia/Karachi",
+  "start_date": "2026-10-18",
+  "end_date": "2026-10-27",
+  "status": "queued_not_generated",
+  "policy": "One featured story per day alongside existing two-video daily target. Other daily video must be an additional original story, never a replay of featured or historical footage. Do not loop ten-story list. Unfinished entries remain pending; no false completion. Preserve original 3D monkey Bobo/red shirt,11 seconds,mandatory Piper speech,zero spending,observed-action finishing and exact-artifact review. Dialogue placement is provisional until observed. Original suitable reference assets required; do not force new stories into mismatched old scene references.",
+  "stories": [
+    {
+      "day": 1,
+      "date": "2026-10-18",
+      "story_id": "bobo-ten-1",
+      "title": "The Runaway Hat",
+      "voice_line": "Nice hat!",
+      "beats": [
+        {
+          "start": 0,
+          "end": 3,
+          "action": "Bobo reaches as a breeze lifts his hat."
+        },
+        {
+          "start": 3,
+          "end": 7,
+          "action": "He chases two steps; hat lands on bush."
+        },
+        {
+          "start": 7,
+          "end": 11,
+          "action": "He bows to hat-wearing bush and retrieves hat."
+        }
+      ],
+      "status": "queued",
+      "never_reuse_published_visuals": true
+    },
+    {
+      "day": 2,
+      "date": "2026-10-19",
+      "story_id": "bobo-ten-2",
+      "title": "Banana Telephone",
+      "voice_line": "Snack calling!",
+      "beats": [
+        {
+          "start": 0,
+          "end": 3,
+          "action": "Bobo holds banana to ear."
+        },
+        {
+          "start": 3,
+          "end": 7,
+          "action": "He listens, then notices loose peel."
+        },
+        {
+          "start": 7,
+          "end": 11,
+          "action": "He peels, takes small bite, nods."
+        }
+      ],
+      "status": "queued",
+      "never_reuse_published_visuals": true
+    },
+    {
+      "day": 3,
+      "date": "2026-10-20",
+      "story_id": "bobo-ten-3",
+      "title": "The Sticky Leaf",
+      "voice_line": "Stay there!",
+      "beats": [
+        {
+          "start": 0,
+          "end": 3,
+          "action": "Bobo brushes leaf off shoulder."
+        },
+        {
+          "start": 3,
+          "end": 7,
+          "action": "Leaf sticks to hand; he transfers it to other hand."
+        },
+        {
+          "start": 7,
+          "end": 11,
+          "action": "He places leaf on branch and waves."
+        }
+      ],
+      "status": "queued",
+      "never_reuse_published_visuals": true
+    },
+    {
+      "day": 4,
+      "date": "2026-10-21",
+      "story_id": "bobo-ten-4",
+      "title": "Tiny Drum, Big Surprise",
+      "voice_line": "Hello, little friend!",
+      "beats": [
+        {
+          "start": 0,
+          "end": 3,
+          "action": "Bobo taps upside-down wooden bucket."
+        },
+        {
+          "start": 3,
+          "end": 7,
+          "action": "Butterfly on rim lands on his nose."
+        },
+        {
+          "start": 7,
+          "end": 11,
+          "action": "Cross-eyed reaction; he gently blows butterfly toward flower."
+        }
+      ],
+      "status": "queued",
+      "never_reuse_published_visuals": true
+    },
+    {
+      "day": 5,
+      "date": "2026-10-22",
+      "story_id": "bobo-ten-5",
+      "title": "The Rolling Lemon",
+      "voice_line": "You live here!",
+      "beats": [
+        {
+          "start": 0,
+          "end": 3,
+          "action": "Bobo reaches for lemon rolling across picnic cloth."
+        },
+        {
+          "start": 3,
+          "end": 7,
+          "action": "He stops it with cup; cup tips sideways."
+        },
+        {
+          "start": 7,
+          "end": 11,
+          "action": "He steadies both, puts lemon in cup, pats cup."
+        }
+      ],
+      "status": "queued",
+      "never_reuse_published_visuals": true
+    },
+    {
+      "day": 6,
+      "date": "2026-10-23",
+      "story_id": "bobo-ten-6",
+      "title": "Bobo’s Shadow Dance",
+      "voice_line": "Your turn!",
+      "beats": [
+        {
+          "start": 0,
+          "end": 3,
+          "action": "Bobo waves and notices his shadow."
+        },
+        {
+          "start": 3,
+          "end": 7,
+          "action": "He tries two poses; shadow follows accurately."
+        },
+        {
+          "start": 7,
+          "end": 11,
+          "action": "He bows then hops away looking back."
+        }
+      ],
+      "status": "queued",
+      "never_reuse_published_visuals": true
+    },
+    {
+      "day": 7,
+      "date": "2026-10-24",
+      "story_id": "bobo-ten-7",
+      "title": "The Sneaky Feather",
+      "voice_line": "Found you!",
+      "beats": [
+        {
+          "start": 0,
+          "end": 3,
+          "action": "Bobo catches drifting feather."
+        },
+        {
+          "start": 3,
+          "end": 7,
+          "action": "He lifts it; it brushes nose."
+        },
+        {
+          "start": 7,
+          "end": 11,
+          "action": "Small sneeze sends feather onto head; he touches and discovers it."
+        }
+      ],
+      "status": "queued",
+      "never_reuse_published_visuals": true
+    },
+    {
+      "day": 8,
+      "date": "2026-10-25",
+      "story_id": "bobo-ten-8",
+      "title": "One Very Small Umbrella",
+      "voice_line": "Perfect for you!",
+      "beats": [
+        {
+          "start": 0,
+          "end": 3,
+          "action": "Bobo opens tiny umbrella in light rain."
+        },
+        {
+          "start": 3,
+          "end": 7,
+          "action": "He tries sheltering head then one ear."
+        },
+        {
+          "start": 7,
+          "end": 11,
+          "action": "He shelters a small flower instead."
+        }
+      ],
+      "status": "queued",
+      "never_reuse_published_visuals": true
+    },
+    {
+      "day": 9,
+      "date": "2026-10-26",
+      "story_id": "bobo-ten-9",
+      "title": "The Missing Puzzle Piece",
+      "voice_line": "There you are!",
+      "beats": [
+        {
+          "start": 0,
+          "end": 3,
+          "action": "Bobo searches beside unfinished wooden puzzle."
+        },
+        {
+          "start": 3,
+          "end": 7,
+          "action": "He lifts cloth, finds nothing."
+        },
+        {
+          "start": 7,
+          "end": 11,
+          "action": "He scratches head, finds piece there, fits puzzle."
+        }
+      ],
+      "status": "queued",
+      "never_reuse_published_visuals": true
+    },
+    {
+      "day": 10,
+      "date": "2026-10-27",
+      "story_id": "bobo-ten-10",
+      "title": "The Wobbly Cushion",
+      "voice_line": "Much better!",
+      "beats": [
+        {
+          "start": 0,
+          "end": 3,
+          "action": "Bobo sits on gently tilting round cushion."
+        },
+        {
+          "start": 3,
+          "end": 7,
+          "action": "He balances arms and carefully stands."
+        },
+        {
+          "start": 7,
+          "end": 11,
+          "action": "He flattens cushion, sits securely, nods."
+        }
+      ],
+      "status": "queued",
+      "never_reuse_published_visuals": true
+    }
+  ]
+}
