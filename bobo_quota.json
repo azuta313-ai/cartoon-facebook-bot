@@ -1,4 +1,6 @@
 {
-  "retry_after": "2026-10-16T21:48:47.228588+05:00",
-  "reason": "Free ZeroGPU quota exhausted"
+  "retry_after": "2026-10-17T07:32:00+05:00",
+  "reason": "Provider confirms ZeroGPU runs limit; no reset time supplied",
+  "retry_is_backoff_not_reset": true,
+  "source_run_id": 38991034236
 }
