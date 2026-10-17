@@ -228,6 +228,13 @@ def main():
  episode=next_episode(now,ledger,reserve)
  if episode is None:
   print('Four reviewed reserve entries ready; conserving free quota.'); return
+ # Approved stories are selected in strict order, never by scene rotation.
+ queue=json.loads(Path('bobo_ten_day_story_queue.json').read_text())
+ published_serials={int(v['story_serial']) for v in ledger.values() if v.get('story_serial') and v.get('facebook_video_id') and v.get('instagram',{}).get('media_id')}
+ serial=next((i for i in range(1,11) if i not in published_serials),None)
+ if serial is None:
+  print('All ten approved stories published.'); return
+ story=next(s for s in queue['stories'] if int(s['serial'])==serial)
  slot=episode%2
  episode_key=f'long-v2-{episode}'
  if episode_key in ledger:
@@ -268,7 +275,14 @@ def main():
   title=board['title']; series['voice_line']=board['voice_line']
   action=board['shots'][0]['action']
   (OUT/'storyboard.json').write_text(json.dumps(board,indent=2))
- scene_reference=Path('assets/scenes')/f'scene{scene_id}.jpg'
+ # Never substitute an unrelated scene for an approved serial story.
+ title=story['title']
+ action=' '.join(b['action'] for b in story['beats'][:2])
+ ending=story['beats'][2]['action']
+ series['voice_line']=(ending.split('Bobo says: ')[-1].split('Bobo whispers: ')[-1].strip() if ('Bobo says: ' in ending or 'Bobo whispers: ' in ending) else 'Oh wow!')
+ scene_reference=Path('assets/story_queue')/f'story{serial:02d}.png'
+ if not scene_reference.is_file():
+  raise RuntimeError(f'Story {serial} missing matching Bobo reference at {scene_reference}; do not waste free quota on unrelated footage.')
  if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
  from bobo_voice import prepare_voice,mix_voice
@@ -348,13 +362,17 @@ def main():
  music_db=ensure_audible_music(OUT/'bobo_fresh.mp4',scene_id,music_variant=music_variant)
  metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':30,'effects':'original scene-specific effects; no bite sample','voice':voice_record,'voice_review_required':voice_record['enabled'],'caption_kind':'spoken subtitle plus separate action captions' if voice_record['enabled'] else 'action captions; no spoken dialogue','caption_review_required':True,'caption_timing':[{'text':t,'start':a,'end':z} for t,a,z in cues],'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
  metadata.update(music_variant=music_variant,music_style=MUSIC_STYLES[music_variant%8],music='original procedural arrangement '+str(music_variant),sound_design_version=3,pacing_review_required=True)
+ metadata['story_serial']=serial
+ metadata['approved_story_beats']=story['beats']
  metadata.update(production_strategy='observe-repair-reserve-v1',finishing_required=True,planned_effects_unverified=True,reserve_target=4)
  hook,teaser,question=PROMOTION[scene_id]
  follow_line=series['follow_invitation']
  teaser=series['format']+' • '+series['name']+'\n'+teaser
  metadata['comedy_series']=series
  social_caption=f"{hook}\n\n{teaser}\n{question}\n{follow_line}\n\n"+' '.join('#'+tag for tag in ['Bobo','3DAnimation']+scene_tags+[['FunnyCartoon'],['CartoonComedy'],['AnimatedShorts'],['FunnyAnimation']][scene_id%4])
- if board:
+ social_caption=f"{title} 🐒✨\\n{ending}\\nFollow Bobo Giggle Grove for the next adventure. 🌳🐒\\n#Bobo #3DAnimation #AnimatedShorts"
+ # Legacy storyboard captions must not override approved serial stories.
+ if False and board:
   social_caption=board['social_caption']
   metadata['storyboard_version']=board['version']
   metadata['planned_shot_evidence']=[s['required_evidence'] for s in board['shots']]
