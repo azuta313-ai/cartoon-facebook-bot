@@ -111,3 +111,5 @@ jobs:
 # Prepare 17 October morning slot after transient provider allocation failure; retain prior partial artifact.
 
 # Retry after provider backoff, 17 October15:35 PK; user revised cosmetic benchmark, core checks retained.
+
+# Verify actual provider availability after22:30 backoff;17October22:51PK.
