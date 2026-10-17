@@ -288,13 +288,17 @@ def main():
    result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake, repeated talking, jaw flapping, open mouth laughter',duration_seconds=4,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
   except Exception as exc:
    message=str(exc)
-   if 'quota' in message.lower():
+   if 'quota' in message.lower() or 'zerogpu runs limit' in message.lower():
     wait=re.search(r'Try again in (\d+):(\d+):(\d+)',message)
     if wait:
      hours,minutes,seconds=map(int,wait.groups())
      retry=now+timedelta(hours=hours,minutes=minutes,seconds=seconds+120)
      quota_path.write_text(json.dumps({'retry_after':retry.isoformat(),'reason':'Free ZeroGPU quota exhausted'},indent=2))
      print('Free quota exhausted; pausing requests until '+retry.isoformat())
+    else:
+     retry=datetime.now(ZoneInfo('Asia/Karachi'))+timedelta(hours=1)
+     quota_path.write_text(json.dumps({'retry_after':retry.isoformat(),'reason':'Provider ZeroGPU quota/runs limit; reset time not supplied','retry_is_backoff_not_reset':True},indent=2))
+     print('Provider limit confirmed; one-hour retry backoff, not a promised quota reset.')
    raise
   source=result[0]
   if isinstance(source,dict): source=source.get('video',source.get('path'))
