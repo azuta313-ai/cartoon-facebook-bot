@@ -67,7 +67,7 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
-          PUBLISH_FACEBOOK: 'false'
+          PUBLISH_FACEBOOK: 'true'
           BOBO_VOICE_TEST: 'true'
         run: python fresh_bobo.py
       - name: Record publication and quota cooldown
