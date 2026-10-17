@@ -41,7 +41,7 @@ for field in ['name','followers_count','fan_count']:
 ledger=json.loads(Path('published_bobo.json').read_text())
 story_ids={str(v['story']['video_id']) for v in ledger.values() if v.get('story',{}).get('video_id')}
 def strategy_cohort(meta):
-    if meta.get('review',{}).get('publication_exception'):
+    if meta.get('publication_exception') or meta.get('review',{}).get('publication_exception'):
         return 'user_exception_not_quality_pass'
     if meta.get('production_strategy')=='observe-repair-reserve-v1' and meta.get('review',{}).get('review',{}).get('quality_passed') is True:
         return 'qualified_strategy'
