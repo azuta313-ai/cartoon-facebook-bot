@@ -71,7 +71,13 @@ jobs:
           assert metadata['music_check_dbfs'] > -30
           assert Path(metadata['quality_reference']).read_bytes() == (b.OUT/'reference.png').read_bytes()
           assert metadata['setting'] and metadata['scene_id'] in range(8)
-          assert '#'+b.SCENES[metadata['scene_id']][-1][0] in metadata['social_caption']
+          queue=json.loads(Path('bobo_ten_day_story_queue.json').read_text())
+          expected=next(s for s in queue['stories'] if s['serial']==1)
+          assert metadata['story_serial']==1 and metadata['title']==expected['title']
+          assert expected['title'] in metadata['social_caption']
+          assert metadata['approved_story_beats']==expected['beats']
+          assert spoken['text']=='Big splash!'
+          assert '#Bobo' in metadata['social_caption']
           assert (b.OUT/'facebook-caption.txt').is_file()
           for variant in range(8):
               b.soundtrack(11,variant)
