@@ -1662,5 +1662,101 @@
       "post_id": "1420013252932029",
       "accepted_at": "2026-10-16T22:12:29.677696+05:00"
     }
+  },
+  "long-v2-40522036": {
+    "episode": 40522036,
+    "title": "Bobo's Puddle Surprise",
+    "space": "zerogpu-aoti/wan2-2-fp8da-aoti-faster",
+    "generated_sha256": "00a8fb3a37453bb6f57456993ea3109a59e68749f146d1f459279da990bcbd9e",
+    "duration": 11,
+    "generated_at": "2026-10-17T22:51:37.548649+05:00",
+    "quality_reference": "assets/scenes/scene4.jpg",
+    "music_check_dbfs": -16.04,
+    "export_fps": 30,
+    "effects": "original scene-specific effects; no bite sample",
+    "voice": {
+      "enabled": true,
+      "engine": "Piper local CPU",
+      "model": "en_US-ljspeech-medium.onnx",
+      "model_sha256": "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22",
+      "voice_sha256": "4a89d17457daae1253966aefe223e06c279dfab5b6f6f092141509100a1fa0a6",
+      "language": "en-US",
+      "pitch_factor": 1.15,
+      "cost": 0,
+      "lip_sync_verified": false,
+      "listening_verified": false,
+      "cues": [
+        {
+          "text": "Big splash!",
+          "start": 0.35,
+          "end": 1.0516,
+          "kind": "spoken dialogue",
+          "placement": "provisional; requires actual rendered mouth/action review"
+        }
+      ],
+      "license": "Piper GPL-3.0; voice repository MIT; LJ Speech source public domain",
+      "license_source": "https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD"
+    },
+    "voice_review_required": true,
+    "caption_kind": "spoken subtitle plus separate action captions",
+    "caption_review_required": true,
+    "caption_timing": [
+      {
+        "text": "Big splash!",
+        "start": 0.35,
+        "end": 1.0516
+      }
+    ],
+    "audio_mix_variant": 4,
+    "scene_id": 4,
+    "setting": "a cheerful garden path after rain with a tiny puddle",
+    "music": "original procedural arrangement 8",
+    "music_variant": 8,
+    "music_style": "soft marimba bounce",
+    "sound_design_version": 3,
+    "pacing_review_required": true,
+    "story_serial": 1,
+    "approved_story_beats": [
+      {
+        "seconds": "0-3",
+        "action": "Bobo wears bright yellow rain boots beside a tiny puddle."
+      },
+      {
+        "seconds": "3-8",
+        "action": "He jumps expecting a huge splash; only one little drop rises."
+      },
+      {
+        "seconds": "8-11",
+        "action": "The drop lands on his nose. Bobo says: Big splash!"
+      }
+    ],
+    "production_strategy": "observe-repair-reserve-v1",
+    "finishing_required": true,
+    "planned_effects_unverified": true,
+    "reserve_target": 4,
+    "comedy_series": {
+      "name": "Bobo's Silly Inventions",
+      "format": "Bobo's Mischief",
+      "voice_line": "Big splash!",
+      "direction": "One simple prop interaction; final joke and dialogue chosen after observing rendered action.",
+      "follow_invitation": "More tiny adventures with Bobo\u2014follow along! \ud83d\udc12\u2728",
+      "cost": 0
+    },
+    "social_caption": "Bobo's Puddle Surprise \ud83d\udc12\u2728\\nThe drop lands on his nose. Bobo says: Big splash!\\nFollow Bobo Giggle Grove for the next adventure. \ud83c\udf33\ud83d\udc12\\n#Bobo #3DAnimation #AnimatedShorts",
+    "growth_experiment": {
+      "version": "tiny-comedy-series-v2",
+      "evidence_snapshot": "2026-10-13T23:43:42+05:00",
+      "content_change": "Morning mischief and evening surprise formats with rotating series identity and short scene-specific reaction dialogue; evaluate at comparable ages without causal claims",
+      "promotion_change": "one concise follow invitation after the scene-specific question",
+      "primary_metrics": [
+        "post_video_retention_graph",
+        "blue_reels_play_count",
+        "fb_reels_total_plays",
+        "followers_count"
+      ],
+      "cost": 0
+    },
+    "facebook_video_id": "2064912157561876",
+    "publication_exception": "User approved known visual and audio defects for this exact episode; not a quality pass"
   }
 }
