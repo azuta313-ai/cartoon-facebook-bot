@@ -336,6 +336,17 @@ def main():
         "Complete the required action before the shot ends. "
         "Preserve continuity with the next shot."
   )
+  # Keep a per-shot action checklist; do not mistake motion for semantic action proof.
+  required_beat=story['beats'][shot]
+  shot_prompt += (' REQUIRED STORY ACTION '+str(shot+1)+'/3: '+required_beat['action']+
+                  ' Show the requested object and physical event visibly in the correct order. '
+                  'Maintain continuity and complete the action before the shot ends.')
+  (OUT/f'shot{shot+1}-review.json').write_text(json.dumps({
+   'story_serial':serial,'shot':shot+1,'required_action':required_beat['action'],
+   'expected_story_seconds':required_beat['seconds'],
+   'visual_action_verified':False,'status':'awaiting_visual_verification',
+   'repair_policy':'regenerate only this shot after confirmed missing action'
+  },indent=2))
   reference=OUT/('reference.png' if shot==0 else 'continuation.png')
   try:
    result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake, repeated talking, jaw flapping, open mouth laughter',duration_seconds=4,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
