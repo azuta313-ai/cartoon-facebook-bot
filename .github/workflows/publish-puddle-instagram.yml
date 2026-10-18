@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  actions: read
 concurrency:
   group: bobo-puddle-instagram-once
   cancel-in-progress: false
@@ -17,13 +18,22 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: Retrieve original video artifact without paid hosting
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/${{ github.repository }}/actions/artifacts/12109442272/zip > /tmp/bobo-artifact.zip
+          mkdir -p /tmp/bobo-artifact
+          unzip -q /tmp/bobo-artifact.zip -d /tmp/bobo-artifact
+          find /tmp/bobo-artifact -type f -name 'bobo_fresh.mp4' -print
+          test -s /tmp/bobo-artifact/bobo_fresh.mp4
       - name: Publish exact existing Story 1 as Instagram Reel
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
         run: |
           python - <<'PY'
-          import json,os,time,urllib.request,urllib.parse,urllib.error
+          import json,os,time,urllib.request,urllib.parse,urllib.error,hashlib
           from pathlib import Path
           API='https://graph.facebook.com/v26.0/'
           token=os.environ['FB_PAGE_ACCESS_TOKEN']
@@ -59,20 +69,26 @@ jobs:
               path.write_text(json.dumps(ledger,indent=2))
               print('Existing Instagram post found:',m['id'],m.get('permalink',''))
               raise SystemExit(0)
-          # Use the previously published Facebook video's hosted source; do not regenerate or use paid hosting.
-          fb_id=entry['facebook_video_id']
-          source=api(fb_id,{'fields':'source'}).get('source')
-          if not source: raise RuntimeError('Facebook Graph API did not expose an accessible source URL for the existing video')
-          caption="Bobo's Puddle Surprise 🐒✨\nA tiny puddle, a very big ambition! Big splash!\nFollow Bobo Giggle Grove for more adventures. 🌳🐒\n#Bobo #3DAnimation #AnimatedShorts"
-          container=api(account+'/media',{'media_type':'REELS','video_url':source,'caption':caption,'share_to_feed':'true'},post=True)
+          # Instagram resumable binary upload: avoid Facebook's expiring source URL.
+          video=Path('/tmp/bobo-artifact/bobo_fresh.mp4')
+          digest=hashlib.sha256(video.read_bytes()).hexdigest()
+          if digest!=entry['final_sha256']: raise RuntimeError('Artifact bytes do not match the recorded final video SHA256')
+          caption="Bobo's Puddle Surprise 🐒✨\\nA tiny puddle, a very big ambition! Big splash!\\nFollow Bobo Giggle Grove for more adventures. 🌳🐒\\n#Bobo #3DAnimation #AnimatedShorts"
+          container=api(account+'/media',{'media_type':'REELS','upload_type':'resumable','caption':caption,'share_to_feed':'true'},post=True)
           cid=container['id']
+          upload_uri=container.get('uri') or 'https://rupload.facebook.com/ig-api-upload/v26.0/'+cid
+          req=urllib.request.Request(upload_uri,data=video.read_bytes(),headers={'Authorization':'OAuth '+token,'offset':'0','file_size':str(video.stat().st_size),'Content-Type':'application/octet-stream'},method='POST')
+          with urllib.request.urlopen(req,timeout=180) as response:
+              upload_result=json.load(response)
+          print('Instagram binary upload accepted:',bool(upload_result.get('success',True)))
           print('Instagram media container created:',cid)
           for attempt in range(24):
               time.sleep(20)
-              status=api(cid,{'fields':'status_code,status'}).get('status_code')
+              status_info=api(cid,{'fields':'status_code,status'})
+              status=status_info.get('status_code')
               print('Instagram container status:',status)
               if status=='FINISHED': break
-              if status in ('ERROR','EXPIRED'): raise RuntimeError('Instagram processing failed: '+str(status))
+              if status in ('ERROR','EXPIRED'): raise RuntimeError('Instagram processing failed: '+str(status_info))
           else: raise RuntimeError('Instagram video processing timed out; inspect container before retrying')
           result=api(account+'/media_publish',{'creation_id':cid},post=True)
           mid=result['id']
