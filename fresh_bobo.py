@@ -321,6 +321,21 @@ def main():
     shot_prompt=('Continue same 3D Bobo and same garden. Show the ONE tiny droplet visibly LAND '
                  'on the TIP of his NOSE. He looks cross-eyed at it and gives a delighted comic smile. '
                  'Keep the droplet visible. No scene change, smooth motion.')
+    
+    shot_prompt += (
+        " MANDATORY ANIMATION QUALITY RULES: "
+        "Show every requested physical action clearly on screen. "
+        "Do not skip, replace, or merely imply an action. "
+        "Show preparation, movement, physical contact, "
+        "and the resulting reaction in the correct sequence. "
+        "Keep Bobo's face, golden-brown fur, red shirt, "
+        "body proportions, and scene consistent. "
+        "Use smooth natural 3D animation and expressive eyes. "
+        "Do not freeze, teleport props, repeat movements, "
+        "or introduce unrelated objects. "
+        "Complete the required action before the shot ends. "
+        "Preserve continuity with the next shot."
+  )
   reference=OUT/('reference.png' if shot==0 else 'continuation.png')
   try:
    result=client.predict(input_image=handle_file(str(reference)),prompt=shot_prompt,steps=4,negative_prompt='blur, distorted hands, extra limbs, melting face, flicker, frozen frame, camera shake, repeated talking, jaw flapping, open mouth laughter',duration_seconds=4,guidance_scale=1,guidance_scale_2=1,seed=(episode*2+shot)%2147483647,randomize_seed=False,api_name='/generate_video')
