@@ -1,0 +1,35 @@
+{
+  "episode": 40522037,
+  "artifact_run_id": 39091647324,
+  "source_sha256": "6c33d3dacfab3ad31c30d0e437d1c826d90f0799a74386d265d0f74d747b78fc",
+  "observed_from_full_render": true,
+  "observed_actions": {
+    "umbrella_turn_and_lower": [
+      0.625,
+      1.625
+    ],
+    "bowl_on_ground": [
+      1.625,
+      11
+    ],
+    "leaf_fall_and_handling": [
+      8.375,
+      9.625
+    ],
+    "ending_reaction": [
+      9.25,
+      10.5
+    ]
+  },
+  "purposeful_action_by": 0.125,
+  "speech": {
+    "text": "Leaf catcher!",
+    "start": 9.375,
+    "observed_action": "ending_reaction",
+    "mouth_window_observed": true
+  },
+  "captions": [],
+  "effects": [],
+  "social_caption": "An umbrella with a new job. 🍂☂️🐒\nBobo finds a playful use for his upside-down umbrella.\nFollow Bobo Giggle Grove for the next little adventure.\n#Bobo #3DAnimation #AutumnAdventure",
+  "review_notes": "Full source8fps reviewed. Move exact line to observed late reaction after leaf arrival. Remove unrelated scene0 bubble/pop effects rather than invent contact sounds; natural foley remains to be verified before final approval. Preserve music10 airy flute dance; no GPU regeneration. Mouth shapes approximate only under relaxed Snowball benchmark."
+}
