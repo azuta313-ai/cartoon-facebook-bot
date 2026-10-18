@@ -1,0 +1,95 @@
+name: Publish Bobo Puddle to Instagram Reel
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/publish-puddle-instagram.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: bobo-puddle-instagram-once
+  cancel-in-progress: false
+jobs:
+  publish-instagram:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Publish exact existing Story 1 as Instagram Reel
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+        run: |
+          python - <<'PY'
+          import json,os,time,urllib.request,urllib.parse,urllib.error
+          from pathlib import Path
+          API='https://graph.facebook.com/v26.0/'
+          token=os.environ['FB_PAGE_ACCESS_TOKEN']
+          page=os.environ['FB_PAGE_ID']
+          path=Path('published_bobo.json')
+          ledger=json.loads(path.read_text())
+          key='long-v2-40522036'
+          entry=ledger[key]
+          assert entry['generated_sha256']=='00a8fb3a37453bb6f57456993ea3109a59e68749f146d1f459279da990bcbd9e'
+          def api(endpoint, params=None, post=False):
+              params=dict(params or {})
+              params['access_token']=token
+              url=API+endpoint
+              if post:
+                  req=urllib.request.Request(url,data=urllib.parse.urlencode(params).encode(),method='POST')
+              else:
+                  req=urllib.request.Request(url+'?'+urllib.parse.urlencode(params))
+              with urllib.request.urlopen(req,timeout=75) as response:
+                  return json.load(response)
+          account=api(page,{'fields':'instagram_business_account'}).get('instagram_business_account',{}).get('id')
+          if not account: raise RuntimeError('No Instagram professional account connected to Facebook Page')
+          # Idempotency: first check recorded ID, then search recent account media for exact episode caption.
+          if entry.get('instagram_reel_id'):
+              print('Already recorded Instagram Reel:',entry['instagram_reel_id'])
+              raise SystemExit(0)
+          media=api(account+'/media',{'fields':'id,caption,permalink,media_type','limit':100}).get('data',[])
+          matching=[m for m in media if "Bobo's Puddle Surprise" in (m.get('caption') or '')]
+          if matching:
+              if len(matching)>1: raise RuntimeError('Multiple existing matching Instagram posts; manual reconciliation required')
+              m=matching[0]
+              entry['instagram_reel_id']=m['id']
+              entry['instagram_reel_url']=m.get('permalink','')
+              path.write_text(json.dumps(ledger,indent=2))
+              print('Existing Instagram post found:',m['id'],m.get('permalink',''))
+              raise SystemExit(0)
+          # Use the previously published Facebook video's hosted source; do not regenerate or use paid hosting.
+          fb_id=entry['facebook_video_id']
+          source=api(fb_id,{'fields':'source'}).get('source')
+          if not source: raise RuntimeError('Facebook Graph API did not expose an accessible source URL for the existing video')
+          caption="Bobo's Puddle Surprise 🐒✨\nA tiny puddle, a very big ambition! Big splash!\nFollow Bobo Giggle Grove for more adventures. 🌳🐒\n#Bobo #3DAnimation #AnimatedShorts"
+          container=api(account+'/media',{'media_type':'REELS','video_url':source,'caption':caption,'share_to_feed':'true'},post=True)
+          cid=container['id']
+          print('Instagram media container created:',cid)
+          for attempt in range(24):
+              time.sleep(20)
+              status=api(cid,{'fields':'status_code,status'}).get('status_code')
+              print('Instagram container status:',status)
+              if status=='FINISHED': break
+              if status in ('ERROR','EXPIRED'): raise RuntimeError('Instagram processing failed: '+str(status))
+          else: raise RuntimeError('Instagram video processing timed out; inspect container before retrying')
+          result=api(account+'/media_publish',{'creation_id':cid},post=True)
+          mid=result['id']
+          details=api(mid,{'fields':'id,permalink,media_type'})
+          entry['instagram_reel_id']=mid
+          entry['instagram_reel_url']=details.get('permalink','')
+          entry['instagram_media_type']=details.get('media_type','')
+          path.write_text(json.dumps(ledger,indent=2))
+          print('INSTAGRAM PUBLISHED ID:',mid,'URL:',entry['instagram_reel_url'])
+          PY
+      - name: Save confirmed Instagram ID
+        run: |
+          git config user.name "Bobo automation"
+          git config user.email "bobo-bot@users.noreply.github.com"
+          git add published_bobo.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record verified Instagram publication of Bobo puddle"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
