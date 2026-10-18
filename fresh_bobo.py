@@ -231,7 +231,8 @@ def main():
  # Approved stories are selected in strict order, never by scene rotation.
  queue=json.loads(Path('bobo_ten_day_story_queue.json').read_text())
  published_serials={int(v['story_serial']) for v in ledger.values() if v.get('story_serial') and v.get('facebook_reel_id') and v.get('facebook_reel_verified') is True and v.get('instagram',{}).get('media_id') and v.get('instagram',{}).get('permalink')}
- serial=next((i for i in range(1,11) if i not in published_serials),None)
+ # Story 1 Facebook Reel is explicitly waived by the user; keep its publication record unchanged.
+ serial=next((i for i in range(2,11) if i not in published_serials),None)
  if serial is None:
   print('All ten approved stories published.'); return
  story=next(s for s in queue['stories'] if int(s['serial'])==serial)
