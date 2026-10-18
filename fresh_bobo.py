@@ -230,7 +230,7 @@ def main():
   print('Four reviewed reserve entries ready; conserving free quota.'); return
  # Approved stories are selected in strict order, never by scene rotation.
  queue=json.loads(Path('bobo_ten_day_story_queue.json').read_text())
- published_serials={int(v['story_serial']) for v in ledger.values() if v.get('story_serial') and v.get('facebook_video_id') and v.get('instagram',{}).get('media_id')}
+ published_serials={int(v['story_serial']) for v in ledger.values() if v.get('story_serial') and v.get('facebook_reel_id') and v.get('facebook_reel_verified') is True and v.get('instagram',{}).get('media_id') and v.get('instagram',{}).get('permalink')}
  serial=next((i for i in range(1,11) if i not in published_serials),None)
  if serial is None:
   print('All ten approved stories published.'); return
