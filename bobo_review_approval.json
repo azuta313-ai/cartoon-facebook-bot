@@ -1,128 +1,91 @@
 {
   "status": "approved",
-  "episode": 40522032,
-  "title": "Bobo's Stubborn Block",
-  "artifact_run_id": "38935041435",
-  "artifact_id": 12060911079,
-  "scene_id": 3,
-  "rejected_scene_ids": [
-    3
-  ],
-  "generated_sha256": "26173d4989484e4f4034f08e321bb2309c3876e8de316c5c7ad5e043b46b350a",
-  "final_sha256": "03faffe1a940cfdbed9e124835e21ed0918040d2f08dbe0fc0cea8ebd9ecd85b",
+  "episode": 40522037,
+  "title": "Bobo's Upside-Down Umbrella",
+  "story_serial": 2,
+  "artifact_run_id": "39117744959",
+  "artifact_id": 12133032697,
+  "source_artifact_run_id": "39091647324",
+  "generated_sha256": "e4e3b080d3bc68f9657b04e1b3f80bea0a1d8f711b9ba35fb8148e6f01eb4175",
+  "final_sha256": "7eee8fa76a602beb98cb91a3d7e83814fe10a99c4a25d3ea4d69d58723533c68",
   "review": {
-    "reviewed_sha256": "03faffe1a940cfdbed9e124835e21ed0918040d2f08dbe0fc0cea8ebd9ecd85b",
+    "reviewed_sha256": "7eee8fa76a602beb98cb91a3d7e83814fe10a99c4a25d3ea4d69d58723533c68",
+    "completed_at": "2026-10-18T15:06:15+05:00",
+    "quality_passed": true,
+    "quality_standard": "User17October Snowball cosmetic-tolerance revision; not perfect animation/lip-sync",
     "full_render_sample_fps": 8,
     "transition_sample_fps": 8,
     "duration": 11,
-    "quality_passed": false,
     "observed_actions": {
-      "opening_lower_to_floor": [
-        0.125,
-        0.875
+      "umbrella_turn_and_lower": [
+        0.625,
+        1.625
       ],
-      "floor_block_contact": [
-        1.375,
-        2.25
-      ],
-      "near_stationary_hands_on_block": [
-        3.125,
-        4.125
-      ],
-      "hand_withdrawal_and_stand": [
-        5.125,
-        6.25
-      ],
-      "standing_reaction_with_repeated_jaw_changes": [
-        6.25,
+      "bowl_on_ground": [
+        1.625,
         11
+      ],
+      "leaf_fall_and_handling": [
+        8.375,
+        9.625
+      ],
+      "ending_reaction": [
+        9.25,
+        10.5
       ]
     },
+    "visual": "Entire exact repaired11sec reviewed88samples. Umbrella lowered/turned into bowl early; leaves arrive late and Bobo reacts. Some cloth/hand simplification and incidental shirt lettering accepted as cosmetic under user revision. No major scene break or old-footage reuse observed.",
     "voice": {
-      "text": "Just a little push!",
-      "start": 0.35,
-      "end": 1.2711,
-      "source_track_rms_dbfs": -30.41,
+      "text": "Leaf catcher!",
+      "start": 9.375,
+      "end": 10.0622,
+      "subtitle_exact": true,
+      "track_present": true,
       "mouth_action_reviewed": true,
-      "mouth_alignment_pass": false,
       "intelligibility_verified": true,
-      "listening_verified": false,
-      "reason": "Independent ASR recovered exact words from final mix; repeated unvoiced jaw animation and pacing still fail.",
       "verification_method": "independent_asr",
       "verification_evidence": {
         "model": "Systran/faster-whisper-tiny.en",
-        "input": "entire final encoded mix decoded mono16kHz",
-        "transcript": "Just a little push",
-        "avg_logprob": -0.3165706821850368,
-        "no_speech_prob": 0.03415268659591675,
+        "input": "entire final encoded mix,decoded mono16k",
+        "transcript": "Leaf catcher",
+        "avg_logprob": -1.011559295654297,
+        "no_speech_prob": 0.2059299200773239,
         "reference_text_not_provided": true,
-        "limitations": "Punctuation normalized; ASR segment0-2sec is not exact word timing or lip synchronization. No subjective listening."
+        "limitations": "ASR coarse segment0–10sec does not verify exact word boundaries or lip synchronization. No subjective listening."
       },
-      "subtitle_exact": true,
-      "track_present": true
+      "listening_verified": false,
+      "lip_sync_verified": false,
+      "mouth_alignment": "Brief line shifted to observed late reaction; approximate rather than phoneme synchronized."
     },
     "captions": [
       {
-        "text": "Just a little push!",
-        "start": 0.35,
-        "end": 1.2711,
+        "text": "Leaf catcher!",
+        "start": 9.375,
+        "end": 10.0622,
         "kind": "spoken",
-        "verdict": "Exact text/timing in cue metadata and visible subtitle; physical floor-block contact begins later. Needs repositioning if visual sequence were salvageable."
+        "observed_action": "ending_reaction"
       }
     ],
-    "effects": [
-      {
-        "type": "wood",
-        "start": 2.3,
-        "duration": 0.1,
-        "source": "Kenney CC0 impactWood_light_000.ogg, provenance retained in artifact",
-        "level": "stem RMS -45.25 dBFS, peak -17.08 dBFS",
-        "aligned": false,
-        "reason": "Cue follows observed brief floor-block contact."
-      },
-      {
-        "type": "wood_creak",
-        "start": 3.3,
-        "duration": 0.6,
-        "source": "procedural filtered noise modulation",
-        "level": "same measured effect stem",
-        "aligned": false,
-        "perceptual_realism_verified": false,
-        "reason": "Cue overlaps near-stationary hand pose; no verified sliding contact."
-      },
-      {
-        "type": "wood",
-        "start": 4.4125,
-        "duration": 0.12,
-        "source": "Kenney CC0 impactWood_light_000.ogg",
-        "level": "same measured effect stem",
-        "aligned": false,
-        "reason": "No distinct impact confirmed at this timestamp."
-      }
-    ],
-    "effects_complete": false,
+    "effects": [],
+    "effects_complete": true,
+    "effect_repair": "Removed unrelated scene-template bubble/pop cues. No added foley; no perceptual naturalness claim.",
     "music": {
-      "variant": 51,
-      "style": "muted piano shuffle",
+      "variant": 10,
+      "style": "airy flute dance",
       "preserved": true,
-      "source_rms_dbfs": -26.75,
-      "source_peak_dbfs": -14.49,
       "subjective_audibility_verified": false
+    },
+    "audio": {
+      "mean_dbfs": -18.1,
+      "peak_dbfs": -1.4,
+      "decode_pass": true
     },
     "pacing": {
       "purposeful_action_by": 0.125,
-      "pass": false,
-      "reason": "Brief lowering/contact, prolonged near-stationary pose, then standing mouth/face reaction dominates final4.75sec; required ongoing purposeful block action absent."
+      "pass": true,
+      "notes": "Umbrella action early; inspection gestures then falling leaves. Brief pauses tolerated under revised standard; no shortening, freeze padding or global speed-up."
     },
-    "repair_assessment": "Caption/voice reposition and foley changes are technically possible but do not repair prolonged unvoiced jaw animation and missing purposeful action throughout11sec. No shortened, freeze-padded, sped-up or old-footage replacement approved.",
-    "decision": "Deliberate rejection; no Facebook/Instagram video or Story publication.",
+    "technical": "11.000sec H264720x1280 AAC; exact downloaded repaired SHA verified",
     "cost": 0
-  },
-  "publication_exception": {
-    "user_instruction": "Losen your quality criteria and upload the videos",
-    "authorized_at": "2026-10-16T22:08:41+05:00",
-    "quality_passed": false,
-    "scope": "Exact block pilot artifact38935041435 and SHA03faffe only; user accepts disclosed repeated unvoiced jaw animation, weak pacing, provisional subtitle placement and unverified effect realism. Retain duration, speech presence, exact hash, duplicate and daily-cap checks. Not a quality pass."
-  },
-  "previous_review_record": "bobo_reviews/40522032-38935041435.json"
+  }
 }
