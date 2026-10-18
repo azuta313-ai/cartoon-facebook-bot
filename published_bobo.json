@@ -1972,10 +1972,11 @@
       "permalink": "https://www.instagram.com/reel/DeorySgAMGk/"
     },
     "instagram_story": {
-      "status": "publish_started",
+      "status": "accepted",
       "source_sha256": "7eee8fa76a602beb98cb91a3d7e83814fe10a99c4a25d3ea4d69d58723533c68",
       "date": "2026-10-18",
-      "container_id": "17916013419533114"
+      "container_id": "17916013419533114",
+      "media_id": "17882345784534496"
     }
   }
 }
