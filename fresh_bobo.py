@@ -235,6 +235,8 @@ def main():
  serial=next((i for i in range(2,11) if i not in published_serials),None)
  if serial is None:
   print('All ten approved stories published.'); return
+ if any(int(v.get('story_serial',0))==serial and v.get('status')=='approved' for v in reserve.values()):
+  print('Next serial already reviewed and staged; wait for verified publication instead of regenerating it.'); return
  story=next(s for s in queue['stories'] if int(s['serial'])==serial)
  slot=episode%2
  episode_key=f'long-v2-{episode}'
