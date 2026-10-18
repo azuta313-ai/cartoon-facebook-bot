@@ -1,0 +1,91 @@
+{
+  "status": "approved",
+  "episode": 40522037,
+  "title": "Bobo's Upside-Down Umbrella",
+  "story_serial": 2,
+  "artifact_run_id": "39117744959",
+  "artifact_id": 12133032697,
+  "source_artifact_run_id": "39091647324",
+  "generated_sha256": "e4e3b080d3bc68f9657b04e1b3f80bea0a1d8f711b9ba35fb8148e6f01eb4175",
+  "final_sha256": "7eee8fa76a602beb98cb91a3d7e83814fe10a99c4a25d3ea4d69d58723533c68",
+  "review": {
+    "reviewed_sha256": "7eee8fa76a602beb98cb91a3d7e83814fe10a99c4a25d3ea4d69d58723533c68",
+    "completed_at": "2026-10-18T15:06:15+05:00",
+    "quality_passed": true,
+    "quality_standard": "User17October Snowball cosmetic-tolerance revision; not perfect animation/lip-sync",
+    "full_render_sample_fps": 8,
+    "transition_sample_fps": 8,
+    "duration": 11,
+    "observed_actions": {
+      "umbrella_turn_and_lower": [
+        0.625,
+        1.625
+      ],
+      "bowl_on_ground": [
+        1.625,
+        11
+      ],
+      "leaf_fall_and_handling": [
+        8.375,
+        9.625
+      ],
+      "ending_reaction": [
+        9.25,
+        10.5
+      ]
+    },
+    "visual": "Entire exact repaired11sec reviewed88samples. Umbrella lowered/turned into bowl early; leaves arrive late and Bobo reacts. Some cloth/hand simplification and incidental shirt lettering accepted as cosmetic under user revision. No major scene break or old-footage reuse observed.",
+    "voice": {
+      "text": "Leaf catcher!",
+      "start": 9.375,
+      "end": 10.0622,
+      "subtitle_exact": true,
+      "track_present": true,
+      "mouth_action_reviewed": true,
+      "intelligibility_verified": true,
+      "verification_method": "independent_asr",
+      "verification_evidence": {
+        "model": "Systran/faster-whisper-tiny.en",
+        "input": "entire final encoded mix,decoded mono16k",
+        "transcript": "Leaf catcher",
+        "avg_logprob": -1.011559295654297,
+        "no_speech_prob": 0.2059299200773239,
+        "reference_text_not_provided": true,
+        "limitations": "ASR coarse segment0\u201310sec does not verify exact word boundaries or lip synchronization. No subjective listening."
+      },
+      "listening_verified": false,
+      "lip_sync_verified": false,
+      "mouth_alignment": "Brief line shifted to observed late reaction; approximate rather than phoneme synchronized."
+    },
+    "captions": [
+      {
+        "text": "Leaf catcher!",
+        "start": 9.375,
+        "end": 10.0622,
+        "kind": "spoken",
+        "observed_action": "ending_reaction"
+      }
+    ],
+    "effects": [],
+    "effects_complete": true,
+    "effect_repair": "Removed unrelated scene-template bubble/pop cues. No added foley; no perceptual naturalness claim.",
+    "music": {
+      "variant": 10,
+      "style": "airy flute dance",
+      "preserved": true,
+      "subjective_audibility_verified": false
+    },
+    "audio": {
+      "mean_dbfs": -18.1,
+      "peak_dbfs": -1.4,
+      "decode_pass": true
+    },
+    "pacing": {
+      "purposeful_action_by": 0.125,
+      "pass": true,
+      "notes": "Umbrella action early; inspection gestures then falling leaves. Brief pauses tolerated under revised standard; no shortening, freeze padding or global speed-up."
+    },
+    "technical": "11.000sec H264720x1280 AAC; exact downloaded repaired SHA verified",
+    "cost": 0
+  }
+}
