@@ -345,7 +345,7 @@ def main():
    'story_serial':serial,'shot':shot+1,'required_action':required_beat['action'],
    'expected_story_seconds':required_beat['seconds'],
    'visual_action_verified':False,'status':'awaiting_visual_verification',
-   'repair_policy':'local_edits_only_no_regeneration','allowed_repairs':['audio_mix','subtitle_timing','crop_and_scale','color_adjustment','trim','transition'],'missing_action_policy':'hold_existing_footage_for_review_without_new_generation'
+   'repair_policy':'local_repairs_first_then_free_quota_ai_repair','allowed_repairs':['audio_mix','subtitle_timing','crop_and_scale','color_adjustment','trim','transition','free_quota_shot_regeneration'],'missing_action_policy':'try_free_quota_repair_once; if quota_unavailable retain_best_existing_footage_and_allow_reviewed_publication_if_technical_checks_pass','paid_generation_allowed':False,'quota_fallback_requires_review':True
   },indent=2))
   reference=OUT/('reference.png' if shot==0 else 'continuation.png')
   try:
