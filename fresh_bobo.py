@@ -420,6 +420,32 @@ def main():
  (OUT/'facebook-caption.txt').write_text(social_caption)
  (OUT/'episode.json').write_text(json.dumps(metadata,indent=2))
  print(f'New episode created: {title}. No paid API used.')
+ # Automated zero-cost technical finishing review. Visual story actions remain human-review gated.
+ technical_report={'status':'technical_review_pending','repairs':[],'checks':{}}
+ final_video=OUT/'bobo_fresh.mp4'
+ final_probe=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_type,width,height','-of','json',str(final_video)]))
+ final_duration=float(final_probe['format']['duration'])
+ streams=final_probe.get('streams',[])
+ video_stream=next((s for s in streams if s.get('codec_type')=='video'),None)
+ audio_stream=next((s for s in streams if s.get('codec_type')=='audio'),None)
+ technical_report['checks'].update(duration_seconds=final_duration,has_video=bool(video_stream),has_audio=bool(audio_stream))
+ if not (10.9<=final_duration<=11.1) or not video_stream or not audio_stream:
+  raise RuntimeError('Technical review failed: video must contain 11 seconds of picture and sound.')
+ if (video_stream.get('width'),video_stream.get('height'))!=(720,1280):
+  fixed=OUT/'reframed.mp4'
+  run(['ffmpeg','-loglevel','error','-y','-i',str(final_video),'-vf','scale=720:1280:force_original_aspect_ratio=increase,crop=720:1280','-c:v','libx264','-preset','medium','-crf','16','-c:a','copy',str(fixed)])
+  fixed.replace(final_video)
+  technical_report['repairs'].append('normalized vertical framing to 720x1280')
+ for cue in json.loads((OUT/'captions-timing.json').read_text()):
+  if not (0<=float(cue['start'])<float(cue['end'])<=11):
+   raise RuntimeError('Subtitle timing invalid: hold for repair, do not publish.')
+ technical_report['checks']['subtitle_timing_valid']=True
+ run(['ffmpeg','-v','error','-i',str(final_video),'-f','null','-'])
+ technical_report['checks']['decodes_without_errors']=True
+ technical_report['final_sha256']=hashlib.sha256(final_video.read_bytes()).hexdigest()
+ technical_report['status']='technical_pass_visual_review_required'
+ (OUT/'automatic-review.json').write_text(json.dumps(technical_report,indent=2))
+ print('Automatic technical review passed; visual action review still required.')
  # All generated videos require a separate publication review.
  Path('bobo_review_pending.json').write_text(json.dumps({'episode':episode,'title':title,'generated_sha256':metadata['generated_sha256'],'status':'awaiting_visual_audio_review','artifact_run_id':os.getenv('GITHUB_RUN_ID'),'created_at':now.isoformat()},indent=2))
  print('REVIEW REQUIRED: saved draft; no Facebook upload attempted.')
