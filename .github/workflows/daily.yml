@@ -113,3 +113,5 @@ jobs:
 # Retry after provider backoff, 17 October15:35 PK; user revised cosmetic benchmark, core checks retained.
 
 # Verify actual provider availability after22:30 backoff;17October22:51PK.
+
+# Story2 matching umbrella reference installed; retry18October morning without reusing story1.
