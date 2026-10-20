@@ -28,7 +28,15 @@
           "action": "The drop lands on his nose. Bobo says: Big splash!"
         }
       ],
-      "publication_status": "not_verified"
+      "publication_status": "verified_both_platforms",
+      "facebook_reel_id": "2064912157561876",
+      "facebook_reel_url": "https://www.facebook.com/reel/2064912157561876/",
+      "instagram_media_id": "18448608181123471",
+      "instagram_reel_url": "https://www.instagram.com/reel/DenWprXkqG0/",
+      "publication_verified_on": "2026-10-20",
+      "verification_source": "Connected Metricool Facebook and Instagram Reels analytics, matched by IDs and URLs; published_bobo.json confirms same IDs",
+      "quality_passed": false,
+      "quality_note": "Published under documented user-approved quality exception; missing intended jump, single droplet, and droplet-on-nose action; early dialogue. This is not a snowball benchmark quality pass."
     },
     {
       "serial": 2,
