@@ -35,14 +35,15 @@ jobs:
           pip install --disable-pip-version-check gradio_client numpy socksio piper-tts==1.3.0 static-ffmpeg==2.13
           python - <<'PY'
           import os
-          import static_ffmpeg
-          static_ffmpeg.add_paths()
-          paths=os.environ["PATH"].split(os.pathsep)
+          from pathlib import Path
+          from static_ffmpeg import run
+          ffmpeg, ffprobe = run.get_or_fetch_platform_executables_else_raise()
+          assert Path(ffmpeg).is_file() and Path(ffprobe).is_file()
+          assert Path(ffmpeg).parent == Path(ffprobe).parent
           with open(os.environ["GITHUB_PATH"],"a",encoding="utf-8") as output:
-              output.write(paths[0]+"\n")
+              output.write(str(Path(ffmpeg).parent)+"\n")
+          print("Static FFmpeg and ffprobe prepared; binary paths not printed.")
           PY
-          ffmpeg -version
-          ffprobe -version
       - name: Cache free CPU voice model
         uses: actions/cache@v4
         with:
