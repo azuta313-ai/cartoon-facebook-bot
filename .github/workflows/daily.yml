@@ -32,14 +32,17 @@ jobs:
           python-version: '3.12'
       - name: Install free generation and video tools
         run: |
-          pip install --disable-pip-version-check gradio_client numpy socksio piper-tts==1.3.0
-          missing_packages=()
-          command -v ffmpeg >/dev/null 2>&1 || missing_packages+=(ffmpeg)
-          fc-match DejaVuSans >/dev/null 2>&1 || missing_packages+=(fonts-dejavu-core)
-          if [ ${#missing_packages[@]} -gt 0 ]; then
-            sudo apt-get update -qq
-            sudo apt-get install -y --no-install-recommends "${missing_packages[@]}"
-          fi
+          pip install --disable-pip-version-check gradio_client numpy socksio piper-tts==1.3.0 static-ffmpeg==2.13
+          python - <<'PY'
+          import os
+          import static_ffmpeg
+          static_ffmpeg.add_paths()
+          paths=os.environ["PATH"].split(os.pathsep)
+          with open(os.environ["GITHUB_PATH"],"a",encoding="utf-8") as output:
+              output.write(paths[0]+"\n")
+          PY
+          ffmpeg -version
+          ffprobe -version
       - name: Cache free CPU voice model
         uses: actions/cache@v4
         with:
@@ -122,3 +125,5 @@ jobs:
 # Story2 matching umbrella reference installed; retry18October morning without reusing story1.
 
 # Avoid unnecessary apt downloads after runner package mirror stall, 2026-10-23.
+
+# Use static FFmpeg/ffprobe after repeated Ubuntu mirror timeouts, 2026-10-23.
