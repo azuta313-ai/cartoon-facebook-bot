@@ -46,8 +46,9 @@ jobs:
                   self.calls+=1
                   return str(path), kwargs['seed']
           b.Client=OfflineGenerator
-          import bobo_pipeline
+          import bobo_pipeline, bobo_foley
           bobo_pipeline.approvals=lambda: {}
+          bobo_foley.recorded_effect=lambda kind,length,out: None
           Path('bobo_quota.json').unlink(missing_ok=True)
           Path('bobo_review_pending.json').unlink(missing_ok=True)
           Path('published_bobo.json').write_text('{}')
