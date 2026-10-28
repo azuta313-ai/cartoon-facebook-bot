@@ -36,6 +36,25 @@ def validate_ready(record, now):
 def approvals(root=Path('.')):
     return {int(p.stem): json.loads(p.read_text()) for p in (root/'bobo_reserve').glob('*.json')}
 
+def published_story_serials(ledger):
+    """Return serials accepted on Facebook and Instagram from the exact reviewed file."""
+    serials = set()
+    for record in ledger.values():
+        serial = record.get('story_serial')
+        final_sha = record.get('final_sha256')
+        if not serial or not final_sha:
+            continue
+        facebook_reel = record.get('facebook_reel_id') and record.get('facebook_reel_verified') is True
+        facebook_video = record.get('facebook_video_id') and record.get('published_at')
+        instagram = record.get('instagram', {})
+        instagram_accepted = instagram.get('media_id') and instagram.get('permalink')
+        instagram_sha = instagram.get('source_sha256')
+        if instagram_sha and instagram_sha != final_sha:
+            continue
+        if (facebook_reel or facebook_video) and instagram_accepted:
+            serials.add(int(serial))
+    return serials
+
 def next_episode(now, ledger, reserve):
     occupied = {int(k.removeprefix('long-v2-')) for k in ledger if k.startswith('long-v2-')}
     occupied.update(int(k) for k in reserve)
