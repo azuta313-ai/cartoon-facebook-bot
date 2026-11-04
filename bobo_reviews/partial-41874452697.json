@@ -115,5 +115,8 @@
   "cost": 0,
   "publication_authorized": false,
   "pending_gate_existed": false,
-  "pending_gate_action": "No bobo_review_pending.json existed; the partial artifact was rejected in this review record without changing the already-published approval gate."
+  "pending_gate_action": "No bobo_review_pending.json existed; the partial artifact was rejected in this review record without changing the already-published approval gate.",
+  "completed_at": "2026-11-04T22:42:05+05:00",
+  "publication_decision": "deliberate_rejection",
+  "reviewed_file_sha256": "ec764ad7e190a83533e300a5ccd00615f45883bf402e97615ac9ac8aeaadf052"
 }
