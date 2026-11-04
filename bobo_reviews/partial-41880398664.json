@@ -5,7 +5,7 @@
   "artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
   "workflow_created_at": "2026-11-04T22:46:38+05:00",
   "artifact_created_at": "2026-11-04T22:48:50+05:00",
-  "completed_at": "2026-11-04T23:14:28+05:00",
+  "completed_at": "2026-11-04T23:15:24+05:00",
   "episode_identity": {
     "embedded_episode_json_present": false,
     "episode_candidate_asserted": false,
@@ -164,24 +164,32 @@
   "verification": {
     "voice_test_run": {
       "run_id": 41884941610,
+      "run_number": 11,
       "conclusion": "success",
-      "checks": "Eight Piper local lines; mix, ducking, timed subtitle mapping and AAC encoding technical checks passed.",
+      "checks": "Eight Piper local lines; mix, music ducking, subtitle timing and AAC encoding technical checks passed.",
       "subjective_listening": "not performed",
       "lip_sync": "not assessed"
     },
     "production_code_validation": {
       "run_id": 41885080064,
+      "run_number": 8,
       "conclusion": "success"
     },
     "longer_editing_validation": {
-      "run_id": 41884326185,
+      "run_id": 41885080063,
+      "run_number": 69,
       "conclusion": "success"
     },
     "daily_fresh_run_after_duplicate_guard": {
-      "run_id": 41884327140,
+      "run_id": 41885080065,
+      "run_number": 343,
       "conclusion": "success",
-      "result": "No unused scene reference remained; exited before a new GPU request."
+      "result": "No unused original scene reference remained; exited before any GPU generation request or upload."
+    },
+    "local_mix_smoke_test": {
+      "conclusion": "success",
+      "result": "Corrected no-limiter graph produced an 11-second PCM mix from the actual Piper track; cue correlation 0.9964. Technical waveform check only, not listening."
     }
   },
-  "next_blocker": "All six eligible regular scene IDs (0,1,2,3,4,7) already exist in the publication ledger. A new original scene reference and distinct plot are required before free generation can resume; the guard now stops instead of recycling a historical scene."
+  "next_blocker": "All six eligible regular scene IDs (0,1,2,3,4,7) already exist in the publication ledger. A new original scene reference and distinct plot are required before free generation can resume; the generator now exits before GPU use rather than recycling a historical scene."
 }
