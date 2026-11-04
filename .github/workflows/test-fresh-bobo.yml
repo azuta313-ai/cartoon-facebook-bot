@@ -24,6 +24,21 @@ jobs:
           (cd voice_models && python -m piper.download_voices en_US-ljspeech-medium)
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg fonts-dejavu-core
+      - name: Verify pinned CC0 foley source hashes
+        run: |
+          python - <<'PY'
+          import hashlib, urllib.request
+          from bobo_foley import SOURCES
+          for key in ('water','snow','wood','tap'):
+              source=SOURCES[key]
+              request=urllib.request.Request(source['url'],headers={'User-Agent':'Bobo-video-foley/1.0'})
+              with urllib.request.urlopen(request,timeout=30) as response:
+                  data=response.read(5_000_001)
+              assert len(data)<=5_000_000, f'{key}: source exceeds size limit'
+              actual=hashlib.sha256(data).hexdigest()
+              assert actual==source['sha256'], f'{key}: pinned source SHA256 mismatch'
+          print('All four pinned CC0 foley source hashes verified; this does not claim subjective listening.')
+          PY
       - name: Check compilation, three-shot assembly, sound variants and final export
         env:
           HF_TOKEN: offline-test
