@@ -28,6 +28,10 @@ class BoboScenePolicyTests(unittest.TestCase):
             observed.update(eligible_scene_order(day, 0, ()))
         self.assertEqual(observed, set(SCENE_CANDIDATE_ORDER))
 
+    def test_all_historically_used_scene_ids_block_reuse(self):
+        historical = set(SCENE_CANDIDATE_ORDER)
+        self.assertEqual(eligible_scene_order(20261104, 0, historical), [])
+
     def test_invalid_slot_is_rejected(self):
         with self.assertRaises(ValueError):
             eligible_scene_order(1, 2, ())
