@@ -1,0 +1,160 @@
+{
+  "status": "deliberately_rejected_near_duplicate_incomplete_render",
+  "artifact_run_id": 41880398664,
+  "artifact_id": 13349870060,
+  "artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+  "workflow_created_at": "2026-11-04T22:46:38+05:00",
+  "artifact_created_at": "2026-11-04T22:48:50+05:00",
+  "completed_at": "2026-11-04T23:10:17+05:00",
+  "episode_identity": {
+    "embedded_episode_json_present": false,
+    "episode_candidate_asserted": false,
+    "note": "No episode.json was produced; no episode identity is inferred from the pipeline's next-slot calculation."
+  },
+  "available_files": [
+    "generated.mp4",
+    "shot0.mp4",
+    "shot1.mp4",
+    "shot2.mp4",
+    "reference.png",
+    "continuation.png",
+    "dialogue-timing.json",
+    "shot1-review.json",
+    "shot2-review.json",
+    "shot3-review.json",
+    "voice-line.wav",
+    "voice-raw.wav",
+    "voice-track.wav",
+    "original_music.wav",
+    "scene_effects.wav",
+    "audio.wav",
+    "shots.txt"
+  ],
+  "missing": [
+    "bobo_fresh.mp4",
+    "episode.json",
+    "automatic-review.json",
+    "captions-timing.json",
+    "captions.srt",
+    "foley-provenance.json",
+    "final encoded video with audio"
+  ],
+  "visual_review": {
+    "full_render_sample_fps": 4,
+    "transition_sample_fps": 8,
+    "sampled_full_render_frames": 49,
+    "sampled_transition_frames": 20,
+    "generated_duration_seconds": 12.1875,
+    "generated_format": "H.264 480x832 at 16fps; intermediate only",
+    "shot_durations_seconds": [
+      4.0625,
+      4.0625,
+      4.0625
+    ],
+    "observed_actions": {
+      "bobo_already_holding_brush_and_palette": [
+        0,
+        0.25
+      ],
+      "visible_brush_stroke": [
+        0.5,
+        4.0625
+      ],
+      "relatively_stationary_camera_pose": [
+        5.5,
+        7.625
+      ],
+      "brush_strokes_resume": [
+        8,
+        10
+      ],
+      "brush_lift_and_reaction": [
+        10,
+        12.1875
+      ]
+    },
+    "reference_scene": "assets/scenes/scene7.jpg; same art room, easel, paint palette and sun painting setting as historical Art room paint surprise.",
+    "finding": "The 4fps full-render and 8fps cut-window samples show a coherent art-room painting sequence. The first clear brush movement is at approximately 0.5s. A relatively stationary pose occupies approximately 5.5-7.625s. Most importantly, this repeats the already-published scene_id 7 / Art room paint surprise premise (episode 40522021): Bobo painting at the same easel with the same palette in the same art-room setup. This is not a distinct new plot under the user's no-reuse rule."
+  },
+  "historical_duplicate": {
+    "prior_episode": 40522021,
+    "prior_title": "Art room paint surprise",
+    "prior_scene_id": 7,
+    "prior_setting": "a sunny art room with a small easel and paint palette",
+    "prior_facebook_video_id": "2212226773511644",
+    "new_reference_sha256": "df2494e0672469d4d8c5a1cd30e4bc734582f0c9cef86bdabae982f639b48529",
+    "new_continuation_sha256": "c06a503c49503c4db1d8887d99440b217806a47c68b6c7281646dab5f8adb737",
+    "new_generated_video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a"
+  },
+  "voice": {
+    "engine": "Piper local CPU",
+    "text": "Time to paint!",
+    "start": 0.35,
+    "end": 1.1761,
+    "source_track_present": true,
+    "final_mix_present": false,
+    "intelligibility_verified": false,
+    "listening_verified": false,
+    "lip_sync_verified": false,
+    "subtitle_present": false,
+    "note": "Piper source and 11-second voice-track WAV exist, but voice mixing failed before final export. No final encoded mix, exact spoken subtitle or independent intelligibility check exists."
+  },
+  "sound": {
+    "original_music_duration_seconds": 11,
+    "scene_effects_duration_seconds": 11,
+    "pre_voice_mix_duration_seconds": 11,
+    "music_rms_dbfs": -29.64,
+    "music_peak_dbfs": -14.47,
+    "effects_rms_dbfs": -43.62,
+    "effects_peak_dbfs": -17.08,
+    "pre_voice_mix_rms_dbfs": -22.46,
+    "pre_voice_mix_peak_dbfs": -6.85,
+    "effects_active_windows_approx": [
+      [
+        2,
+        3
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "effect_source": "Procedurally synthesized brush-like noise; no verified recorded brush source or foley-provenance.json.",
+    "effect_level_finding": "Effects layer RMS is approximately 14dB below original music RMS. Waveform presence does not establish perceptual audibility or naturalness.",
+    "music_style": "Not recorded in the artifact; no episode.json/music_variant metadata.",
+    "final_mix_present": false,
+    "subjective_listening_verified": false,
+    "note": "audio.wav contains the pre-voice music/effects mix only. No claim of hearing or natural-sounding foley."
+  },
+  "technical": {
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "generated_duration_pass": false,
+    "required_final_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "playable_final_video": false,
+    "generated_streams": "Video only; no audio stream",
+    "output_resolution": "480x832",
+    "output_fps": 16,
+    "final_export": false
+  },
+  "failure": {
+    "stage": "bobo_voice.mix_voice",
+    "file_line": "bobo_voice.py:76",
+    "error": "FFmpeg alimiter option 'latency' not found in the production static FFmpeg v5 build.",
+    "provider_result": "Hugging Face ZeroGPU loaded successfully and generated all three shots. This run was not quota-blocked; it failed afterward during local voice mixing."
+  },
+  "repair_actions": {
+    "ffmpeg_voice_mix_fix_commit": "de084c44da3a0e0600c46dea0da79103832ee708",
+    "historical_scene_exclusion_commit": "b2d585437910518bc3ce15b248aaf305beb6ed0f",
+    "scene_policy_test_commit": "da4171a429453bb0c60bc4488d055ec271eb474f",
+    "production_matched_voice_test_commit": "14b1b59b5cbcc5b2a483e97c5edf085560bd5f2f",
+    "local_mix_smoke_test": "Corrected filter graph produced an 11-second PCM mix with the available local FFmpeg; this is a technical smoke test, not subjective listening or final-video approval."
+  },
+  "pending_gate_existed": false,
+  "pending_gate_action": "No bobo_review_pending.json existed. The partial artifact is recorded as deliberately rejected; the already-published bobo_review_approval.json was not changed.",
+  "publication_authorized": false,
+  "publication_decision": "deliberate_rejection",
+  "cost": 0
+}
