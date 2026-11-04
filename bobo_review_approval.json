@@ -1,5 +1,5 @@
 {
-  "status": "approved",
+  "status": "published",
   "episode": 40522037,
   "title": "Bobo's Upside-Down Umbrella",
   "story_serial": 2,
@@ -87,5 +87,37 @@
     },
     "technical": "11.000sec H264720x1280 AAC; exact downloaded repaired SHA verified",
     "cost": 0
+  },
+  "publication": {
+    "source_sha256": "7eee8fa76a602beb98cb91a3d7e83814fe10a99c4a25d3ea4d69d58723533c68",
+    "facebook_video_id": "2296956914491800",
+    "facebook_published_at": "2026-10-18T17:28:38.324797+05:00",
+    "instagram": {
+      "status": "accepted",
+      "source_sha256": "7eee8fa76a602beb98cb91a3d7e83814fe10a99c4a25d3ea4d69d58723533c68",
+      "date": "2026-10-18",
+      "container_id": "17916013224533114",
+      "media_id": "17986620615086823",
+      "permalink": "https://www.instagram.com/reel/DeorySgAMGk/"
+    },
+    "instagram_story": {
+      "status": "accepted",
+      "source_sha256": "7eee8fa76a602beb98cb91a3d7e83814fe10a99c4a25d3ea4d69d58723533c68",
+      "date": "2026-10-18",
+      "container_id": "17916013419533114",
+      "media_id": "17882345784534496",
+      "permalink": "https://www.instagram.com/stories/bobogigglegrove/4010648416802624085"
+    },
+    "facebook_story": {
+      "date": "2026-10-18",
+      "status": "accepted",
+      "source_sha256": "7eee8fa76a602beb98cb91a3d7e83814fe10a99c4a25d3ea4d69d58723533c68",
+      "strategy": "One reviewed, captioned, voiced mini-adventure per slot; no extra generation; test Story exposure and follower growth without attributing causation.",
+      "video_id": "1589424523204423",
+      "post_id": "1638980467774197",
+      "accepted_at": "2026-10-18T17:30:14.107723+05:00"
+    },
+    "verified_at": "2026-11-04T06:19:51+05:00",
+    "gate_cleared_after_verified_acceptance": true
   }
 }
