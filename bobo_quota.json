@@ -1,5 +1,8 @@
 {
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
-  "reason": "Provider ZeroGPU quota/runs limit; reset time not supplied",
-  "retry_is_backoff_not_reset": true
+  "reason": "Historical 18 October backoff; 4 November run #340 successfully generated three ZeroGPU clips before a pinned CC0 foley-source checksum failure. No quota error was reported in run #340.",
+  "retry_is_backoff_not_reset": true,
+  "last_observed_at": "2026-11-04T22:07:33+05:00",
+  "last_generation_run_id": 41874452697,
+  "last_provider_result": "Three free ZeroGPU clips generated; workflow failed after generation during foley SHA256 verification, not at provider quota."
 }
