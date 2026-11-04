@@ -228,30 +228,46 @@ def main():
  episode=next_episode(now,ledger,reserve)
  if episode is None:
   print('Four reviewed reserve entries ready; conserving free quota.'); return
- # Approved stories are selected in strict order, never by scene rotation.
- queue=json.loads(Path('bobo_ten_day_story_queue.json').read_text())
- published_serials=published_story_serials(ledger)
- # Story 1 Facebook Reel is explicitly waived by the user; keep its publication record unchanged.
- serial=next((i for i in range(2,11) if i not in published_serials),None)
- if serial is None:
-  print('All ten approved stories published.'); return
- if any(int(v.get('story_serial',0))==serial and v.get('status')=='approved' for v in reserve.values()):
-  print('Next serial already reviewed and staged; wait for verified publication instead of regenerating it.'); return
- story=next(s for s in queue['stories'] if int(s['serial'])==serial)
+ # The approved ten-day rotation ended on 27 October 2026. Preserve its
+ # unfinished entries as queued_not_generated; resume original scenes afterward.
+ story=None
+ serial=None
+ if now.date() <= datetime(2026,10,27).date():
+  queue=json.loads(Path('bobo_ten_day_story_queue.json').read_text())
+  published_serials=published_story_serials(ledger)
+  # Story 1 Facebook Reel is explicitly waived by the user; keep its record unchanged.
+  serial=next((i for i in range(2,11) if i not in published_serials),None)
+  if serial is not None:
+   if any(int(v.get('story_serial',0))==serial and v.get('status')=='approved' for v in reserve.values()):
+    print('Next serial already reviewed and staged; wait for verified publication instead of regenerating it.'); return
+   story=next(s for s in queue['stories'] if int(s['serial'])==serial)
+  else:
+   print('Ten-day queue exhausted; continuing regular original scenes.')
  slot=episode%2
  episode_key=f'long-v2-{episode}'
  if episode_key in ledger:
   print('This episode was already published; skipping generation and upload.'); return
  recent=[v.get('scene_id') for v in list(ledger.values())[-3:]]
+ # Avoid repeating scenes already staged in an unpublished reserve or approved draft.
+ for reserved_episode,record in reserve.items():
+  if f'long-v2-{reserved_episode}' not in ledger and record.get('scene_id') is not None:
+   recent.append(int(record['scene_id']))
+ pending_path=Path('bobo_review_pending.json')
+ if pending_path.exists():
+  pending_record=json.loads(pending_path.read_text())
+  if pending_record.get('scene_id') is not None:
+   recent.append(int(pending_record['scene_id']))
  review_path=Path('bobo_review_approval.json')
  if review_path.exists():
   previous_review=json.loads(review_path.read_text())
   if previous_review.get('status')=='rejected' and previous_review.get('episode')==episode:
    recent.extend(previous_review.get('rejected_scene_ids',[previous_review.get('scene_id')]))
- scene_id=(now.toordinal()*2+slot)%len(SCENES)
- eligible=[n for n in (5,6,4,3,7,0,1,2) if n not in recent]
+ candidate_order=(7,1,2,0,3,4,6)  # Exclude the historical spaceship-button plot.
+ offset=(now.toordinal()+slot)%len(candidate_order)
+ rotated=candidate_order[offset:]+candidate_order[:offset]
+ eligible=[n for n in rotated if n not in recent]
  if not eligible:
-  print('All scenes exhausted for this episode; hold for repair rather than loop.'); return
+  print('All distinct original scene references are in the recent/reserve set; hold rather than duplicate.'); return
  scene_id=eligible[0]
  board_path=Path('bobo_storyboard_pilot.json')
  board=json.loads(board_path.read_text()) if board_path.exists() else {}
@@ -278,23 +294,32 @@ def main():
   title=board['title']; series['voice_line']=board['voice_line']
   action=board['shots'][0]['action']
   (OUT/'storyboard.json').write_text(json.dumps(board,indent=2))
- # Never substitute an unrelated scene for an approved serial story.
- if serial==2:
-  scene_id=0
-  setting='a colorful autumn garden path beneath a leafy tree'
-  prop='a small yellow fabric umbrella and falling autumn leaves'
- if serial==1:
-  scene_id=4
-  setting='a cheerful garden path after rain with a tiny puddle'
-  prop='a tiny puddle and bright yellow rain boots'
- title=story['title']
- action=' '.join(b['action'] for b in story['beats'][:2])
- ending=story['beats'][2]['action']
- series['voice_line']=(ending.split('Bobo says: ')[-1].split('Bobo whispers: ')[-1].strip() if ('Bobo says: ' in ending or 'Bobo whispers: ' in ending) else 'Oh wow!')
- scene_reference=(Path('assets/scenes/scene4.jpg') if serial==1 else Path('assets/story_queue')/f'story{serial:02d}.jpg' if serial==2 else Path('assets/story_queue')/f'story{serial:02d}.png')
+ if story is not None:
+  # Never substitute an unrelated scene for an approved serial story.
+  if serial==2:
+   scene_id=0
+   setting='a colorful autumn garden path beneath a leafy tree'
+   prop='a small yellow fabric umbrella and falling autumn leaves'
+  if serial==1:
+   scene_id=4
+   setting='a cheerful garden path after rain with a shallow puddle'
+   prop='a tiny puddle and bright yellow rain boots'
+  title=story['title']
+  action=' '.join(b['action'] for b in story['beats'][:2])
+  ending=story['beats'][2]['action']
+  series['voice_line']=(ending.split('Bobo says: ')[-1].split('Bobo whispers: ')[-1].strip() if ('Bobo says: ' in ending or 'Bobo whispers: ' in ending) else 'Oh wow!')
+  scene_reference=(Path('assets/scenes/scene4.jpg') if serial==1 else Path('assets/story_queue')/f'story{serial:02d}.jpg' if serial==2 else Path('assets/story_queue')/f'story{serial:02d}.png')
+ else:
+  # After the approved story window, use a matching original scene reference;
+  # never retry the obsolete story03.png path or substitute another scene.
+  story={'title':title,'beats':[
+   {'seconds':'0-4','action':action},
+   {'seconds':'4-8','action':ending},
+   {'seconds':'8-11','action':f'Bobo withdraws both hands, points at the {prop}, gives a small shoulder wiggle and says: {series["voice_line"]}'}
+  ]}
+  scene_reference=Path('assets/scenes')/f'scene{scene_id}.jpg'
  if not scene_reference.is_file():
-  raise RuntimeError(f'Story {serial} missing matching Bobo reference at {scene_reference}; do not waste free quota on unrelated footage.')
- if not scene_reference.is_file(): raise RuntimeError('Missing verified scene image; refusing to reuse the cake reference.')
+  raise RuntimeError(f'Missing matching Bobo scene reference at {scene_reference}; no unrelated scene or paid generation will be used.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
  from bobo_voice import prepare_voice,mix_voice
  voice_record=prepare_voice(OUT,scene_id,start=8.15 if serial==1 else .35,text=series['voice_line'])
@@ -389,6 +414,7 @@ def main():
  if len(frames)<4 or np.abs(np.diff(frames,axis=0)).mean()<.5: raise RuntimeError('Generated clip is static; skipping publication.')
  # Separate music choice from the scene; avoid the last three published arrangements.
  recent_music={v.get('music_variant',v.get('audio_mix_variant')) for v in list(ledger.values())[-3:]}
+ recent_music.update(record.get('review',{}).get('music',{}).get('variant') for reserved_episode,record in reserve.items() if f'long-v2-{reserved_episode}' not in ledger)
  music_variant=(episode*5+scene_id)%64
  while music_variant in recent_music or music_variant%8 in {v%8 for v in recent_music if isinstance(v,int)}:
   music_variant=(music_variant+1)%64
@@ -416,6 +442,7 @@ def main():
  metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':30,'effects':'original scene-specific effects; no bite sample','voice':voice_record,'voice_review_required':voice_record['enabled'],'caption_kind':'spoken subtitle plus separate action captions' if voice_record['enabled'] else 'action captions; no spoken dialogue','caption_review_required':True,'caption_timing':[{'text':t,'start':a,'end':z} for t,a,z in cues],'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
  metadata.update(music_variant=music_variant,music_style=MUSIC_STYLES[music_variant%8],music='original procedural arrangement '+str(music_variant),sound_design_version=3,pacing_review_required=True)
  metadata['story_serial']=serial
+ metadata['story_mode']='regular_original_after_2026-10-27' if serial is None else 'ten_day_story_queue'
  metadata['approved_story_beats']=story['beats']
  metadata.update(production_strategy='observe-repair-reserve-v1',finishing_required=True,planned_effects_unverified=True,reserve_target=4)
  hook,teaser,question=PROMOTION[scene_id]
@@ -461,7 +488,7 @@ def main():
  (OUT/'automatic-review.json').write_text(json.dumps(technical_report,indent=2))
  print('Automatic technical review passed; visual action review still required.')
  # All generated videos require a separate publication review.
- Path('bobo_review_pending.json').write_text(json.dumps({'episode':episode,'title':title,'generated_sha256':metadata['generated_sha256'],'status':'awaiting_visual_audio_review','artifact_run_id':os.getenv('GITHUB_RUN_ID'),'created_at':now.isoformat()},indent=2))
+ Path('bobo_review_pending.json').write_text(json.dumps({'episode':episode,'title':title,'scene_id':scene_id,'story_serial':serial,'story_mode':metadata['story_mode'],'generated_sha256':metadata['generated_sha256'],'status':'awaiting_visual_audio_review','artifact_run_id':os.getenv('GITHUB_RUN_ID'),'created_at':now.isoformat()},indent=2))
  print('REVIEW REQUIRED: saved draft; no Facebook upload attempted.')
  return
  if os.getenv('PUBLISH_FACEBOOK')=='true':
