@@ -5,7 +5,7 @@
   "artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
   "workflow_created_at": "2026-11-04T22:46:38+05:00",
   "artifact_created_at": "2026-11-04T22:48:50+05:00",
-  "completed_at": "2026-11-04T23:10:17+05:00",
+  "completed_at": "2026-11-04T23:14:28+05:00",
   "episode_identity": {
     "embedded_episode_json_present": false,
     "episode_candidate_asserted": false,
@@ -146,15 +146,42 @@
     "provider_result": "Hugging Face ZeroGPU loaded successfully and generated all three shots. This run was not quota-blocked; it failed afterward during local voice mixing."
   },
   "repair_actions": {
-    "ffmpeg_voice_mix_fix_commit": "de084c44da3a0e0600c46dea0da79103832ee708",
+    "ffmpeg_voice_mix_initial_fix_commit": "de084c44da3a0e0600c46dea0da79103832ee708",
+    "ffmpeg_voice_mix_headroom_and_alignment_fix_commit": "15efb0dcde99b73c2e94cf12d5752b75bfbf61de",
     "historical_scene_exclusion_commit": "b2d585437910518bc3ce15b248aaf305beb6ed0f",
     "scene_policy_test_commit": "da4171a429453bb0c60bc4488d055ec271eb474f",
-    "production_matched_voice_test_commit": "14b1b59b5cbcc5b2a483e97c5edf085560bd5f2f",
-    "local_mix_smoke_test": "Corrected filter graph produced an 11-second PCM mix with the available local FFmpeg; this is a technical smoke test, not subjective listening or final-video approval."
+    "production_matched_voice_test_workflow_commit": "4b413bf934013d54c6fda54efd0bd880de1a061e",
+    "voice_test_activity_threshold_commit": "1a09282ff724be947f7b78ee928bd197689b1bb4",
+    "missing_action_hold_policy_commit": "720e5c2e4e476aac01ae247cf3edb00ae8c5ef96",
+    "local_mix_smoke_test": "Corrected no-limiter graph produced an 11-second PCM mix using the actual Piper track; cue correlation 0.9964 in the local technical smoke test. No subjective listening.",
+    "note": "FFmpeg limiter removed entirely because the production FFmpeg v5 build lacks the latency option and limiter lookahead misaligned the correlation test. Voice peak is now capped at 0.65 while the bed is ducked to 0.22, preserving bounded headroom without a version-dependent lookahead filter."
   },
   "pending_gate_existed": false,
   "pending_gate_action": "No bobo_review_pending.json existed. The partial artifact is recorded as deliberately rejected; the already-published bobo_review_approval.json was not changed.",
   "publication_authorized": false,
   "publication_decision": "deliberate_rejection",
-  "cost": 0
+  "cost": 0,
+  "verification": {
+    "voice_test_run": {
+      "run_id": 41884941610,
+      "conclusion": "success",
+      "checks": "Eight Piper local lines; mix, ducking, timed subtitle mapping and AAC encoding technical checks passed.",
+      "subjective_listening": "not performed",
+      "lip_sync": "not assessed"
+    },
+    "production_code_validation": {
+      "run_id": 41885080064,
+      "conclusion": "success"
+    },
+    "longer_editing_validation": {
+      "run_id": 41884326185,
+      "conclusion": "success"
+    },
+    "daily_fresh_run_after_duplicate_guard": {
+      "run_id": 41884327140,
+      "conclusion": "success",
+      "result": "No unused scene reference remained; exited before a new GPU request."
+    }
+  },
+  "next_blocker": "All six eligible regular scene IDs (0,1,2,3,4,7) already exist in the publication ledger. A new original scene reference and distinct plot are required before free generation can resume; the guard now stops instead of recycling a historical scene."
 }
