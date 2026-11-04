@@ -248,7 +248,7 @@ def main():
  episode_key=f'long-v2-{episode}'
  if episode_key in ledger:
   print('This episode was already published; skipping generation and upload.'); return
- recent=[v.get('scene_id') for v in list(ledger.values())[-3:]]
+ recent=[v.get('scene_id') for v in ledger.values() if v.get('scene_id') is not None]
  # Avoid repeating scenes already staged in an unpublished reserve or approved draft.
  for reserved_episode,record in reserve.items():
   if f'long-v2-{reserved_episode}' not in ledger and record.get('scene_id') is not None:
