@@ -10,7 +10,11 @@ on:
         type: boolean
   push:
     branches: [main]
-    paths: ['.github/workflows/daily.yml']
+    paths:
+      - '.github/workflows/daily.yml'
+      - 'fresh_bobo.py'
+      - 'bobo_foley.py'
+      - 'bobo_scene_policy.py'
   schedule:
     - cron: '10,30,50 6,7,8,9,14,15,16,17,21 * * *'
       timezone: Asia/Karachi
