@@ -1,10 +1,10 @@
 name: Validate Longer Bobo Editing
 on:
   pull_request:
-    paths: ['fresh_bobo.py', '.github/workflows/test-fresh-bobo.yml']
+    paths: ['fresh_bobo.py', 'bobo_foley.py', 'bobo_scene_policy.py', '.github/workflows/test-fresh-bobo.yml']
   push:
     branches: [main]
-    paths: ['fresh_bobo.py', '.github/workflows/test-fresh-bobo.yml']
+    paths: ['fresh_bobo.py', 'bobo_foley.py', 'bobo_scene_policy.py', '.github/workflows/test-fresh-bobo.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -46,7 +46,7 @@ jobs:
                   self.calls+=1
                   return str(path), kwargs['seed']
           b.Client=OfflineGenerator
-          import bobo_pipeline, bobo_foley
+          import bobo_pipeline, bobo_foley, bobo_scene_policy
           # A staged reserve scene must not be reused for the next distinct video.
           bobo_pipeline.approvals=lambda: {40522032: {'scene_id':3}}
           bobo_foley.recorded_effect=lambda kind,length,out: None
@@ -76,7 +76,15 @@ jobs:
           assert metadata['story_serial'] is None
           assert metadata['story_mode']=='regular_original_after_2026-10-27'
           assert metadata['title']==b.SCENES[metadata['scene_id']][0]
-          assert metadata['scene_id'] != 3, 'Do not reuse a scene already held in reserve'
+          assert metadata['scene_id'] not in {3,5,6}, 'Do not reuse a reserve scene or retired spaceship/snowball plot'
+          assert metadata['scene_id'] not in bobo_scene_policy.FORBIDDEN_SCENE_IDS
+          for day in range(14):
+              for slot in (0,1):
+                  assert not bobo_scene_policy.FORBIDDEN_SCENE_IDS.intersection(bobo_scene_policy.eligible_scene_order(day,slot,[]))
+          assert bobo_foley.SOURCES['snow']['license']=='CC0'
+          assert len(bobo_foley.SOURCES['snow']['sha256'])==64
+          assert bobo_foley.SOURCES['wood']['license']=='CC0'
+          assert bobo_foley.SOURCES['tap']['license']=='CC0'
           assert metadata['quality_reference']==f"assets/scenes/scene{metadata['scene_id']}.jpg"
           assert len(metadata['approved_story_beats'])==3
           assert spoken['text']==metadata['comedy_series']['voice_line']
