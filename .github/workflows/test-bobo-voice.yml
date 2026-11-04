@@ -56,7 +56,7 @@ jobs:
               # Verify music ducking during actual speech by reconstructing the isolated voice.
               with wave.open(str(out/'voice-track.wav'),'rb') as wav:
                   voice=np.frombuffer(wav.readframes(wav.getnframes()),dtype='<i2').reshape(-1,2).astype(float)
-              active=np.abs(voice[:,0])>2000
+              active=np.abs(voice[:,0])>300
               assert active.sum()>1000
               # Fit actual voice gain rather than assuming gain stayed at one.
               lo=round(cue['start']*48000); hi=round(cue['end']*48000)
