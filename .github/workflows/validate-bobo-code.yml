@@ -1,0 +1,36 @@
+name: Validate Bobo Production Code
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'fresh_bobo.py'
+      - 'bobo_pipeline.py'
+      - 'bobo_voice.py'
+      - 'bobo_ten_day_stories.json'
+      - '.github/workflows/validate-bobo-code.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile production modules
+        run: python -m py_compile fresh_bobo.py bobo_pipeline.py bobo_voice.py
+      - name: Verify matching scene references and preserve unfinished story queue
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for scene_id in range(8):
+              path = Path(f'assets/scenes/scene{scene_id}.jpg')
+              assert path.is_file(), f'Missing original scene reference: {path}'
+          queue = json.loads(Path('bobo_ten_day_stories.json').read_text())
+          assert len(queue['stories']) == 10
+          assert queue['status'] == 'queued_not_generated', 'Do not mark unfinished stories complete'
+          print('All eight regular scene references exist; ten-day story queue remains untouched.')
+          PY
