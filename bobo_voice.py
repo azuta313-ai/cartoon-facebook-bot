@@ -64,14 +64,13 @@ def mix_voice(out,total=11):
     if rms<.015:
         raise RuntimeError('Mandatory Bobo speech is silent or too quiet.')
     # Aim for clear speech while retaining peak headroom.
-    voice_gain=min(2.5,max(1.0,.12/rms),.75/max(peak,1e-9))
+    voice_gain=min(2.5,max(1.0,.12/rms),.65/max(peak,1e-9))
     duck_start=max(0,float(cue['start'])-.10)
     duck_end=min(float(total),float(cue['end'])+.16)
     graph=(f"[0:a]apad=whole_dur={total},atrim=duration={total},"
            f"volume=enable='between(t,{duck_start:.4f},{duck_end:.4f})':volume=0.22[bed];"
            f"[1:a]volume={voice_gain:.5f},apad=whole_dur={total},atrim=duration={total}[voice];"
            f"[bed][voice]amix=inputs=2:normalize=0:duration=first,"
-           f"alimiter=limit=0.84:level=false,"
            f"apad=whole_dur={total},atrim=duration={total}[out]")
     run(['ffmpeg','-v','error','-y','-i',str(out/'audio.wav'),'-i',str(out/'voice-track.wav'),'-filter_complex',graph,'-map','[out]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(target)])
     target.replace(out/'audio.wav')
