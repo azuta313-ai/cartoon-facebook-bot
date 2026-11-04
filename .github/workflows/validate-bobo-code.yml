@@ -4,6 +4,9 @@ on:
     branches: [main]
     paths:
       - 'fresh_bobo.py'
+      - 'bobo_foley.py'
+      - 'bobo_scene_policy.py'
+      - 'test_bobo_scene_policy.py'
       - 'bobo_pipeline.py'
       - 'bobo_voice.py'
       - 'bobo_ten_day_stories.json'
@@ -20,7 +23,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Compile production modules
-        run: python -m py_compile fresh_bobo.py bobo_pipeline.py bobo_voice.py
+        run: python -m py_compile fresh_bobo.py bobo_pipeline.py bobo_voice.py bobo_foley.py bobo_scene_policy.py
       - name: Verify matching scene references and preserve unfinished story queue
         run: |
           python - <<'PY'
@@ -29,8 +32,16 @@ jobs:
           for scene_id in range(8):
               path = Path(f'assets/scenes/scene{scene_id}.jpg')
               assert path.is_file(), f'Missing original scene reference: {path}'
+          from bobo_scene_policy import FORBIDDEN_SCENE_IDS, eligible_scene_order
+          assert FORBIDDEN_SCENE_IDS == frozenset({5,6})
+          for day in range(14):
+              for slot in (0,1):
+                  assert not FORBIDDEN_SCENE_IDS.intersection(eligible_scene_order(day,slot,()))
           queue = json.loads(Path('bobo_ten_day_stories.json').read_text())
           assert len(queue['stories']) == 10
           assert queue['status'] == 'queued_not_generated', 'Do not mark unfinished stories complete'
           print('All eight regular scene references exist; ten-day story queue remains untouched.')
           PY
+
+      - name: Test distinct scene policy
+        run: python -m unittest -v test_bobo_scene_policy
