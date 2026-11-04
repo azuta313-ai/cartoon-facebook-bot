@@ -5,6 +5,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 import numpy as np
 from gradio_client import Client, handle_file
+from bobo_scene_policy import FORBIDDEN_SCENE_IDS, eligible_scene_order
 
 SPACE='zerogpu-aoti/wan2-2-fp8da-aoti-faster'
 OUT=Path('fresh_output'); OUT.mkdir(exist_ok=True)
@@ -262,16 +263,15 @@ def main():
   previous_review=json.loads(review_path.read_text())
   if previous_review.get('status')=='rejected' and previous_review.get('episode')==episode:
    recent.extend(previous_review.get('rejected_scene_ids',[previous_review.get('scene_id')]))
- candidate_order=(7,1,2,0,3,4,6)  # Exclude the historical spaceship-button plot.
- offset=(now.toordinal()+slot)%len(candidate_order)
- rotated=candidate_order[offset:]+candidate_order[:offset]
- eligible=[n for n in rotated if n not in recent]
+ eligible=eligible_scene_order(now.toordinal(),slot,recent)
  if not eligible:
   print('All distinct original scene references are in the recent/reserve set; hold rather than duplicate.'); return
  scene_id=eligible[0]
  board_path=Path('bobo_storyboard_pilot.json')
  board=json.loads(board_path.read_text()) if board_path.exists() else {}
- if board.get('episode')==episode and int(board.get('scene_id',-1)) not in recent:
+ if (board.get('episode')==episode
+     and int(board.get('scene_id',-1)) not in recent
+     and int(board.get('scene_id',-1)) not in FORBIDDEN_SCENE_IDS):
   assert board.get('cost')==0 and len(board['shots'])==3
   scene_id=int(board['scene_id'])
  else: board={}
@@ -318,6 +318,8 @@ def main():
    {'seconds':'8-11','action':f'Bobo withdraws both hands, points at the {prop}, gives a small shoulder wiggle and says: {series["voice_line"]}'}
   ]}
   scene_reference=Path('assets/scenes')/f'scene{scene_id}.jpg'
+ if scene_id in FORBIDDEN_SCENE_IDS:
+  raise RuntimeError('Retired spaceship/snowball benchmark scene selected; refusing duplicate story generation.')
  if not scene_reference.is_file():
   raise RuntimeError(f'Missing matching Bobo scene reference at {scene_reference}; no unrelated scene or paid generation will be used.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
