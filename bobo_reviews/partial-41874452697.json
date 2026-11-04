@@ -1,0 +1,119 @@
+{
+  "status": "deliberately_rejected_partial_duplicate",
+  "artifact_run_id": 41874452697,
+  "artifact_id": 13345552522,
+  "artifact_zip_sha256": "a80da5d8cf28667fe66d92679626d56893e5ed6a796a5b4b94db31f677eb9e42",
+  "workflow_created_at": "2026-11-04T22:07:33+05:00",
+  "reviewed_at": "2026-11-04T22:42:05+05:00",
+  "episode_candidate": 40522210,
+  "episode_candidate_note": "Inferred as the next 5 November morning slot from next_episode(); episode.json was not produced, so this is not an artifact-embedded episode identity.",
+  "available_files": [
+    "generated.mp4",
+    "shot0.mp4",
+    "shot1.mp4",
+    "shot2.mp4",
+    "reference.png",
+    "continuation.png",
+    "dialogue-timing.json",
+    "shot1-review.json",
+    "shot2-review.json",
+    "shot3-review.json",
+    "voice-line.wav",
+    "voice-raw.wav",
+    "voice-track.wav",
+    "original_music.wav",
+    "shots.txt"
+  ],
+  "missing": [
+    "bobo_fresh.mp4",
+    "episode.json",
+    "automatic-review.json",
+    "captions-timing.json",
+    "captions.srt",
+    "scene_effects.wav",
+    "audio.wav",
+    "foley-provenance.json",
+    "final encoded mix"
+  ],
+  "visual_review": {
+    "full_render_sample_fps": 4,
+    "transition_sample_fps": 8,
+    "generated_duration_seconds": 12.1875,
+    "generated_format": "H.264 480x832 at 16fps; intermediate only",
+    "shot_durations_seconds": [
+      4.0625,
+      4.0625,
+      4.0625
+    ],
+    "observed_actions": {
+      "snowball_already_in_hand": [
+        0,
+        0.5
+      ],
+      "crouch_and_pat_snowball": [
+        0.75,
+        4
+      ],
+      "prolonged_holding_pose": [
+        4.75,
+        7.625
+      ],
+      "lower_snowball_beside_snowman": [
+        8.125,
+        9.25
+      ],
+      "stand_and_point_toward_snowman": [
+        10,
+        12.1875
+      ]
+    },
+    "reference_scene": "assets/scenes/scene6.jpg; Bobo in red shirt holding a snowball beside a snowman.",
+    "finding": "The full 4fps sample and 8fps cut windows show the same snowman/snowball premise across all three shots. Shot 1 contains a long relatively stationary snowball-holding pose. This duplicates the published Snowball champion premise, which the user permits only as an animation benchmark, not as a plot or scene."
+  },
+  "voice": {
+    "provisional_text": "My snowball!",
+    "dialogue_timing_seconds": [
+      0.35,
+      1.1272
+    ],
+    "voice_line_duration_seconds": 0.777229,
+    "voice_track_duration_seconds": 11,
+    "final_mix_present": false,
+    "intelligibility_verified": false,
+    "listening_verified": false,
+    "note": "Piper source and timeline track exist, but no final encoded mix exists; no claim of intelligibility or lip synchronization."
+  },
+  "captions": {
+    "captions_timing_present": false,
+    "srt_present": false,
+    "note": "No final spoken subtitle/caption render was produced."
+  },
+  "sound": {
+    "original_music_duration_seconds": 11,
+    "music_muxed_into_video": false,
+    "scene_effects_present": false,
+    "failure": "bobo_foley.recorded_effect('snow') raised 'Foley source changed; review required' because the pinned Kenney archive checksum no longer matched the remote archive.",
+    "subjective_listening_verified": false
+  },
+  "technical": {
+    "generated_mp4_sha256": "ec764ad7e190a83533e300a5ccd00615f45883bf402e97615ac9ac8aeaadf052",
+    "shot0_sha256": "2e4e6c802f22f0dfefb59d32e5c4fd6f0703034f54e88d3149f3d4581e4f22d5",
+    "shot1_sha256": "e720fd6a5607d2ace3692eaf80378d4c08d00cdf8d68fb329681370d9159cb99",
+    "shot2_sha256": "d74334af675d4f7fde8f5e017941ae735b71ebe4fd6e07b2a9908f5a0c9ed642",
+    "reference_sha256": "3944da46a4e4f0ed0b10d3570cd26d66219ec9f2f43871ae62b1ca7520fef2c2",
+    "continuation_sha256": "43acc48106ff5df37045c0a53e0983d0dd2f067913b1dcc1e7be5b74af322514",
+    "dialogue_timing_sha256": "76a279f22a44d458bfccded4d6bf87e23cb0052d86a53e18ff7cbfb5a2ff2753",
+    "exact_final_duration_pass": false,
+    "playable_final_video": false
+  },
+  "rejection_reasons": [
+    "Reuses the Snowball champion snowman/snowball plot and scene_id 6, explicitly forbidden as story content.",
+    "Only an intermediate 12.1875-second silent video exists; no 11-second final export, captions, effects, or final audio mix.",
+    "The run failed during CC0 foley source checksum verification before finishing; no publication-quality review possible."
+  ],
+  "provider_result": "Hugging Face ZeroGPU API loaded and generated all three 4.0625-second shots. The failure occurred afterward in local foley checksum validation. This run was not quota-blocked.",
+  "cost": 0,
+  "publication_authorized": false,
+  "pending_gate_existed": false,
+  "pending_gate_action": "No bobo_review_pending.json existed; the partial artifact was rejected in this review record without changing the already-published approval gate."
+}
