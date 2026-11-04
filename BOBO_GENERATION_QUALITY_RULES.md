@@ -14,3 +14,12 @@ The first Puddle Surprise render missed the explicit jump, single tiny droplet, 
 
 ## User-authorized exception for 2026-10-17
 User explicitly authorized publishing the existing defective Puddle Surprise video today. This is a one-video publication exception, NOT a quality pass and NOT a waiver for later videos. Publish only the exact already-generated artifact if publication is technically possible, record its SHA, disclose defects, and retain duplicate and platform-verification checks. Never pretend it was published without real platform IDs.
+
+
+## 4 November 2026 — Snowball reference is not a story
+The published Snowball champion is an animation-quality benchmark only. Do not
+reuse its snowman/snowball premise, the "My snowball!" line, or the snowy
+playground reference (scene_id 6). Scene 6 is permanently excluded from new
+story selection; the historical spaceship-button plot (scene_id 5) remains
+retired as well. If all remaining distinct scenes are in use, wait rather than
+fall back to either retired plot. The new selector and offline tests enforce this.
