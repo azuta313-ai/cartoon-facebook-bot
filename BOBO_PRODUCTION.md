@@ -37,3 +37,10 @@ Do not label a provisional render as approved. Keep the review enabled.
 ## User revision — 17 October 2026
 
 Use the published Snowball champion video's visual/animation quality as the reference, NOT its script, caption or footage. Accept minor mouth-sync imperfections, brief pauses and small non-disruptive visual glitches; these alone do not justify regeneration or withholding an otherwise qualified video. Keep different original stories and original footage, recognizable 3D monkey Bobo/red shirt, 10.95–11.05 seconds, intelligible mandatory Piper speech independently verified in the final mix, accurate spoken subtitles, playable encoding, restrained scene-matched audio, exact reviewed SHA, duplicate protection and platform acceptance. Major corruption, missing/silent/unintelligible speech, misleading captions and reused footage still require repair/hold. Review honestly; never claim subjective listening or perfect synchronization without evidence. This revision does not waive provider limits or the one-hour readiness target. No reuse of Snowball footage or copying its plot is authorized. Ten-day scripts are in bobo_ten_day_stories.json.
+
+## 4 November 2026 — explicit retired scene IDs
+The Snowball champion remains an animation-quality benchmark only. The snowman/snowball
+premise and reference at `assets/scenes/scene6.jpg` (scene_id 6) are permanently
+forbidden for new plots. The historical spaceship-button plot (scene_id 5) is also
+retired. Do not override these exclusions with a storyboard or reserve fallback.
+If no remaining distinct original scene is available, wait rather than duplicate.
