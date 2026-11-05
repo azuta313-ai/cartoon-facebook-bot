@@ -191,5 +191,76 @@
       "result": "Corrected no-limiter graph produced an 11-second PCM mix from the actual Piper track; cue correlation 0.9964. Technical waveform check only, not listening."
     }
   },
-  "next_blocker": "All six eligible regular scene IDs (0,1,2,3,4,7) already exist in the publication ledger. A new original scene reference and distinct plot are required before free generation can resume; the generator now exits before GPU use rather than recycling a historical scene."
+  "next_blocker": "All six eligible regular scene IDs (0,1,2,3,4,7) already exist in the publication ledger. A new original scene reference and distinct plot are required before free generation can resume; the generator now exits before GPU use rather than recycling a historical scene.",
+  "recheck_2026_11_05": {
+    "checked_at": "2026-11-05T07:15:10+05:00",
+    "artifact_re_downloaded": true,
+    "artifact_id": 13349870060,
+    "artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "review_recheck": {
+      "full_render_sampling_fps": 4,
+      "transition_and_dialogue_window_sampling_fps": 8,
+      "generated_duration_seconds": 12.1875,
+      "final_render_still_missing": true,
+      "dialogue_cue": {
+        "text": "Time to paint!",
+        "start": 0.35,
+        "end": 1.1761,
+        "placement": "provisional"
+      },
+      "mouth_observations": {
+        "provisional_dialogue_window": "Sampled frames show Bobo turning from camera toward the canvas and beginning brush action; no clear independently verified speech-mouth window can be assigned.",
+        "late_expression_window": [
+          9.5,
+          10.5
+        ],
+        "late_expression_note": "Bobo shows repeated/open-mouth expressions in the late reaction window while no dialogue cue is scheduled. This is a visible mismatch risk, not proof of speech or a lip-sync diagnosis."
+      },
+      "captions_timing_json_present": false,
+      "exact_spoken_subtitle_present": false,
+      "final_encoded_mix_present": false,
+      "final_mix_intelligibility_verified": false,
+      "subjective_listening_performed": false,
+      "effects_rms_dbfs": -43.62,
+      "music_rms_dbfs": -29.64,
+      "effects_vs_music_rms_difference_db": -13.98,
+      "effect_active_windows_approx": [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "effect_source_verified": false,
+      "natural_foley_verified": false,
+      "subjective_effect_audibility_verified": false,
+      "decision": "rejection_unchanged",
+      "rationale": "Same published scene7 art-room painting premise; intermediate-only render, no final encoded audio/subtitle, and provisional dialogue placement cannot be verified against the visible mouth/action."
+    },
+    "latest_runs": {
+      "daily_fresh_342": {
+        "run_id": 41884327140,
+        "artifact_present": false,
+        "result": "safe hold before provider; no unused original scene reference"
+      },
+      "daily_fresh_343": {
+        "run_id": 41885080065,
+        "artifact_present": false,
+        "result": "safe hold before provider; no unused original scene reference"
+      },
+      "latest_publication_check": {
+        "run_id": 41899259105,
+        "conclusion": "success",
+        "upload_steps": "skipped because approval already published; no new acceptance"
+      }
+    },
+    "pending_gate_existed": false,
+    "approval_gate_unchanged": true,
+    "no_publication_attempted": true,
+    "no_paid_generation": true
+  }
 }
