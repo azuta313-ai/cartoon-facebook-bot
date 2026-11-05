@@ -126,8 +126,8 @@
     "note": "The effects stem is approximately 14 dB lower than the music stem by mean level; no final mix or observed-action effect map exists."
   },
   "technical_review": {
-    "generated_source_decodes": false,
-    "note": "The MP4 source is video-only and 12.1875 seconds; no final 10.95-11.05 second voiced/captioned render exists.",
+    "generated_source_decodes": true,
+    "note": "The MP4 source video stream decodes and was sampled; it is video-only and 12.1875 seconds. No final 10.95-11.05 second voiced/captioned render exists.",
     "workflow_failure": "FFmpeg alimiter initialization failed during local voice mixing because this run passed unsupported level=false:latency=true options.",
     "quota_status": "Not a provider quota failure. The provider returned three free clips; local finishing failed afterward.",
     "current_code_note": "Current main-branch bobo_voice.py no longer uses the failing alimiter options, but this historical scene is not eligible for publication."
