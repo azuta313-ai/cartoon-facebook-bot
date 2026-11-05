@@ -1,0 +1,154 @@
+{
+  "review_id": "daily-fresh-bobo-2026-11-05-run-41880398664",
+  "completed_at": "2026-11-05T22:21:52+05:00",
+  "status": "held_partial_artifact_not_publishable",
+  "publication_allowed": false,
+  "pending_gate_present": false,
+  "latest_daily_fresh_run": {
+    "run_id": 42073402244,
+    "run_number": 345,
+    "created_at": "2026-11-05T17:18:57Z",
+    "conclusion": "success",
+    "artifact_uploaded": false,
+    "provider_called": false,
+    "observed_blocker": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "quota_blocked": false
+  },
+  "latest_available_daily_fresh_artifact": {
+    "source_run_id": 41880398664,
+    "run_number": 341,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_video": "generated.mp4",
+    "generated_video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "artifact_contents": [
+      "generated.mp4",
+      "shot0.mp4",
+      "shot1.mp4",
+      "shot2.mp4",
+      "reference.png",
+      "dialogue-timing.json",
+      "voice-line.wav",
+      "voice-track.wav",
+      "audio.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "shot1-review.json",
+      "shot2-review.json",
+      "shot3-review.json"
+    ],
+    "missing_final_files": [
+      "bobo_fresh.mp4",
+      "episode.json",
+      "captions-timing.json",
+      "captions.srt",
+      "automatic-review.json",
+      "facebook-caption.txt"
+    ]
+  },
+  "visual_review": {
+    "sample_rate_fps": 4,
+    "sampled_frames": 49,
+    "source_duration_seconds": 12.1875,
+    "source_resolution": "480x832",
+    "source_fps": 16,
+    "observed_actions": [
+      {
+        "action": "Bobo begins brush movement at the canvas",
+        "start": 0.25,
+        "end": 3.75
+      },
+      {
+        "action": "Front-facing, comparatively static pose with palette",
+        "start": 4.5,
+        "end": 7.5
+      },
+      {
+        "action": "Turns back toward easel and resumes arm/brush gestures",
+        "start": 7.75,
+        "end": 12
+      }
+    ],
+    "required_shot_actions": {
+      "shot1": "Brush movement is visible, but the shot review JSON remains unverified.",
+      "shot2": "Brush-tip examination and lowering toward palette are not clearly established by sampled frames.",
+      "shot3": "The specified withdrawal/pointing/shoulder-wiggle action is not confirmed; its review JSON remains unverified."
+    },
+    "duplicate_provenance": {
+      "scene_id": 7,
+      "prior_published_episode": 40522021,
+      "prior_title": "Art room paint surprise",
+      "prior_date": "2026-10-10",
+      "prior_scene": "Sunny art room, easel and paint palette",
+      "decision": "Do not count this same art-room painting setup as a distinct new daily story; hold."
+    }
+  },
+  "dialogue_review": {
+    "engine": "Piper local CPU",
+    "exact_text": "Time to paint!",
+    "planned_start_seconds": 0.35,
+    "planned_end_seconds": 1.1761,
+    "voice_line_duration_seconds": 0.8261,
+    "voice_track_present_in_partial_artifact": true,
+    "final_encoded_mix_present": false,
+    "spoken_subtitle_present": false,
+    "independent_asr_verified": false,
+    "subjective_listening_verified": false,
+    "mismatch": "Shot 3 review expects the line during seconds 8-11, while dialogue-timing.json places it at 0.35-1.1761 seconds.",
+    "decision": "Cannot approve speech intelligibility or subtitle/action timing without the final encoded mix."
+  },
+  "audio_measurements": {
+    "method": "FFmpeg volumedetect only; no subjective listening",
+    "preliminary_mix": {
+      "mean_dbfs": -22.5,
+      "peak_dbfs": -6.8
+    },
+    "original_music": {
+      "mean_dbfs": -29.6,
+      "peak_dbfs": -14.5
+    },
+    "scene_effects": {
+      "mean_dbfs": -43.6,
+      "peak_dbfs": -17.1
+    },
+    "voice_track": {
+      "mean_dbfs": -45.6,
+      "peak_dbfs": -16.8
+    },
+    "voice_line": {
+      "mean_dbfs": -34.4,
+      "peak_dbfs": -16.8
+    },
+    "effect_event_mapping_present": false,
+    "music_variant_style_metadata_present": false,
+    "perceptual_audibility_or_naturalness_verified": false,
+    "note": "The effects stem is approximately 14 dB lower than the music stem by mean level; no final mix or observed-action effect map exists."
+  },
+  "technical_review": {
+    "generated_source_decodes": false,
+    "note": "The MP4 source is video-only and 12.1875 seconds; no final 10.95-11.05 second voiced/captioned render exists.",
+    "workflow_failure": "FFmpeg alimiter initialization failed during local voice mixing because this run passed unsupported level=false:latency=true options.",
+    "quota_status": "Not a provider quota failure. The provider returned three free clips; local finishing failed afterward.",
+    "current_code_note": "Current main-branch bobo_voice.py no longer uses the failing alimiter options, but this historical scene is not eligible for publication."
+  },
+  "publication": {
+    "attempted": false,
+    "reason": "No approved final file; historical scene reuse and incomplete visual/dialogue/audio review.",
+    "approval_file_status": "published",
+    "approval_episode": 40522037,
+    "no_bobo_review_pending_file": true,
+    "no_bobo_pending_directory": true,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "reserve_entries_already_in_published_ledger": true,
+    "latest_publish_workflow_run_id": 42024101575,
+    "latest_publish_workflow_run_number": 87,
+    "download_and_publish_steps": "skipped"
+  },
+  "repair_decision": "No render repair was applied to this artifact: it reuses the previously published art-room scene and lacks final caption/action/voice review data. Repairing its audio would not make it a distinct eligible video.",
+  "next_action": "Wait for a genuinely new, matching original scene reference/plot; do not spend paid credits, reuse scene 7, or clear a nonexistent pending gate."
+}
