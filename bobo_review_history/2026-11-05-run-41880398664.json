@@ -189,5 +189,98 @@
     "dialogue": "My snowball!",
     "status": "held_not_repaired",
     "reason": "The source reference is the retired Snowball/snowman premise and reuses the published visual benchmark plot. The artifact is only source clips plus provisional Piper files; no final captioned/voiced 11-second render. Run #340 failed in the local finishing stage after three free clips; repository quota record says the failure was a pinned foley SHA256 verification issue, not provider quota."
+  },
+  "recheck_2026_11_05_234040_pk": {
+    "completed_at": "2026-11-05T23:40:40+05:00",
+    "latest_daily_fresh_run": {
+      "run_id": 42073402244,
+      "run_number": 345,
+      "conclusion": "success",
+      "artifact_count": 0,
+      "provider_called": false,
+      "log_evidence": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+      "quota_blocked": false
+    },
+    "recent_runs_without_artifacts": [
+      {
+        "run_number": 345,
+        "run_id": 42073402244,
+        "artifact_count": 0
+      },
+      {
+        "run_number": 344,
+        "run_id": 41990189164,
+        "artifact_count": 0
+      },
+      {
+        "run_number": 343,
+        "run_id": 41885080065,
+        "artifact_count": 0
+      },
+      {
+        "run_number": 342,
+        "run_id": 41884327140,
+        "artifact_count": 0
+      }
+    ],
+    "latest_artifact_retrieved_again": {
+      "source_run_id": 41880398664,
+      "run_number": 341,
+      "artifact_id": 13349870060,
+      "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+      "zip_sha256_verified_after_download": true,
+      "mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a"
+    },
+    "exact_file_recheck": {
+      "duration_seconds": 12.1875,
+      "resolution": "480x832",
+      "fps": 16,
+      "encoded_audio_stream": false,
+      "full_render_samples_fps": 4,
+      "full_render_sample_count": 49,
+      "transition_windows_8fps": [
+        "3.5-4.5",
+        "7.5-8.5"
+      ],
+      "captions_timing_file_present": false,
+      "final_captioned_export_present": false,
+      "dialogue_text": "Time to paint!",
+      "provisional_dialogue_seconds": [
+        0.35,
+        1.1761
+      ],
+      "shot3_expected_dialogue_seconds": "8-11",
+      "final_encoded_voice_present": false,
+      "spoken_subtitle_present": false,
+      "scene_effect_event_map_present": false,
+      "music_style_metadata_present": false,
+      "perceptual_audio_listening_verified": false,
+      "decision": "Hold: wrong duration, video-only source, provisional dialogue mismatch, incomplete captions/audio and previously published art-room scene_id 7 (episode 40522021)."
+    },
+    "provider_diagnosis": {
+      "latest_run_skipped_before_provider": true,
+      "no_confirmed_quota_error": true,
+      "last_two_artifact_runs_reached_zero_gpu_api": true,
+      "downstream_failures": [
+        "run #340: pinned CC0 foley source SHA256 mismatch after three free clips",
+        "run #341: FFmpeg alimiter option unsupported during voice mix after clip generation"
+      ]
+    },
+    "pending_and_publication": {
+      "bobo_review_pending_json_present": false,
+      "bobo_pending_directory_present": false,
+      "current_approval_status": "published",
+      "current_approval_episode": 40522037,
+      "reserve_entries": [
+        40522030,
+        40522032,
+        40522037
+      ],
+      "all_reserve_entries_already_in_published_ledger": true,
+      "latest_recorded_long_v2_publication": "2026-10-18",
+      "new_facebook_or_instagram_acceptance": false,
+      "publish_run_87_upload_steps": "skipped"
+    },
+    "final_decision": "No new draft to approve or publish. No gate cleared because no pending gate exists. Preserve zero-cost and distinct-footage requirements."
   }
 }
