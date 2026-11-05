@@ -262,5 +262,139 @@
     "approval_gate_unchanged": true,
     "no_publication_attempted": true,
     "no_paid_generation": true
+  },
+  "recheck_2026_11_05_21_05": {
+    "checked_at": "2026-11-05T21:05:23+05:00",
+    "artifact_redownloaded_via_github_actions": true,
+    "artifact_run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "visual_review": {
+      "full_render_sampling_fps": 4,
+      "full_render_sample_count": 49,
+      "transition_and_provisional_dialogue_sampling_fps": 8,
+      "sampled_windows_seconds": [
+        [
+          0,
+          1.6
+        ],
+        [
+          3.7,
+          4.5
+        ],
+        [
+          7.8,
+          8.6
+        ]
+      ],
+      "observed_actions": {
+        "bobo_holding_brush_and_palette": [
+          0,
+          0.25
+        ],
+        "visible_brush_strokes": [
+          0.5,
+          4.0625
+        ],
+        "brush_inspection_and_near_stationary_pose": [
+          5.5,
+          7.625
+        ],
+        "brush_strokes_resume": [
+          8,
+          10
+        ],
+        "brush_lift_and_reaction": [
+          10,
+          12.1875
+        ]
+      },
+      "caption_transitions_reviewed": 0,
+      "caption_file_present": false,
+      "historical_duplicate": {
+        "prior_episode": 40522021,
+        "prior_scene_id": 7,
+        "prior_title": "Art room paint surprise",
+        "finding": "Same sunny art-room easel, palette and painting premise; not a distinct original plot."
+      }
+    },
+    "voice": {
+      "provisional_text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "piper_source_present": true,
+      "voice_track_wav_present": true,
+      "voice_track_wav_rms_dbfs": -45.61,
+      "final_encoded_audio_stream": false,
+      "final_mix_present": false,
+      "exact_spoken_subtitle_present": false,
+      "independent_final_mix_asr": false,
+      "subjective_listening": false,
+      "lip_sync_claim": false,
+      "result": "Mandatory speech cannot be approved from source WAVs because the actual video has no encoded audio and no spoken subtitle."
+    },
+    "sound": {
+      "music_rms_dbfs": -29.64,
+      "effects_rms_dbfs": -43.62,
+      "effects_vs_music_db": -13.98,
+      "effects_source": "procedurally synthesized brush-like noise",
+      "effect_windows_approx": [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "natural_foley_verified": false,
+      "perceptual_audibility_verified": false,
+      "music_style_metadata_present": false,
+      "subjective_listening": false
+    },
+    "technical": {
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "video_codec": "h264",
+      "resolution": "480x832",
+      "fps": 16,
+      "audio_stream": false,
+      "final_encoded_video": false
+    },
+    "latest_daily_workflow": {
+      "run_id": 41990189164,
+      "run_number": 344,
+      "created_at": "2026-11-05T12:51:40+05:00",
+      "conclusion": "success",
+      "artifact_present": false,
+      "result": "Safe hold before provider call: all distinct original scene references were in the recent/reserve set. No GPU request, no quota error, no new draft."
+    },
+    "latest_publication_check": {
+      "run_id": 42024101575,
+      "run_number": 87,
+      "created_at": "2026-11-05T17:04:44+05:00",
+      "conclusion": "success",
+      "facebook_instagram_story_steps": "skipped",
+      "result": "Existing approval already published; no new upload or platform acceptance."
+    },
+    "repository_state": {
+      "bobo_review_pending_json_present": false,
+      "bobo_pending_directory_present": false,
+      "approval_status": "published",
+      "approved_episode": 40522037,
+      "unused_approved_reserve_entries": 0,
+      "published_ledger_entries": 15,
+      "latest_platform_acceptance_date": "2026-10-18"
+    },
+    "decision": "rejection_unchanged",
+    "reason": "Duplicate art-room painting premise; intermediate-only 12.1875-second video; no final audio stream or spoken subtitle; source voice is provisional; effects remain unverified and substantially below music.",
+    "publication_attempted": false,
+    "paid_generation": false,
+    "cost": 0
   }
 }
