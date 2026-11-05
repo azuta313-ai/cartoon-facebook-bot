@@ -150,5 +150,20 @@
     "download_and_publish_steps": "skipped"
   },
   "repair_decision": "No render repair was applied to this artifact: it reuses the previously published art-room scene and lacks final caption/action/voice review data. Repairing its audio would not make it a distinct eligible video.",
-  "next_action": "Wait for a genuinely new, matching original scene reference/plot; do not spend paid credits, reuse scene 7, or clear a nonexistent pending gate."
+  "next_action": "Wait for a genuinely new, matching original scene reference/plot; do not spend paid credits, reuse scene 7, or clear a nonexistent pending gate.",
+  "older_partial_artifact": {
+    "source_run_id": 41874452697,
+    "run_number": 340,
+    "artifact_id": 13345552522,
+    "artifact_name": "fresh-bobo-video",
+    "zip_sha256": "a80da5d8cf28667fe66d92679626d56893e5ed6a796a5b4b94db31f677eb9e42",
+    "generated_video_sha256": "ec764ad7e190a83533e300a5ccd00615f45883bf402e97615ac9ac8aeaadf052",
+    "duration_seconds": 12.1875,
+    "resolution": "480x832",
+    "fps": 16,
+    "scene_id": 6,
+    "dialogue": "My snowball!",
+    "status": "held_not_repaired",
+    "reason": "The source reference is the retired Snowball/snowman premise and reuses the published visual benchmark plot. The artifact is only source clips plus provisional Piper files; no final captioned/voiced 11-second render. Run #340 failed in the local finishing stage after three free clips; repository quota record says the failure was a pinned foley SHA256 verification issue, not provider quota."
+  }
 }
