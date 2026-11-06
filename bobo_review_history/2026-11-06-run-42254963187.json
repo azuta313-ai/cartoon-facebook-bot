@@ -273,5 +273,103 @@
     },
     "recurring_review_enabled": true,
     "no_paid_generation": true
+  },
+  "recheck_2026_11_06_23_14": {
+    "checked_at": "2026-11-06T23:14:08+05:00",
+    "artifact_downloaded_again_via_github_actions": true,
+    "artifact_id": 13349870060,
+    "artifact_run_id": 41880398664,
+    "artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "visual_review": {
+      "duration_seconds": 12.1875,
+      "codec": "H.264",
+      "resolution": "480x832",
+      "fps": 16,
+      "encoded_audio_stream": false,
+      "full_render_sample_fps": 4,
+      "full_render_sample_count": 49,
+      "transition_sample_fps": 8,
+      "transition_sample_count": 45,
+      "transition_windows_seconds": [
+        [
+          0,
+          1.6
+        ],
+        [
+          3.5,
+          4.5
+        ],
+        [
+          7.5,
+          8.5
+        ],
+        [
+          10.5,
+          12.1875
+        ]
+      ],
+      "observed_actions": [
+        {
+          "action": "Bobo paints with brush across canvas",
+          "start": 0.5,
+          "end": 3.75
+        },
+        {
+          "action": "Bobo faces forward holding palette and brush; low-activity pose",
+          "start": 4,
+          "end": 7.5
+        },
+        {
+          "action": "Bobo turns back to easel and resumes brush gestures",
+          "start": 7.75,
+          "end": 12
+        }
+      ],
+      "duplicate_provenance": {
+        "scene_id": 7,
+        "prior_published_episode": 40522021,
+        "prior_title": "Art room paint surprise",
+        "decision": "Same art-room/easel/paint-palette premise; not a distinct story."
+      }
+    },
+    "voice": {
+      "exact_provisional_text": "Time to paint!",
+      "provisional_start_seconds": 0.35,
+      "provisional_end_seconds": 1.1761,
+      "voice_line_wav_present": true,
+      "voice_track_wav_present": true,
+      "final_encoded_voice_present": false,
+      "spoken_subtitle_present": false,
+      "intelligibility_verified": false,
+      "listening_verified": false,
+      "lip_sync_verified": false,
+      "note": "No final encoded mix. The provisional cue spans a longer interval than the clearly visible initial open-mouth reaction; no intelligibility or lip-sync claim."
+    },
+    "captions": {
+      "action_captions_timing_json_present": false,
+      "captions_srt_present": false,
+      "observed_caption_mapping_present": false
+    },
+    "audio": {
+      "wav_duration_seconds": 11,
+      "preliminary_mix_rms_dbfs": -22.46,
+      "preliminary_mix_peak_dbfs": -6.85,
+      "music_rms_dbfs": -29.64,
+      "effects_rms_dbfs": -43.62,
+      "voice_track_rms_dbfs": -45.61,
+      "effects_mean_vs_music_delta_db": -13.98,
+      "effect_source": "Procedurally synthesized brush-like noise; no verified recorded source or foley-provenance.json.",
+      "effect_event_map_present": false,
+      "music_style_metadata_present": false,
+      "final_mix_present": false,
+      "subjective_listening_verified": false,
+      "note": "WAV measurements only; effects layer is about 14 dB below music. No claim of perceptual audibility or naturalness."
+    },
+    "repair_applied": false,
+    "decision": "Hold/reject unchanged. The artifact is a duplicate art-room painting premise, 12.1875 seconds, video-only, missing final voice/subtitles/captions and observed effect mapping. Audio-only repair cannot make the story distinct.",
+    "pending_gate_present": false,
+    "publication_allowed": false,
+    "cost": 0
   }
 }
