@@ -184,5 +184,94 @@
     "latest_ledger_facebook_story_video_id": "1589424523204423",
     "no_new_platform_acceptance_in_latest_run": true
   },
-  "next_action": "Prepare and add a genuinely new matching original Bobo scene reference plus a matching three-shot storyboard before the next free provider attempt. Do not reuse scenes 0,1,2,3,4,7, retired scenes 5 or 6, or loop the expired ten-day story list. Keep the review and publication workflows enabled."
+  "next_action": "Prepare and add a genuinely new matching original Bobo scene reference plus a matching three-shot storyboard before the next free provider attempt. Do not reuse scenes 0,1,2,3,4,7, retired scenes 5 or 6, or loop the expired ten-day story list. Keep the review and publication workflows enabled.",
+  "recheck_2026_11_06_22_39": {
+    "checked_at": "2026-11-06T22:39:58+05:00",
+    "artifact_downloaded_again_via_github_actions": true,
+    "artifact_id": 13349870060,
+    "artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "exact_file_recheck": {
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "codec": "H.264",
+      "resolution": "480x832",
+      "fps": 16,
+      "encoded_audio_stream": false,
+      "playable_video_decode": true,
+      "full_render_sample_fps": 4,
+      "full_render_sample_count": 49,
+      "full_render_sampled_at": "0.00 through 12.00 seconds in 0.25-second increments",
+      "transition_sample_fps": 8,
+      "transition_sample_count": 98,
+      "transition_sampled_at": "0.00 through 12.125 seconds in 0.125-second increments",
+      "observed_actions": [
+        {
+          "action": "Bobo already holds palette and brush; visible brush movement across the canvas",
+          "start": 0.5,
+          "end": 3.75
+        },
+        {
+          "action": "Bobo faces forward holding palette/brush; mostly low-activity pose",
+          "start": 4,
+          "end": 7.5
+        },
+        {
+          "action": "Bobo turns back toward easel and resumes brush gestures",
+          "start": 7.75,
+          "end": 12
+        }
+      ],
+      "duplicate_provenance": {
+        "scene_id": 7,
+        "prior_published_episode": 40522021,
+        "decision": "Same art-room/easel/paint-palette painting premise; not a distinct new story."
+      },
+      "voice": {
+        "provisional_text": "Time to paint!",
+        "provisional_start_seconds": 0.35,
+        "provisional_end_seconds": 1.1761,
+        "final_encoded_voice_present": false,
+        "spoken_subtitle_present": false,
+        "intelligibility_verified": false,
+        "subjective_listening_performed": false
+      },
+      "captions": {
+        "captions_timing_json_present": false,
+        "captions_srt_present": false,
+        "observed_caption_mapping_present": false
+      },
+      "audio_stems_dbfs": {
+        "music_mean": -29.64,
+        "music_peak": -14.47,
+        "effects_mean": -43.62,
+        "effects_peak": -17.08,
+        "voice_track_mean": -45.61,
+        "voice_track_peak": -16.81,
+        "effects_mean_below_music_db": 13.98,
+        "method": "WAV level measurements only; no subjective listening"
+      },
+      "repair_applied": false,
+      "decision": "Maintain deliberate rejection/hold. Reused visual premise, duration outside 11-second gate, no final encoded audio/voice or spoken subtitle. No audio-only repair can make the story distinct."
+    },
+    "current_workflow": {
+      "latest_run_id": 42254963187,
+      "latest_run_number": 348,
+      "artifact_count": 0,
+      "provider_called": false,
+      "quota_error_observed": false,
+      "observed_reason": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate."
+    },
+    "publication": {
+      "latest_publisher_run_id": 42214075808,
+      "latest_publisher_run_number": 89,
+      "upload_steps": "skipped",
+      "reason": "No due approved reserve entry selected; no upload attempted."
+    },
+    "recurring_review_enabled": true,
+    "no_paid_generation": true
+  }
 }
