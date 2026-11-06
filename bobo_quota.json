@@ -2,16 +2,18 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-06T16:02:27+05:00",
+  "last_observed_at": "2026-11-06T22:04:10+05:00",
   "last_generation_run_id": 41880398664,
-  "last_provider_result": "Last confirmed provider access: run #341 generated three free ZeroGPU clips, then failed during local voice mixing. Latest run #347 did not call the provider because every eligible original scene reference is already in recent/published/reserve history; current provider availability remains untested.",
+  "last_provider_result": "Last confirmed provider access: run #341 generated three free ZeroGPU clips, then failed during local FFmpeg voice mixing. Run #348 completed its credential preflight but did not call the provider because all eligible original scene references were already in recent/published/reserve history. No quota error was observed; current provider availability remains untested.",
   "latest_check": {
-    "checked_at": "2026-11-06T16:02:27+05:00",
-    "run_id": 42183667878,
-    "run_number": 347,
+    "checked_at": "2026-11-06T22:04:10+05:00",
+    "run_id": 42254963187,
+    "run_number": 348,
     "provider_called": false,
     "quota_error_observed": false,
     "reason": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "provider_gate": "The workflow's credential preflight succeeded, but fresh_bobo.py exited at the scene-eligibility guard before any ZeroGPU Client.predict request.",
+    "artifact_count": 0,
     "provider_availability": "unconfirmed"
   }
 }
