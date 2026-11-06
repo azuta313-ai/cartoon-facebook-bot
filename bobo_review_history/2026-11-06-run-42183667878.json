@@ -300,7 +300,31 @@
       "publisher_workflow_blob_sha": "fa573d3d280324a2344a66a6a2f081e77691d770",
       "changes": "Future approvals now require either explicitly recorded actual listening or independent ASR whose normalized transcript exactly matches the spoken line and whose input is identified as the final encoded mix. Publisher repeats this check before upload. Added unit tests for mismatched transcripts, source-WAV-only ASR and explicit listening evidence. Existing SHA-256, 11-second, duplicate-ledger and upload-intent protections remain.",
       "secrets_exposed": false,
-      "validation_run_pending": true
+      "validation_run_pending": false,
+      "validation_runs": [
+        {
+          "run_id": 42207186729,
+          "workflow": "Test Bobo Production Pipeline",
+          "run_number": 10,
+          "conclusion": "success",
+          "tests": "test_bobo_pipeline"
+        },
+        {
+          "run_id": 42207191627,
+          "workflow": "Validate Bobo Production Code",
+          "run_number": 10,
+          "conclusion": "success",
+          "checks": "compile, scene policy, reserve and final-mix speech evidence tests"
+        },
+        {
+          "run_id": 42207197692,
+          "workflow": "Validate Bobo Production Code",
+          "run_number": 11,
+          "conclusion": "success",
+          "checks": "compile, scene policy, reserve and final-mix speech evidence tests"
+        }
+      ],
+      "publisher_workflow_validation": "The workflow is committed and will enforce the new speech evidence gate on the next reviewed publication; no approval was staged and no upload was attempted in this review."
     }
   }
 }
