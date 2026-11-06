@@ -8,6 +8,8 @@ on:
       - 'bobo_scene_policy.py'
       - 'test_bobo_scene_policy.py'
       - 'bobo_pipeline.py'
+      - 'test_bobo_pipeline.py'
+      - '.github/workflows/publish-reviewed-bobo.yml'
       - 'bobo_voice.py'
       - 'bobo_ten_day_stories.json'
       - '.github/workflows/validate-bobo-code.yml'
@@ -45,3 +47,5 @@ jobs:
 
       - name: Test distinct scene policy
         run: python -m unittest -v test_bobo_scene_policy
+      - name: Test reserve selection and final-mix speech evidence gates
+        run: python -m unittest -v test_bobo_pipeline
