@@ -1,5 +1,6 @@
 """Free-only preparation planner and reviewed reserve selection. No network calls."""
 import json
+import re
 from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -10,6 +11,26 @@ RESERVE_TARGET = 4
 def slot_time(episode):
     day, slot = divmod(int(episode), 2)
     return datetime.strptime(str(day), '%Y%m%d').replace(hour=9 if slot == 0 else 17, tzinfo=TZ)
+
+def normalize_spoken_text(value):
+    """Normalize punctuation/case while preserving the exact spoken words."""
+    return re.sub(r'\s+', ' ', re.sub(r'[^a-z0-9]+', ' ', str(value).lower())).strip()
+
+def validate_speech_evidence(speech):
+    method = speech.get('verification_method')
+    evidence = speech.get('verification_evidence')
+    assert isinstance(evidence, dict) and evidence, 'Speech verification evidence missing'
+    if method == 'independent_asr':
+        expected = speech.get('text') or speech.get('spoken_text')
+        transcript = evidence.get('transcript')
+        assert expected and transcript, 'ASR must record the exact spoken line and recognized transcript'
+        assert normalize_spoken_text(transcript) == normalize_spoken_text(expected), 'ASR transcript does not match the exact spoken line'
+        assert evidence.get('model'), 'ASR model evidence missing'
+        assert 'final encoded mix' in str(evidence.get('input', '')).lower(), 'ASR must inspect the final encoded mix, not a source WAV'
+    elif method == 'actual_listening':
+        assert speech.get('listening_verified') is True, 'Actual listening must be explicitly recorded'
+    else:
+        raise AssertionError('Waveform-only or unknown speech verification method is not acceptable')
 
 def validate_ready(record, now):
     # Earlier one-off exceptions remain historical; never authorize future files.
@@ -31,7 +52,7 @@ def validate_ready(record, now):
     speech=review.get('voice',{})
     assert speech.get('intelligibility_verified') is True, 'Actual final-mix speech verification required'
     assert speech.get('verification_method') in ('actual_listening','independent_asr'), 'Waveform-only approval is insufficient'
-    assert speech.get('verification_evidence'), 'Speech verification evidence missing'
+    validate_speech_evidence(speech)
 
 def approvals(root=Path('.')):
     return {int(p.stem): json.loads(p.read_text()) for p in (root/'bobo_reserve').glob('*.json')}
