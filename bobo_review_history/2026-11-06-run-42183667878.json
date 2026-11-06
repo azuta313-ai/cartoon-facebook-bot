@@ -1,0 +1,173 @@
+{
+  "review_id": "daily-fresh-bobo-2026-11-06-run-42183667878",
+  "completed_at": "2026-11-06T14:36:52+05:00",
+  "status": "no_new_draft_scene_reference_exhaustion",
+  "publication_allowed": false,
+  "pending_gate_present": false,
+  "latest_daily_workflow": {
+    "run_id": 42183667878,
+    "run_number": 347,
+    "workflow": "Daily Fresh Bobo",
+    "conclusion": "success",
+    "created_at": "2026-11-06T07:51:52Z",
+    "artifact_count": 0,
+    "provider_called": false,
+    "observed_log": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "quota_error_observed": false,
+    "artifact_upload_warning": "No files were found in fresh_output; no artifacts were uploaded."
+  },
+  "latest_available_artifact": {
+    "source_run_id": 41880398664,
+    "run_number": 341,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "redownloaded_this_review": true,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_video": "generated.mp4",
+    "generated_video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "technical_review": {
+      "codec": "H.264",
+      "duration_seconds": 12.1875,
+      "resolution": "480x832",
+      "fps": 16,
+      "encoded_audio_stream": false,
+      "playable_video_decode": true,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "duration_pass": false
+    },
+    "visual_review": {
+      "full_video_sample_fps": 4,
+      "full_video_sample_count": 49,
+      "transition_sample_fps": 8,
+      "transition_windows_seconds": [
+        [
+          3,
+          5
+        ],
+        [
+          7,
+          9
+        ]
+      ],
+      "dialogue_window_seconds": [
+        0,
+        2
+      ],
+      "observed_actions": [
+        {
+          "action": "Bobo paints with brush across canvas",
+          "start": 0.5,
+          "end": 3.75
+        },
+        {
+          "action": "Bobo faces forward holding palette/brush; mostly static pose",
+          "start": 4,
+          "end": 7.5
+        },
+        {
+          "action": "Bobo turns back to easel and resumes brush gestures",
+          "start": 7.75,
+          "end": 12
+        }
+      ],
+      "duplicate_provenance": {
+        "scene_id": 7,
+        "prior_published_episode": 40522021,
+        "prior_title": "Art room paint surprise",
+        "prior_date": "2026-10-10",
+        "decision": "Same art-room/easel/paint-palette setup; not a distinct new story."
+      }
+    },
+    "voice": {
+      "engine": "Piper local CPU",
+      "exact_provisional_text": "Time to paint!",
+      "provisional_start_seconds": 0.35,
+      "provisional_end_seconds": 1.1761,
+      "voice_line_wav_present": true,
+      "voice_track_wav_present": true,
+      "final_encoded_voice_present": false,
+      "encoded_audio_stream_present": false,
+      "spoken_subtitle_present": false,
+      "episode_json_present": false,
+      "expected_shot_window": [
+        8,
+        11
+      ],
+      "timing_mismatch": true,
+      "intelligibility_verified": false,
+      "listening_verified": false,
+      "note": "No speech intelligibility or lip-sync claim; final MP4 contains no audio stream."
+    },
+    "captions": {
+      "captions_timing_json_present": false,
+      "captions_srt_present": false,
+      "observed_caption_mapping_present": false
+    },
+    "audio_measurements_dbfs": {
+      "method": "WAV metrics/correlation only; no subjective listening",
+      "preliminary_audio": {
+        "mean": -22.46,
+        "peak": -6.85
+      },
+      "original_music": {
+        "mean": -29.64,
+        "peak": -14.47
+      },
+      "scene_effects": {
+        "mean": -43.62,
+        "peak": -17.08
+      },
+      "voice_track": {
+        "mean": -45.61,
+        "peak": -16.81
+      },
+      "voice_line": {
+        "mean": -34.37,
+        "peak": -16.81
+      },
+      "effects_mean_vs_music_delta": -13.98,
+      "audio_mix_music_correlation": 0.9742,
+      "audio_mix_voice_track_correlation": -0.0003,
+      "effect_event_map_present": false,
+      "music_style_metadata_present": false,
+      "perceptual_audibility_or_naturalness_verified": false
+    },
+    "decision": "Hold/reject as a new publication candidate. It is reused art-room footage, longer than 11 seconds, and lacks encoded audio, verified dialogue, and spoken captions. No local repair was applied because audio/timing repair cannot make the reused visual story distinct."
+  },
+  "repository_state": {
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "pending_review_json_present": false,
+    "pending_directory_present": false,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "latest_recorded_publication_date": "2026-10-18"
+  },
+  "provider_diagnosis": {
+    "active_quota_block_confirmed": false,
+    "latest_run_provider_called": false,
+    "last_confirmed_provider_access": "Runs #340 and #341 reached free ZeroGPU and generated clips before downstream finishing failures.",
+    "stored_retry_timestamp_is_historical": "2026-10-18T16:30:58.401196+05:00",
+    "note": "Current blocker is exhaustion of eligible distinct original scene references, not a confirmed free-quota error. Provider availability was not tested by run #347."
+  },
+  "publication": {
+    "latest_publisher_run_id": 42100277639,
+    "latest_publisher_run_number": 88,
+    "conclusion": "success",
+    "upload_steps": "skipped",
+    "reason": "No due approved reserve entry selected; no upload attempted.",
+    "latest_ledger_facebook_video_id": "2296956914491800",
+    "latest_ledger_instagram_reel_media_id": "17986620615086823",
+    "latest_ledger_instagram_story_media_id": "17882345784534496",
+    "latest_ledger_facebook_story_video_id": "1589424523204423",
+    "no_new_platform_acceptance_in_latest_run": true
+  },
+  "next_action": "Prepare a genuinely new matching scene reference and original three-shot storyboard before the next free provider attempt. Do not reuse scenes 0,1,2,3,4,7, retired scenes 5 or 6, or loop the expired ten-day story list. Keep the review workflow enabled."
+}
