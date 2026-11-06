@@ -169,5 +169,138 @@
     "latest_ledger_facebook_story_video_id": "1589424523204423",
     "no_new_platform_acceptance_in_latest_run": true
   },
-  "next_action": "Prepare a genuinely new matching scene reference and original three-shot storyboard before the next free provider attempt. Do not reuse scenes 0,1,2,3,4,7, retired scenes 5 or 6, or loop the expired ten-day story list. Keep the review workflow enabled."
+  "next_action": "Prepare a genuinely new matching scene reference and original three-shot storyboard before the next free provider attempt. Do not reuse scenes 0,1,2,3,4,7, retired scenes 5 or 6, or loop the expired ten-day story list. Keep the review workflow enabled.",
+  "recheck_2026_11_06_16_02": {
+    "checked_at": "2026-11-06T16:02:27+05:00",
+    "artifact_downloaded_again_via_github_actions": true,
+    "latest_daily_run": {
+      "run_id": 42183667878,
+      "run_number": 347,
+      "conclusion": "success",
+      "artifact_count": 0,
+      "provider_called": false,
+      "quota_error_observed": false,
+      "log": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate."
+    },
+    "latest_artifact": {
+      "run_id": 41880398664,
+      "run_number": 341,
+      "artifact_id": 13349870060,
+      "artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+      "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+      "downloaded_again": true
+    },
+    "exact_file_recheck": {
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "codec": "H.264",
+      "resolution": "480x832",
+      "fps": 16,
+      "encoded_audio_stream": false,
+      "playable_video_decode": true,
+      "full_render_sample_fps": 4,
+      "full_render_sample_count": 49,
+      "transition_and_dialogue_sample_fps": 8,
+      "sampled_frames": 32,
+      "sampled_windows_seconds": [
+        [
+          0,
+          2
+        ],
+        [
+          3.5,
+          4.5
+        ],
+        [
+          7.5,
+          8.5
+        ]
+      ],
+      "observed_actions": [
+        {
+          "action": "Bobo paints with brush",
+          "start": 0.5,
+          "end": 3.75
+        },
+        {
+          "action": "Mostly stationary front-facing pose",
+          "start": 4,
+          "end": 7.5
+        },
+        {
+          "action": "Bobo resumes brush gestures",
+          "start": 7.75,
+          "end": 12
+        }
+      ],
+      "captions_timing_json_present": false,
+      "captions_srt_present": false,
+      "caption_transitions_reviewed": 0,
+      "provisional_dialogue": {
+        "text": "Time to paint!",
+        "start": 0.35,
+        "end": 1.1761,
+        "expected_shot_window": [
+          8,
+          11
+        ],
+        "final_encoded_voice_present": false,
+        "spoken_subtitle_present": false,
+        "intelligibility_verified": false
+      },
+      "duplicate": {
+        "scene_id": 7,
+        "prior_episode": 40522021,
+        "prior_title": "Art room paint surprise",
+        "prior_date": "2026-10-10",
+        "decision": "Same art-room/easel/paint-palette premise; not a distinct story."
+      },
+      "audio_stems_dbfs": {
+        "music_mean": -29.6,
+        "music_peak": -14.5,
+        "effects_mean": -43.6,
+        "effects_peak": -17.1,
+        "voice_track_mean": -45.6,
+        "voice_track_peak": -16.8,
+        "preliminary_mix_mean": -22.5,
+        "preliminary_mix_peak": -6.8,
+        "effects_below_music_db": 14
+      },
+      "effect_source": "Procedurally synthesized brush-like noise; no foley provenance or event map; perceptual naturalness/audibility not verified.",
+      "music_style_metadata_present": false,
+      "subjective_listening_performed": false,
+      "repair_applied": false,
+      "decision": "Hold/reject as a publication candidate. Reused visual premise, 12.1875-second intermediate render, no final encoded audio, no spoken subtitle, and no final-mix intelligibility evidence. Audio-only repair cannot make the plot distinct."
+    },
+    "publication_status": {
+      "ledger_entries": 15,
+      "latest_published_at": "2026-10-18T17:28:38.324797+05:00",
+      "latest_facebook_video_id": "2296956914491800",
+      "latest_instagram_reel_media_id": "17986620615086823",
+      "latest_instagram_story_media_id": "17882345784534496",
+      "latest_facebook_story_video_id": "1589424523204423",
+      "latest_publisher_run_id": 42100277639,
+      "latest_publisher_run_number": 88,
+      "publisher_conclusion": "success",
+      "facebook_instagram_story_upload_steps": "skipped; no due approved reserve entry",
+      "no_new_platform_acceptance_since_2026_10_18": true
+    },
+    "pending_gate_present": false,
+    "current_approval_status": "published",
+    "no_paid_generation": true,
+    "security_hardening": {
+      "pipeline_commit": "d569273ec614ff07a70178d577bfc3fc1ee404a8",
+      "pipeline_blob_sha": "57ae1f90a84374042d71f8a71c259f611aac9070",
+      "tests_commit": "dcb2c77c734cabf3d28374e5c4b72bfde026dcb1",
+      "validation_workflow_commit": "188b922026a30b4ed215809a7e0c924d4b062d1e",
+      "publisher_workflow_commit": "0e0cbdeca5043406acf89e4ef46933025fa5ee0c",
+      "publisher_workflow_blob_sha": "fa573d3d280324a2344a66a6a2f081e77691d770",
+      "changes": "Future approvals now require either explicitly recorded actual listening or independent ASR whose normalized transcript exactly matches the spoken line and whose input is identified as the final encoded mix. Publisher repeats this check before upload. Added unit tests for mismatched transcripts, source-WAV-only ASR and explicit listening evidence. Existing SHA-256, 11-second, duplicate-ledger and upload-intent protections remain.",
+      "secrets_exposed": false,
+      "validation_run_pending": true
+    }
+  }
 }
