@@ -1,0 +1,204 @@
+{
+  "review_id": "daily-fresh-bobo-2026-11-06-run-42151091260",
+  "completed_at": "2026-11-06T07:34:41+05:00",
+  "status": "held_no_new_draft_scene_exhaustion",
+  "publication_allowed": false,
+  "pending_gate_present": false,
+  "latest_workflow_runs": [
+    {
+      "run_id": 42073402244,
+      "run_number": 345,
+      "workflow": "Daily Fresh Bobo",
+      "created_at": "2026-11-05T17:18:57Z",
+      "event": "schedule",
+      "conclusion": "success",
+      "provider_called": false,
+      "artifact_count": 0,
+      "blocker": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate."
+    },
+    {
+      "run_id": 41990189164,
+      "run_number": 344,
+      "workflow": "Daily Fresh Bobo",
+      "created_at": "2026-11-05T07:51:40Z",
+      "event": "schedule",
+      "conclusion": "success",
+      "provider_called": false,
+      "artifact_count": 0,
+      "blocker": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate."
+    },
+    {
+      "run_id": 42151091260,
+      "run_number": 346,
+      "workflow": "Daily Fresh Bobo",
+      "created_at": "2026-11-06T02:33:36Z",
+      "event": "push",
+      "conclusion": "success",
+      "provider_called": false,
+      "artifact_count": 0,
+      "publish_facebook_env": false,
+      "blocker": "The same scene-availability guard stopped generation before the provider call. No quota error."
+    }
+  ],
+  "latest_available_artifact": {
+    "source_run_id": 41880398664,
+    "run_number": 341,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "zip_sha256_verified_after_download": true,
+    "generated_video": "generated.mp4",
+    "generated_video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "duration_seconds": 12.1875,
+    "resolution": "480x832",
+    "fps": 16,
+    "encoded_audio_stream": false,
+    "visual_review": {
+      "full_video_sample_fps": 4,
+      "full_video_sample_count": 49,
+      "transition_windows_8fps": [
+        "3.5-4.5",
+        "7.5-8.5"
+      ],
+      "observed_actions": [
+        {
+          "action": "Bobo moves the brush across the canvas",
+          "start": 0.5,
+          "end": 3.75
+        },
+        {
+          "action": "Front-facing, mostly static pose holding the palette",
+          "start": 4.5,
+          "end": 7.5
+        },
+        {
+          "action": "Bobo turns back toward the easel and resumes arm/brush gestures",
+          "start": 7.75,
+          "end": 12
+        }
+      ],
+      "duplicate_provenance": {
+        "scene_id": 7,
+        "prior_published_episode": 40522021,
+        "prior_title": "Art room paint surprise",
+        "prior_date": "2026-10-10",
+        "decision": "Same art-room/easel/paint-palette setup; not a distinct new story."
+      }
+    },
+    "dialogue": {
+      "engine": "Piper local CPU",
+      "exact_text": "Time to paint!",
+      "provisional_start_seconds": 0.35,
+      "provisional_end_seconds": 1.1761,
+      "voice_line_wav_present": true,
+      "voice_track_wav_present": true,
+      "final_encoded_voice_present": false,
+      "spoken_subtitle_present": false,
+      "shot3_expected_dialogue_window": "8-11",
+      "timing_mismatch": true,
+      "intelligibility_verified": false,
+      "subjective_listening_verified": false
+    },
+    "captions": {
+      "captions_timing_json_present": false,
+      "captions_srt_present": false,
+      "episode_json_present": false,
+      "observed_caption_mapping_present": false
+    },
+    "audio_measurements_dbfs": {
+      "method": "FFmpeg volumedetect only; no subjective listening",
+      "preliminary_audio": {
+        "mean": -22.5,
+        "peak": -6.8
+      },
+      "original_music": {
+        "mean": -29.6,
+        "peak": -14.5
+      },
+      "scene_effects": {
+        "mean": -43.6,
+        "peak": -17.1
+      },
+      "voice_track": {
+        "mean": -45.6,
+        "peak": -16.8
+      },
+      "voice_line": {
+        "mean": -34.4,
+        "peak": -16.8
+      },
+      "effects_mean_vs_music_delta": -14,
+      "effect_event_map_present": false,
+      "music_style_metadata_present": false,
+      "final_mix_in_mp4": false,
+      "perceptual_audibility_or_naturalness_verified": false
+    },
+    "technical_review": {
+      "source_video_decodes": true,
+      "required_duration_pass": false,
+      "required_duration_window_seconds": [
+        10.95,
+        11.05
+      ],
+      "reason": "Source is 12.1875 seconds and has no encoded audio stream."
+    },
+    "decision": "Hold. The source is previously published art-room footage, longer than 11 seconds, and lacks the final voiced/captioned export. Do not trim or re-caption it as a distinct episode. No repair applied because audio repair cannot make the visual plot original."
+  },
+  "repository_state": {
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "pending_review_json_present": false,
+    "pending_directory_present": false,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "latest_recorded_publication_date": "2026-10-18",
+    "latest_recorded_facebook_video_id": "2296956914491800",
+    "latest_recorded_instagram_reel_media_id": "17986620615086823",
+    "latest_recorded_instagram_story_media_id": "17882345784533114",
+    "latest_recorded_facebook_story_video_id": "1589424523204423",
+    "no_new_platform_acceptance_in_runs_345_or_346": true
+  },
+  "scene_policy": {
+    "forbidden_scene_ids": [
+      5,
+      6
+    ],
+    "eligible_candidate_order": [
+      7,
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "all_eligible_candidate_scene_ids_already_in_published_ledger": true,
+    "result": "No unused approved original scene reference remains; new matching original reference(s) and storyboard(s) are required."
+  },
+  "provider_diagnosis": {
+    "active_quota_block": false,
+    "latest_runs_345_and_346_provider_called": false,
+    "last_confirmed_provider_access": "Runs #340 and #341 reached ZeroGPU and generated three free clips before downstream local finishing failures.",
+    "note": "Current blocker is exhausted distinct scene references, not confirmed provider quota exhaustion. The stored 18 October retry timestamp is historical and already past."
+  },
+  "publication": {
+    "attempted": false,
+    "reason": "No new eligible draft or approved exact file; no pending gate exists.",
+    "publisher_run_id": 42100277639,
+    "publisher_run_number": 88,
+    "publisher_result": "success; no due approved reserve entry selected; no upload attempted."
+  },
+  "security_hardening": {
+    "commit_sha": "11fa8d55f74c35471395be7c04562cfaa9170ace",
+    "path": ".github/workflows/daily.yml",
+    "change": "Generation step now sets PUBLISH_FACEBOOK=false and no longer receives FB_PAGE_ID or FB_PAGE_ACCESS_TOKEN. The manual publish input is explicitly labelled legacy/ignored. New files must go through Publish Reviewed Bobo.",
+    "validation_run_id": 42151091260,
+    "validation_run_number": 346,
+    "conclusion": "success",
+    "secrets_printed": false
+  },
+  "next_action": "Keep all old scenes and the pending gate untouched. Add a genuinely new, matching original scene reference and three-shot storyboard before the next free provider attempt; then inspect and repair the exact artifact before any approval."
+}
