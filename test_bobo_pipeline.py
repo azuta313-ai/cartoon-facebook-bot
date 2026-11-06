@@ -1,7 +1,7 @@
 import json,tempfile,unittest
 from datetime import datetime
 from pathlib import Path
-from bobo_pipeline import TZ,next_episode,published_story_serials,stage_and_select
+from bobo_pipeline import TZ,next_episode,published_story_serials,stage_and_select,validate_ready
 
 class ReserveTests(unittest.TestCase):
     def test_four_ready_stops_generation(self):
@@ -79,5 +79,43 @@ class ReserveTests(unittest.TestCase):
             },
         }
         self.assertEqual(published_story_serials(ledger), {1, 2})
+
+
+    def _future_review(self, method='independent_asr', transcript='Leaf catcher', source='entire final encoded mix, decoded mono16k'):
+        return {
+            'episode': 40522038,
+            'review': {
+                'quality_passed': True,
+                'completed_at': '2026-10-18T06:00:00+05:00',
+                'voice': {
+                    'text': 'Leaf catcher!',
+                    'intelligibility_verified': True,
+                    'verification_method': method,
+                    'listening_verified': method == 'actual_listening',
+                    'verification_evidence': {
+                        'model': 'test-asr' if method == 'independent_asr' else None,
+                        'transcript': transcript,
+                        'input': source,
+                        'listener': 'reviewer' if method == 'actual_listening' else None,
+                    },
+                },
+            },
+        }
+
+    def test_asr_must_match_exact_spoken_words(self):
+        validate_ready(self._future_review(), datetime(2026,10,18,7,tzinfo=TZ))
+        with self.assertRaises(AssertionError):
+            validate_ready(self._future_review(transcript='Time to paint'), datetime(2026,10,18,7,tzinfo=TZ))
+
+    def test_asr_must_use_final_encoded_mix(self):
+        with self.assertRaises(AssertionError):
+            validate_ready(self._future_review(source='voice-track.wav source file'), datetime(2026,10,18,7,tzinfo=TZ))
+
+    def test_actual_listening_requires_explicit_listening_record(self):
+        validate_ready(self._future_review(method='actual_listening'), datetime(2026,10,18,7,tzinfo=TZ))
+        record=self._future_review(method='actual_listening')
+        record['review']['voice']['listening_verified']=False
+        with self.assertRaises(AssertionError):
+            validate_ready(record, datetime(2026,10,18,7,tzinfo=TZ))
 
 if __name__=='__main__': unittest.main()
