@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       publish:
-        description: 'Publish the newly generated video to Facebook'
+        description: 'Legacy flag ignored: all new videos require separate reviewed approval before publication.'
         required: true
         default: false
         type: boolean
@@ -75,12 +75,10 @@ jobs:
           assert result.get('id')==os.environ['FB_PAGE_ID'] and result.get('instagram_business_account',{}).get('id')
           print('Configured Facebook Page and Instagram connection accessible; token not printed.')
           PY
-      - name: Generate a fresh episode and publish if enabled
+      - name: Generate a fresh episode for mandatory review (no direct publication)
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
-          PUBLISH_FACEBOOK: 'true'
+          PUBLISH_FACEBOOK: 'false'
           BOBO_VOICE_TEST: 'true'
         run: python fresh_bobo.py
       - name: Record publication and quota cooldown
