@@ -131,6 +131,18 @@ jobs:
           captions=json.loads(Path('reviewed/captions-timing.json').read_text())
           assert any(x['text']==cue['text'] and abs(float(x['start'])-start)<.05 and abs(float(x['end'])-end)<.05 for x in captions), 'Spoken subtitle missing or mistimed'
           assert a['review'].get('voice',{}).get('subtitle_exact') and a['review']['voice'].get('track_present'), 'Voice/action review missing'
+          speech_review=a['review']['voice']
+          method=speech_review.get('verification_method')
+          evidence=speech_review.get('verification_evidence') or {}
+          normalize=lambda value:' '.join(''.join(ch.lower() if ch.isalnum() else ' ' for ch in str(value)).split())
+          if method=='independent_asr':
+              assert evidence.get('model') and evidence.get('transcript'), 'Independent ASR evidence missing'
+              assert normalize(evidence['transcript'])==normalize(cue['text']), 'ASR transcript differs from exact spoken line'
+              assert 'final encoded mix' in str(evidence.get('input','')).lower(), 'ASR must inspect the final encoded mix'
+          elif method=='actual_listening':
+              assert speech_review.get('listening_verified') is True, 'Actual listening evidence missing'
+          else:
+              raise RuntimeError('Waveform-only or unknown speech verification cannot authorize publication')
           def pcm(path):
               raw=subprocess.check_output(['ffmpeg','-v','error','-i',str(path),'-vn','-ar','48000','-ac','1','-f','s16le','-'])
               samples=array.array('h'); samples.frombytes(raw)
