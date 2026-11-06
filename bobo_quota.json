@@ -1,8 +1,17 @@
 {
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
-  "reason": "Historical 18 October backoff; 4 November run #340 successfully generated three ZeroGPU clips before a pinned CC0 foley-source checksum failure. No quota error was reported in run #340.",
+  "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-04T22:07:33+05:00",
-  "last_generation_run_id": 41874452697,
-  "last_provider_result": "Three free ZeroGPU clips generated; workflow failed after generation during foley SHA256 verification, not at provider quota."
+  "last_observed_at": "2026-11-06T16:02:27+05:00",
+  "last_generation_run_id": 41880398664,
+  "last_provider_result": "Last confirmed provider access: run #341 generated three free ZeroGPU clips, then failed during local voice mixing. Latest run #347 did not call the provider because every eligible original scene reference is already in recent/published/reserve history; current provider availability remains untested.",
+  "latest_check": {
+    "checked_at": "2026-11-06T16:02:27+05:00",
+    "run_id": 42183667878,
+    "run_number": 347,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "reason": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "provider_availability": "unconfirmed"
+  }
 }
