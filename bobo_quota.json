@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-07T22:04:44+05:00",
+  "last_observed_at": "2026-11-07T22:51:38+05:00",
   "last_generation_run_id": 41880398664,
   "last_provider_result": "Last confirmed provider access remains run #341 (4 November): three free ZeroGPU clips generated before local FFmpeg voice-mixing failure caused by the then-used alimiter latency=true option. Current bobo_voice.py no longer contains that limiter option. Latest run #350 did not call the provider; free-provider availability remains untested.",
   "latest_check": {
-    "checked_at": "2026-11-07T22:04:44+05:00",
+    "checked_at": "2026-11-07T22:51:38+05:00",
     "workflow_completed_at": "2026-11-07T20:37:21+05:00",
     "run_id": 42387236972,
     "run_number": 351,
@@ -27,6 +27,75 @@
       "video_file": "generated.mp4",
       "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
       "result": "Historical duplicate art-room intermediate render; 12.1875 sec; video-only MP4 with no encoded audio/captions; rejected as publication candidate."
+    },
+    "artifact_review": {
+      "reviewed_at": "2026-11-07T22:51:38+05:00",
+      "source_run_id": 41880398664,
+      "artifact_id": 13349870060,
+      "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+      "sampled_visual_review": {
+        "full_video_fps": 4,
+        "frames_reviewed": 49,
+        "speech_window_fps": 8,
+        "frames_reviewed_in_speech_window": 12,
+        "observation": "3D Bobo in red shirt in an art-room scene; brush/palette interaction is visible, but this is an old intermediate and not the current run's output."
+      },
+      "technical": {
+        "duration_seconds": 12.1875,
+        "required_duration_seconds": [
+          10.95,
+          11.05
+        ],
+        "video_codec": "H.264",
+        "resolution": "480x832",
+        "frame_rate": 16,
+        "encoded_audio_stream": false
+      },
+      "dialogue": {
+        "sidecar_text": "Time to paint!",
+        "sidecar_start": 0.35,
+        "sidecar_end": 1.1761,
+        "subtitle_file_present": false,
+        "voice_track_sidecar_present": true,
+        "encoded_speech_verified": false,
+        "lip_sync_verified": false,
+        "subjective_listening": false
+      },
+      "sidecar_audio_metrics_dbfs": {
+        "mix_mean": -22.5,
+        "mix_peak": -6.8,
+        "music_mean": -29.6,
+        "music_peak": -14.5,
+        "effects_mean": -43.6,
+        "effects_peak": -17.1,
+        "voice_track_mean": -45.6,
+        "voice_track_peak": -16.8
+      },
+      "effects_review": {
+        "sidecar_present": true,
+        "observed_action_mapping_present": false,
+        "perceptual_naturalness_verified": false
+      },
+      "music_review": {
+        "sidecar_present": true,
+        "subjective_audibility_verified": false
+      },
+      "captions": {
+        "caption_timing_file_present": false,
+        "transition_review_possible": false
+      },
+      "result": "historical_intermediate_not_candidate",
+      "reasons": [
+        "Latest Daily Fresh run #351 uploaded no artifact and stopped before any provider request because every eligible original scene reference was already in the recent/reserve set.",
+        "This latest available artifact is from run #341 on 4 November, not a current pending draft.",
+        "The MP4 is 12.1875 seconds, outside the required 10.95–11.05-second window.",
+        "The MP4 contains no encoded audio stream; the Piper line, music, effects and mix exist only as sidecar WAVs.",
+        "No captions-timing.json is present; dialogue timing is explicitly provisional and subtitle alignment is unverified.",
+        "No effect-to-observed-action mapping is present; waveform measurements do not verify naturalness or subjective audibility."
+      ],
+      "repair_performed": false,
+      "publication_eligible": false
     }
   }
 }
