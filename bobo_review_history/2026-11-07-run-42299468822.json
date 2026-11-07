@@ -1,0 +1,161 @@
+{
+  "review_id": "daily-fresh-bobo-2026-11-07-run-42299468822",
+  "completed_at": "2026-11-07T06:05:26+05:00",
+  "status": "no_new_draft_scene_reference_exhaustion",
+  "publication_allowed": false,
+  "pending_gate_present": false,
+  "latest_daily_workflow": {
+    "run_id": 42299468822,
+    "run_number": 349,
+    "workflow": "Daily Fresh Bobo",
+    "conclusion": "success",
+    "created_at": "2026-11-06T21:46:30Z",
+    "artifact_count": 0,
+    "provider_called": false,
+    "provider_credential_preflight": "passed; secrets remained masked",
+    "observed_log": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "quota_error_observed": false,
+    "artifact_upload_warning": "No files were found with the provided path: fresh_output/. No artifacts were uploaded."
+  },
+  "latest_available_artifact": {
+    "source_run_id": 41880398664,
+    "run_number": 341,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_via_github_actions": true,
+    "artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_video": "generated.mp4",
+    "generated_video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "episode_identity": {
+      "embedded_episode_json_present": false,
+      "episode_asserted": false,
+      "note": "No episode.json; no new episode identity inferred."
+    }
+  },
+  "exact_file_review": {
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "codec": "H.264",
+    "resolution": "480x832",
+    "fps": 16,
+    "encoded_audio_stream": false,
+    "playable_video_decode": true,
+    "full_render_sample_fps": 4,
+    "full_render_sample_count": 49,
+    "full_render_sampled_at": "0.00 through 12.00 seconds at 0.25-second intervals",
+    "transition_sample_fps": 8,
+    "transition_sample_count": 16,
+    "transition_window_seconds": [
+      0,
+      2
+    ],
+    "caption_transitions_present": false,
+    "dialogue_window_review": "8fps frames sampled across the provisional 0.35-1.1761s Piper cue window. No rendered subtitle file or captions timing file exists.",
+    "observed_actions": [
+      {
+        "action": "Bobo paints with brush across canvas",
+        "start": 0.5,
+        "end": 3.75
+      },
+      {
+        "action": "Bobo faces forward holding palette/brush; mostly low-activity pose",
+        "start": 4,
+        "end": 7.5
+      },
+      {
+        "action": "Bobo turns back toward easel and resumes brush gestures",
+        "start": 7.75,
+        "end": 12
+      }
+    ],
+    "duplicate_provenance": {
+      "scene_id": 7,
+      "prior_published_episode": 40522021,
+      "prior_title": "Art room paint surprise",
+      "prior_date": "2026-10-10",
+      "decision": "Same art-room/easel/paint-palette painting premise; not a distinct new story."
+    },
+    "voice": {
+      "engine": "Piper local CPU",
+      "provisional_text": "Time to paint!",
+      "provisional_start_seconds": 0.35,
+      "provisional_end_seconds": 1.1761,
+      "voice_line_wav_present": true,
+      "voice_track_wav_present": true,
+      "final_encoded_voice_present": false,
+      "encoded_audio_stream_present": false,
+      "spoken_subtitle_present": false,
+      "intelligibility_verified": false,
+      "listening_verified": false,
+      "lip_sync_verified": false,
+      "note": "The WAV stems are separate from generated.mp4. The exact rendered MP4 has no audio stream; no intelligibility or listening claim."
+    },
+    "captions": {
+      "dialogue_timing_json_present": true,
+      "captions_timing_json_present": false,
+      "captions_srt_present": false,
+      "observed_caption_mapping_present": false,
+      "provisional_cue": {
+        "text": "Time to paint!",
+        "start": 0.35,
+        "end": 1.1761,
+        "kind": "spoken dialogue",
+        "placement": "provisional"
+      }
+    },
+    "audio": {
+      "separate_audio_wav_present": true,
+      "separate_original_music_stem_present": true,
+      "separate_scene_effects_stem_present": true,
+      "final_encoded_mix_present": false,
+      "effect_event_map_present": false,
+      "foley_provenance_present": false,
+      "music_style_metadata_present": false,
+      "perceptual_audibility_or_naturalness_verified": false,
+      "subjective_listening_performed": false
+    },
+    "missing_files": [
+      "bobo_fresh.mp4",
+      "episode.json",
+      "automatic-review.json",
+      "captions-timing.json",
+      "captions.srt",
+      "foley-provenance.json"
+    ],
+    "shot_review_files_marked_visual_action_verified": false,
+    "decision": "Reconfirm rejection/hold as a publication candidate: duplicated published art-room premise, 12.1875-second duration, no encoded audio/voice, no spoken subtitle, and incomplete visual-action evidence. Audio-only repair cannot make the plot distinct."
+  },
+  "repository_state": {
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "pending_review_json_present": false,
+    "pending_directory_present": false,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "no_new_approval_or_pending_gate": true,
+    "latest_recorded_publication_at": "2026-10-18T17:28:38.324797+05:00"
+  },
+  "publisher": {
+    "latest_run_id": 42278086503,
+    "conclusion": "success",
+    "artifact_download_and_upload_steps": "skipped",
+    "reason": "No due approved reserve entry selected; no upload attempted.",
+    "no_new_platform_acceptance": true
+  },
+  "provider_diagnosis": {
+    "active_quota_block_confirmed": false,
+    "latest_run_provider_called": false,
+    "quota_error_observed": false,
+    "stored_retry_timestamp_is_historical": "2026-10-18T16:30:58.401196+05:00",
+    "provider_availability": "unconfirmed",
+    "note": "Credential preflight passed, but fresh_bobo.py stopped at the duplicate-scene eligibility guard before any ZeroGPU request."
+  },
+  "next_action": "Create a genuinely new matching original Bobo scene reference and matching storyboard, then extend the scene registry/policy to accept it. Do not recycle the ten-day queue, published scenes, rejected references, or the art-room artifact. Keep review and publication workflows enabled."
+}
