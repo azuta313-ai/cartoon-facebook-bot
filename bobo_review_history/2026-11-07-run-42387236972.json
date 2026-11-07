@@ -283,5 +283,99 @@
     ],
     "latest_pipeline_story_acceptance": "2026-10-18",
     "new_platform_acceptance_from_this_run": false
+  },
+  "independent_recheck_2026_11_07_23_53": {
+    "checked_at": "2026-11-07T23:53:18+05:00",
+    "downloaded_via": "GitHub Actions download_workflow_artifact",
+    "source_run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_file": "generated.mp4",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "current_latest_run_351": {
+      "run_id": 42387236972,
+      "artifact_count": 0,
+      "provider_called": false,
+      "quota_error_observed": false,
+      "stop_reason": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate."
+    },
+    "visual_recheck": {
+      "full_render_sample_fps": 4,
+      "full_render_frames": 49,
+      "transition_sample_fps": 8,
+      "transition_frames": 16,
+      "observed_actions": {
+        "bobo_already_holding_brush_and_palette": [
+          0,
+          0.5
+        ],
+        "visible_brush_strokes": [
+          0.5,
+          4.0625
+        ],
+        "low_activity_camera_pose": [
+          4.25,
+          7.75
+        ],
+        "brush_strokes_resume": [
+          7.75,
+          10
+        ],
+        "ending_turn_and_arm_gesture": [
+          10.5,
+          12.1875
+        ]
+      },
+      "duplicate_provenance": "scene_id 7; same art-room/easel/paint-palette premise as published episode 40522021."
+    },
+    "technical_recheck": {
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "codec": "H.264",
+      "resolution": "480x832",
+      "fps": 16,
+      "encoded_audio_stream": false,
+      "captions_timing_json_present": false,
+      "captions_srt_present": false,
+      "episode_json_present": false
+    },
+    "dialogue_recheck": {
+      "text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "exact_spoken_subtitle_present": false,
+      "final_encoded_mix_present": false,
+      "intelligibility_verified": false,
+      "listening_verified": false
+    },
+    "audio_stem_measurements_dbfs": {
+      "pre_voice_mix_rms": -22.46,
+      "pre_voice_mix_peak": -6.85,
+      "music_rms": -29.64,
+      "music_peak": -14.47,
+      "effects_rms": -43.62,
+      "effects_peak": -17.08,
+      "voice_line_rms": -34.37,
+      "voice_line_peak": -16.81,
+      "voice_track_rms": -45.61,
+      "voice_track_peak": -16.81,
+      "effects_vs_music_rms_db": -13.98
+    },
+    "effects_recheck": {
+      "source": "procedurally synthesized brush-like filtered noise; no verified recorded CC0 brush foley provenance",
+      "observed_action_mapping_complete": false,
+      "material_naturalness_verified": false,
+      "subjective_listening_performed": false
+    },
+    "decision": "rejection_unchanged",
+    "publication_allowed": false,
+    "pending_gate_present": false,
+    "repair_performed": false,
+    "paid_generation": false,
+    "cost": 0
   }
 }
