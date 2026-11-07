@@ -330,5 +330,192 @@
     "last_provider_result": "Three free ZeroGPU clips were generated before local FFmpeg voice mixing failed because the then-used alimiter filter rejected latency=true. Current bobo_voice.py no longer includes that alimiter option; the current latest run did not call the provider."
   },
   "next_action": "Prepare a genuinely new original Bobo scene reference and matching three-shot storyboard, then extend the scene registry and validation tests. Do not recycle historical footage, the retired snowball/spaceship plots, or the art-room painting premise. Keep zero-cost generation and all final-file review gates.",
-  "cost": 0
+  "cost": 0,
+  "independent_recheck": {
+    "checked_at": "2026-11-07T15:21:03+05:00",
+    "artifact_download": {
+      "source_run_id": 41880398664,
+      "source_run_number": 341,
+      "artifact_id": 13349870060,
+      "downloaded_via": "GitHub Actions download_workflow_artifact",
+      "archive_path_in_review_runtime": "/mnt/data/daily-fresh-bobo-run-341.zip",
+      "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+      "video_file": "generated.mp4",
+      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a"
+    },
+    "latest_workflow_recheck": {
+      "run_id": 42349521475,
+      "run_number": 350,
+      "checked_run_conclusion": "success",
+      "artifact_count": 0,
+      "provider_called": false,
+      "quota_error_observed": false,
+      "observed_stop_reason": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+      "upload_warning": "No files were found with the provided path: fresh_output/. No artifacts will be uploaded.",
+      "pending_gate_present": false
+    },
+    "exact_file": {
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "video_codec": "H.264",
+      "resolution": "480x832",
+      "fps": 16,
+      "video_decode": "passed",
+      "audio_stream_present": false,
+      "full_render_sampling": {
+        "fps": 4,
+        "frame_count": 49,
+        "timestamps_seconds": "0.00 through 12.00 in 0.25-second increments"
+      },
+      "transition_sampling": {
+        "fps": 8,
+        "frame_count": 36,
+        "windows_seconds": [
+          [
+            0,
+            2
+          ],
+          [
+            3.5,
+            4.75
+          ],
+          [
+            7.5,
+            8.75
+          ]
+        ],
+        "notes": "Opening provisional speech window and both shot-boundary windows inspected. No rendered caption files or visible caption transitions exist."
+      },
+      "observed_actions": [
+        {
+          "action": "Bobo holds brush/palette in the art room; small pose movement before brush stroke",
+          "start": 0,
+          "end": 0.5
+        },
+        {
+          "action": "Bobo moves brush across the painting",
+          "start": 0.5,
+          "end": 3.75
+        },
+        {
+          "action": "Bobo turns toward camera and holds palette/brush; mostly low-activity pose with minor head/eye changes",
+          "start": 4,
+          "end": 7.5
+        },
+        {
+          "action": "Bobo turns back toward easel and resumes brush gestures",
+          "start": 7.75,
+          "end": 10.5
+        },
+        {
+          "action": "Bobo turns toward camera, raises arms and makes a small ending shoulder/arm gesture",
+          "start": 10.5,
+          "end": 12
+        }
+      ],
+      "pacing": {
+        "purposeful_action_onset_seconds": 0.5,
+        "low_activity_window_seconds": [
+          4,
+          7.5
+        ],
+        "low_activity_duration_seconds": 3.5,
+        "pass": false,
+        "reason": "The middle pose is prolonged rather than a brief pause; duration also exceeds the required range."
+      },
+      "duplicate_provenance": {
+        "scene_id": 7,
+        "matching_published_episode": 40522021,
+        "matching_published_title": "Art room paint surprise",
+        "decision": "Same art-room/easel/paint-palette painting premise; not a distinct story."
+      },
+      "captions": {
+        "captions_timing_json_present": false,
+        "captions_srt_present": false,
+        "spoken_subtitle_present": false,
+        "visible_caption_transitions": 0,
+        "decision": "No rendered caption timing or subtitle to approve."
+      },
+      "voice": {
+        "engine": "Piper local CPU",
+        "exact_provisional_text": "Time to paint!",
+        "provisional_start_seconds": 0.35,
+        "provisional_end_seconds": 1.1761,
+        "final_encoded_voice_present": false,
+        "final_encoded_mix_present": false,
+        "intelligibility_verified": false,
+        "listening_verified": false,
+        "lip_sync_verified": false,
+        "subtitle_present": false,
+        "mismatch": "Shot 3 review expects speech during 8–11 seconds; provisional dialogue cue is in the opening shot."
+      },
+      "audio_stems_measurements": {
+        "method": "PCM WAV RMS/peak measurement only; no subjective listening",
+        "audio_wav": {
+          "duration_seconds": 11,
+          "rms_dbfs": -22.46,
+          "peak_dbfs": -6.85
+        },
+        "music": {
+          "duration_seconds": 11,
+          "rms_dbfs": -29.64,
+          "peak_dbfs": -14.47,
+          "music_style_metadata_present": false
+        },
+        "effects": {
+          "duration_seconds": 11,
+          "rms_dbfs": -43.62,
+          "peak_dbfs": -17.08
+        },
+        "voice_track": {
+          "duration_seconds": 11,
+          "rms_dbfs": -45.61,
+          "peak_dbfs": -16.81
+        },
+        "voice_line": {
+          "duration_seconds": 0.8261,
+          "rms_dbfs": -34.37,
+          "peak_dbfs": -16.81
+        },
+        "effects_vs_music_rms_db": -13.98,
+        "final_mix_audibility_and_ducking_verified": false
+      },
+      "effects": [
+        {
+          "type": "brush/procedural filtered noise",
+          "start_seconds": 2.2,
+          "duration_seconds": 0.5,
+          "observed_action": "Brush movement across canvas",
+          "aligned": "timing plausible only; perceptual match not verified",
+          "source": "procedural fallback; brush is not mapped to a recorded CC0 source in bobo_foley.py",
+          "material_naturalness_verified": false
+        },
+        {
+          "type": "brush/procedural filtered noise",
+          "start_seconds": 4.2625,
+          "duration_seconds": 0.3,
+          "observed_action": "Brush lift/inspection around shot boundary",
+          "aligned": false,
+          "reason": "No clear brush-to-canvas contact at cue time",
+          "source": "procedural fallback; no recorded brush foley provenance",
+          "material_naturalness_verified": false
+        }
+      ],
+      "technical_decision": "Not eligible for repair-to-publication: it is an old duplicate story premise, 12.1875 seconds long, lacks final encoded audio and captions, and contains a prolonged low-activity section. Re-rendering the same footage cannot make it a distinct daily video.",
+      "review_decision": "Hold/reject as a publication candidate; no upload."
+    },
+    "publisher_recheck": {
+      "latest_publisher_run_id": 42278086503,
+      "run_number": 90,
+      "conclusion": "success",
+      "publish_and_platform_upload_steps": "skipped",
+      "reason": "No due approved reserve entry selected; no upload attempted.",
+      "latest_recorded_platform_acceptance_date": "2026-10-18",
+      "new_facebook_or_instagram_acceptance": false
+    },
+    "cost": 0
+  }
 }
