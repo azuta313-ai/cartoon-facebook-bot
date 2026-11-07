@@ -254,5 +254,34 @@
   },
   "pending_gate_action": "No pending gate existed; no gate was cleared or changed. Historical artifact remains rejected and was not published.",
   "next_action": "Add a genuinely new original Bobo scene reference and matching three-shot storyboard, register it in the scene policy/tests, then test the free provider. Do not recycle used scenes or the unfinished October story list.",
-  "cost": 0
+  "cost": 0,
+  "platform_check": {
+    "checked_at": "2026-11-07T22:04:44+05:00",
+    "source": "Connected Metricool brand Bobo Giggle Grove (brand ID 7506775; timezone Asia/Karachi) plus repository publication ledger and publisher workflow run 91.",
+    "scheduled_posts_next_7_days": 0,
+    "latest_bobo_character_reel_seen": "2026-10-20",
+    "latest_bobo_character_reel_title": "Bobo's Magic Trick Went Terribly Wrong",
+    "facebook_bobo_reels_seen": [
+      "2026-10-18 Bobo's Upside-Down Umbrella",
+      "2026-10-18 Chef Bobo vs. the Sneaky Cat",
+      "2026-10-19 One tiny popcorn",
+      "2026-10-20 Bobo's Magic Trick Went Terribly Wrong"
+    ],
+    "instagram_bobo_reels_seen": [
+      "2026-10-18 Bobo's Upside-Down Umbrella",
+      "2026-10-18 Chef Bobo vs. the Sneaky Cat",
+      "2026-10-19 One tiny popcorn",
+      "2026-10-20 Bobo's Magic Trick Went Terribly Wrong"
+    ],
+    "later_connected_profile_content_through": "2026-10-30",
+    "later_content_note": "Metricool also shows non-Bobo series content on the connected profiles after 20 October; it is not counted as a new Bobo video.",
+    "facebook_story_history": [
+      "2026-10-18 video Story row returned by Metricool"
+    ],
+    "instagram_story_history": [
+      "Repository ledger records the reviewed 18 October Instagram Story as accepted; Metricool returned no historical IG Story rows for the queried range."
+    ],
+    "latest_pipeline_story_acceptance": "2026-10-18",
+    "new_platform_acceptance_from_this_run": false
+  }
 }
