@@ -157,5 +157,126 @@
     "provider_availability": "unconfirmed",
     "note": "Credential preflight passed, but fresh_bobo.py stopped at the duplicate-scene eligibility guard before any ZeroGPU request."
   },
-  "next_action": "Create a genuinely new matching original Bobo scene reference and matching storyboard, then extend the scene registry/policy to accept it. Do not recycle the ten-day queue, published scenes, rejected references, or the art-room artifact. Keep review and publication workflows enabled."
+  "next_action": "Create a genuinely new matching original Bobo scene reference and matching storyboard, then extend the scene registry/policy to accept it. Do not recycle the ten-day queue, published scenes, rejected references, or the art-room artifact. Keep review and publication workflows enabled.",
+  "independent_recheck": {
+    "checked_at": "2026-11-07T07:50:23+05:00",
+    "artifact_download": {
+      "method": "GitHub Actions artifact download",
+      "source_run_id": 41880398664,
+      "source_run_number": 341,
+      "artifact_id": 13349870060,
+      "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+      "video_file": "generated.mp4",
+      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a"
+    },
+    "exact_video_recheck": {
+      "duration_seconds": 12.1875,
+      "video_stream": "H.264 480x832 16fps",
+      "audio_stream_present": false,
+      "full_video_sampling": {
+        "fps": 4,
+        "frames": 49,
+        "range_seconds": "0.00–12.00"
+      },
+      "provisional_dialogue_window_sampling": {
+        "fps": 8,
+        "frames": 16,
+        "range_seconds": "0.00–1.875"
+      },
+      "observed_actions": [
+        {
+          "action": "Bobo moves brush across the painting",
+          "start": 0.5,
+          "end": 3.75
+        },
+        {
+          "action": "Bobo faces camera holding palette/brush; low-activity pose with minor head/eye changes",
+          "start": 4,
+          "end": 7.5
+        },
+        {
+          "action": "Bobo turns toward easel and resumes brush gestures",
+          "start": 7.75,
+          "end": 12
+        }
+      ],
+      "captions": {
+        "captions_timing_json_present": false,
+        "captions_srt_present": false,
+        "spoken_subtitle_present": false,
+        "dialogue_cue": {
+          "text": "Time to paint!",
+          "start": 0.35,
+          "end": 1.1761,
+          "placement": "provisional"
+        },
+        "mismatch": "Shot 3 review expects the line in the 8–11 second window; provisional cue is in the opening shot."
+      },
+      "audio_stems_measurements": {
+        "method": "Decoded WAV RMS/peak measurements only; not subjective listening",
+        "audio_wav": {
+          "duration_seconds": 11,
+          "rms_dbfs": -22.46,
+          "peak_dbfs": -6.85
+        },
+        "original_music": {
+          "duration_seconds": 11,
+          "rms_dbfs": -29.64,
+          "peak_dbfs": -14.47
+        },
+        "scene_effects": {
+          "duration_seconds": 11,
+          "rms_dbfs": -43.62,
+          "peak_dbfs": -17.08
+        },
+        "voice_track": {
+          "duration_seconds": 11,
+          "rms_dbfs": -45.61,
+          "peak_dbfs": -16.81
+        },
+        "voice_line": {
+          "duration_seconds": 0.8261,
+          "rms_dbfs": -34.37,
+          "peak_dbfs": -16.81
+        },
+        "effects_vs_music_rms_db": -13.98,
+        "final_mix_muxed_into_reviewed_video": false,
+        "effect_event_map_present": false,
+        "foley_provenance_present": false,
+        "music_style_metadata_present": false,
+        "perceptual_audibility_or_naturalness_verified": false,
+        "subjective_listening_performed": false
+      },
+      "duplicate_provenance": {
+        "scene_id": 7,
+        "prior_published_episode": 40522021,
+        "prior_title": "Art room paint surprise",
+        "prior_date": "2026-10-10",
+        "decision": "Same art-room/easel/paint-palette premise; do not count as a distinct story."
+      },
+      "decision": "Hold/reject as a new publication candidate. Do not repair/publish reused premise; timing, 11-second duration and final encoded audio/caption requirements also fail."
+    },
+    "latest_run_reconfirmed": {
+      "run_id": 42299468822,
+      "run_number": 349,
+      "artifacts": 0,
+      "provider_called": false,
+      "credential_preflight": "passed; secrets remained masked",
+      "log_reason": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+      "quota_error_observed": false,
+      "provider_availability": "unconfirmed"
+    },
+    "pending_and_publication": {
+      "pending_gate_present": false,
+      "pending_directory_present": false,
+      "current_approval_status": "published",
+      "current_approval_episode": 40522037,
+      "latest_publisher_run_id": 42278086503,
+      "publisher_upload_steps": "skipped; no due approved reserve entry",
+      "latest_ledger_publication_at": "2026-10-18T17:28:38.324797+05:00",
+      "new_facebook_or_instagram_acceptance": false,
+      "publication_workflow_inspected": true,
+      "publication_workflow_invoked": false
+    }
+  }
 }
