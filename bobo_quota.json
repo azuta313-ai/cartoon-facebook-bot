@@ -140,7 +140,7 @@
       "later_publication_receipt_in_repository_ledger": false,
       "metricool_future_scheduled_posts_checked_through": "2026-11-15T23:59:59+05:00",
       "metricool_scheduled_posts_count": 0,
-      "interpretation": "No upcoming Facebook/Instagram posts or Stories are scheduled in Metricool for the checked period. The last recorded accepted multi-platform Bobo publication is 18 October; no later publication is evidenced by the repository ledger.",
+      "interpretation": "No GitHub pending draft and no future Metricool schedule. The last Bobo-specific Reels visible in Metricool are 19 and 20 October; the last Bobo Story receipt is 18 October. The latest automated Bobo publication receipt remains 18 October. No later Bobo video or Story is evidenced through 8 November.",
       "latest_publish_workflow": {
         "run_id": 42397480591,
         "run_number": 92,
@@ -148,7 +148,44 @@
         "upload_steps": "all skipped",
         "result": "No Facebook or Instagram upload occurred in this run."
       },
-      "note": "Repository publication receipt remains 18 October; latest Publish Reviewed Bobo run on 7 November completed with download/publish steps skipped. Metricool returned zero scheduled posts for 8–15 November."
+      "note": "Repository publication receipt remains 18 October; latest Publish Reviewed Bobo run on 7 November completed with download/publish steps skipped. Metricool returned zero scheduled posts for 8–15 November.",
+      "metricool_published_reels": {
+        "period": "2026-10-18 through 2026-11-08",
+        "facebook_reels_rows": 9,
+        "instagram_reels_rows": 10,
+        "latest_bobo_specific_video": {
+          "date": "2026-10-20",
+          "title": "Bobo's Magic Trick Went Terribly Wrong!",
+          "facebook_reel_id": "1436338491806872",
+          "instagram_reel_id": "17875962633650829",
+          "instagram_permalink": "https://www.instagram.com/reel/DetzfPgON2Z/"
+        },
+        "previous_bobo_specific_video": {
+          "date": "2026-10-19",
+          "title": "One tiny popcorn… One gigantic surprise!",
+          "facebook_reel_id": "3216758405184112",
+          "instagram_reel_id": "18142793797610585",
+          "instagram_permalink": "https://www.instagram.com/reel/DerlvqzOEga/"
+        },
+        "note": "Later rows in the same connected Metricool brand contain other non-Bobo series; they are not counted as Bobo uploads."
+      },
+      "stories": {
+        "metricool_period": "2026-10-18 through 2026-11-08",
+        "facebook_story_rows": [
+          {
+            "date": "2026-10-18",
+            "time_field": "20261018123012",
+            "type": "video"
+          }
+        ],
+        "instagram_story_rows": [],
+        "repository_latest_bobo_story_receipts": {
+          "date": "2026-10-18",
+          "facebook_story_status": "accepted",
+          "instagram_story_status": "accepted"
+        },
+        "note": "No later Bobo Story is evidenced in the repository receipt or Metricool story rows."
+      }
     }
   }
 }
