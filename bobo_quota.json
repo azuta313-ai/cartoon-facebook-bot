@@ -2,7 +2,7 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-08T21:23:34+05:00",
+  "last_observed_at": "2026-11-08T22:48:16+05:00",
   "last_generation_run_id": 42457831992,
   "last_provider_result": "Daily Fresh Bobo run #353 succeeded but produced no artifact and did not call ZeroGPU: the distinct-scene guard stopped generation because all available original references are used or reserved. The latest available run #341 artifact was independently re-downloaded and re-reviewed on 8 November; it is a historical duplicate intermediate and remains rejected.",
   "latest_check": {
@@ -177,5 +177,23 @@
       "run_number": 354,
       "artifact_count": 0
     }
-  ]
+  ],
+  "latest_manual_recheck": {
+    "checked_at": "2026-11-08T22:48:16+05:00",
+    "workflow_run_id": 42497198731,
+    "workflow_run_number": 354,
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "blocker": "No unused distinct original scene reference; generator stopped before a provider request.",
+    "latest_retained_artifact_run_id": 41880398664,
+    "latest_retained_artifact_id": 13349870060,
+    "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "result": "Historical art-room duplicate intermediate re-downloaded and rejected; 12.1875s, no encoded audio, no spoken subtitle, not publishable.",
+    "pending_gate_present": false,
+    "metricool_future_scheduled_posts": 0,
+    "cost": 0,
+    "review_history_path": "bobo_review_history/2026-11-08-run-42497198731-recheck-2248.json"
+  }
 }
