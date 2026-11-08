@@ -1,0 +1,147 @@
+{
+  "review_id": "daily-fresh-bobo-2026-11-08-run-42497198731",
+  "completed_at": "2026-11-08T21:23:34+05:00",
+  "status": "no_new_draft_scene_reference_exhaustion_latest_available_artifact_rejected",
+  "publication_allowed": false,
+  "pending_gate_present": false,
+  "latest_daily_workflow": {
+    "run_id": 42497198731,
+    "run_number": 354,
+    "workflow": "Daily Fresh Bobo",
+    "conclusion": "success",
+    "created_at": "2026-11-08T20:54:58+05:00",
+    "completed_at": "2026-11-08T20:55:23+05:00",
+    "credential_preflight": "passed; secrets remained masked",
+    "provider_called": false,
+    "quota_error_observed": false,
+    "artifact_count": 0,
+    "observed_stop_reason": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "artifact_upload_warning": "No files were found with the provided path: fresh_output/. No artifacts will be uploaded."
+  },
+  "repository_state": {
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "pending_review_json_present": false,
+    "pending_directory_present": false,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "eligible_unused_scene_references": 0,
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "previously_used_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7
+    ]
+  },
+  "latest_available_artifact": {
+    "source_run_id": 41880398664,
+    "source_run_number": 341,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_via": "GitHub Actions download_workflow_artifact",
+    "archive_path": "/mnt/data/bobo-latest-available-run341.zip",
+    "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_file": "generated.mp4",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "files_missing": [
+      "episode.json",
+      "automatic-review.json",
+      "captions-timing.json",
+      "captions.srt",
+      "foley-provenance.json",
+      "observed-effects.json"
+    ]
+  },
+  "exact_file_review": {
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "format": "H.264 480x832 at 16fps; video-only intermediate",
+    "video_decode": "passed",
+    "encoded_audio_stream": false,
+    "full_render_sampling": {
+      "fps": 4,
+      "frames": 49,
+      "timestamps_seconds": "0.00 through 12.00 at 0.25-second intervals"
+    },
+    "transition_sampling": {
+      "fps": 8,
+      "frames": 12,
+      "windows_seconds": [
+        [
+          3.75,
+          4.5
+        ],
+        [
+          7.75,
+          8.5
+        ]
+      ]
+    },
+    "observed_actions": {
+      "visible_brush_strokes": [
+        0.5,
+        4
+      ],
+      "low_activity_camera_pose": [
+        4.25,
+        7.5
+      ],
+      "brush_strokes_resume": [
+        7.75,
+        10
+      ],
+      "ending_turn_and_gesture": [
+        10.5,
+        12.1875
+      ]
+    },
+    "visual_finding": "Same art-room/easel/palette painting setup as published episode 40522021; prolonged low-activity pose; historical duplicate premise.",
+    "dialogue": {
+      "text": "Time to paint!",
+      "provisional_window": [
+        0.35,
+        1.1761
+      ],
+      "piper_sidecar_present": true,
+      "final_encoded_voice_present": false,
+      "intelligibility_verified": false
+    },
+    "captions": {
+      "srt_present": false,
+      "timing_json_present": false,
+      "spoken_subtitle_present": false
+    },
+    "audio_sidecars": {
+      "music_mean_dbfs": -29.6,
+      "effects_mean_dbfs": -43.6,
+      "effects_minus_music_db": -14,
+      "voice_track_mean_dbfs": -45.6,
+      "final_mix_in_video": false,
+      "perceptual_listening_performed": false
+    },
+    "result": "rejected; no repair or publication"
+  },
+  "platform_status": {
+    "latest_bobo_specific_reels_date": "2026-10-20",
+    "latest_bobo_specific_reels_title": "Bobo's Magic Trick Went Terribly Wrong!",
+    "latest_verified_story_date": "2026-10-18",
+    "future_metricool_scheduled_posts": 0,
+    "publish_workflow_run_id": 42474635563,
+    "publish_workflow_run_number": 93,
+    "publish_workflow_result": "success with all publication steps skipped"
+  },
+  "cost": 0
+}
