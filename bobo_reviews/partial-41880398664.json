@@ -396,5 +396,89 @@
     "publication_attempted": false,
     "paid_generation": false,
     "cost": 0
+  },
+  "independent_recheck_2026_11_08_15_46": {
+    "completed_at": "2026-11-08T15:46:17+05:00",
+    "full_render_sampling_fps": 4,
+    "full_render_frames": 49,
+    "transition_sampling_fps": 8,
+    "transition_frames": 22,
+    "observed_actions": {
+      "brush_strokes_initial": [
+        0.5,
+        4
+      ],
+      "upright_low_activity_pose": [
+        4.25,
+        7.5
+      ],
+      "brush_strokes_resume": [
+        7.75,
+        10
+      ],
+      "ending_turn_and_gesture": [
+        10.5,
+        12.1875
+      ]
+    },
+    "visual_finding": "3D Bobo/red shirt in the same sunny art-room/easel/palette painting setup as published episode 40522021; an upright low-activity camera-facing pose occupies approximately 4.25-7.5s. Cut windows at 4.0625s and 8.125s sampled at 8fps. Historical duplicate premise; no unique episode.",
+    "technical": {
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "codec": "H.264",
+      "resolution": "480x832",
+      "fps": 16,
+      "encoded_audio_stream": false,
+      "video_decode": "passed"
+    },
+    "captions": {
+      "captions_srt_present": false,
+      "captions_timing_json_present": false,
+      "caption_transitions_reviewed": 0,
+      "spoken_subtitle_present": false
+    },
+    "dialogue": {
+      "text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "piper_sidecar_present": true,
+      "final_encoded_voice_present": false,
+      "intelligibility_verified": false,
+      "subjective_listening": false
+    },
+    "audio_sidecars": {
+      "pre_voice_mix": {
+        "duration_seconds": 11,
+        "rms_dbfs": -22.46,
+        "peak_dbfs": -6.85
+      },
+      "music": {
+        "duration_seconds": 11,
+        "rms_dbfs": -29.64,
+        "peak_dbfs": -14.47,
+        "style_metadata_present": false,
+        "subjective_audibility_verified": false
+      },
+      "effects": {
+        "duration_seconds": 11,
+        "rms_dbfs": -43.62,
+        "peak_dbfs": -17.08,
+        "delta_vs_music_rms_db": -13.98,
+        "observed_action_mapping_present": false,
+        "perceptual_naturalness_verified": false
+      },
+      "voice_track": {
+        "duration_seconds": 11,
+        "rms_dbfs": -45.61,
+        "peak_dbfs": -16.81
+      },
+      "final_mix_in_video": false
+    },
+    "result": "deliberately_rejected_historical_duplicate_intermediate; not a current pending draft and not publication eligible",
+    "repair_performed": false,
+    "cost": 0
   }
 }
