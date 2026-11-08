@@ -178,5 +178,115 @@
   },
   "pending_gate_action": "No pending gate existed; no gate was cleared or changed. Historical artifact remains rejected and was not published.",
   "next_action": "Add a genuinely new original Bobo scene reference and matching three-shot storyboard, register it in scene policy/tests, then test the free provider. Do not recycle used scenes, the retired scene IDs, or the unfinished October story list.",
-  "cost": 0
+  "cost": 0,
+  "independent_recheck_2026_11_08_07_15": {
+    "checked_at": "2026-11-08T07:15:32+05:00",
+    "downloaded_via": "GitHub Actions download_workflow_artifact",
+    "source_run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_file": "generated.mp4",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "full_render_review": {
+      "sample_fps": 4,
+      "frames": 49,
+      "timestamps": "0.00–12.00 seconds at 0.25-second intervals",
+      "observed_actions": {
+        "bobo_holding_brush_and_palette": [
+          0,
+          0.5
+        ],
+        "visible_brush_strokes": [
+          0.5,
+          4.0625
+        ],
+        "low_activity_camera_pose": [
+          4.25,
+          7.75
+        ],
+        "brush_strokes_resume": [
+          7.75,
+          10
+        ],
+        "ending_turn_and_arm_gesture": [
+          10.5,
+          12.1875
+        ]
+      }
+    },
+    "dialogue_window_review": {
+      "sample_fps": 8,
+      "frames": 10,
+      "timestamps": "0.25–1.375 seconds at 0.125-second intervals",
+      "provisional_line": "Time to paint!",
+      "provisional_window": [
+        0.35,
+        1.1761
+      ],
+      "finding": "Frames show Bobo turning from camera toward canvas; no independently verified speech-mouth window. Final encoded speech is absent, so no intelligibility or lip-sync claim."
+    },
+    "captions": {
+      "captions_timing_json_present": false,
+      "captions_srt_present": false,
+      "transitions_reviewed": 0,
+      "spoken_subtitle_present": false
+    },
+    "audio_stems": {
+      "audio": {
+        "duration": 11,
+        "rms_dbfs": -22.46,
+        "peak_dbfs": -6.85
+      },
+      "music": {
+        "duration": 11,
+        "rms_dbfs": -29.64,
+        "peak_dbfs": -14.47
+      },
+      "effects": {
+        "duration": 11,
+        "rms_dbfs": -43.62,
+        "peak_dbfs": -17.08
+      },
+      "voice_track": {
+        "duration": 11,
+        "rms_dbfs": -45.61,
+        "peak_dbfs": -16.81
+      },
+      "voice_line": {
+        "duration": 0.8261,
+        "rms_dbfs": -34.37,
+        "peak_dbfs": -16.81
+      },
+      "final_encoded_audio_stream": false,
+      "subjective_listening": false,
+      "music_audibility_verified": false,
+      "effect_naturalness_verified": false
+    },
+    "effects": {
+      "source": "procedurally synthesized brush-like filtered noise",
+      "observed_action_mapping_present": false,
+      "decision": "No verified effect-to-contact mapping; waveform levels do not establish naturalness or audibility."
+    },
+    "technical": {
+      "video_codec": "H.264",
+      "resolution": "480x832",
+      "fps": 16,
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "video_decode": "passed",
+      "encoded_audio_stream": false,
+      "final_export": false
+    },
+    "duplicate_check": {
+      "scene_id": 7,
+      "prior_published_episode": 40522021,
+      "prior_title": "Art room paint surprise",
+      "decision": "Same art-room/easel/paint-palette painting premise; not a distinct story."
+    },
+    "result": "Rejection unchanged. This is a historical intermediate artifact, not a current pending draft; no repair or publication attempted."
+  },
+  "checked_at": "2026-11-08T07:15:32+05:00"
 }
