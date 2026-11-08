@@ -140,7 +140,15 @@
       "later_publication_receipt_in_repository_ledger": false,
       "metricool_future_scheduled_posts_checked_through": "2026-11-15T23:59:59+05:00",
       "metricool_scheduled_posts_count": 0,
-      "interpretation": "No upcoming Facebook/Instagram posts or Stories are scheduled in Metricool for the checked period. The last recorded accepted multi-platform Bobo publication is 18 October; no later publication is evidenced by the repository ledger."
+      "interpretation": "No upcoming Facebook/Instagram posts or Stories are scheduled in Metricool for the checked period. The last recorded accepted multi-platform Bobo publication is 18 October; no later publication is evidenced by the repository ledger.",
+      "latest_publish_workflow": {
+        "run_id": 42397480591,
+        "run_number": 0,
+        "conclusion": "success",
+        "upload_steps": "all skipped",
+        "result": "No Facebook or Instagram upload occurred in this run."
+      },
+      "note": "Repository publication receipt remains 18 October; latest Publish Reviewed Bobo run on 7 November completed with download/publish steps skipped. Metricool returned zero scheduled posts for 8–15 November."
     }
   }
 }
