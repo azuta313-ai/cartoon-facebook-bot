@@ -123,6 +123,24 @@
       "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
       "result": "Independently reviewed exact downloaded MP4: 12.1875s H.264 480x832 16fps, video-only. Same art-room/easel/palette painting premise as published episode 40522021. Missing final encoded audio, captions, subtitle and episode metadata. Rejected; no repair or publication."
+    },
+    "platform_status": {
+      "checked_at": "2026-11-08T15:46:17+05:00",
+      "repository_latest_recorded_publication": {
+        "episode": 40522037,
+        "title": "Bobo's Upside-Down Umbrella",
+        "date": "2026-10-18",
+        "facebook_video_status": "accepted",
+        "facebook_video_id": "2296956914491800",
+        "instagram_reel_status": "accepted",
+        "instagram_reel_permalink": "https://www.instagram.com/reel/DeorySgAMGk/",
+        "instagram_story_status": "accepted",
+        "facebook_story_status": "accepted"
+      },
+      "later_publication_receipt_in_repository_ledger": false,
+      "metricool_future_scheduled_posts_checked_through": "2026-11-15T23:59:59+05:00",
+      "metricool_scheduled_posts_count": 0,
+      "interpretation": "No upcoming Facebook/Instagram posts or Stories are scheduled in Metricool for the checked period. The last recorded accepted multi-platform Bobo publication is 18 October; no later publication is evidenced by the repository ledger."
     }
   }
 }
