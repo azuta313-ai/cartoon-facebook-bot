@@ -30,7 +30,9 @@
       "redownloaded": true,
       "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "video_file": "generated.mp4",
-      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a"
+      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+      "source_run_number": 341,
+      "last_artifact_run_reviewed": "2026-11-08T15:46:17+05:00"
     },
     "independent_review": {
       "completed_at": "2026-11-08T15:46:17+05:00",
@@ -186,6 +188,68 @@
         },
         "note": "No later Bobo Story is evidenced in the repository receipt or Metricool story rows."
       }
-    }
+    },
+    "recent_daily_runs_artifact_scan": [
+      {
+        "run_id": 42457831992,
+        "run_number": 353,
+        "artifact_count": 0
+      },
+      {
+        "run_id": 42409684536,
+        "run_number": 352,
+        "artifact_count": 0
+      },
+      {
+        "run_id": 42387236972,
+        "run_number": 351,
+        "artifact_count": 0
+      },
+      {
+        "run_id": 42349521475,
+        "run_number": 350,
+        "artifact_count": 0
+      },
+      {
+        "run_id": 42299468822,
+        "run_number": 349,
+        "artifact_count": 0
+      },
+      {
+        "run_id": 42254963187,
+        "run_number": 348,
+        "artifact_count": 0
+      },
+      {
+        "run_id": 42183667878,
+        "run_number": 347,
+        "artifact_count": 0
+      },
+      {
+        "run_id": 42151091260,
+        "run_number": 346,
+        "artifact_count": 0
+      },
+      {
+        "run_id": 42073402244,
+        "run_number": 345,
+        "artifact_count": 0
+      },
+      {
+        "run_id": 41990189164,
+        "run_number": 344,
+        "artifact_count": 0
+      },
+      {
+        "run_id": 41885080065,
+        "run_number": 343,
+        "artifact_count": 0
+      },
+      {
+        "run_id": 41884327140,
+        "run_number": 342,
+        "artifact_count": 0
+      }
+    ]
   }
 }
