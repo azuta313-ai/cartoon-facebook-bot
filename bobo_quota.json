@@ -2,142 +2,127 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-08T14:15:06+05:00",
+  "last_observed_at": "2026-11-08T15:46:17+05:00",
   "last_generation_run_id": 42457831992,
-  "last_provider_result": "Daily Fresh Bobo run #353 (8 November) completed successfully but did not call the free ZeroGPU provider: all distinct original scene references are already used or reserved. No quota error was observed; free-provider availability remains unconfirmed. The latest available artifact is still the 4 November run #341 video-only duplicate intermediate, rejected after exact-file review.",
+  "last_provider_result": "Daily Fresh Bobo run #353 succeeded but produced no artifact and did not call ZeroGPU: the distinct-scene guard stopped generation because all available original references are used or reserved. The latest available run #341 artifact was independently re-downloaded and re-reviewed on 8 November; it is a historical duplicate intermediate and remains rejected.",
   "latest_check": {
-    "checked_at": "2026-11-08T14:15:06+05:00",
-    "workflow_completed_at": "2026-11-08T12:12:56+05:00",
-    "run_id": 42457831992,
-    "run_number": 353,
-    "provider_called": false,
-    "quota_error_observed": false,
-    "reason": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
-    "provider_gate": "Facebook credential preflight passed; fresh_bobo.py exited at the scene-eligibility guard before any ZeroGPU Client.predict request.",
-    "artifact_count": 0,
-    "latest_available_artifact_run_id": 41880398664,
-    "latest_available_artifact_id": 13349870060,
-    "provider_availability": "unconfirmed",
-    "independent_artifact_recheck": {
-      "source_run_id": 41880398664,
-      "artifact_id": 13349870060,
-      "downloaded_at": "2026-11-08T14:15:06+05:00",
-      "archive_path": "/mnt/data/daily-fresh-bobo-run-341.zip",
-      "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
-      "video_file": "generated.mp4",
-      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-      "result": "Historical duplicate art-room intermediate render; 12.1875 seconds; H.264 480x832 at 16fps; video-only MP4 with no encoded audio/captions; rejected as a publication candidate."
+    "checked_at": "2026-11-08T15:46:17+05:00",
+    "latest_daily_fresh_run": {
+      "run_id": 42457831992,
+      "run_number": 353,
+      "completed_at": "2026-11-08T12:12:56+05:00",
+      "conclusion": "success",
+      "artifact_count": 0,
+      "provider_called": false,
+      "quota_error_observed": false,
+      "reason": "Scene-eligibility guard stopped before any ZeroGPU request: all distinct original scene references are already used or reserved."
     },
-    "artifact_review": {
-      "reviewed_at": "2026-11-08T14:15:06+05:00",
+    "pending_gate": {
+      "bobo_review_pending_json_exists": false,
+      "bobo_pending_directory_exists": false,
+      "approval_status": "published",
+      "approval_episode": 40522037
+    },
+    "latest_available_artifact": {
       "source_run_id": 41880398664,
+      "run_number": 341,
       "artifact_id": 13349870060,
+      "redownloaded": true,
       "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
-      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-      "sampled_visual_review": {
-        "full_video_fps": 4,
-        "frames_reviewed": 49,
-        "speech_window_fps": 8,
-        "frames_reviewed_in_speech_window": 11,
-        "observation": "3D Bobo in red shirt painting in the art-room/easel/paint-palette scene; brush motion early, then a 3.5-second low-activity camera-facing pose before motion resumes. Same premise as published episode 40522021."
+      "video_file": "generated.mp4",
+      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a"
+    },
+    "independent_review": {
+      "completed_at": "2026-11-08T15:46:17+05:00",
+      "full_render_sampling_fps": 4,
+      "full_render_frames": 49,
+      "transition_sampling_fps": 8,
+      "transition_frames": 22,
+      "observed_actions": {
+        "brush_strokes_initial": [
+          0.5,
+          4
+        ],
+        "upright_low_activity_pose": [
+          4.25,
+          7.5
+        ],
+        "brush_strokes_resume": [
+          7.75,
+          10
+        ],
+        "ending_turn_and_gesture": [
+          10.5,
+          12.1875
+        ]
       },
+      "visual_finding": "3D Bobo/red shirt in the same sunny art-room/easel/palette painting setup as published episode 40522021; an upright low-activity camera-facing pose occupies approximately 4.25-7.5s. Cut windows at 4.0625s and 8.125s sampled at 8fps. Historical duplicate premise; no unique episode.",
       "technical": {
         "duration_seconds": 12.1875,
         "required_duration_seconds": [
           10.95,
           11.05
         ],
-        "video_codec": "H.264",
+        "codec": "H.264",
         "resolution": "480x832",
-        "frame_rate": 16,
+        "fps": 16,
         "encoded_audio_stream": false,
         "video_decode": "passed"
       },
+      "captions": {
+        "captions_srt_present": false,
+        "captions_timing_json_present": false,
+        "caption_transitions_reviewed": 0,
+        "spoken_subtitle_present": false
+      },
       "dialogue": {
-        "sidecar_text": "Time to paint!",
-        "sidecar_start": 0.35,
-        "sidecar_end": 1.1761,
-        "subtitle_file_present": false,
-        "voice_track_sidecar_present": true,
-        "encoded_speech_verified": false,
-        "lip_sync_verified": false,
+        "text": "Time to paint!",
+        "provisional_start": 0.35,
+        "provisional_end": 1.1761,
+        "piper_sidecar_present": true,
+        "final_encoded_voice_present": false,
+        "intelligibility_verified": false,
         "subjective_listening": false
       },
-      "audio_sidecar_levels_dbfs": {
-        "mix": {
-          "rms": -22.46,
-          "peak": -6.85
+      "audio_sidecars": {
+        "pre_voice_mix": {
+          "duration_seconds": 11,
+          "rms_dbfs": -22.46,
+          "peak_dbfs": -6.85
         },
         "music": {
-          "rms": -29.64,
-          "peak": -14.47
+          "duration_seconds": 11,
+          "rms_dbfs": -29.64,
+          "peak_dbfs": -14.47,
+          "style_metadata_present": false,
+          "subjective_audibility_verified": false
         },
         "effects": {
-          "rms": -43.62,
-          "peak": -17.08
+          "duration_seconds": 11,
+          "rms_dbfs": -43.62,
+          "peak_dbfs": -17.08,
+          "delta_vs_music_rms_db": -13.98,
+          "observed_action_mapping_present": false,
+          "perceptual_naturalness_verified": false
         },
         "voice_track": {
-          "rms": -45.61,
-          "peak": -16.81
-        }
+          "duration_seconds": 11,
+          "rms_dbfs": -45.61,
+          "peak_dbfs": -16.81
+        },
+        "final_mix_in_video": false
       },
-      "effects_review": {
-        "sidecar_present": true,
-        "observed_action_mapping_present": false,
-        "perceptual_naturalness_verified": false
-      },
-      "music_review": {
-        "sidecar_present": true,
-        "subjective_audibility_verified": false
-      },
-      "captions": {
-        "caption_timing_file_present": false,
-        "transition_review_possible": false,
-        "caption_transitions_reviewed": 0
-      },
-      "result": "historical_duplicate_intermediate_rejected; no current draft; no publication",
-      "reasons": [
-        "Latest Daily Fresh run #353 uploaded no artifact and stopped before any provider request because every eligible original scene reference was already used or reserved.",
-        "The downloaded artifact is from run #341 on 4 November, not a current pending draft.",
-        "The MP4 is 12.1875 seconds, outside the required 10.95–11.05-second window.",
-        "The MP4 contains no encoded audio stream; Piper speech, music and effects exist only as sidecar WAVs.",
-        "No exact spoken subtitle or captions timing file is present.",
-        "No effect-to-observed-action mapping or perceptual sound verification is present.",
-        "The art-room/easel/paint-palette premise duplicates published episode 40522021."
-      ],
+      "result": "deliberately_rejected_historical_duplicate_intermediate; not a current pending draft and not publication eligible",
       "repair_performed": false,
-      "publication_eligible": false,
-      "actual_re_download": true,
-      "speech_window_sampling": {
-        "fps": 8,
-        "frames": 11,
-        "timestamps_seconds": "0.25 through 1.50 at 0.125-second intervals",
-        "finding": "Frames show Bobo turning toward the canvas and facial changes; this does not establish speech. Final encoded speech is absent."
-      },
-      "observed_actions": {
-        "bobo_holding_brush_and_palette": [
-          0,
-          0.5
-        ],
-        "visible_brush_strokes": [
-          0.5,
-          4.0625
-        ],
-        "low_activity_camera_pose": [
-          4.25,
-          7.75
-        ],
-        "brush_strokes_resume": [
-          7.75,
-          10
-        ],
-        "ending_turn_and_arm_gesture": [
-          10.5,
-          12.1875
-        ]
-      },
-      "caption_transitions_reviewed": 0,
-      "actual_encoded_audio_stream": false
+      "cost": 0
+    },
+    "independent_artifact_recheck": {
+      "source_run_id": 41880398664,
+      "artifact_id": 13349870060,
+      "downloaded_at": "2026-11-08T15:46:17+05:00",
+      "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+      "result": "Independently reviewed exact downloaded MP4: 12.1875s H.264 480x832 16fps, video-only. Same art-room/easel/palette painting premise as published episode 40522021. Missing final encoded audio, captions, subtitle and episode metadata. Rejected; no repair or publication."
     }
   }
 }
