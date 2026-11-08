@@ -1,0 +1,217 @@
+{
+  "review_id": "daily-fresh-bobo-2026-11-08-run-42457831992",
+  "completed_at": "2026-11-08T14:15:06+05:00",
+  "status": "no_new_draft_scene_reference_exhaustion_latest_available_artifact_rejected",
+  "publication_allowed": false,
+  "pending_gate_present": false,
+  "latest_daily_workflow": {
+    "run_id": 42457831992,
+    "run_number": 353,
+    "workflow": "Daily Fresh Bobo",
+    "conclusion": "success",
+    "created_at": "2026-11-08T12:12:32+05:00",
+    "completed_at": "2026-11-08T12:12:56+05:00",
+    "credential_preflight": "passed; secrets remained masked",
+    "provider_called": false,
+    "quota_error_observed": false,
+    "artifact_count": 0,
+    "observed_stop_reason": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "artifact_upload_warning": "No files were found with the provided path: fresh_output/. No artifacts will be uploaded."
+  },
+  "repository_state": {
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "pending_review_json_present": false,
+    "pending_directory_present": false,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "published_ledger_entries": 15,
+    "latest_recorded_platform_acceptance": "2026-10-18",
+    "eligible_unused_scene_references": 0,
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "previously_used_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7
+    ]
+  },
+  "latest_available_artifact": {
+    "source_run_id": 41880398664,
+    "source_run_number": 341,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "artifact_created_at": "2026-11-04T22:48:50+05:00",
+    "downloaded_via": "GitHub Actions download_workflow_artifact",
+    "archive_path": "/mnt/data/daily-fresh-bobo-run-341.zip",
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_file": "generated.mp4",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "files_missing": [
+      "episode.json",
+      "automatic-review.json",
+      "captions-timing.json",
+      "captions.srt",
+      "foley-provenance.json",
+      "observed-effects.json"
+    ]
+  },
+  "exact_file_review": {
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "format": "H.264 480x832 at 16fps; video-only intermediate",
+    "video_decode": "passed",
+    "encoded_audio_stream": false,
+    "full_render_sampling": {
+      "fps": 4,
+      "frames": 49,
+      "timestamps_seconds": "0.00 through 12.00 at 0.25-second intervals"
+    },
+    "observed_actions": {
+      "bobo_holding_brush_and_palette": [
+        0,
+        0.5
+      ],
+      "visible_brush_strokes": [
+        0.5,
+        4.0625
+      ],
+      "low_activity_camera_pose": [
+        4.25,
+        7.75
+      ],
+      "brush_strokes_resume": [
+        7.75,
+        10
+      ],
+      "ending_turn_and_arm_gesture": [
+        10.5,
+        12.1875
+      ]
+    },
+    "pacing": {
+      "purposeful_action_onset_seconds": 0.5,
+      "low_activity_window_seconds": [
+        4.25,
+        7.75
+      ],
+      "low_activity_duration_seconds": 3.5,
+      "pass": false
+    },
+    "duplicate_provenance": {
+      "scene_id": 7,
+      "prior_published_episode": 40522021,
+      "prior_title": "Art room paint surprise",
+      "decision": "Same art-room/easel/paint-palette premise; not a distinct new story."
+    }
+  },
+  "voice": {
+    "engine": "Piper local CPU",
+    "text": "Time to paint!",
+    "provisional_start": 0.35,
+    "provisional_end": 1.1761,
+    "voice_line_wav_present": true,
+    "voice_track_wav_present": true,
+    "final_encoded_voice_present": false,
+    "spoken_subtitle_present": false,
+    "intelligibility_verified": false,
+    "listening_verified": false,
+    "lip_sync_verified": false,
+    "speech_window_sampling": {
+      "fps": 8,
+      "frames": 11,
+      "timestamps_seconds": "0.25–1.50 at 0.125-second intervals"
+    },
+    "note": "The sampled frames show Bobo turning toward the canvas and small facial changes, but do not establish the spoken words. No final encoded speech exists."
+  },
+  "captions": {
+    "captions_timing_json_present": false,
+    "captions_srt_present": false,
+    "transitions_reviewed": 0,
+    "spoken_subtitle_present": false
+  },
+  "audio": {
+    "sidecar_wavs_present": [
+      "audio.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "voice-track.wav",
+      "voice-line.wav"
+    ],
+    "stems_duration_seconds": 11,
+    "video_duration_seconds": 12.1875,
+    "final_encoded_mix_present": false,
+    "subjective_listening_performed": false,
+    "music_audibility_verified": false
+  },
+  "audio_levels_sidecar_only": {
+    "mix": {
+      "rms_dbfs": -22.46,
+      "peak_dbfs": -6.85
+    },
+    "music": {
+      "rms_dbfs": -29.64,
+      "peak_dbfs": -14.47
+    },
+    "effects": {
+      "rms_dbfs": -43.62,
+      "peak_dbfs": -17.08
+    },
+    "voice_track": {
+      "rms_dbfs": -45.61,
+      "peak_dbfs": -16.81
+    },
+    "voice_line": {
+      "duration_seconds": 0.8261,
+      "rms_dbfs": -34.37,
+      "peak_dbfs": -16.81
+    }
+  },
+  "effects": {
+    "sidecar_present": true,
+    "source": "procedurally synthesized brush-like filtered noise",
+    "observed_action_mapping_present": false,
+    "material_naturalness_verified": false,
+    "subjective_listening_performed": false,
+    "decision": "No verified effect-to-contact mapping; sidecar levels cannot establish perceptual naturalness."
+  },
+  "technical": {
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "codec": "H.264",
+    "resolution": "480x832",
+    "fps": 16,
+    "video_decode": "passed",
+    "encoded_audio_stream": false,
+    "final_export": false
+  },
+  "decision": "Rejected as a publication candidate: reused art-room premise, duration outside the 11-second tolerance, no encoded audio/final mix, no spoken subtitle, a 3.5-second low-activity middle section, and no verified effect-to-action mapping.",
+  "provider_diagnosis": {
+    "active_quota_block_confirmed": false,
+    "latest_run_provider_called": false,
+    "quota_error_observed": false,
+    "stored_retry_timestamp_is_historical": "2026-10-18T16:30:58.401196+05:00",
+    "provider_availability": "unconfirmed",
+    "last_provider_call_run_id": 41880398664,
+    "last_provider_call_run_number": 341,
+    "last_provider_result": "Three free ZeroGPU clips were generated on 4 November before a local FFmpeg voice-mixing failure; run #353 did not call the provider."
+  },
+  "pending_gate_action": "No pending gate existed; no gate was cleared or changed. Historical artifact remains rejected and was not published.",
+  "next_action": "Add a genuinely new original Bobo scene reference and matching three-shot storyboard, register it in scene policy/tests, then test the free provider. Do not recycle used scenes, retired scene IDs, or the unfinished October story list.",
+  "cost": 0
+}
