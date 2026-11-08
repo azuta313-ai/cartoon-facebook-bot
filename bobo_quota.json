@@ -2,7 +2,7 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-08T07:01:17+05:00",
+  "last_observed_at": "2026-11-08T07:15:32+05:00",
   "last_generation_run_id": 41880398664,
   "last_provider_result": "Last confirmed provider access remains run #341 (4 November): three free ZeroGPU clips generated before a local FFmpeg voice-mixing failure. Latest Daily Fresh run #352 (8 November) did not call the provider because all distinct original scene references are already used or reserved; free-provider availability remains unconfirmed.",
   "latest_check": {
@@ -21,7 +21,7 @@
     "independent_artifact_recheck": {
       "source_run_id": 41880398664,
       "artifact_id": 13349870060,
-      "downloaded_at": "2026-11-08T07:01:17+05:00",
+      "downloaded_at": "2026-11-08T07:15:32+05:00",
       "archive_path": "/mnt/data/daily-fresh-bobo-run-341.zip",
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "video_file": "generated.mp4",
@@ -29,7 +29,7 @@
       "result": "Historical duplicate art-room intermediate render; 12.1875 sec; video-only MP4 with no encoded audio/captions; rejected as publication candidate."
     },
     "artifact_review": {
-      "reviewed_at": "2026-11-08T07:01:17+05:00",
+      "reviewed_at": "2026-11-08T07:15:32+05:00",
       "source_run_id": 41880398664,
       "artifact_id": 13349870060,
       "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
@@ -86,7 +86,7 @@
         "transition_review_possible": false,
         "caption_transitions_reviewed": 0
       },
-      "result": "historical_intermediate_not_candidate",
+      "result": "historical_duplicate_intermediate_rejected; no current draft; no publication",
       "reasons": [
         "Latest Daily Fresh run #352 uploaded no artifact and stopped before any provider request because every eligible original scene reference was already used or reserved.",
         "This artifact is from run #341 on 4 November, not a current pending draft.",
@@ -96,7 +96,16 @@
         "No effect-to-observed-action mapping or perceptual sound verification is present."
       ],
       "repair_performed": false,
-      "publication_eligible": false
+      "publication_eligible": false,
+      "actual_re_download": true,
+      "speech_window_sampling": {
+        "fps": 8,
+        "frames": 10,
+        "timestamps_seconds": "0.25 through 1.375 at 0.125-second intervals",
+        "finding": "Bobo turns toward the canvas; no independently verified speaking-mouth window. Final encoded speech absent."
+      },
+      "caption_transitions_reviewed": 0,
+      "actual_encoded_audio_stream": false
     }
   }
 }
