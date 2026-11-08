@@ -213,5 +213,14 @@
   },
   "pending_gate_action": "No pending gate existed; no gate was cleared or changed. Historical artifact remains rejected and was not published.",
   "next_action": "Add a genuinely new original Bobo scene reference and matching three-shot storyboard, register it in scene policy/tests, then test the free provider. Do not recycle used scenes, retired scene IDs, or the unfinished October story list.",
-  "cost": 0
+  "cost": 0,
+  "mixer_compatibility_check": {
+    "checked_at": "2026-11-08T14:15:06+05:00",
+    "current_source": "bobo_voice.py mix_voice() no longer uses the unsupported alimiter latency option seen in run #341",
+    "local_test": "Replayed the current mix_voice filter logic against the downloaded audio.wav and voice-track.wav sidecars",
+    "result": "FFmpeg produced an 11.000-second stereo 48kHz PCM mix successfully",
+    "subjective_listening": false,
+    "final_video_repaired": false,
+    "note": "This validates only local sidecar mixing compatibility. It does not turn the duplicate, overlength, video-only historical artifact into an approved publication file."
+  }
 }
