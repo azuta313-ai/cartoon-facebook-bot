@@ -222,5 +222,25 @@
   },
   "blocker": "All six eligible original scene references (0,1,2,3,4,7) are already used or reserved; scenes 5 and 6 are retired. A new original 3D scene reference and matching distinct plot are required before another free provider request. Provider quota was not tested because the provider was not called.",
   "daily_target": "No new distinct videos were ready; the two-per-day target was not met by this run.",
-  "cost": 0
+  "cost": 0,
+  "daily_runs_artifact_scan": {
+    "checked_run_numbers": [
+      342,
+      343,
+      344,
+      345,
+      346,
+      347,
+      348,
+      349,
+      350,
+      351,
+      352,
+      353,
+      354,
+      355,
+      356
+    ],
+    "result": "No artifacts in any Daily Fresh Bobo run #342–#356; run #341 is the latest retained artifact."
+  }
 }
