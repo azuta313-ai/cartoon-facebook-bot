@@ -1,0 +1,176 @@
+{
+  "review_id": "daily-fresh-bobo-2026-11-09-run-41880398664-artifact-recheck-2315",
+  "completed_at": "2026-11-09T23:15:27+05:00",
+  "status": "rejected_historical_duplicate_intermediate",
+  "publication_allowed": false,
+  "pending_gate_present": false,
+  "artifact": {
+    "source_run_id": 41880398664,
+    "source_run_number": 341,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_via": "GitHub Actions download_workflow_artifact",
+    "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_file": "generated.mp4",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "current_pending_draft": false
+  },
+  "visual_review": {
+    "full_render_sample_fps": 4,
+    "full_render_frames": 49,
+    "full_render_timestamps": "0.00–12.00 seconds at 0.25-second intervals",
+    "transition_and_dialogue_sample_fps": 8,
+    "sampled_windows": [
+      {
+        "start": 0.25,
+        "end": 1.5,
+        "frames": 10,
+        "purpose": "provisional dialogue and initial brush action"
+      },
+      {
+        "start": 3.5,
+        "end": 4.5,
+        "frames": 8,
+        "purpose": "first shot transition and brush contact"
+      },
+      {
+        "start": 7.5,
+        "end": 8.5,
+        "frames": 8,
+        "purpose": "second transition and resumed brush action"
+      },
+      {
+        "start": 9.5,
+        "end": 10.5,
+        "frames": 8,
+        "purpose": "late mouth/gesture window"
+      }
+    ],
+    "observed_actions": {
+      "brush_and_palette_pose": [
+        0,
+        0.25
+      ],
+      "initial_brush_strokes": [
+        0.5,
+        4.125
+      ],
+      "low_activity_camera_facing_pose": [
+        4.25,
+        7.5
+      ],
+      "resumed_brush_strokes": [
+        7.75,
+        10.125
+      ],
+      "ending_face_and_hand_gestures": [
+        10.25,
+        12.1875
+      ]
+    },
+    "finding": "Recognizable 3D Bobo in red shirt painting at the same art-room/easel/palette setup and painting premise as already-published episode 40522021 (scene_id 7). The historical scene/premise is reused, so it is not a distinct new video. A low-activity camera-facing pose lasts approximately 4.25–7.5 seconds."
+  },
+  "captions": {
+    "captions_srt_present": false,
+    "captions_timing_json_present": false,
+    "episode_json_present": false,
+    "caption_transitions_reviewed": 0,
+    "spoken_subtitle_present": false,
+    "provisional_dialogue": {
+      "text": "Time to paint!",
+      "start": 0.35,
+      "end": 1.1761
+    },
+    "observed_mouth_action_approx": [
+      0.25,
+      0.5
+    ],
+    "finding": "The provisional speech interval extends beyond the brief observed mouth-open window; no exact spoken subtitle or caption timing file exists."
+  },
+  "audio": {
+    "final_mp4_audio_stream": false,
+    "piper_source_sidecar_present": true,
+    "voice_track_sidecar_present": true,
+    "subjective_listening_performed": false,
+    "independent_asr_of_final_mix": false,
+    "sidecar_levels_dbfs": {
+      "pre_voice_mix": {
+        "mean": -22.46,
+        "peak": -6.85
+      },
+      "music": {
+        "mean": -29.64,
+        "peak": -14.47,
+        "style_metadata_present": false
+      },
+      "effects": {
+        "mean": -43.62,
+        "peak": -17.08,
+        "effects_vs_music_rms_db": -13.98,
+        "observed_action_mapping_present": false,
+        "foley_provenance_present": false
+      },
+      "voice_track": {
+        "mean": -45.61,
+        "peak": -16.81
+      },
+      "voice_line": {
+        "mean": -34.37,
+        "peak": -16.81
+      }
+    },
+    "finding": "The MP4 is video-only. Separate WAV sidecars do not establish intelligible speech, music or effects in the final encoded file. No subjective listening or ASR claim is made. Effects are not mapped to observed actions."
+  },
+  "technical": {
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "codec": "H.264",
+    "resolution": "480x832",
+    "fps": 16,
+    "video_decode": "passed",
+    "final_mix_present": false
+  },
+  "disposition": {
+    "result": "Reject: historical scene7 painting duplicate and unfinished intermediate.",
+    "repair_performed": false,
+    "repair_reason": "Adding captions/audio or trimming cannot make the reused painting scene a distinct story. No new free provider request was made and no paid generation was used.",
+    "cost": 0
+  },
+  "latest_generation_check": {
+    "run_id": 42582047296,
+    "run_number": 356,
+    "completed_at": "2026-11-09T07:52:59Z",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "stop_reason": "All eligible original scene references are already used or reserved; hold rather than duplicate.",
+    "pending_gate_present": false
+  },
+  "publication_path": {
+    "workflow": ".github/workflows/publish-reviewed-bobo.yml",
+    "inspected": true,
+    "exact_reviewed_sha_gate": true,
+    "duplicate_upload_intent_protection": true,
+    "latest_publish_run_id": 42619329445,
+    "latest_publish_run_number": 95,
+    "latest_publish_run_conclusion": "success",
+    "facebook_upload_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "No due approved unpublished reserve file and no pending draft."
+  },
+  "platform_status": {
+    "latest_recorded_video_acceptance": "2026-10-18",
+    "latest_recorded_facebook_story_acceptance": "2026-10-18",
+    "latest_recorded_instagram_reel_acceptance": "2026-10-18",
+    "latest_recorded_instagram_story_acceptance": "2026-10-18",
+    "new_publication_this_run": false
+  },
+  "blocker": "No unused distinct eligible original scene reference remains. Scene IDs 5 and 6 are retired; IDs 0,1,2,3,4,7 are already used or reserved. A new original 3D scene reference and matching distinct plot are required before another free provider request. Provider quota was not tested because the provider was not called.",
+  "daily_target": "No new distinct video was generated or published in this run; the two-per-day target was not met."
+}
