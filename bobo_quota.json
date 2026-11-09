@@ -2,21 +2,21 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-09T06:47:49+05:00",
-  "last_generation_run_id": 42519948205,
-  "last_provider_result": "Daily Fresh Bobo run #355 completed successfully but produced no artifact. The distinct-scene guard stopped before any ZeroGPU request because all eligible original scene references are already used or reserved. No provider quota response was obtained; quota availability remains untested.",
+  "last_observed_at": "2026-11-09T14:53:48+05:00",
+  "last_generation_run_id": 42582047296,
+  "last_provider_result": "Daily Fresh Bobo run #356 completed successfully but produced no artifact. The distinct-scene guard stopped before a ZeroGPU request because all eligible original scene references were already used or reserved. No provider quota response was obtained; quota availability remains untested.",
   "latest_check": {
-    "checked_at": "2026-11-09T06:47:49+05:00",
+    "checked_at": "2026-11-09T14:53:48+05:00",
     "latest_daily_fresh_run": {
-      "run_id": 42519948205,
-      "run_number": 355,
-      "completed_at": "2026-11-09T01:24:47+05:00",
+      "run_id": 42582047296,
+      "run_number": 356,
+      "completed_at": "2026-11-09T07:52:59Z",
       "conclusion": "success",
       "artifact_count": 0,
       "provider_called": false,
       "quota_error_observed": false,
-      "reason": "No unused distinct original scene reference; guard stopped before ZeroGPU request.",
-      "artifact_upload_warning": "No files were found with the provided path: fresh_output/. No artifacts will be uploaded."
+      "reason": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+      "artifact_upload_warning": "No files were found with the provided path: fresh_output/. No artifacts were uploaded."
     },
     "pending_gate": {
       "bobo_review_pending_json_exists": false,
@@ -30,112 +30,29 @@
       ],
       "all_reserve_entries_already_in_published_ledger": true
     },
-    "latest_available_artifact": {
-      "source_run_id": 41880398664,
-      "run_number": 341,
-      "artifact_id": 13349870060,
-      "downloaded_at": "2026-11-09T06:47:49+05:00",
-      "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
-      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a"
-    },
-    "independent_review": {
-      "completed_at": "2026-11-09T06:47:49+05:00",
-      "full_render_sampling_fps": 4,
-      "full_render_frames": 49,
-      "cut_transition_sampling_fps": 8,
-      "cut_transition_frames": 20,
-      "observed_actions": {
-        "brush_strokes_initial": [
-          0.5,
-          4
-        ],
-        "low_activity_camera_facing_pose": [
-          4.25,
-          7.5
-        ],
-        "brush_strokes_resume": [
-          7.75,
-          10
-        ],
-        "ending_turn_and_gesture": [
-          10.5,
-          12.1875
-        ]
-      },
-      "visual_finding": "Scene_id 7 art-room painting setup duplicates published episode 40522021; low-activity pose 4.25-7.5s.",
-      "technical": {
-        "duration_seconds": 12.1875,
-        "required_duration_seconds": [
-          10.95,
-          11.05
-        ],
-        "resolution": "480x832",
-        "fps": 16,
-        "codec": "H.264",
-        "encoded_audio_stream": false
-      },
-      "captions": {
-        "captions_srt_present": false,
-        "captions_timing_json_present": false,
-        "spoken_subtitle_present": false,
-        "caption_transitions_reviewed": 0
-      },
-      "dialogue": {
-        "text": "Time to paint!",
-        "provisional_start": 0.35,
-        "provisional_end": 1.1761,
-        "piper_sidecar_present": true,
-        "final_encoded_voice_present": false,
-        "intelligibility_verified": false,
-        "subjective_listening": false
-      },
-      "audio_sidecars": {
-        "music_rms_dbfs": -29.64,
-        "effects_rms_dbfs": -43.62,
-        "effects_minus_music_mean_db": -13.98,
-        "voice_track_rms_dbfs": -45.61,
-        "final_mix_in_video": false,
-        "observed_effect_mapping_present": false,
-        "music_style_metadata_present": false,
-        "subjective_listening_performed": false,
-        "perceptual_naturalness_verified": false
-      },
-      "result": "Historical duplicate intermediate rejected; no final 11-second encoded video/audio mix or captions. No repair or publication.",
-      "repair_performed": false,
-      "cost": 0
-    },
-    "platform_status": {
-      "metricool_future_scheduled_posts_count": 0,
-      "schedule_checked_through": "2026-11-16T23:59:59+05:00",
-      "latest_recorded_bobo_reels_date": "2026-10-20",
-      "latest_verified_story_receipt_date": "2026-10-18",
-      "latest_facebook_story_status": "accepted",
-      "latest_instagram_story_status": "accepted"
-    },
-    "latest_publish_workflow": {
-      "run_id": 42507014175,
-      "run_number": 94,
-      "conclusion": "success",
-      "facebook_upload_step": "skipped",
-      "instagram_reel_step": "skipped",
-      "instagram_story_step": "skipped",
-      "facebook_story_step": "skipped",
-      "result": "No publication occurred."
-    },
-    "blocker": "All six eligible original scene IDs (0,1,2,3,4,7) are already used or reserved; a new original scene reference and matching distinct plot are required before another free provider request.",
+    "latest_retained_artifact_run_id": 41880398664,
+    "latest_retained_artifact_id": 13349870060,
+    "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "result": "Historical scene7 art-room duplicate intermediate independently re-downloaded and rejected; 12.1875s, no encoded audio, no spoken subtitle, low-activity pose; not publishable.",
     "cost": 0
   },
   "recent_daily_runs_artifact_scan": [
     {
-      "run_id": 42497198731,
-      "run_number": 354,
+      "run_id": 42582047296,
+      "run_number": 356,
+      "artifact_count": 0
+    },
+    {
+      "run_id": 42519948205,
+      "run_number": 355,
       "artifact_count": 0
     }
   ],
   "latest_manual_recheck": {
-    "checked_at": "2026-11-08T22:48:16+05:00",
-    "workflow_run_id": 42497198731,
-    "workflow_run_number": 354,
+    "checked_at": "2026-11-09T14:53:48+05:00",
+    "workflow_run_id": 42582047296,
+    "workflow_run_number": 356,
     "artifact_count": 0,
     "provider_called": false,
     "quota_error_observed": false,
@@ -144,10 +61,10 @@
     "latest_retained_artifact_id": 13349870060,
     "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
     "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-    "result": "Historical art-room duplicate intermediate re-downloaded and rejected; 12.1875s, no encoded audio, no spoken subtitle, not publishable.",
+    "result": "Exact artifact downloaded and sampled at 4fps full-render and 8fps cut/dialogue windows. Rejected historical duplicate; 12.1875s video-only intermediate, no encoded speech or subtitle, no final mix.",
     "pending_gate_present": false,
-    "metricool_future_scheduled_posts": 0,
+    "publication_attempted": false,
     "cost": 0,
-    "review_history_path": "bobo_review_history/2026-11-08-run-42497198731-recheck-2248.json"
+    "review_history_path": "bobo_review_history/2026-11-09-run-42582047296-recheck-1453.json"
   }
 }
