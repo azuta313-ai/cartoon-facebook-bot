@@ -1,0 +1,226 @@
+{
+  "review_id": "daily-fresh-bobo-2026-11-09-run-42582047296-recheck-1533",
+  "completed_at": "2026-11-09T15:33:43+05:00",
+  "status": "no_pending_draft_latest_run_no_artifact_historical_intermediate_rejected",
+  "publication_allowed": false,
+  "pending_gate_present": false,
+  "latest_daily_workflow": {
+    "workflow": "Daily Fresh Bobo",
+    "run_id": 42582047296,
+    "run_number": 356,
+    "conclusion": "success",
+    "completed_at": "2026-11-09T07:52:59Z",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "stop_reason": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "artifact_upload_warning": "No files were found with the provided path: fresh_output/. No artifacts were uploaded."
+  },
+  "repository_state": {
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "pending_review_json_present": false,
+    "pending_directory_present": false,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "eligible_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "unused_eligible_scene_references": 0
+  },
+  "latest_available_artifact": {
+    "source_run_id": 41880398664,
+    "source_run_number": 341,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_via": "GitHub Actions download_workflow_artifact",
+    "downloaded_at": "2026-11-09T15:33:43+05:00",
+    "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_file": "generated.mp4",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "artifact_is_current_pending_draft": false,
+    "prior_disposition": "historical duplicate intermediate; re-downloaded and independently re-reviewed"
+  },
+  "exact_file_review": {
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "format": "H.264 480x832 at 16fps; video-only intermediate",
+    "video_decode": "passed",
+    "encoded_audio_stream": false,
+    "full_render_sampling": {
+      "fps": 4,
+      "frames": 49,
+      "timestamps_seconds": "0.00 through 12.00 at 0.25-second intervals"
+    },
+    "transition_sampling": {
+      "fps": 8,
+      "frames": 34,
+      "windows_seconds": [
+        [
+          3.5,
+          4.5
+        ],
+        [
+          7.5,
+          8.5
+        ]
+      ]
+    },
+    "dialogue_window_sampling": {
+      "fps": 8,
+      "window_seconds": [
+        0.25,
+        1.5
+      ]
+    },
+    "late_reaction_sampling": {
+      "fps": 8,
+      "window_seconds": [
+        9.5,
+        10.5
+      ]
+    },
+    "observed_actions": {
+      "bobo_holding_brush_and_palette": [
+        0,
+        0.25
+      ],
+      "visible_brush_strokes_initial": [
+        0.5,
+        4.0625
+      ],
+      "low_activity_camera_facing_pose": [
+        4.25,
+        7.5
+      ],
+      "visible_brush_strokes_resume": [
+        7.75,
+        10
+      ],
+      "ending_turn_and_gesture": [
+        10.5,
+        12.1875
+      ]
+    },
+    "visual_finding": "3D Bobo/red-shirt footage remains in the same art-room/easel/palette setting as published episode 40522021 (scene_id 7). It is a reused premise/reference, not a distinct new video. A low-activity camera-facing pose occupies approximately 4.25-7.5 seconds.",
+    "historical_duplicate": {
+      "prior_episode": 40522021,
+      "prior_title": "Art room paint surprise",
+      "prior_scene_id": 7,
+      "prior_facebook_video_id": "2212226773511644"
+    },
+    "captions": {
+      "captions_srt_present": false,
+      "captions_timing_json_present": false,
+      "caption_transitions_reviewed": 0,
+      "spoken_subtitle_present": false
+    },
+    "dialogue": {
+      "text": "Time to paint!",
+      "provisional_window": [
+        0.35,
+        1.1761
+      ],
+      "piper_source_present": true,
+      "voice_track_sidecar_present": true,
+      "sampled_visible_mouth_open_window_approx": [
+        0.25,
+        0.5
+      ],
+      "sampled_mouth_closed_from_approx": 0.625,
+      "final_encoded_voice_present": false,
+      "intelligibility_verified": false,
+      "subjective_listening": false,
+      "finding": "The provisional line extends beyond the sampled open-mouth window. The final MP4 has no encoded audio or spoken subtitle; speech cannot pass."
+    },
+    "audio_sidecars": {
+      "pre_voice_mix": {
+        "duration_seconds": 11,
+        "mean_dbfs": -22.5,
+        "peak_dbfs": -6.8
+      },
+      "music": {
+        "duration_seconds": 11,
+        "mean_dbfs": -29.6,
+        "peak_dbfs": -14.5,
+        "style_metadata_present": false,
+        "subjective_audibility_verified": false
+      },
+      "effects": {
+        "duration_seconds": 11,
+        "mean_dbfs": -43.6,
+        "peak_dbfs": -17.1,
+        "effects_vs_music_rms_db": -14,
+        "source": "procedurally synthesized brush-like noise",
+        "observed_action_mapping_present": false,
+        "foley_provenance_present": false,
+        "perceptual_naturalness_verified": false
+      },
+      "voice_track": {
+        "duration_seconds": 11,
+        "mean_dbfs": -45.6,
+        "peak_dbfs": -16.8
+      },
+      "voice_line": {
+        "duration_seconds": 0.8261,
+        "mean_dbfs": -34.4,
+        "peak_dbfs": -16.8
+      },
+      "final_mix_in_video": false,
+      "subjective_listening_performed": false
+    },
+    "missing_files": [
+      "bobo_fresh.mp4",
+      "episode.json",
+      "automatic-review.json",
+      "captions-timing.json",
+      "captions.srt",
+      "foley-provenance.json",
+      "observed-effects.json",
+      "final encoded video with audio"
+    ],
+    "result": "rejected_historical_duplicate_intermediate; not a current pending draft; duration outside tolerance; no final encoded audio/subtitle; duplicate premise and low-activity pose",
+    "repair_performed": false,
+    "repair_reason": "Re-mixing or trimming cannot make the historical scene7 painting premise distinct; no unused eligible scene reference remains.",
+    "cost": 0
+  },
+  "publication_path": {
+    "workflow": ".github/workflows/publish-reviewed-bobo.yml",
+    "inspected": true,
+    "exact_video_sha256_check": true,
+    "artifact_run_and_pending_episode_binding": true,
+    "eleven_second_duration_gate": true,
+    "spoken_subtitle_and_final_mix_asr_or_listening_gate": true,
+    "observed_action_caption_and_effect_mapping_gates": true,
+    "duplicate_ledger_and_upload_intent_protection": true,
+    "secrets_used_via_github_actions_environment": true,
+    "publication_triggered": false,
+    "reason": "No current pending draft and no due approved unpublished reserve file."
+  },
+  "platform_result": {
+    "new_facebook_upload": "none",
+    "new_instagram_reel": "none",
+    "new_stories": "none",
+    "acceptance_verified_this_run": false,
+    "latest_repository_ledger_acceptance": "2026-10-18"
+  },
+  "blocker": "All six eligible original scene references (0,1,2,3,4,7) are already used or reserved; scenes 5 and 6 are retired. A new original 3D scene reference and matching distinct plot are required before another free provider request. Provider quota was not tested because the provider was not called.",
+  "daily_target": "No new distinct videos were ready; the two-per-day target was not met by this run.",
+  "cost": 0
+}
