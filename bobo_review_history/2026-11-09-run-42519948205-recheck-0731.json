@@ -1,0 +1,190 @@
+{
+  "review_id": "daily-fresh-bobo-2026-11-09-run-42519948205-recheck-0731",
+  "completed_at": "2026-11-09T07:31:38+05:00",
+  "status": "no_pending_draft_latest_run_scene_guard_no_artifact_historical_intermediate_rejected",
+  "publication_allowed": false,
+  "pending_gate_present": false,
+  "latest_daily_workflow": {
+    "workflow": "Daily Fresh Bobo",
+    "run_id": 42519948205,
+    "run_number": 355,
+    "conclusion": "success",
+    "completed_at": "2026-11-09T01:24:47+05:00",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "stop_reason": "All eligible distinct original scene references are already used or reserved; generator exited before ZeroGPU request.",
+    "artifact_upload_warning": "No files were found with the provided path: fresh_output/. No artifacts were uploaded."
+  },
+  "repository_state": {
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "pending_review_json_present": false,
+    "pending_directory_present": false,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "eligible_unused_scene_references": 0,
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "previously_used_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7
+    ]
+  },
+  "latest_available_artifact": {
+    "source_run_id": 41880398664,
+    "source_run_number": 341,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_via": "GitHub Actions download_workflow_artifact",
+    "downloaded_at": "2026-11-09T07:31:38+05:00",
+    "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_file": "generated.mp4",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "files_missing": [
+      "episode.json",
+      "automatic-review.json",
+      "captions-timing.json",
+      "captions.srt",
+      "foley-provenance.json",
+      "observed-effects.json",
+      "bobo_fresh.mp4"
+    ]
+  },
+  "exact_file_review": {
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "format": "H.264 480x832 at 16fps; video-only intermediate",
+    "video_decode": "passed",
+    "encoded_audio_stream": false,
+    "full_render_sampling": {
+      "fps": 4,
+      "frames": 49,
+      "timestamps_seconds": "0.00 through 12.00 at 0.25-second intervals"
+    },
+    "transition_sampling": {
+      "fps": 8,
+      "frames": 18,
+      "windows_seconds": [
+        [
+          3.5,
+          4.5
+        ],
+        [
+          7.5,
+          8.5
+        ]
+      ],
+      "interval_seconds": 0.125
+    },
+    "observed_actions": {
+      "visible_brush_strokes_initial": [
+        0.5,
+        4
+      ],
+      "low_activity_camera_facing_pose": [
+        4.25,
+        7.5
+      ],
+      "visible_brush_strokes_resume": [
+        7.75,
+        10
+      ],
+      "ending_turn_and_gesture": [
+        10.5,
+        12.1875
+      ]
+    },
+    "visual_finding": "3D Bobo in red shirt paints at the same art-room/easel/palette reference and premise already published as episode 40522021 (scene_id 7). The same brush-stroke setup is reused; a prolonged low-activity camera-facing pose occupies approximately 4.25-7.5s. Not a distinct new story/visual reference.",
+    "dialogue": {
+      "text": "Time to paint!",
+      "provisional_window": [
+        0.35,
+        1.1761
+      ],
+      "piper_sidecar_present": true,
+      "final_encoded_voice_present": false,
+      "intelligibility_verified": false,
+      "spoken_subtitle_present": false
+    },
+    "captions": {
+      "srt_present": false,
+      "timing_json_present": false,
+      "caption_transitions_reviewed": 0,
+      "spoken_subtitle_present": false
+    },
+    "audio_sidecars": {
+      "pre_voice_mix": {
+        "duration_seconds": 11,
+        "mean_dbfs": -22.5,
+        "peak_dbfs": -6.8
+      },
+      "music": {
+        "duration_seconds": 11,
+        "mean_dbfs": -29.6,
+        "peak_dbfs": -14.5,
+        "style_metadata_present": false,
+        "subjective_audibility_verified": false
+      },
+      "effects": {
+        "duration_seconds": 11,
+        "mean_dbfs": -43.6,
+        "peak_dbfs": -17.1,
+        "delta_vs_music_mean_db": -14,
+        "observed_action_mapping_present": false,
+        "perceptual_naturalness_verified": false
+      },
+      "voice_track": {
+        "duration_seconds": 11,
+        "mean_dbfs": -45.6,
+        "peak_dbfs": -16.8
+      },
+      "voice_line": {
+        "duration_seconds": 0.8261,
+        "mean_dbfs": -34.4,
+        "peak_dbfs": -16.8
+      },
+      "final_mix_in_video": false,
+      "subjective_listening_performed": false
+    },
+    "result": "rejected_historical_duplicate_intermediate; duration outside 11-second tolerance; missing encoded audio and spoken subtitle; prolonged low-activity pose; not a current pending draft",
+    "repair_performed": false,
+    "repair_reason": "No repair of a historical duplicate premise. Re-rendering cannot make this reference/story distinct, and no encoded voice, caption track or final mix exists in the artifact. No paid generation used.",
+    "cost": 0
+  },
+  "publication_workflow": {
+    "run_id": 42507014175,
+    "run_number": 94,
+    "conclusion": "success",
+    "facebook_upload_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "result": "No publication occurred because no approved due file was selected."
+  },
+  "platform_status": {
+    "metricool_brand": "Bobo Giggle Grove",
+    "timezone": "Asia/Karachi",
+    "future_scheduled_posts_checked": "2026-11-09T00:00:00+05:00 through 2026-11-23T23:59:59+05:00",
+    "future_scheduled_posts": 0,
+    "latest_repository_ledger_acceptance": "2026-10-18",
+    "latest_recorded_facebook_story_acceptance": "2026-10-18",
+    "latest_recorded_instagram_story_acceptance": "2026-10-18",
+    "interpretation": "No current Bobo draft or future scheduled Metricool posts. No new platform upload was triggered in this run."
+  },
+  "blocker": "All six eligible original scene IDs (0,1,2,3,4,7) are already used or reserved; scene IDs 5 and 6 are retired. A new original 3D scene reference and matching distinct plot are required before another free provider request. Free provider quota availability is unknown because the provider was not called.",
+  "cost": 0
+}
