@@ -57,13 +57,63 @@
   },
   "recent_daily_runs_artifact_scan": [
     {
-      "run_id": 42582047296,
-      "run_number": 356,
+      "run_number": 342,
       "artifact_count": 0
     },
     {
-      "run_id": 42519948205,
+      "run_number": 343,
+      "artifact_count": 0
+    },
+    {
+      "run_number": 344,
+      "artifact_count": 0
+    },
+    {
+      "run_number": 345,
+      "artifact_count": 0
+    },
+    {
+      "run_number": 346,
+      "artifact_count": 0
+    },
+    {
+      "run_number": 347,
+      "artifact_count": 0
+    },
+    {
+      "run_number": 348,
+      "artifact_count": 0
+    },
+    {
+      "run_number": 349,
+      "artifact_count": 0
+    },
+    {
+      "run_number": 350,
+      "artifact_count": 0
+    },
+    {
+      "run_number": 351,
+      "artifact_count": 0
+    },
+    {
+      "run_number": 352,
+      "artifact_count": 0
+    },
+    {
+      "run_number": 353,
+      "artifact_count": 0
+    },
+    {
+      "run_number": 354,
+      "artifact_count": 0
+    },
+    {
       "run_number": 355,
+      "artifact_count": 0
+    },
+    {
+      "run_number": 356,
       "artifact_count": 0
     }
   ],
