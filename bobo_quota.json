@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-09T15:33:43+05:00",
+  "last_observed_at": "2026-11-09T21:43:34+05:00",
   "last_generation_run_id": 42582047296,
-  "last_provider_result": "Daily Fresh Bobo run #356 completed successfully but produced no artifact. The distinct-scene guard stopped before a ZeroGPU request because all eligible original scene references were already used or reserved. No provider quota response was obtained; quota availability remains untested.",
+  "last_provider_result": "Daily Fresh Bobo run #356 produced no artifact. The distinct-scene guard stopped before a ZeroGPU request because all eligible original scene references are already used or reserved. No provider quota response was obtained; quota availability remains untested.",
   "latest_check": {
-    "checked_at": "2026-11-09T15:33:43+05:00",
+    "checked_at": "2026-11-09T21:43:34+05:00",
     "latest_daily_fresh_run": {
       "run_id": 42582047296,
       "run_number": 356,
@@ -52,7 +52,7 @@
     "latest_retained_artifact_id": 13349870060,
     "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
     "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-    "result": "Latest retained artifact downloaded and sampled at 4fps full-render and 8fps transition/dialogue windows. Rejected historical duplicate; 12.1875s video-only intermediate, no encoded speech or subtitle, no final mix.",
+    "result": "Artifact re-downloaded and reviewed at 4fps full-render and 8fps transition/dialogue windows. Rejected historical scene7 duplicate; 12.1875s video-only intermediate, no encoded speech or spoken subtitle, no final mix.",
     "cost": 0
   },
   "recent_daily_runs_artifact_scan": [
@@ -118,7 +118,7 @@
     }
   ],
   "latest_manual_recheck": {
-    "checked_at": "2026-11-09T15:33:43+05:00",
+    "checked_at": "2026-11-09T21:43:34+05:00",
     "workflow_run_id": 42582047296,
     "workflow_run_number": 356,
     "artifact_count": 0,
@@ -129,10 +129,10 @@
     "latest_retained_artifact_id": 13349870060,
     "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
     "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-    "result": "Exact artifact re-downloaded and reviewed at 4fps full-render and 8fps transitions/dialogue windows. Rejected as historical scene7 duplicate; 12.1875s, no encoded audio, no spoken subtitle, low-activity pose; not publishable.",
+    "result": "Exact artifact re-downloaded and visually inspected at 4fps full render and 8fps transition/dialogue windows. Rejected as historical scene7 duplicate; 12.1875s, no encoded audio, no spoken subtitle, low-activity pose; not publishable.",
     "pending_gate_present": false,
     "publication_attempted": false,
     "cost": 0,
-    "review_history_path": "bobo_review_history/2026-11-09-run-42582047296-recheck-1533.json"
+    "review_history_path": "bobo_review_history/2026-11-09-run-42582047296-recheck-2143.json"
   }
 }
