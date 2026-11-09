@@ -1,0 +1,193 @@
+{
+  "review_id": "daily-fresh-bobo-run-42519948205-recheck-0647",
+  "completed_at": "2026-11-09T06:47:49+05:00",
+  "status": "no_current_draft_latest_run_no_artifact_retained_artifact_rejected",
+  "publication_allowed": false,
+  "pending_gate_present": false,
+  "latest_daily_workflow": {
+    "run_id": 42519948205,
+    "run_number": 355,
+    "workflow": "Daily Fresh Bobo",
+    "created_at": "2026-11-09T01:24:19+05:00",
+    "completed_at": "2026-11-09T01:24:47+05:00",
+    "conclusion": "success",
+    "provider_called": false,
+    "quota_error_observed": false,
+    "artifact_count": 0,
+    "stop_reason": "Scene eligibility guard stopped before any ZeroGPU request: every eligible original reference scene is already used or reserved; scenes 5 and 6 are retired.",
+    "artifact_upload_warning": "No files were found with the provided path: fresh_output/. No artifacts were uploaded."
+  },
+  "repository_state": {
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "pending_review_json_present": false,
+    "pending_directory_present": false,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "current_publish_intent": {
+      "episode": 40522037,
+      "status": "accepted",
+      "facebook_video_id": "2296956914491800"
+    }
+  },
+  "latest_available_artifact": {
+    "source_run_id": 41880398664,
+    "source_run_number": 341,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "artifact_created_at": "2026-11-04T17:48:50Z",
+    "downloaded_at": "2026-11-09T06:47:49+05:00",
+    "downloaded_via": "GitHub Actions download_workflow_artifact",
+    "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_file": "generated.mp4",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "is_current_pending_draft": false
+  },
+  "exact_file_review": {
+    "sampling": {
+      "full_render_fps": 4,
+      "full_render_frames": 49,
+      "cut_transition_review_fps": 8,
+      "cut_transition_frames": 20,
+      "caption_transition_frames": 0
+    },
+    "observed_actions": {
+      "brush_strokes_initial": [
+        0.5,
+        4
+      ],
+      "low_activity_camera_facing_pose": [
+        4.25,
+        7.5
+      ],
+      "brush_strokes_resume": [
+        7.75,
+        10
+      ],
+      "ending_turn_and_gesture": [
+        10.5,
+        12.1875
+      ],
+      "shot_join_windows_reviewed": [
+        [
+          3.625,
+          4.75
+        ],
+        [
+          7.725,
+          8.85
+        ]
+      ]
+    },
+    "visual_finding": "Recognizable 3D Bobo in red shirt painting at the same sunny art-room/easel/palette setup as already-published episode 40522021 (scene_id 7). A low-activity camera-facing pose occupies approximately 4.25-7.5s. The exact file is a historical duplicate premise, not a distinct new story.",
+    "technical": {
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "codec": "H.264",
+      "resolution": "480x832",
+      "fps": 16,
+      "video_decode": "passed",
+      "encoded_audio_stream": false
+    },
+    "captions": {
+      "captions_timing_json_present": false,
+      "captions_srt_present": false,
+      "spoken_subtitle_present": false,
+      "caption_transitions_present": 0
+    },
+    "dialogue": {
+      "provisional_text": "Time to paint!",
+      "provisional_window_seconds": [
+        0.35,
+        1.1761
+      ],
+      "piper_sidecar_present": true,
+      "voice_track_sidecar_present": true,
+      "final_encoded_voice_present": false,
+      "intelligibility_verified": false,
+      "listening_performed": false,
+      "result": "No claim of audible or intelligible speech: generated.mp4 contains video only."
+    },
+    "audio_sidecars": {
+      "original_music": {
+        "duration_seconds": 11,
+        "rms_dbfs": -29.64,
+        "peak_dbfs": -14.47,
+        "music_style_metadata_present": false,
+        "subjective_audibility_verified": false
+      },
+      "scene_effects": {
+        "duration_seconds": 11,
+        "rms_dbfs": -43.62,
+        "peak_dbfs": -17.08,
+        "delta_vs_music_rms_db": -13.98,
+        "observed_action_mapping_present": false,
+        "perceptual_naturalness_verified": false
+      },
+      "pre_voice_mix": {
+        "duration_seconds": 11,
+        "rms_dbfs": -22.46,
+        "peak_dbfs": -6.85
+      },
+      "voice_track": {
+        "duration_seconds": 11,
+        "rms_dbfs": -45.61,
+        "peak_dbfs": -16.81
+      },
+      "final_mix_in_video": false,
+      "subjective_listening_performed": false
+    },
+    "missing_files": [
+      "episode.json",
+      "automatic-review.json",
+      "captions-timing.json",
+      "captions.srt",
+      "foley-provenance.json",
+      "observed-effects.json"
+    ],
+    "result": "Rejected as a historical duplicate intermediate: 12.1875 seconds, no encoded audio, no spoken subtitle, no caption/effect action mapping. No repair or publication.",
+    "repair_performed": false,
+    "cost": 0
+  },
+  "publication_workflow": {
+    "run_id": 42507014175,
+    "run_number": 94,
+    "conclusion": "success",
+    "facebook_upload_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "publication_occurred": false
+  },
+  "platform_status": {
+    "metricool_brand": "Bobo Giggle Grove",
+    "scheduled_posts_checked_from": "2026-11-09T00:00:00+05:00",
+    "scheduled_posts_checked_through": "2026-11-16T23:59:59+05:00",
+    "future_scheduled_posts_count": 0,
+    "latest_recorded_bobo_reel_date": "2026-10-20",
+    "latest_recorded_bobo_reel_title": "Bobo's Magic Trick Went Terribly Wrong!",
+    "latest_facebook_reel_id": "1436338491806872",
+    "latest_instagram_reel_id": "17875962633650829",
+    "latest_verified_story_receipt_date": "2026-10-18",
+    "latest_verified_facebook_story_status": "accepted",
+    "latest_verified_instagram_story_status": "accepted",
+    "later_story_receipt_found": false
+  },
+  "decision": {
+    "pending_draft": "none",
+    "latest_daily_artifact": "none",
+    "retained_artifact": "historical duplicate intermediate; rejected",
+    "quota_status": "not_tested_provider_not_called",
+    "blocker": "No unused distinct original scene reference. New original scene reference and matching new plot are required before a zero-cost provider request can be attempted.",
+    "gate_action": "No pending gate existed; published approval left unchanged.",
+    "facebook_or_instagram_publication": "none",
+    "two_per_day_target": "not met in this run; no distinct new video was generated or published."
+  }
+}
