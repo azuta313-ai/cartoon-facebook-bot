@@ -1,0 +1,120 @@
+{
+  "checked_at": "2026-11-10T14:48:00+05:00",
+  "latest_daily_fresh_run": {
+    "id": 42781747562,
+    "run_number": 358,
+    "created_at": "2026-11-10T13:19:35+05:00",
+    "completed_at": "2026-11-10T13:20:01+05:00",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "provider_quota_tested": false,
+    "log_result": "fresh_bobo.py stopped at the distinct-scene guard before any Hugging Face request: all eligible original scene references are already used or reserved."
+  },
+  "pending_state": {
+    "bobo_review_pending_json_exists": false,
+    "bobo_pending_directory_exists": false,
+    "current_approval_status": "published",
+    "current_approval_episode": 40522037,
+    "no_gate_to_clear": true
+  },
+  "latest_retained_artifact": {
+    "workflow_run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "artifact_created_at": "2026-11-04T22:48:50+05:00",
+    "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "downloaded_again_this_check": true
+  },
+  "review": {
+    "full_render_sample_fps": 4,
+    "full_render_sample_count": 49,
+    "transition_sample_fps": 8,
+    "transition_sample_count": 20,
+    "transition_windows_seconds": [
+      [
+        3.6,
+        4.5
+      ],
+      [
+        7.7,
+        8.6
+      ]
+    ],
+    "observed_actions": {
+      "initial_brush_movement": [
+        0.5,
+        4.0625
+      ],
+      "low_activity_pose": [
+        5.5,
+        7.625
+      ],
+      "brush_movement_resumes": [
+        8,
+        10
+      ],
+      "brush_lift_and_reaction": [
+        10,
+        12.1875
+      ]
+    },
+    "visual": "The sampled frames show recognizable 3D Bobo in a red shirt painting at an easel with a palette in the same sunny art-room setup as published episode 40522021 (scene_id 7). The premise and reference scene are reused. A relatively stationary pose is visible from approximately 5.5 to 7.625 seconds. This is not a distinct new video.",
+    "captions": {
+      "captions_timing_json_present": false,
+      "captions_srt_present": false,
+      "exact_spoken_subtitle_present": false,
+      "caption_transitions_reviewed": 0
+    },
+    "voice": {
+      "engine": "Piper local CPU",
+      "exact_text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "source_voice_track_present": true,
+      "final_encoded_voice_present": false,
+      "final_mix_present": false,
+      "intelligibility_verified": false,
+      "independent_asr": false,
+      "subjective_listening": false,
+      "lip_sync_claim": false
+    },
+    "audio": {
+      "final_mix_present": false,
+      "video_has_audio_stream": false,
+      "sidecar_duration_seconds": 11,
+      "music_rms_dbfs": -29.64,
+      "effects_rms_dbfs": -43.62,
+      "effects_vs_music_db": -13.98,
+      "effects_source": "Procedurally synthesized brush-like noise; no verified foley provenance",
+      "music_style_metadata_present": false,
+      "perceptual_audibility_verified": false,
+      "natural_foley_verified": false,
+      "subjective_listening": false
+    },
+    "technical": {
+      "codec": "H.264",
+      "resolution": "480x832",
+      "fps": 16,
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "video_only": true,
+      "final_export": false
+    },
+    "decision": "deliberately_rejected_historical_duplicate_incomplete_intermediate",
+    "repair_attempted": false,
+    "rationale": "The old scene/plot is a duplicate. Repairing its duration, audio, voice or captions cannot make it a distinct new story; no new generation or publication was attempted.",
+    "cost": 0
+  },
+  "publication": {
+    "attempted": false,
+    "facebook": false,
+    "instagram": false,
+    "story": false,
+    "reason": "No pending approval or qualified exact-file review exists."
+  }
+}
