@@ -2,20 +2,20 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-10T07:22:15+05:00",
-  "last_generation_run_id": 42686127830,
-  "last_provider_result": "Daily Fresh Bobo run #357 completed successfully but produced no artifact: the distinct-scene guard stopped before a Hugging Face ZeroGPU request because all eligible original scene references are already used or reserved. No provider quota response was obtained; free quota remains untested.",
+  "last_observed_at": "2026-11-10T14:48:00+05:00",
+  "last_generation_run_id": 42781747562,
+  "last_provider_result": "No new draft exists. The latest Daily Fresh Bobo run has no artifact and did not call the provider. The last retained artifact remains a previously rejected reused-scene intermediate; it was re-downloaded and re-inspected, and remains ineligible. Free provider quota remains untested because the scene guard stopped before a request; this is not a quota-blocked result.",
   "latest_check": {
-    "checked_at": "2026-11-10T07:22:15+05:00",
+    "checked_at": "2026-11-10T14:48:00+05:00",
     "latest_daily_fresh_run": {
-      "run_id": 42686127830,
-      "run_number": 357,
-      "completed_at": "2026-11-10T00:44:15+05:00",
+      "run_id": 42781747562,
+      "run_number": 358,
+      "completed_at": "2026-11-10T13:20:01+05:00",
       "conclusion": "success",
       "artifact_count": 0,
       "provider_called": false,
       "quota_error_observed": false,
-      "reason": "fresh_bobo.py stopped at the distinct-scene guard: all eligible original scene references are already in the recent/reserve set. No provider request was made."
+      "reason": "fresh_bobo.py stopped at the distinct-scene guard before any Hugging Face request: all eligible original scene references are already used or reserved."
     },
     "pending_gate": {
       "bobo_review_pending_json_exists": false,
@@ -46,7 +46,7 @@
     "latest_retained_artifact_id": 13349870060,
     "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
     "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-    "result": "Held/rejected as a publishable distinct video: historical/reused painting-scene reference (scene_id 7), duration outside 10.95-11.05 seconds, no audio stream in MP4, no exact spoken subtitle file, provisional dialogue only, missing episode/caption metadata, and a prolonged low-activity pose. No repair/publication attempted because repairing these old visuals would still not make a distinct new video.",
+    "result": "No new draft exists. The latest Daily Fresh Bobo run has no artifact and did not call the provider. The last retained artifact remains a previously rejected reused-scene intermediate; it was re-downloaded and re-inspected, and remains ineligible.",
     "cost": 0
   },
   "recent_daily_runs_artifact_scan": [
@@ -113,24 +113,125 @@
     {
       "run_number": 357,
       "artifact_count": 0
+    },
+    {
+      "run_number": 358,
+      "artifact_count": 0,
+      "provider_called": false,
+      "reason": "fresh_bobo.py stopped at the distinct-scene guard before any Hugging Face request: all eligible original scene references are already used or reserved."
     }
   ],
   "latest_manual_recheck": {
-    "checked_at": "2026-11-10T07:22:15+05:00",
-    "workflow_run_id": 42686127830,
-    "workflow_run_number": 357,
+    "checked_at": "2026-11-10T14:48:00+05:00",
+    "workflow_run_id": 42781747562,
+    "workflow_run_number": 358,
+    "workflow_created_at": "2026-11-10T13:19:35+05:00",
+    "workflow_completed_at": "2026-11-10T13:20:01+05:00",
+    "conclusion": "success",
     "artifact_count": 0,
     "provider_called": false,
     "quota_error_observed": false,
-    "blocker": "No unused distinct eligible original scene reference; generator stopped before provider request. Free provider quota remains untested.",
+    "blocker": "fresh_bobo.py stopped at the distinct-scene guard before any Hugging Face request: all eligible original scene references are already used or reserved.",
+    "pending_gate_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "unused_eligible_scene_references": 0,
+    "eligible_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
     "latest_retained_artifact_run_id": 41880398664,
     "latest_retained_artifact_id": 13349870060,
     "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
     "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-    "result": "Latest Daily Fresh Bobo run #357 had no artifact. Re-downloaded the latest retained artifact and re-reviewed all 49 frames at 4fps plus 24 dialogue/transition-window frames at 8fps. It remains non-publishable: reused scene7 painting, 12.1875 seconds, video-only MP4, provisional spoken line without an exact subtitle file, and low-activity pose. No final encoded mix; no intelligibility/listening/effect-naturalness claims. No publication attempted.",
-    "pending_gate_present": false,
-    "publication_attempted": false,
-    "cost": 0,
-    "review_history_path": "bobo_review_history/2026-11-10-run-41880398664-artifact-recheck-0722.json"
+    "artifact_downloaded_this_check": true,
+    "artifact_review": {
+      "full_render_sample_fps": 4,
+      "full_render_frames": 49,
+      "transition_sample_fps": 8,
+      "transition_frames": 20,
+      "transition_windows_seconds": [
+        [
+          3.6,
+          4.5
+        ],
+        [
+          7.7,
+          8.6
+        ]
+      ],
+      "observed_actions": {
+        "brush_movement_initial": [
+          0.5,
+          4.0625
+        ],
+        "relatively_stationary_pose": [
+          5.5,
+          7.625
+        ],
+        "brush_movement_resumes": [
+          8,
+          10
+        ],
+        "brush_lift_and_reaction": [
+          10,
+          12.1875
+        ]
+      },
+      "historical_duplicate": {
+        "prior_episode": 40522021,
+        "prior_title": "Art room paint surprise",
+        "scene_id": 7,
+        "same_setting": "sunny art room, easel, paint palette and painting premise"
+      },
+      "technical": {
+        "codec": "H.264",
+        "resolution": "480x832",
+        "fps": 16,
+        "duration_seconds": 12.1875,
+        "audio_stream": false,
+        "final_encoded_video": false,
+        "required_duration_seconds": [
+          10.95,
+          11.05
+        ]
+      },
+      "voice": {
+        "exact_provisional_text": "Time to paint!",
+        "provisional_start": 0.35,
+        "provisional_end": 1.1761,
+        "source_voice_track_present": true,
+        "encoded_in_video": false,
+        "exact_spoken_subtitle_present": false,
+        "captions_timing_json_present": false,
+        "episode_json_present": false,
+        "final_mix_intelligibility_verified": false,
+        "subjective_listening_performed": false,
+        "asr_performed": false
+      },
+      "audio_sidecars": {
+        "duration_seconds": 11,
+        "music_rms_dbfs": -29.64,
+        "effects_rms_dbfs": -43.62,
+        "effects_below_music_db": 13.98,
+        "effects_source": "procedurally synthesized brush-like noise; provenance unverified",
+        "music_style_metadata_present": false,
+        "final_mix_present": false,
+        "naturalness_or_perceptual_audibility_claimed": false
+      },
+      "decision": "deliberately_rejected_historical_duplicate_incomplete_intermediate",
+      "repair_attempted": false,
+      "publication_authorized": false,
+      "cost": 0
+    },
+    "result": "No new draft exists. The latest Daily Fresh Bobo run has no artifact and did not call the provider. The last retained artifact remains a previously rejected reused-scene intermediate; it was re-downloaded and re-inspected, and remains ineligible."
   }
 }
