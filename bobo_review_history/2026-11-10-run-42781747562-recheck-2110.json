@@ -1,0 +1,96 @@
+{
+  "review_id": "2026-11-10-run-42781747562-recheck-2110",
+  "completed_at": "2026-11-10T21:10:08+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "latest_daily_fresh_run": {
+    "run_number": 358,
+    "run_id": 42781747562,
+    "job_id": 129713180624,
+    "created_at": "2026-11-10T13:19:35+05:00",
+    "completed_at": "2026-11-10T13:20:01+05:00",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "log_finding": "fresh_bobo.py exited at the distinct-scene guard: all eligible original scene references are in the recent/reserve set. No Hugging Face request was made."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_exists": false,
+    "bobo_pending_directory_exists": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "approval_title": "Bobo's Upside-Down Umbrella"
+  },
+  "latest_publish_workflow": {
+    "run_number": 96,
+    "run_id": 42815557960,
+    "job_id": 129827632190,
+    "created_at": "2026-11-10T17:25:00+05:00",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "log_finding": "Scheduled Publish Reviewed Bobo ran bobo_pipeline.py only; no ready approval, artifact download, Facebook upload, or repository mutation occurred."
+  },
+  "recent_daily_runs": {
+    "run_numbers": [
+      342,
+      343,
+      344,
+      345,
+      346,
+      347,
+      348,
+      349,
+      350,
+      351,
+      352,
+      353,
+      354,
+      355,
+      356,
+      357,
+      358
+    ],
+    "artifact_count_each": 0
+  },
+  "latest_retained_artifact": {
+    "run_number": 341,
+    "run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "artifact_created_at": "2026-11-04T17:48:50Z",
+    "status": "previously reviewed and rejected as a retained intermediate; not a pending draft and not downloaded again during this check",
+    "prior_review_id": "2026-11-10-run-42781747562-artifact-recheck-1555"
+  },
+  "latest_platform_ledger": {
+    "latest_episode": 40522037,
+    "title": "Bobo's Upside-Down Umbrella",
+    "facebook_video_id": "2296956914491800",
+    "facebook_published_at": "2026-10-18T17:28:38.324797+05:00",
+    "instagram_reel_status": "accepted",
+    "instagram_story_status": "accepted",
+    "facebook_story_status": "accepted",
+    "no_newer_ledger_publication": true
+  },
+  "scene_blocker": {
+    "eligible_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "unused_eligible_scene_references": 0,
+    "reason": "All eligible original scene references are already used or reserved."
+  },
+  "result": "No pending Bobo draft and no artifact in the latest Daily Fresh Bobo run. Generation was blocked before provider contact by the distinct-scene guard, not by a confirmed free-quota error.",
+  "decision": "NO_DRAFT_NO_PUBLICATION",
+  "repair_attempted": false,
+  "publication_attempted": false,
+  "pending_gate_cleared": false,
+  "provider_quota_status": "untested",
+  "cost": 0
+}
