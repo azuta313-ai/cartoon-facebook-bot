@@ -1,0 +1,95 @@
+{
+  "checked_at": "2026-11-10T07:22:15+05:00",
+  "latest_daily_fresh_run": {
+    "run_id": 42686127830,
+    "run_number": 357,
+    "completed_at": "2026-11-10T00:44:15+05:00",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "reason": "fresh_bobo.py stopped at the distinct-scene guard: all eligible original scene references are already in the recent/reserve set. No provider request was made."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_exists": false,
+    "bobo_pending_directory_exists": false,
+    "approval_status": "published",
+    "approval_episode": 40522037
+  },
+  "retained_artifact": {
+    "workflow_run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_file": "generated.mp4",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "downloaded_and_rechecked": true,
+    "full_render_frames_4fps": 49,
+    "transition_and_dialogue_frames_8fps": 24,
+    "duration_seconds": 12.1875,
+    "video": {
+      "codec": "h264",
+      "width": 480,
+      "height": 832,
+      "fps": 16,
+      "audio_stream": false
+    },
+    "files_missing": [
+      "episode.json",
+      "captions-timing.json"
+    ],
+    "provisional_dialogue": {
+      "text": "Time to paint!",
+      "start": 0.35,
+      "end": 1.1761,
+      "subtitle_file_present": false
+    },
+    "observed_actions": {
+      "0.0-1.5": "Bobo faces the camera with brush raised, then turns toward the canvas; brief mouth movement is visible but no verified speech is encoded.",
+      "1.5-4.0": "Bobo moves the brush at the painting.",
+      "4.0-7.5": "Bobo turns toward the viewer and holds a mostly static pose; low-activity window approximately 4.25-7.5.",
+      "7.5-9.5": "Bobo returns to the canvas and moves the brush.",
+      "9.5-12.1875": "Bobo raises the brush and reacts toward the viewer."
+    },
+    "audio_components": {
+      "audio_wav": {
+        "duration_seconds": 11,
+        "mean_dbfs": -22.5,
+        "peak_dbfs": -6.8,
+        "encoded_in_video": false
+      },
+      "voice_track_wav": {
+        "duration_seconds": 11,
+        "mean_dbfs": -45.6,
+        "peak_dbfs": -16.8
+      },
+      "voice_line_wav": {
+        "duration_seconds": 0.826
+      },
+      "original_music_wav": {
+        "duration_seconds": 11,
+        "mean_dbfs": -29.6,
+        "peak_dbfs": -14.5
+      },
+      "scene_effects_wav": {
+        "duration_seconds": 11,
+        "mean_dbfs": -43.6,
+        "peak_dbfs": -17.1,
+        "active_window_observed": "approximately 1.2-7.5 seconds"
+      }
+    },
+    "audio_review": {
+      "final_encoded_mix_available": false,
+      "subjective_listening_performed": false,
+      "speech_intelligibility_verified": false,
+      "music_audibility_verified": false,
+      "effect_naturalness_verified": false,
+      "effect_source_and_action_mapping_present": false,
+      "note": "Waveform measurements only. Separate WAV components do not establish the audible final video mix. No perceptual claims made."
+    },
+    "result": "Held/rejected as a publishable distinct video: historical/reused painting-scene reference (scene_id 7), duration outside 10.95-11.05 seconds, no audio stream in MP4, no exact spoken subtitle file, provisional dialogue only, missing episode/caption metadata, and a prolonged low-activity pose. No repair/publication attempted because repairing these old visuals would still not make a distinct new video."
+  },
+  "result": "No pending draft and no artifact in latest Daily Fresh Bobo run #357. Latest retained artifact was downloaded and re-reviewed; it remains held/rejected. Provider quota remains untested because the scene guard stopped generation before the provider call.",
+  "cost": 0,
+  "publication_attempted": false,
+  "review_history_path": "bobo_review_history/2026-11-10-run-41880398664-artifact-recheck-0722.json"
+}
