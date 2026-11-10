@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-09T23:15:27+05:00",
+  "last_observed_at": "2026-11-10T06:21:26+05:00",
   "last_generation_run_id": 42582047296,
   "last_provider_result": "Daily Fresh Bobo run #356 produced no artifact. The distinct-scene guard stopped before a ZeroGPU request because all eligible original scene references are already used or reserved. No provider quota response was obtained; quota availability remains untested.",
   "latest_check": {
-    "checked_at": "2026-11-09T23:15:27+05:00",
+    "checked_at": "2026-11-10T06:21:26+05:00",
     "latest_daily_fresh_run": {
       "run_id": 42582047296,
       "run_number": 356,
@@ -55,7 +55,7 @@
     "result": "Artifact re-downloaded and reviewed at 4fps full-render and 8fps transition/dialogue windows. Rejected historical scene7 duplicate; 12.1875s video-only intermediate, no encoded speech or spoken subtitle, no final mix.",
     "cost": 0,
     "retained_artifact_recheck": {
-      "checked_at": "2026-11-09T23:15:27+05:00",
+      "checked_at": "2026-11-10T06:21:26+05:00",
       "workflow_run_id": 41880398664,
       "artifact_id": 13349870060,
       "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
@@ -65,7 +65,8 @@
       "duration_seconds": 12.1875,
       "encoded_audio": false,
       "spoken_subtitle": false,
-      "result": "Rejected historical scene7 duplicate; unfinished video-only intermediate. Exact review stored in bobo_review_history/2026-11-09-run-41880398664-artifact-recheck-2315.json."
+      "result": "Re-downloaded exact retained artifact and rechecked all 49 frames at 4fps plus 34 frames at 8fps in dialogue/transition windows. Rejected historical scene7 painting duplicate; 4.25–7.5s low-activity pose; 12.1875s; video-only MP4; no spoken subtitle. No repair or publication.",
+      "review_history_path": "bobo_review_history/2026-11-10-run-41880398664-artifact-recheck-0621.json"
     }
   },
   "recent_daily_runs_artifact_scan": [
@@ -131,21 +132,22 @@
     }
   ],
   "latest_manual_recheck": {
-    "checked_at": "2026-11-09T23:15:27+05:00",
+    "checked_at": "2026-11-10T06:21:26+05:00",
     "workflow_run_id": 42582047296,
     "workflow_run_number": 356,
     "artifact_count": 0,
     "provider_called": false,
     "quota_error_observed": false,
-    "blocker": "No unused distinct eligible original scene reference; generator stopped before provider request.",
+    "blocker": "No unused distinct eligible original scene reference; generator stopped before provider request. Free provider quota remains untested.",
     "latest_retained_artifact_run_id": 41880398664,
     "latest_retained_artifact_id": 13349870060,
     "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
     "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-    "result": "Downloaded the exact retained artifact. Reviewed 49 frames at 4fps across the 12.1875-second render and 34 frames at 8fps around dialogue/transition windows. Confirmed historical scene7 painting duplicate, 4.25–7.5s low-activity pose, no MP4 audio stream, no spoken subtitle, and duration outside 11-second tolerance. No repair or publication.",
+    "result": "Exact retained artifact downloaded and visually reviewed at 4fps full render and 8fps dialogue/transition windows. Historical scene7 painting duplicate; duration and audio/subtitle gates fail. No current pending draft, no publication attempted.",
     "pending_gate_present": false,
     "publication_attempted": false,
     "cost": 0,
-    "review_history_path": "bobo_review_history/2026-11-09-run-41880398664-artifact-recheck-2315.json"
+    "review_history_path": "bobo_review_history/2026-11-10-run-41880398664-artifact-recheck-0621.json",
+    "limitation": "Latest run is the latest repository-recorded run; connected GitHub tools did not provide repository-wide run enumeration."
   }
 }
