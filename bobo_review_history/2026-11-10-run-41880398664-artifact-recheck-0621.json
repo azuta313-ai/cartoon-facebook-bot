@@ -1,0 +1,184 @@
+{
+  "review_id": "daily-fresh-bobo-2026-11-10-run-41880398664-artifact-recheck-0621",
+  "completed_at": "2026-11-10T06:21:26+05:00",
+  "status": "rejected_historical_duplicate_intermediate",
+  "publication_allowed": false,
+  "pending_gate_present": false,
+  "artifact": {
+    "source_run_id": 41880398664,
+    "source_run_number": 341,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_via": "GitHub Actions download_workflow_artifact",
+    "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_file": "generated.mp4",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "current_pending_draft": false
+  },
+  "latest_repository_recorded_daily_run": {
+    "workflow": "Daily Fresh Bobo",
+    "run_id": 42582047296,
+    "run_number": 356,
+    "completed_at": "2026-11-09T07:52:59Z",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "stop_reason": "Distinct-scene guard stopped before a provider request because all eligible original scene references were already used or reserved."
+  },
+  "repository_state": {
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "pending_review_json_present": false,
+    "pending_directory_present": false,
+    "unused_eligible_scene_references": 0,
+    "eligible_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "latest_publish_run_id": 42619329445,
+    "latest_publish_run_number": 95,
+    "latest_publish_run_conclusion": "success",
+    "latest_publish_steps": "Facebook, Instagram Reel, Instagram Story and Facebook Story all skipped because no due approved unpublished reserve file or pending draft existed."
+  },
+  "visual_review": {
+    "full_render_sample_fps": 4,
+    "full_render_frames": 49,
+    "full_render_timestamps": "0.00–12.00 seconds at 0.25-second intervals",
+    "transition_and_dialogue_sample_fps": 8,
+    "sampled_windows": [
+      {
+        "start": 0.25,
+        "end": 1.5,
+        "frames": 10,
+        "purpose": "provisional dialogue and initial brush action"
+      },
+      {
+        "start": 3.5,
+        "end": 4.5,
+        "frames": 8,
+        "purpose": "first shot join and brush contact"
+      },
+      {
+        "start": 7.5,
+        "end": 8.5,
+        "frames": 8,
+        "purpose": "second shot join and resumed brush action"
+      },
+      {
+        "start": 9.5,
+        "end": 10.5,
+        "frames": 8,
+        "purpose": "late mouth/gesture window"
+      }
+    ],
+    "observed_actions": {
+      "brush_and_palette_pose": [
+        0,
+        0.25
+      ],
+      "initial_brush_strokes": [
+        0.5,
+        4.125
+      ],
+      "low_activity_camera_facing_pose": [
+        4.25,
+        7.5
+      ],
+      "resumed_brush_strokes": [
+        7.75,
+        10.125
+      ],
+      "ending_face_and_hand_gestures": [
+        10.25,
+        12.1875
+      ]
+    },
+    "finding": "Recognizable 3D Bobo in red shirt painting at the same art-room/easel/palette setup and painting premise previously published as episode 40522021 (scene_id 7). Historical visual premise is reused; this is not a distinct new video. A low-activity camera-facing pose lasts approximately 4.25–7.5 seconds."
+  },
+  "captions": {
+    "captions_srt_present": false,
+    "captions_timing_json_present": false,
+    "spoken_subtitle_present": false,
+    "provisional_dialogue": {
+      "text": "Time to paint!",
+      "start": 0.35,
+      "end": 1.1761
+    },
+    "observed_mouth_action_approx": [
+      0.25,
+      0.5
+    ],
+    "finding": "Provisional dialogue interval extends beyond the brief sampled mouth-open window. No exact spoken subtitle exists in the artifact."
+  },
+  "audio": {
+    "final_mp4_audio_stream": false,
+    "subjective_listening_performed": false,
+    "independent_asr_of_final_mix": false,
+    "sidecar_levels_dbfs": {
+      "pre_voice_mix": {
+        "rms": -22.46,
+        "peak": -6.85
+      },
+      "music": {
+        "rms": -29.64,
+        "peak": -14.47,
+        "music_style_metadata_present": false,
+        "subjective_audibility_verified": false
+      },
+      "effects": {
+        "rms": -43.62,
+        "peak": -17.08,
+        "effects_vs_music_rms_db": -13.98,
+        "observed_action_mapping_present": false,
+        "foley_provenance_present": false,
+        "perceptual_naturalness_verified": false
+      },
+      "voice_track": {
+        "rms": -45.61,
+        "peak": -16.81
+      },
+      "voice_line": {
+        "duration": 0.8261,
+        "rms": -34.37,
+        "peak": -16.81
+      }
+    },
+    "finding": "The MP4 contains no audio stream. WAV sidecars do not establish audible speech, music or effects in the final video. Effect sidecar is about 14 dB below music by RMS and has no observed-action/provenance mapping. No claim of listening, intelligibility or natural-sounding effects."
+  },
+  "technical": {
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "codec": "H.264",
+    "resolution": "480x832",
+    "fps": 16,
+    "video_decode": "passed",
+    "final_mix_present": false
+  },
+  "disposition": {
+    "result": "Reject: historical scene7 painting duplicate and unfinished intermediate.",
+    "repair_performed": false,
+    "repair_reason": "Audio/subtitle finishing or trimming cannot make the reused painting premise a distinct new video. The file is also 12.1875 seconds and has no encoded audio or spoken subtitle. No new provider request or paid generation was made.",
+    "cost": 0
+  },
+  "publication": {
+    "attempted": false,
+    "facebook": false,
+    "instagram_reel": false,
+    "instagram_story": false,
+    "facebook_story": false,
+    "pending_gate_changed": false
+  },
+  "limitation": "The connected GitHub actions tools exposed the latest repository-recorded Daily Fresh Bobo run (#356) and its artifact list, but did not expose a repository-wide latest-runs listing. This record therefore does not claim independent enumeration of any unrecorded run after #356."
+}
