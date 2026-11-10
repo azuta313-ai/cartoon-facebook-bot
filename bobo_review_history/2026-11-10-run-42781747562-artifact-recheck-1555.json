@@ -1,0 +1,179 @@
+{
+  "review_id": "2026-11-10-run-42781747562-artifact-recheck-1555",
+  "completed_at": "2026-11-10T15:55:35+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "latest_daily_fresh_run": {
+    "run_number": 358,
+    "run_id": 42781747562,
+    "job_id": 129713180624,
+    "created_at": "2026-11-10T13:19:35+05:00",
+    "completed_at": "2026-11-10T13:20:01+05:00",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "log_finding": "fresh_bobo.py exited at the distinct-scene guard before any Hugging Face request; all eligible original scene references were already used or reserved."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_exists": false,
+    "bobo_pending_directory_exists": false,
+    "approval_status": "published",
+    "approval_episode": 40522037
+  },
+  "latest_retained_artifact": {
+    "run_number": 341,
+    "run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "artifact_created_at": "2026-11-04T17:48:50Z",
+    "github_artifact_digest": "sha256:4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "downloaded_this_check": true,
+    "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_path": "generated.mp4",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a"
+  },
+  "visual_review": {
+    "full_render_sample_fps": 4,
+    "full_render_frames": 49,
+    "transition_sample_fps": 8,
+    "transition_frames": 59,
+    "transition_windows_seconds": [
+      [
+        0,
+        1.5
+      ],
+      [
+        3.5,
+        4.75
+      ],
+      [
+        4.5,
+        5.5
+      ],
+      [
+        7.5,
+        8.75
+      ],
+      [
+        10,
+        12.1875
+      ]
+    ],
+    "observed_actions": {
+      "initial_brush_motion": [
+        0.5,
+        4.125
+      ],
+      "turn_from_canvas_to_front": [
+        4.25,
+        5
+      ],
+      "relatively_stationary_pose": [
+        5.5,
+        7.625
+      ],
+      "brush_motion_resumes": [
+        7.75,
+        10.25
+      ],
+      "final_arm_and_face_gesture": [
+        10.5,
+        12.1875
+      ]
+    },
+    "pacing_note": "Purposeful brush movement begins around 0.5 seconds, but movement is limited during 1.75–4.125 seconds and a relatively stationary pose lasts about 5.5–7.625 seconds. The 12.1875-second file is not shortened or blindly sped up.",
+    "provenance": "Same scene_id 7 art-room/easel/paint-palette/painting premise as previously published episode 40522021, 'Art room paint surprise'; treated as a near-duplicate, not a distinct new story."
+  },
+  "captions_and_voice": {
+    "dialogue_timing_json_present": true,
+    "provisional_line": "Time to paint!",
+    "provisional_start": 0.35,
+    "provisional_end": 1.1761,
+    "captions_timing_json_present": false,
+    "episode_json_present": false,
+    "burned_in_subtitle_observed": false,
+    "voice_line_wav_present": true,
+    "voice_track_wav_present": true,
+    "voice_track_encoded_in_mp4": false,
+    "final_mix_intelligibility_verified": false,
+    "independent_asr_performed": false,
+    "subjective_listening_performed": false,
+    "note": "The line is provisional metadata only. No exact spoken subtitle or measured caption file is present, and the MP4 has no audio stream."
+  },
+  "audio_review": {
+    "mp4_audio_stream": false,
+    "audio_wav": {
+      "duration_seconds": 11,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "rms_dbfs": -22.46,
+      "peak_dbfs": -6.85
+    },
+    "original_music": {
+      "duration_seconds": 11,
+      "rms_dbfs": -29.64,
+      "peak_dbfs": -14.47,
+      "music_style_metadata_present": false
+    },
+    "scene_effects": {
+      "duration_seconds": 11,
+      "rms_dbfs": -43.62,
+      "peak_dbfs": -17.08,
+      "below_music_db": 13.98,
+      "active_intervals_seconds": [
+        [
+          2.26,
+          2.64
+        ],
+        [
+          4.3,
+          4.54
+        ]
+      ],
+      "source_provenance": "procedurally synthesized brush-like noise; provenance unverified",
+      "observed_action_mapping_present": false
+    },
+    "voice_line": {
+      "duration_seconds": 0.8261,
+      "rms_dbfs": -34.37,
+      "peak_dbfs": -16.81
+    },
+    "voice_track": {
+      "duration_seconds": 11,
+      "rms_dbfs": -45.61,
+      "encoded_in_video": false
+    },
+    "perceptual_listening_or_naturalness_verified": false,
+    "note": "Separate WAV sidecars do not constitute a final encoded mix. No claim of subjective audibility, intelligibility, or natural Foley quality."
+  },
+  "technical_review": {
+    "video_codec": "H.264",
+    "resolution": "480x832",
+    "fps": 16,
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "audio_stream": false,
+    "playable_video": true,
+    "passes_publication_technical_gate": false
+  },
+  "decision": "HOLD_REJECT_RETAINED_INTERMEDIATE_NOT_PENDING",
+  "reasons": [
+    "Reuses scene_id 7 and the previously published art-room painting premise.",
+    "Duration 12.1875 seconds is outside the required 10.95–11.05 seconds.",
+    "MP4 has no encoded audio; voice and music are separate sidecars only.",
+    "No captions-timing.json, episode.json, or visible spoken subtitle.",
+    "No verified final mix, speech intelligibility, music audibility, or effect naturalness.",
+    "Effects are approximately 13.98 dB below the music sidecar and lack observed-action mapping."
+  ],
+  "repair_action": "No repair attempted: this is a retained historical intermediate, not a pending draft; local trimming/audio/caption repair cannot make reused scene footage a distinct original episode.",
+  "publication": {
+    "attempted": false,
+    "facebook_accepted": false,
+    "instagram_attempted": false,
+    "pending_gate_cleared": false
+  },
+  "cost": 0
+}
