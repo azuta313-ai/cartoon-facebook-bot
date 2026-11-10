@@ -2,22 +2,22 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-10T21:10:08+05:00",
-  "last_generation_run_id": 42781747562,
-  "last_provider_result": "No pending Bobo draft and no artifact in the latest Daily Fresh Bobo run. Generation was blocked before provider contact by the distinct-scene guard, not by a confirmed free-quota error.",
+  "last_observed_at": "2026-11-10T22:34:59+05:00",
+  "last_generation_run_id": 42860121685,
+  "last_provider_result": "Run #359 completed successfully but generated no draft or artifact. fresh_bobo.py stopped before provider contact because all distinct original scene references are in the recent/reserve set. Free provider quota remains untested; no quota error was observed.",
   "latest_check": {
-    "checked_at": "2026-11-10T21:10:08+05:00",
+    "checked_at": "2026-11-10T22:34:59+05:00",
     "latest_daily_fresh_run": {
-      "run_number": 358,
-      "run_id": 42781747562,
-      "job_id": 129713180624,
-      "created_at": "2026-11-10T13:19:35+05:00",
-      "completed_at": "2026-11-10T13:20:01+05:00",
+      "run_number": 359,
+      "run_id": 42860121685,
+      "job_id": 129983679588,
+      "created_at": "2026-11-10T21:58:48+05:00",
+      "completed_at": "2026-11-10T21:59:09+05:00",
       "conclusion": "success",
       "artifact_count": 0,
       "provider_called": false,
       "quota_error_observed": false,
-      "log_finding": "fresh_bobo.py exited at the distinct-scene guard: all eligible original scene references are in the recent/reserve set. No Hugging Face request was made."
+      "reason": "fresh_bobo.py stopped at the distinct-scene guard before any Hugging Face request; all distinct original scene references are in the recent/reserve set."
     },
     "latest_publish_workflow": {
       "run_number": 96,
@@ -26,7 +26,7 @@
       "created_at": "2026-11-10T17:25:00+05:00",
       "conclusion": "success",
       "artifact_count": 0,
-      "log_finding": "Scheduled Publish Reviewed Bobo ran bobo_pipeline.py only; no ready approval, artifact download, Facebook upload, or repository mutation occurred."
+      "log_finding": "bobo_pipeline.py completed without a ready approval or artifact download; no Facebook, Instagram Reel, or Story upload occurred."
     },
     "pending_gate": {
       "bobo_review_pending_json_exists": false,
@@ -35,10 +35,37 @@
       "approval_episode": 40522037,
       "approval_title": "Bobo's Upside-Down Umbrella"
     },
-    "unused_eligible_scene_references": 0,
-    "latest_retained_artifact_run_id": 41880398664,
-    "latest_retained_artifact_id": 13349870060,
-    "result": "No pending Bobo draft and no artifact in the latest Daily Fresh Bobo run. Generation was blocked before provider contact by the distinct-scene guard, not by a confirmed free-quota error.",
+    "latest_retained_artifact": {
+      "run_number": 341,
+      "run_id": 41880398664,
+      "artifact_id": 13349870060,
+      "artifact_created_at": "2026-11-04T22:48:50+05:00",
+      "downloaded_this_check": true,
+      "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+      "decision": "retained historical intermediate; rejected; not a pending draft"
+    },
+    "scene_blocker": {
+      "eligible_scene_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        7
+      ],
+      "retired_scene_ids": [
+        5,
+        6
+      ],
+      "unused_eligible_scene_references": 0,
+      "reason": "All distinct original scene references are recent or reserved."
+    },
+    "result": "No pending Bobo draft and no artifact in latest Daily Fresh Bobo run #359. Generation stopped before provider contact due the distinct-scene guard; provider quota is untested.",
+    "decision": "NO_DRAFT_NO_PUBLICATION",
+    "repair_attempted": false,
+    "publication_attempted": false,
+    "pending_gate_cleared": false,
     "cost": 0
   },
   "recent_daily_runs_artifact_scan": [
@@ -111,23 +138,29 @@
       "artifact_count": 0,
       "provider_called": false,
       "reason": "fresh_bobo.py stopped at the distinct-scene guard before any Hugging Face request: all eligible original scene references are already used or reserved."
+    },
+    {
+      "run_number": 359,
+      "artifact_count": 0,
+      "provider_called": false,
+      "reason": "fresh_bobo.py stopped at the distinct-scene guard before any Hugging Face request; all distinct original scene references are in the recent/reserve set."
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-10-run-42781747562-recheck-2110",
-    "completed_at": "2026-11-10T21:10:08+05:00",
+    "review_id": "2026-11-10-run-42860121685-artifact-recheck-2234",
+    "completed_at": "2026-11-10T22:34:59+05:00",
     "repository": "azuta313-ai/cartoon-facebook-bot",
     "latest_daily_fresh_run": {
-      "run_number": 358,
-      "run_id": 42781747562,
-      "job_id": 129713180624,
-      "created_at": "2026-11-10T13:19:35+05:00",
-      "completed_at": "2026-11-10T13:20:01+05:00",
+      "run_number": 359,
+      "run_id": 42860121685,
+      "job_id": 129983679588,
+      "created_at": "2026-11-10T21:58:48+05:00",
+      "completed_at": "2026-11-10T21:59:09+05:00",
       "conclusion": "success",
       "artifact_count": 0,
       "provider_called": false,
       "quota_error_observed": false,
-      "log_finding": "fresh_bobo.py exited at the distinct-scene guard: all eligible original scene references are in the recent/reserve set. No Hugging Face request was made."
+      "reason": "fresh_bobo.py stopped at the distinct-scene guard before any Hugging Face request; all distinct original scene references are in the recent/reserve set."
     },
     "pending_gate": {
       "bobo_review_pending_json_exists": false,
@@ -143,47 +176,17 @@
       "created_at": "2026-11-10T17:25:00+05:00",
       "conclusion": "success",
       "artifact_count": 0,
-      "log_finding": "Scheduled Publish Reviewed Bobo ran bobo_pipeline.py only; no ready approval, artifact download, Facebook upload, or repository mutation occurred."
-    },
-    "recent_daily_runs": {
-      "run_numbers": [
-        342,
-        343,
-        344,
-        345,
-        346,
-        347,
-        348,
-        349,
-        350,
-        351,
-        352,
-        353,
-        354,
-        355,
-        356,
-        357,
-        358
-      ],
-      "artifact_count_each": 0
+      "log_finding": "bobo_pipeline.py completed without a ready approval or artifact download; no Facebook, Instagram Reel, or Story upload occurred."
     },
     "latest_retained_artifact": {
       "run_number": 341,
       "run_id": 41880398664,
       "artifact_id": 13349870060,
-      "artifact_created_at": "2026-11-04T17:48:50Z",
-      "status": "previously reviewed and rejected as a retained intermediate; not a pending draft and not downloaded again during this check",
-      "prior_review_id": "2026-11-10-run-42781747562-artifact-recheck-1555"
-    },
-    "latest_platform_ledger": {
-      "latest_episode": 40522037,
-      "title": "Bobo's Upside-Down Umbrella",
-      "facebook_video_id": "2296956914491800",
-      "facebook_published_at": "2026-10-18T17:28:38.324797+05:00",
-      "instagram_reel_status": "accepted",
-      "instagram_story_status": "accepted",
-      "facebook_story_status": "accepted",
-      "no_newer_ledger_publication": true
+      "artifact_created_at": "2026-11-04T22:48:50+05:00",
+      "downloaded_this_check": true,
+      "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+      "decision": "retained historical intermediate; rejected; not a pending draft"
     },
     "scene_blocker": {
       "eligible_scene_ids": [
@@ -199,14 +202,15 @@
         6
       ],
       "unused_eligible_scene_references": 0,
-      "reason": "All eligible original scene references are already used or reserved."
+      "reason": "All distinct original scene references are recent or reserved."
     },
-    "result": "No pending Bobo draft and no artifact in the latest Daily Fresh Bobo run. Generation was blocked before provider contact by the distinct-scene guard, not by a confirmed free-quota error.",
+    "result": "No pending Bobo draft and no artifact in latest Daily Fresh Bobo run #359. Generation stopped before provider contact due the distinct-scene guard; provider quota is untested.",
     "decision": "NO_DRAFT_NO_PUBLICATION",
     "repair_attempted": false,
     "publication_attempted": false,
     "pending_gate_cleared": false,
     "provider_quota_status": "untested",
     "cost": 0
-  }
+  },
+  "provider_quota_status": "untested_provider_not_contacted"
 }
