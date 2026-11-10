@@ -1,0 +1,197 @@
+{
+  "review_id": "2026-11-10-run-42860121685-artifact-recheck-2234",
+  "completed_at": "2026-11-10T22:34:59+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "latest_daily_fresh_run": {
+    "run_number": 359,
+    "run_id": 42860121685,
+    "job_id": 129983679588,
+    "created_at": "2026-11-10T21:58:48+05:00",
+    "completed_at": "2026-11-10T21:59:09+05:00",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "log_finding": "fresh_bobo.py exited at the distinct-scene guard: All distinct original scene references are in the recent/reserve set; hold rather than duplicate. No Hugging Face inference request was made."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_exists": false,
+    "bobo_pending_directory_exists": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "approval_title": "Bobo's Upside-Down Umbrella"
+  },
+  "latest_publish_workflow": {
+    "run_number": 96,
+    "run_id": 42815557960,
+    "job_id": 129827632190,
+    "created_at": "2026-11-10T17:25:00+05:00",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "log_finding": "Publish Reviewed Bobo ran bobo_pipeline.py and completed without a ready approval or new artifact download; no Facebook, Instagram Reel, or Story upload occurred."
+  },
+  "latest_daily_artifact": {
+    "available_in_latest_run": false,
+    "latest_daily_run_id": 42860121685,
+    "latest_daily_run_artifact_count": 0,
+    "latest_retained_artifact": {
+      "run_number": 341,
+      "run_id": 41880398664,
+      "artifact_id": 13349870060,
+      "artifact_name": "fresh-bobo-video",
+      "artifact_created_at": "2026-11-04T22:48:50+05:00",
+      "downloaded_this_check": true,
+      "archive_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+      "github_artifact_digest": "sha256:4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+      "video_path": "generated.mp4",
+      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a"
+    }
+  },
+  "visual_review": {
+    "full_render_sample_fps": 4,
+    "full_render_frames": 49,
+    "transition_sample_fps": 8,
+    "transition_frames": 12,
+    "transition_window_seconds": [
+      0,
+      1.5
+    ],
+    "observed_actions": {
+      "initial_brush_motion": [
+        0.5,
+        4.125
+      ],
+      "turn_from_canvas_to_front": [
+        4.25,
+        5
+      ],
+      "relatively_stationary_pose": [
+        5.5,
+        7.625
+      ],
+      "brush_motion_resumes": [
+        7.75,
+        10.25
+      ],
+      "final_arm_and_face_gesture": [
+        10.5,
+        12.1875
+      ]
+    },
+    "pacing_note": "Brush motion is visible early, but the file runs 12.1875 seconds and includes a relatively stationary interval around 5.5–7.625 seconds. No shortening or speed-up repair was applied.",
+    "provenance": "Same scene_id 7 art-room/easel/paint-palette/painting premise as published episode 40522021, 'Art room paint surprise'; not a distinct new story."
+  },
+  "captions_and_voice": {
+    "dialogue_timing_json_present": true,
+    "provisional_line": "Time to paint!",
+    "provisional_start": 0.35,
+    "provisional_end": 1.1761,
+    "captions_timing_json_present": false,
+    "episode_json_present": false,
+    "burned_in_subtitle_observed": false,
+    "voice_line_wav_present": true,
+    "voice_track_wav_present": true,
+    "voice_track_encoded_in_mp4": false,
+    "final_mix_intelligibility_verified": false,
+    "independent_asr_performed": false,
+    "subjective_listening_performed": false,
+    "note": "The spoken line is provisional metadata only; no exact subtitle timing file is present and the MP4 contains no audio stream."
+  },
+  "audio_review": {
+    "mp4_audio_stream": false,
+    "audio_wav": {
+      "duration_seconds": 11,
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "rms_dbfs": -22.46,
+      "peak_dbfs": -6.85
+    },
+    "original_music": {
+      "duration_seconds": 11,
+      "rms_dbfs": -29.64,
+      "peak_dbfs": -14.47,
+      "music_style_metadata_present": false
+    },
+    "scene_effects": {
+      "duration_seconds": 11,
+      "rms_dbfs": -43.62,
+      "peak_dbfs": -17.08,
+      "below_music_db": 13.98,
+      "active_intervals_seconds": [
+        [
+          2.26,
+          2.64
+        ],
+        [
+          4.3,
+          4.54
+        ]
+      ],
+      "source_provenance": "Procedurally synthesized brush-like noise; perceptual naturalness not verified.",
+      "observed_action_mapping_present": false
+    },
+    "voice_line": {
+      "duration_seconds": 0.8261,
+      "rms_dbfs": -34.37,
+      "peak_dbfs": -16.81
+    },
+    "voice_track": {
+      "duration_seconds": 11,
+      "rms_dbfs": -45.61,
+      "peak_dbfs": -16.81,
+      "encoded_in_video": false
+    },
+    "perceptual_listening_or_naturalness_verified": false,
+    "note": "Separate WAV sidecars are not the final encoded mix. No claim of subjective audibility, speech intelligibility, or natural Foley quality."
+  },
+  "technical_review": {
+    "video_codec": "H.264",
+    "resolution": "480x832",
+    "fps": 16,
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "audio_stream": false,
+    "playable_video": true,
+    "passes_publication_technical_gate": false
+  },
+  "decision": "NO_DRAFT_NO_PUBLICATION; RETAINED_INTERMEDIATE_REJECTED",
+  "reasons": [
+    "Latest Daily Fresh Bobo run #359 uploaded no artifact and has no pending draft.",
+    "Retained run #341 footage repeats the published art-room painting premise.",
+    "Duration 12.1875 seconds is outside the required 10.95–11.05 seconds.",
+    "The MP4 has no encoded audio; Piper voice and music/effects are separate WAV sidecars.",
+    "No captions-timing.json, episode.json, or exact spoken subtitle is present.",
+    "Scene effects are approximately 13.98 dB below the music sidecar and have no observed-action mapping.",
+    "Speech intelligibility, subjective music audibility, and natural Foley quality cannot be verified."
+  ],
+  "repair_action": "No repair attempted: the retained artifact is historical and visually duplicates published episode 40522021. Local duration/audio/caption repair cannot make it a distinct original episode.",
+  "scene_blocker": {
+    "eligible_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "unused_eligible_scene_references": 0,
+    "reason": "Run #359 stopped at the recent/reserve scene guard before any provider request."
+  },
+  "publication": {
+    "attempted": false,
+    "facebook_accepted": false,
+    "instagram_reel_attempted": false,
+    "instagram_story_attempted": false,
+    "facebook_story_attempted": false,
+    "pending_gate_cleared": false
+  },
+  "provider_quota_status": "untested; provider was not contacted",
+  "cost": 0
+}
