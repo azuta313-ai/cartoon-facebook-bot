@@ -1,0 +1,106 @@
+{
+  "review_id": "2026-11-11-run-42981390438-recheck-1606",
+  "completed_at": "2026-11-11T16:06:36+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "result": "NO_DRAFT_NO_PUBLICATION",
+  "latest_daily_fresh_run": {
+    "run_number": 360,
+    "run_id": 42981390438,
+    "job_id": 130392391802,
+    "created_at": "2026-11-11T07:41:57Z",
+    "completed_at": "2026-11-11T07:42:20Z",
+    "local_completed_at": "2026-11-11T12:42:20+05:00",
+    "event": "schedule",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "artifact_download_attempted": false,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "credentials_preflight": "passed; secrets not exposed",
+    "piper_model": "cache hit",
+    "log_evidence": [
+      "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+      "fresh_bobo.py exited at the distinct-scene guard before contacting Hugging Face.",
+      "fresh_output/ was empty; GitHub Actions reported no files to upload."
+    ],
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/42981390438"
+  },
+  "latest_artifact": {
+    "run_id": 42981390438,
+    "artifact_count": 0,
+    "downloaded": false,
+    "visual_review": "not possible; no video artifact exists",
+    "caption_review": "not possible; no video artifact exists",
+    "audio_review": "not possible; no video artifact exists"
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_exists": false,
+    "bobo_pending_directory_exists": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "approval_title": "Bobo's Upside-Down Umbrella"
+  },
+  "scene_blocker": {
+    "eligible_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "unused_eligible_scene_references": 0,
+    "reason": "Run #360 logs confirm the generator stopped at the distinct-scene guard; all non-retired references are already used or reserved."
+  },
+  "provider_quota_status": "untested_provider_not_contacted",
+  "latest_publish_workflow": {
+    "run_number": 97,
+    "run_id": 42890839715,
+    "job_id": 130091263360,
+    "conclusion": "success",
+    "new_upload": "none",
+    "artifact_download": "skipped",
+    "facebook_publication": "skipped",
+    "instagram_reel": "skipped",
+    "instagram_story": "skipped",
+    "facebook_story": "skipped",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/42890839715"
+  },
+  "reserve_status": {
+    "records": [
+      {
+        "episode": 40522030,
+        "status": "approved",
+        "already_in_publication_ledger": true
+      },
+      {
+        "episode": 40522032,
+        "status": "approved",
+        "already_in_publication_ledger": true
+      },
+      {
+        "episode": 40522037,
+        "status": "approved",
+        "already_in_publication_ledger": true
+      }
+    ],
+    "unpublished_approved_reserve_count": 0
+  },
+  "schedule_observation": {
+    "checked_at": "2026-11-11T16:06:36+05:00",
+    "latest_daily_fresh_run_for_2026_11_11": 42981390438,
+    "latest_run_local_completed_at": "2026-11-11T12:42:20+05:00",
+    "no_new_daily_run_visible_by": "2026-11-11T16:06:36+05:00",
+    "no_new_publish_run_visible_by": "2026-11-11T16:06:36+05:00",
+    "interpretation": "No later Actions run is visible in the repository run list at this check. GitHub schedule delivery can be delayed or dropped under load; the exact dispatch cause is not established. Do not treat the gap as a provider quota error."
+  },
+  "decision": "No artifact existed to download or review. Do not publish or clear any gate. Wait for a new unused original scene reference and a new run/artifact; do not reuse historic footage.",
+  "repair_attempted": false,
+  "publication_attempted": false,
+  "pending_gate_cleared": false,
+  "cost": 0
+}
