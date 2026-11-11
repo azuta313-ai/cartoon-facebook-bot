@@ -1,0 +1,107 @@
+{
+  "review_id": "2026-11-11-run-42860121685-recheck-0615",
+  "completed_at": "2026-11-11T06:15:53+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "latest_repository_runs": {
+    "latest_overall": {
+      "name": "Collect Facebook Page Analytics",
+      "run_number": 40,
+      "run_id": 42923404802,
+      "created_at": "2026-11-11T04:26:39+05:00",
+      "conclusion": "success"
+    },
+    "latest_daily_fresh": {
+      "name": "Daily Fresh Bobo",
+      "run_number": 359,
+      "run_id": 42860121685,
+      "created_at": "2026-11-10T21:58:48+05:00",
+      "completed_at": "2026-11-10T21:59:09+05:00",
+      "conclusion": "success",
+      "job_id": 129983679588,
+      "artifact_count": 0,
+      "artifact_download_attempted": false
+    },
+    "latest_publish": {
+      "name": "Publish Reviewed Bobo",
+      "run_number": 97,
+      "run_id": 42890839715,
+      "created_at": "2026-11-11T00:59:58+05:00",
+      "conclusion": "success",
+      "job_id": 130091263360,
+      "new_upload": false
+    }
+  },
+  "pending_gate": {
+    "pending_record_exists": false,
+    "pending_directory_exists": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "approval_title": "Bobo's Upside-Down Umbrella",
+    "pending_gate_cleared": false
+  },
+  "reserve": {
+    "approved_episodes": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "unpublished_approved_count": 0
+  },
+  "scene_blocker": {
+    "eligible_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "unused_eligible_scene_references": 0,
+    "generation_stopped_before_provider_request": true
+  },
+  "artifact_review": {
+    "latest_daily_run_artifact_count": 0,
+    "latest_daily_run_artifact_downloaded": false,
+    "historical_last_retained_artifact": {
+      "run_number": 341,
+      "run_id": 41880398664,
+      "artifact_id": 13349870060,
+      "created_at": "2026-11-04T22:48:50+05:00",
+      "status": "rejected historical intermediate; not a pending draft"
+    },
+    "no_new_file_sampled": true
+  },
+  "provider": {
+    "free_quota_status": "untested_provider_not_contacted",
+    "quota_error_observed": false,
+    "no_paid_generation": true,
+    "cost": 0
+  },
+  "schedule": {
+    "expected_local_attempt": "2026-11-11T06:10:00+05:00",
+    "visible_as_of_review": false,
+    "note": "GitHub scheduled attempt not visible yet; do not infer quota failure."
+  },
+  "publication": {
+    "facebook_new_upload": false,
+    "instagram_new_reel": false,
+    "facebook_story_new": false,
+    "instagram_story_new": false,
+    "latest_ledger_publication_episode": 40522037,
+    "latest_ledger_publication_at": "2026-10-18T17:28:38.324797+05:00",
+    "current_approval_gate_already_published": true
+  },
+  "decision": "NO_DRAFT_NO_PUBLICATION",
+  "repairs_attempted": false,
+  "publication_attempted": false,
+  "review_notes": "Latest Daily Fresh Bobo run #359 completed successfully but stopped at the distinct-scene guard before contacting Hugging Face. It produced no fresh_output files and no artifact. The most recent publish run #97 completed successfully but did not upload anything because no unpublished approved file exists. No pending draft or approval gate exists to clear. Historical rejected artifact #341 is not being treated as a new draft.",
+  "limitations": [
+    "No new artifact exists to inspect for sampled motion, caption transitions, audio mix or technical quality.",
+    "No subjective audio listening or speech intelligibility claim made.",
+    "Free provider quota remains untested because no provider request was made."
+  ]
+}
