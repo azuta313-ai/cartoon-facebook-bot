@@ -1,0 +1,232 @@
+{
+  "review_id": "2026-11-11-run-43064323722-artifact-recheck-2254",
+  "completed_at": "2026-11-11T22:54:34+05:00",
+  "result": "HOLD_DUPLICATE_INCOMPLETE_ARTIFACT_NO_PUBLICATION",
+  "latest_daily_run": {
+    "run_number": 361,
+    "run_id": 43064323722,
+    "job_id": 130675059884,
+    "created_at": "2026-11-11T22:03:08+05:00",
+    "completed_at": "2026-11-11T22:03:33+05:00",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "log_evidence": [
+      "fresh_bobo.py exited at the distinct-scene guard: all eligible original scene references are in the recent/reserve set.",
+      "No Hugging Face generation request was made; this does not establish whether provider quota is available.",
+      "fresh_output/ was empty; artifact upload reported no files."
+    ],
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43064323722"
+  },
+  "latest_nonempty_artifact": {
+    "run_number": 341,
+    "run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "created_at": "2026-11-04T22:48:50+05:00",
+    "downloaded_at": "2026-11-11T22:54:34+05:00",
+    "downloaded_file": "bobo-run-341-latest-nonempty.zip",
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_mp4": "generated.mp4",
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/41880398664"
+  },
+  "artifact_review": {
+    "title": "Art room paint surprise",
+    "scene_id": 7,
+    "reference": "assets/scenes/scene7.jpg",
+    "sampling": {
+      "full_video_fps": 4,
+      "full_video_samples": 49,
+      "transition_and_dialogue_fps": 8,
+      "transition_windows_seconds": [
+        [
+          0,
+          1.5
+        ],
+        [
+          3.5,
+          4.5
+        ],
+        [
+          7.5,
+          8.5
+        ],
+        [
+          9.5,
+          11.5
+        ]
+      ],
+      "method": "Decoded the actual downloaded generated.mp4; extracted frame contact sheets. No caption transition files existed."
+    },
+    "observed_actions": {
+      "opening_brush_action": {
+        "start": 0.125,
+        "end": 4,
+        "approximate": true,
+        "description": "Bobo moves the brush against the painting while holding the palette"
+      },
+      "brush_handling_and_gaze_shift": {
+        "start": 4.25,
+        "end": 8,
+        "approximate": true,
+        "description": "Continued brush/painting interaction with a downward look and hand movement"
+      },
+      "final_brush_and_gesture": {
+        "start": 8.125,
+        "end": 11,
+        "approximate": true,
+        "description": "Final brush movement followed by a gesture"
+      },
+      "late_open_mouth_window": {
+        "start": 10,
+        "end": 10.75,
+        "approximate": true,
+        "description": "Sustained open-mouth expression outside the provisional early dialogue cue; not treated as intelligible speech"
+      }
+    },
+    "opening_purposeful_action_by": 0.125,
+    "duplicate_check": {
+      "existing_ledger_episode": 40522021,
+      "existing_ledger_title": "Art room paint surprise",
+      "existing_scene_id": 7,
+      "existing_facebook_video_id": "2212226773511644",
+      "decision": "Same story and scene reference already published. A changed render/hash is not a distinct video."
+    },
+    "technical": {
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "duration_gate": "fail",
+      "video_codec": "H.264",
+      "resolution": "480x832",
+      "fps": 16,
+      "mp4_audio_stream": false,
+      "final_video_file_present": false,
+      "episode_json_present": false,
+      "captions_timing_json_present": false,
+      "captions_srt_present": false,
+      "dialogue_timing_json_present": true,
+      "shot_review_files": [
+        "shot1-review.json",
+        "shot2-review.json",
+        "shot3-review.json"
+      ],
+      "shot_review_status": "awaiting_visual_verification",
+      "visual_action_verified": false
+    },
+    "voice": {
+      "engine": "Piper local CPU",
+      "exact_provisional_text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "voice_line_wav_sha256": "444fb3dce88d17713213a9b869cbc24317ad1a3062979d0ad41154e64679fa3c",
+      "final_encoded_mix_present": false,
+      "intelligibility_verification": "not performed; no final encoded audio exists",
+      "mismatch": "Late open-mouth window is outside the provisional early cue; no measured final dialogue placement or subtitle exists."
+    },
+    "captions": {
+      "status": "missing",
+      "action_captions": [],
+      "spoken_subtitle": "not rendered/verified",
+      "timing_source": "No caption file; provisional dialogue cue only."
+    },
+    "audio": {
+      "separate_stems": [
+        "audio.wav",
+        "original_music.wav",
+        "scene_effects.wav",
+        "voice-track.wav",
+        "voice-line.wav"
+      ],
+      "final_mix": "not present in generated.mp4",
+      "measured_full_file_levels_dbfs": {
+        "audio_wav": {
+          "rms": -22.46,
+          "peak": -6.85
+        },
+        "original_music_wav": {
+          "rms": -29.64,
+          "peak": -14.47
+        },
+        "scene_effects_wav": {
+          "rms": -43.62,
+          "peak": -17.08
+        },
+        "voice_track_wav": {
+          "rms": -45.61,
+          "peak": -16.81
+        },
+        "voice_line_wav": {
+          "rms": -34.37,
+          "peak": -16.81
+        }
+      },
+      "effects": [
+        {
+          "type": "brush friction",
+          "time_seconds": 2.2,
+          "source": "procedural synthesized noise; no recorded source mapped",
+          "material_match": "unverified",
+          "listening_verified": false
+        },
+        {
+          "type": "brush friction",
+          "time_seconds": 4.26,
+          "source": "procedural synthesized noise; no recorded source mapped",
+          "material_match": "unverified",
+          "listening_verified": false
+        }
+      ],
+      "music_variant": null,
+      "music_style": null,
+      "music_audibility": "waveform levels only; subjective audibility not verified",
+      "speech_intelligibility": "not verified",
+      "listening_verified": false
+    }
+  },
+  "publication": {
+    "latest_publish_run_number": 98,
+    "latest_publish_run_id": 43014686963,
+    "job_id": 130502686865,
+    "result": "no publication; artifact download, Facebook, Instagram Reel, Instagram Story and Facebook Story steps all skipped",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43014686963",
+    "latest_ledger_publication": {
+      "episode": 40522037,
+      "title": "Bobo's Upside-Down Umbrella",
+      "facebook_video_id": "2296956914491800",
+      "published_at": "2026-10-18T17:28:38.324797+05:00"
+    },
+    "accepted_publications_on_2026_11_11": 0
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_exists": false,
+    "bobo_pending_directory_exists": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "unpublished_approved_reserve_count": 0,
+    "no_gate_cleared": true
+  },
+  "scene_blocker": {
+    "eligible_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "unused_eligible_scene_references": 0
+  },
+  "repair_attempted": false,
+  "publication_attempted": false,
+  "decision": "Hold the stale duplicate/incomplete intermediate. Do not repair or publish it as a distinct video. Wait for a genuinely new matching original scene reference and fresh artifact; provider quota remains untested.",
+  "cost": 0
+}
