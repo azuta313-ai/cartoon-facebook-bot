@@ -1,0 +1,153 @@
+{
+  "review_id": "2026-11-11-run-42981390438-artifact-recheck-2140",
+  "completed_at": "2026-11-11T21:40:33+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "result": "HOLD_DUPLICATE_INCOMPLETE_ARTIFACT_NO_PUBLICATION",
+  "latest_daily_fresh_run": {
+    "run_number": 360,
+    "run_id": 42981390438,
+    "job_id": 130392391802,
+    "created_at": "2026-11-11T07:41:57Z",
+    "completed_at": "2026-11-11T07:42:20Z",
+    "local_completed_at": "2026-11-11T12:42:20+05:00",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "log_evidence": [
+      "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+      "fresh_bobo.py exited at the distinct-scene guard before contacting Hugging Face.",
+      "fresh_output/ was empty; no artifact was uploaded."
+    ],
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/42981390438"
+  },
+  "latest_nonempty_daily_artifact": {
+    "run_number": 341,
+    "run_id": 41880398664,
+    "job_id": 126751027283,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "created_at": "2026-11-04T17:48:50Z",
+    "zip_size_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "downloaded": true,
+    "downloaded_file": "daily-fresh-bobo-run-341.zip",
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/41880398664"
+  },
+  "artifact_review": {
+    "status": "held_not_pending",
+    "title": "Art room paint surprise",
+    "scene_id": 7,
+    "scene_reference": "assets/scenes/scene7.jpg; artifact reference.png visually matches this reference",
+    "duplicate_check": {
+      "ledger_episode": 40522021,
+      "ledger_title": "Art room paint surprise",
+      "ledger_scene_id": 7,
+      "existing_facebook_video_id": "2212226773511644",
+      "decision": "Same story and scene reference as an already-ledgered video; changed render/hash does not make it a distinct daily video."
+    },
+    "visual": {
+      "sampling": "Entire 12.1875-second generated.mp4 sampled at 4 fps (49 frames); 8 fps around the provisional voice window, shot joins and late mouth-action window.",
+      "observed_actions_approx": {
+        "opening_brush_action": "0.125-4.0s",
+        "brush_inspection_and_look_down": "4.25-8.0s",
+        "final_brush_and_gesture": "8.125-11.0s",
+        "sustained_open_mouth_without_dialogue": "about 10.0-11.0s"
+      },
+      "opening_purposeful_action_by_seconds": 0.125,
+      "mouth_action_issue": "The only provisional spoken cue is at 0.35-1.1761s; a later sustained speech-like mouth movement is visible around 10.0-11.0s without corresponding dialogue. Exact mouth-window verification was not established."
+    },
+    "technical": {
+      "generated_mp4_duration_seconds": 12.1875,
+      "generated_mp4_video": "H.264, 480x832, 16 fps",
+      "generated_mp4_audio_stream": false,
+      "final_bobo_fresh_mp4_present": false,
+      "episode_json_present": false,
+      "captions_timing_json_present": false,
+      "captions_srt_present": false,
+      "dialogue_timing_json_present": true,
+      "duration_gate": "Fail: intermediate file is outside 10.95-11.05 seconds."
+    },
+    "voice": {
+      "engine": "Piper local CPU",
+      "exact_text": "Time to paint!",
+      "provisional_start_seconds": 0.35,
+      "provisional_end_seconds": 1.1761,
+      "voice_line_wav_sha256": "444fb3dce88d17713213a9b869cbc24317ad1a3062979d0ad41154e64679fa3c",
+      "final_mix_present": false,
+      "intelligibility_verification": "Not performed; no final encoded mix exists and no independent ASR/listening evidence is available.",
+      "log_failure": "Run #341 failed while mixing speech: FFmpeg rejected alimiter options limit=0.84:level=false:latency=true."
+    },
+    "audio": {
+      "separate_stems_present": [
+        "audio.wav",
+        "original_music.wav",
+        "scene_effects.wav",
+        "voice-track.wav",
+        "voice-line.wav"
+      ],
+      "scene_effects": "Procedurally synthesized brush effects at approximately 2.2s and 4.26s; no recorded natural-brush source/provenance or observed-effect review file.",
+      "music_style_metadata": "episode.json absent; variant/style not verifiable from the artifact.",
+      "subjective_listening": "Not performed; no claim of audibility or naturalness."
+    },
+    "repair_decision": "No repair/publication attempted: this is an already-used Art room story/scene, and the artifact is an incomplete intermediate with no final mux, captions or episode metadata. Reworking it would not make it a distinct new story."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_exists": false,
+    "bobo_pending_directory_exists": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "approval_title": "Bobo's Upside-Down Umbrella",
+    "no_gate_cleared": true
+  },
+  "latest_publish_workflow": {
+    "run_number": 98,
+    "run_id": 43014686963,
+    "job_id": 130502686865,
+    "conclusion": "success",
+    "artifact_download": "skipped",
+    "facebook_publication": "skipped",
+    "instagram_reel": "skipped",
+    "instagram_story": "skipped",
+    "facebook_story": "skipped",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43014686963"
+  },
+  "reserve_status": {
+    "approved_records": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "unpublished_approved_reserve_count": 0,
+    "all_records_already_in_publication_ledger": true
+  },
+  "scene_blocker": {
+    "eligible_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "unused_eligible_scene_references": 0
+  },
+  "provider_quota_status": "untested_provider_not_contacted",
+  "schedule_observation": {
+    "checked_at": "2026-11-11T21:40:33+05:00",
+    "latest_daily_run_local_completed_at": "2026-11-11T12:42:20+05:00",
+    "latest_publish_run_local_completed_at": "2026-11-11T16:46:26+05:00",
+    "no_later_daily_or_publish_run_visible_at_check": true,
+    "interpretation": "No later run was visible at 21:40 PK. Exact schedule-dispatch cause is not established; this is not evidence of provider quota exhaustion."
+  },
+  "decision": "Do not publish the duplicate/incomplete artifact. No current pending draft or approved unpublished reserve exists. Wait for a genuinely new matching original scene reference and fresh artifact; zero spending.",
+  "repair_attempted": false,
+  "publication_attempted": false,
+  "pending_gate_cleared": false,
+  "cost": 0
+}
