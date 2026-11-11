@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-11T14:50:28+05:00",
+  "last_observed_at": "2026-11-11T16:06:36+05:00",
   "last_generation_run_id": 42981390438,
-  "last_provider_result": "Daily Fresh Bobo run #360 completed at 12:42:20 PK. Credential preflight passed and cached Piper model was available, but fresh_bobo.py stopped at the distinct-scene guard before contacting Hugging Face. Zero artifacts; no provider quota result. No new pending draft.",
+  "last_provider_result": "Latest recheck 2026-11-11 16:06 PK: no run newer than #360 and no artifact/pending draft. Run #360 stopped before provider contact because every eligible original scene reference is already used/reserved. Free provider quota remains untested; no quota error observed.",
   "latest_check": {
-    "checked_at": "2026-11-11T14:50:28+05:00",
+    "checked_at": "2026-11-11T16:06:36+05:00",
     "latest_daily_fresh_run": {
       "run_number": 360,
       "run_id": 42981390438,
@@ -23,28 +23,19 @@
       "credentials_preflight": "passed; secrets not exposed",
       "piper_model": "cache hit",
       "log_evidence": [
-        "Configured Facebook Page and Instagram connection accessible; token not printed.",
         "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
-        "No files were found with the provided path: fresh_output/. No artifacts will be uploaded."
+        "fresh_bobo.py exited at the distinct-scene guard before contacting Hugging Face.",
+        "fresh_output/ was empty; GitHub Actions reported no files to upload."
       ],
       "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/42981390438"
     },
-    "latest_publish_workflow": {
-      "run_number": 97,
-      "run_id": 42890839715,
-      "job_id": 130091263360,
-      "conclusion": "success",
-      "created_at": "2026-11-10T19:59:58Z",
-      "new_upload": "none",
-      "steps": {
-        "pipeline": "completed",
-        "artifact_download": "skipped",
-        "facebook_publication": "skipped",
-        "instagram_reel": "skipped",
-        "instagram_story": "skipped",
-        "facebook_story": "skipped"
-      },
-      "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/42890839715"
+    "latest_artifact": {
+      "run_id": 42981390438,
+      "artifact_count": 0,
+      "downloaded": false,
+      "visual_review": "not possible; no video artifact exists",
+      "caption_review": "not possible; no video artifact exists",
+      "audio_review": "not possible; no video artifact exists"
     },
     "pending_gate": {
       "bobo_review_pending_json_exists": false,
@@ -52,6 +43,36 @@
       "approval_status": "published",
       "approval_episode": 40522037,
       "approval_title": "Bobo's Upside-Down Umbrella"
+    },
+    "scene_blocker": {
+      "eligible_scene_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        7
+      ],
+      "retired_scene_ids": [
+        5,
+        6
+      ],
+      "unused_eligible_scene_references": 0,
+      "reason": "Run #360 logs confirm the generator stopped at the distinct-scene guard; all non-retired references are already used or reserved."
+    },
+    "provider_quota_status": "untested_provider_not_contacted",
+    "latest_publish_workflow": {
+      "run_number": 97,
+      "run_id": 42890839715,
+      "job_id": 130091263360,
+      "conclusion": "success",
+      "new_upload": "none",
+      "artifact_download": "skipped",
+      "facebook_publication": "skipped",
+      "instagram_reel": "skipped",
+      "instagram_story": "skipped",
+      "facebook_story": "skipped",
+      "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/42890839715"
     },
     "reserve_status": {
       "records": [
@@ -73,39 +94,14 @@
       ],
       "unpublished_approved_reserve_count": 0
     },
-    "scene_blocker": {
-      "eligible_scene_ids": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        7
-      ],
-      "retired_scene_ids": [
-        5,
-        6
-      ],
-      "unused_eligible_scene_references": 0,
-      "reason": "The actual generation log confirms every allowed original scene reference is already in the recent/reserve set; fresh_bobo.py stopped before provider contact."
-    },
-    "today_schedule_observation": {
-      "checked_at": "2026-11-11T14:50:28+05:00",
+    "schedule_observation": {
+      "checked_at": "2026-11-11T16:06:36+05:00",
       "latest_daily_fresh_run_for_2026_11_11": 42981390438,
       "latest_run_local_completed_at": "2026-11-11T12:42:20+05:00",
-      "expected_1450_slot_visible": false,
-      "interpretation": "The 12:40 PK generation slot did run and completed. The next 14:50 PK slot was not yet visible at this near-immediate 14:50:28 check; scheduling latency versus a missed dispatch is not established."
+      "no_new_daily_run_visible_by": "2026-11-11T16:06:36+05:00",
+      "no_new_publish_run_visible_by": "2026-11-11T16:06:36+05:00",
+      "interpretation": "No later Actions run is visible in the repository run list at this check. GitHub schedule delivery can be delayed or dropped under load; the exact dispatch cause is not established. Do not treat the gap as a provider quota error."
     },
-    "latest_artifact": {
-      "run_id": 42981390438,
-      "artifact_count": 0,
-      "downloaded": false,
-      "visual_review": "not performed; no video artifact exists",
-      "caption_review": "not performed; no video artifact exists",
-      "audio_review": "not performed; no video artifact exists"
-    },
-    "provider_quota_status": "untested_provider_not_contacted",
-    "result": "Run #360 exists and completed successfully, but it produced no artifact because the distinct-scene guard stopped generation before provider contact. No pending draft and no new publication.",
     "decision": "NO_DRAFT_NO_PUBLICATION",
     "repair_attempted": false,
     "publication_attempted": false,
