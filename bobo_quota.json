@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-10T23:59:25+05:00",
+  "last_observed_at": "2026-11-11T06:15:53+05:00",
   "last_generation_run_id": 42860121685,
   "last_provider_result": "No pending Bobo draft and no artifact in latest Daily Fresh Bobo run #359. Generation was delayed by the distinct-scene guard before provider contact; free provider quota remains untested and no quota error was observed.",
   "latest_check": {
-    "checked_at": "2026-11-10T23:59:25+05:00",
+    "checked_at": "2026-11-11T06:15:53+05:00",
     "latest_daily_fresh_run": {
       "run_number": 359,
       "run_id": 42860121685,
@@ -18,15 +18,15 @@
       "artifact_download_attempted": false,
       "provider_called": false,
       "quota_error_observed": false,
-      "workflow_log_finding": "Facebook/Instagram credential preflight passed; cached local Piper model was available; fresh_bobo.py stopped at the distinct-scene guard before any Hugging Face request; upload-artifact warned that fresh_output/ contained no files."
+      "workflow_log_finding": "Credential preflight passed and cached local Piper model was available. fresh_bobo.py stopped at the distinct-scene guard before any Hugging Face request. upload-artifact warned that fresh_output/ contained no files."
     },
     "latest_publish_workflow": {
-      "run_number": 96,
-      "run_id": 42815557960,
-      "job_id": 129827632190,
-      "created_at": "2026-11-10T22:25:00+05:00",
+      "run_number": 97,
+      "run_id": 42890839715,
+      "job_id": 130091263360,
+      "created_at": "2026-11-11T00:59:58+05:00",
       "conclusion": "success",
-      "new_upload": "none; current approval already published and no unpublished approved reserve entry exists"
+      "new_upload": "none; current approval is already published and no unpublished approved reserve entry exists"
     },
     "pending_gate": {
       "bobo_review_pending_json_exists": false,
@@ -35,13 +35,25 @@
       "approval_episode": 40522037,
       "approval_title": "Bobo's Upside-Down Umbrella"
     },
-    "latest_retained_artifact": {
-      "run_number": 341,
-      "run_id": 41880398664,
-      "artifact_id": 13349870060,
-      "artifact_created_at": "2026-11-04T22:48:50+05:00",
-      "status": "historical rejected intermediate, not a pending draft",
-      "downloaded_this_check": false
+    "reserve_status": {
+      "records": [
+        {
+          "episode": 40522030,
+          "status": "approved",
+          "already_in_publication_ledger": true
+        },
+        {
+          "episode": 40522032,
+          "status": "approved",
+          "already_in_publication_ledger": true
+        },
+        {
+          "episode": 40522037,
+          "status": "approved",
+          "already_in_publication_ledger": true
+        }
+      ],
+      "unpublished_approved_reserve_count": 0
     },
     "scene_blocker": {
       "eligible_scene_ids": [
@@ -57,14 +69,42 @@
         6
       ],
       "unused_eligible_scene_references": 0,
-      "reason": "fresh_bobo.py derives recent scene IDs from published ledger, unpublished approved reserve records, pending draft and rejected scenes; all allowed scene references are already in the recent/reserve set."
+      "reason": "All allowed original scene references are already in the recent/reserve set; the generator intentionally holds instead of duplicating footage."
     },
+    "latest_retained_artifact": {
+      "run_number": 341,
+      "run_id": 41880398664,
+      "artifact_id": 13349870060,
+      "artifact_created_at": "2026-11-04T22:48:50+05:00",
+      "status": "historical rejected intermediate, not a pending draft",
+      "downloaded_this_check": false
+    },
+    "recent_daily_runs_artifact_scan": [
+      {
+        "run_number": 357,
+        "artifact_count": 0
+      },
+      {
+        "run_number": 358,
+        "artifact_count": 0
+      },
+      {
+        "run_number": 359,
+        "artifact_count": 0
+      }
+    ],
+    "expected_schedule_observation": {
+      "due_at": "2026-11-11T06:10:00+05:00",
+      "observed_as_of": "2026-11-11T06:15:53+05:00",
+      "run_visible": false,
+      "interpretation": "The scheduled attempt is not yet visible in GitHub Actions; this may be scheduler delay. It is not evidence of provider quota exhaustion."
+    },
+    "provider_quota_status": "untested_provider_not_contacted",
     "result": "No pending Bobo draft and no artifact in latest Daily Fresh Bobo run #359. Generation was delayed by the distinct-scene guard before provider contact; free provider quota remains untested and no quota error was observed.",
     "decision": "NO_DRAFT_NO_PUBLICATION",
     "repair_attempted": false,
     "publication_attempted": false,
     "pending_gate_cleared": false,
-    "provider_quota_status": "untested",
     "cost": 0
   },
   "recent_daily_runs_artifact_scan": [
@@ -146,9 +186,10 @@
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-10-run-42860121685-recheck-2359",
-    "completed_at": "2026-11-10T23:59:25+05:00",
+    "review_id": "2026-11-11-run-42860121685-recheck-0615",
+    "completed_at": "2026-11-11T06:15:53+05:00",
     "repository": "azuta313-ai/cartoon-facebook-bot",
+    "checked_at": "2026-11-11T06:15:53+05:00",
     "latest_daily_fresh_run": {
       "run_number": 359,
       "run_id": 42860121685,
@@ -160,7 +201,15 @@
       "artifact_download_attempted": false,
       "provider_called": false,
       "quota_error_observed": false,
-      "workflow_log_finding": "Facebook/Instagram credential preflight passed; cached local Piper model was available; fresh_bobo.py stopped at the distinct-scene guard before any Hugging Face request; upload-artifact warned that fresh_output/ contained no files."
+      "workflow_log_finding": "Credential preflight passed and cached local Piper model was available. fresh_bobo.py stopped at the distinct-scene guard before any Hugging Face request. upload-artifact warned that fresh_output/ contained no files."
+    },
+    "latest_publish_workflow": {
+      "run_number": 97,
+      "run_id": 42890839715,
+      "job_id": 130091263360,
+      "created_at": "2026-11-11T00:59:58+05:00",
+      "conclusion": "success",
+      "new_upload": "none; current approval is already published and no unpublished approved reserve entry exists"
     },
     "pending_gate": {
       "bobo_review_pending_json_exists": false,
@@ -189,14 +238,6 @@
       ],
       "unpublished_approved_reserve_count": 0
     },
-    "latest_publish_workflow": {
-      "run_number": 96,
-      "run_id": 42815557960,
-      "job_id": 129827632190,
-      "created_at": "2026-11-10T22:25:00+05:00",
-      "conclusion": "success",
-      "new_upload": "none; current approval already published and no unpublished approved reserve entry exists"
-    },
     "scene_blocker": {
       "eligible_scene_ids": [
         0,
@@ -211,7 +252,7 @@
         6
       ],
       "unused_eligible_scene_references": 0,
-      "reason": "fresh_bobo.py derives recent scene IDs from published ledger, unpublished approved reserve records, pending draft and rejected scenes; all allowed scene references are already in the recent/reserve set."
+      "reason": "All allowed original scene references are already in the recent/reserve set; the generator intentionally holds instead of duplicating footage."
     },
     "latest_retained_artifact": {
       "run_number": 341,
@@ -220,6 +261,26 @@
       "artifact_created_at": "2026-11-04T22:48:50+05:00",
       "status": "historical rejected intermediate, not a pending draft",
       "downloaded_this_check": false
+    },
+    "recent_daily_runs_artifact_scan": [
+      {
+        "run_number": 357,
+        "artifact_count": 0
+      },
+      {
+        "run_number": 358,
+        "artifact_count": 0
+      },
+      {
+        "run_number": 359,
+        "artifact_count": 0
+      }
+    ],
+    "expected_schedule_observation": {
+      "due_at": "2026-11-11T06:10:00+05:00",
+      "observed_as_of": "2026-11-11T06:15:53+05:00",
+      "run_visible": false,
+      "interpretation": "The scheduled attempt is not yet visible in GitHub Actions; this may be scheduler delay. It is not evidence of provider quota exhaustion."
     },
     "provider_quota_status": "untested_provider_not_contacted",
     "result": "No pending Bobo draft and no artifact in latest Daily Fresh Bobo run #359. Generation was delayed by the distinct-scene guard before provider contact; free provider quota remains untested and no quota error was observed.",
