@@ -1,0 +1,135 @@
+{
+  "review_id": "2026-11-12-run-43181074055-recheck-1502",
+  "completed_at": "2026-11-12T15:02:06+05:00",
+  "result": "NO_CURRENT_DRAFT; DAILY_RUN_362_HELD_AT_DISTINCT_SCENE_GUARD; NO_NEW_ARTIFACT; NO_PUBLICATION",
+  "run": {
+    "workflow": "Daily Fresh Bobo",
+    "run_number": 362,
+    "run_id": 43181074055,
+    "job_id": 131056904310,
+    "created_at": "2026-11-12T08:12:38Z",
+    "completed_at": "2026-11-12T08:13:13Z",
+    "conclusion": "success",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43181074055",
+    "generation_step": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "provider_called": false,
+    "quota_error_observed": false,
+    "artifact_count": 0,
+    "upload_artifact_warning": "No files were found with the provided path: fresh_output/. No artifacts will be uploaded.",
+    "credentials_preflight": "Passed; configured Page/Instagram connection was checked without exposing credentials."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json": "not found",
+    "bobo_pending_directory": "not found",
+    "approval_status": "published",
+    "episode": 40522037,
+    "title": "Bobo's Upside-Down Umbrella",
+    "no_new_pending_draft": true
+  },
+  "latest_nonempty_artifact": {
+    "run_number": 341,
+    "run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_at": "2026-11-12T15:02:06+05:00",
+    "downloaded_file": "bobo-run-341-latest-nonempty.zip",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_mp4": "generated.mp4",
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "story": "Art room paint surprise",
+    "existing_episode": 40522021,
+    "duplicate_of_published_story": true,
+    "duration_seconds": 12.1875,
+    "video": {
+      "codec": "H.264",
+      "width": 480,
+      "height": 832,
+      "fps": 16,
+      "decodes": true,
+      "embedded_audio_stream": false
+    },
+    "visual_review": {
+      "full_render_sample_fps": 4,
+      "samples": 49,
+      "transition_sample_fps": 8,
+      "observed_actions": {
+        "0.0-4.0": "Bobo makes small brush strokes at the easel.",
+        "4.0-8.0": "Bobo shifts his gaze/body and handles the brush; no paint-on-hand reveal verified.",
+        "8.75-10.25": "Open-mouth facial expressions appear, without embedded dialogue."
+      },
+      "result": "Old footage is technically decodable but not a new distinct story. Not approved."
+    },
+    "audio_stems": {
+      "audio.wav": {
+        "duration_seconds": 11,
+        "rms_dbfs": -22.46,
+        "peak_dbfs": -6.85,
+        "embedded_in_mp4": false
+      },
+      "original_music.wav": {
+        "duration_seconds": 11,
+        "rms_dbfs": -29.64,
+        "peak_dbfs": -14.47,
+        "embedded_in_mp4": false
+      },
+      "scene_effects.wav": {
+        "duration_seconds": 11,
+        "rms_dbfs": -43.62,
+        "peak_dbfs": -17.08,
+        "embedded_in_mp4": false,
+        "measured_activity_peaks_seconds": [
+          2.4,
+          4.4
+        ],
+        "source": "procedurally synthesized brush-friction effects; perceptual naturalness not verified"
+      },
+      "voice-track.wav": {
+        "duration_seconds": 11,
+        "rms_dbfs": -45.61,
+        "peak_dbfs": -16.81,
+        "embedded_in_mp4": false
+      },
+      "voice-line.wav": {
+        "duration_seconds": 0.8261,
+        "rms_dbfs": -34.37,
+        "peak_dbfs": -16.81,
+        "embedded_in_mp4": false
+      }
+    },
+    "dialogue": {
+      "file": "dialogue-timing.json",
+      "text": "Time to paint!",
+      "provisional_start_seconds": 0.35,
+      "provisional_end_seconds": 1.1761,
+      "lip_sync_verified": false,
+      "listening_verified": false,
+      "placement": "provisional; requires actual rendered mouth/action review",
+      "captions_timing_json_present": false,
+      "episode_json_voice_metadata_present": false,
+      "final_encoded_speech_verification": false
+    },
+    "decision": "Hold. The MP4 is 12.1875 seconds, has no embedded audio, lacks final spoken subtitle/episode metadata, and duplicates already-published episode 40522021. No repair or publication attempted because changing captions/audio would not make this distinct."
+  },
+  "publication": {
+    "latest_publish_run_number": 99,
+    "latest_publish_run_id": 43087451690,
+    "conclusion": "success",
+    "facebook_upload_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "latest_accepted_episode": 40522037,
+    "latest_accepted_date": "2026-10-18",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43087451690"
+  },
+  "provider_status": {
+    "current_availability": "unverified; run 362 stopped before provider contact",
+    "last_known_provider_contact_date": "2026-11-04",
+    "previous_free_runs_340_341": "Each generated three clips; local finishing failed (CC0 foley checksum mismatch; FFmpeg voice-mix compatibility). No provider quota error was reported.",
+    "historical_retry_after_is_not_a_current_reset": true
+  },
+  "blocker": "No unused eligible original scene reference. Eligible scene IDs 0,1,2,3,4,7 are already used/reserved; IDs 5 and 6 are retired. Latest run #362 did not contact Hugging Face and uploaded no artifact.",
+  "next_action": "Prepare a genuinely new original scene reference and matching three-shot storyboard before another free generation attempt. Do not reuse retired, already-published or mismatched references.",
+  "cost": 0
+}
