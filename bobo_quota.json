@@ -48,7 +48,8 @@
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "video_file": "generated.mp4",
       "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/41880398664"
+      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/41880398664",
+      "reviewed_file_effect_note": "Measured effect windows were approximately 10-12dB below music; no perceptual or naturalness claim."
     },
     "pending_gate": {
       "bobo_review_pending_json_exists": false,
@@ -359,7 +360,7 @@
             "listening_verified": false
           }
         ],
-        "effects_relative_to_music": "Measured effect windows were approximately 8-10dB below music; no perceptual or naturalness claim.",
+        "effects_relative_to_music": "Measured effect windows were approximately 10-12dB below music; no perceptual or naturalness claim.",
         "music_variant": null,
         "music_style": null,
         "music_audibility": "Waveform measurements only; subjective audibility not verified.",
