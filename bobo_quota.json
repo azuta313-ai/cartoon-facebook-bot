@@ -2,24 +2,24 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-12T15:16:42+05:00",
+  "last_observed_at": "2026-11-12T21:38:44+05:00",
   "last_generation_run_id": 43181074055,
-  "last_provider_result": "15:16 PK recheck: Daily Fresh Bobo #362 remains the latest run and completed successfully, but fresh_bobo.py stopped at the distinct-scene guard before contacting Hugging Face. No artifact was uploaded. The latest non-empty artifact #341 was re-downloaded and rechecked; it is a 12.1875-second duplicate of published episode 40522021 with no embedded audio. No pending draft or new publication. Provider availability remains unverified; no quota error observed.",
+  "last_provider_result": "21:38 PK recheck: Daily Fresh Bobo #362 remains the latest run and completed successfully, but stopped at the distinct-scene guard before contacting Hugging Face. It uploaded no artifact. No pending draft/gate exists. The latest non-empty artifact #341 was downloaded again: 12.1875-second art-room painting duplicate of published episode 40522021, with no embedded audio, no captions-timing.json or episode.json, and provisional unverified voice only. It was rejected as ineligible for a distinct new episode. No quota error observed; provider availability remains unverified. Publish Reviewed Bobo #100 completed with all download/publication steps skipped; no new Facebook/Instagram video or Story.",
   "latest_check": {
-    "checked_at": "2026-11-12T15:02:06+05:00",
+    "checked_at": "2026-11-12T21:38:44+05:00",
     "latest_daily_fresh_run": {
       "workflow": "Daily Fresh Bobo",
       "run_number": 362,
       "run_id": 43181074055,
       "job_id": 131056904310,
-      "created_at": "2026-11-12T13:12:38+05:00",
-      "completed_at": "2026-11-12T13:13:13+05:00",
+      "created_at": "2026-11-12T08:12:38Z",
+      "completed_at": "2026-11-12T08:13:13Z",
       "conclusion": "success",
       "artifact_count": 0,
       "provider_called": false,
       "quota_error_observed": false,
-      "generation_blocker": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
-      "credentials_preflight": "passed",
+      "generation_blocker": "All eligible original scene references are used/reserved; scene IDs 5 and 6 are retired.",
+      "credentials_preflight": "passed; secrets remained masked",
       "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43181074055"
     },
     "pending_gate": {
@@ -33,7 +33,7 @@
       "run_id": 41880398664,
       "artifact_id": 13349870060,
       "artifact_name": "fresh-bobo-video",
-      "downloaded_at": "2026-11-12T15:02:06+05:00",
+      "downloaded_at": "2026-11-12T21:38:44+05:00",
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
       "duration": 12.1875,
@@ -42,20 +42,23 @@
       "quality_passed": false
     },
     "publication": {
-      "latest_run_number": 99,
-      "latest_run_id": 43087451690,
+      "latest_run_number": 100,
+      "latest_run_id": 43218044630,
       "conclusion": "success",
       "facebook_publication": "skipped",
       "instagram_reel": "skipped",
       "instagram_story": "skipped",
       "facebook_story": "skipped",
-      "latest_accepted_episode": 40522037,
-      "latest_accepted_date": "2026-10-18",
-      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43087451690"
+      "latest_facebook_accepted_episode": 40522037,
+      "latest_facebook_accepted_date": "2026-10-18",
+      "latest_instagram_reel_episode": 40522036,
+      "latest_instagram_reel_accepted_date": "2026-10-17",
+      "story_acceptance_ids_recorded": false,
+      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43218044630"
     },
-    "review_record": "bobo_review_history/2026-11-12-run-43181074055-recheck-1502.json",
+    "review_record": "bobo_review_history/2026-11-12-run-43181074055-recheck-2138.json",
     "cost": 0,
-    "decision": "No current draft and no new artifact. Do not publish stale duplicate. Current blocker is distinct-scene-reference exhaustion; provider quota was not tested and no quota error was observed."
+    "decision": "No current draft and no new artifact. Latest retained artifact is a duplicate, too long, missing embedded audio and final caption/episode metadata. Current generation blocker is exhausted distinct scene references; provider quota was not tested and no quota error was observed."
   },
   "recent_daily_runs_artifact_scan": [
     {
@@ -148,10 +151,10 @@
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-12-run-43181074055-recheck-1516",
-    "completed_at": "2026-11-12T15:16:42+05:00",
-    "result": "NO_CURRENT_DRAFT; DAILY_RUN_362_STOPPED_BEFORE_PROVIDER; NO_NEW_ARTIFACT; NO_PUBLICATION",
-    "review_record": "bobo_review_history/2026-11-12-run-43181074055-recheck-1516.json",
+    "review_id": "2026-11-12-run-43181074055-recheck-2138",
+    "completed_at": "2026-11-12T21:38:44+05:00",
+    "result": "NO_CURRENT_DRAFT; DAILY_RUN_362_NO_ARTIFACT; LATEST_NONEMPTY_ARTIFACT_REJECTED_AS_STALE_DUPLICATE; NO_NEW_PUBLICATION",
+    "review_record": "bobo_review_history/2026-11-12-run-43181074055-recheck-2138.json",
     "latest_daily_run_id": 43181074055,
     "latest_daily_run_number": 362,
     "artifact_count": 0,
@@ -159,9 +162,10 @@
     "quota_error_observed": false,
     "latest_nonempty_artifact_run_id": 41880398664,
     "latest_nonempty_artifact_id": 13349870060,
-    "latest_nonempty_artifact_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "latest_nonempty_artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "latest_nonempty_artifact_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
     "pending_gate": false,
-    "publication_run_id": 43087451690,
+    "publication_run_id": 43218044630,
     "publication_steps": "all skipped",
     "cost": 0
   },
@@ -173,8 +177,8 @@
     "artifact_id": 13349870060,
     "artifact_name": "fresh-bobo-video",
     "created_at": "2026-11-04T17:48:50Z",
-    "downloaded_at": "2026-11-12T07:17:13+05:00",
-    "downloaded_file": "bobo-run-341-recheck.zip",
+    "downloaded_at": "2026-11-12T21:38:44+05:00",
+    "downloaded_file": "bobo-run-341-latest-nonempty.zip",
     "zip_bytes": 8092018,
     "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
     "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
@@ -184,15 +188,15 @@
     "quality_passed": false
   },
   "latest_publish_workflow": {
-    "run_number": 99,
-    "run_id": 43087451690,
-    "job_id": 130755463574,
+    "run_number": 100,
+    "run_id": 43218044630,
+    "job_id": 131182205581,
     "conclusion": "success",
     "artifact_download": "skipped",
     "facebook_publication": "skipped",
     "instagram_reel": "skipped",
     "instagram_story": "skipped",
     "facebook_story": "skipped",
-    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43087451690"
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43218044630"
   }
 }
