@@ -2,9 +2,9 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-12T15:02:06+05:00",
+  "last_observed_at": "2026-11-12T15:16:42+05:00",
   "last_generation_run_id": 43181074055,
-  "last_provider_result": "15:02 PK recheck: latest Daily Fresh Bobo run #362 completed successfully but fresh_bobo.py stopped at the distinct-scene guard before contacting Hugging Face; fresh_output/ was empty and no artifact was uploaded. Credentials preflight passed. No quota error observed. Current free-provider availability remains unverified.",
+  "last_provider_result": "15:16 PK recheck: Daily Fresh Bobo #362 remains the latest run and completed successfully, but fresh_bobo.py stopped at the distinct-scene guard before contacting Hugging Face. No artifact was uploaded. The latest non-empty artifact #341 was re-downloaded and rechecked; it is a 12.1875-second duplicate of published episode 40522021 with no embedded audio. No pending draft or new publication. Provider availability remains unverified; no quota error observed.",
   "latest_check": {
     "checked_at": "2026-11-12T15:02:06+05:00",
     "latest_daily_fresh_run": {
@@ -148,11 +148,21 @@
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-12-run-43181074055-recheck-1502",
-    "completed_at": "2026-11-12T15:02:06+05:00",
-    "result": "NO_CURRENT_DRAFT; DAILY_RUN_362_HELD_AT_DISTINCT_SCENE_GUARD; NO_NEW_ARTIFACT; NO_PUBLICATION",
-    "review_record": "bobo_review_history/2026-11-12-run-43181074055-recheck-1502.json",
-    "provider_quota_status": "unverified_since_2026-11-04; latest_run_362_stopped_before_provider",
+    "review_id": "2026-11-12-run-43181074055-recheck-1516",
+    "completed_at": "2026-11-12T15:16:42+05:00",
+    "result": "NO_CURRENT_DRAFT; DAILY_RUN_362_STOPPED_BEFORE_PROVIDER; NO_NEW_ARTIFACT; NO_PUBLICATION",
+    "review_record": "bobo_review_history/2026-11-12-run-43181074055-recheck-1516.json",
+    "latest_daily_run_id": 43181074055,
+    "latest_daily_run_number": 362,
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "latest_nonempty_artifact_run_id": 41880398664,
+    "latest_nonempty_artifact_id": 13349870060,
+    "latest_nonempty_artifact_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "pending_gate": false,
+    "publication_run_id": 43087451690,
+    "publication_steps": "all skipped",
     "cost": 0
   },
   "provider_quota_status": "last_known_free_provider_success_2026-11-04; current_availability_unverified_since_then",
