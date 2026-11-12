@@ -112,5 +112,47 @@
   },
   "blocker": "All eligible original scene references are already used/reserved (scene IDs 0,1,2,3,4,7); IDs 5 and 6 are retired. No new matching scene reference is available. The latest generation run did not contact Hugging Face.",
   "next_action": "Prepare a genuinely new original scene reference and matching three-shot storyboard before another free generation attempt. Do not reuse retired, already-published or mismatched references.",
-  "cost": 0
+  "cost": 0,
+  "additional_artifact_recheck": {
+    "checked_at": "2026-11-12T15:18:15+05:00",
+    "artifact_download": "downloaded again through GitHub Actions artifact endpoint",
+    "artifact_id": 13349870060,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "duration_seconds": 12.1875,
+    "video": {
+      "codec": "H.264",
+      "width": 480,
+      "height": 832,
+      "fps": 16,
+      "embedded_audio": false
+    },
+    "visual_sampling": {
+      "full_render_fps": 4,
+      "full_render_samples": 49,
+      "transition_review_fps": 8,
+      "observed": "Bobo repeatedly brushes the existing easel painting; later gestures/mouth-open expressions occur, but the MP4 contains no spoken audio. No new paint accident/reveal is visible. This remains the same art-room painting premise as published episode 40522021."
+    },
+    "audio": {
+      "separate_wav_files_present": true,
+      "final_encoded_mix_present": false,
+      "final_mix_intelligibility_verified": false,
+      "subjective_listening_claim": false,
+      "effect_naturalness_verified": false
+    },
+    "missing_final_files": [
+      "bobo_fresh.mp4",
+      "captions-timing.json",
+      "episode.json"
+    ],
+    "current_run": {
+      "run_id": 43181074055,
+      "run_number": 362,
+      "artifact_count": 0,
+      "provider_called": false,
+      "quota_error_observed": false,
+      "blocker": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate."
+    },
+    "decision": "HOLD_STALE_DUPLICATE; do not repair/relabel/publish this artifact as a new episode. No current pending review gate exists."
+  }
 }
