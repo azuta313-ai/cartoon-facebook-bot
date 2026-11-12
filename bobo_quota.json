@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-12T22:52:59+05:00",
+  "last_observed_at": "2026-11-12T23:35:23+05:00",
   "last_generation_run_id": 43270314238,
-  "last_provider_result": "22:52 PK recheck: Daily Fresh Bobo #363 completed successfully at 22:31:48 PK, but fresh_bobo.py stopped at the distinct-scene guard before contacting Hugging Face. No artifact and no pending review gate exist. Downloaded the latest non-empty artifact #341 again: generated.mp4 is 12.1875 seconds, 480x832 at 16fps, silent, and matches the already-published art-room painting scene/story (episode 40522021, scene_id 7). It contains only provisional dialogue timing and separate WAV stems; no final bobo_fresh.mp4, episode.json or captions-timing.json. Held as near-duplicate and technically incomplete. Provider quota was not tested; no quota error observed. Publish Reviewed Bobo #100 completed successfully with all publication steps skipped; no new Facebook/Instagram video or Story.",
+  "last_provider_result": "23:35 PK independent recheck: Daily Fresh Bobo #363 completed successfully but stopped at the distinct-scene guard before contacting Hugging Face; no artifact was produced and no quota error was observed. Re-downloaded latest non-empty artifact #341 via GitHub Actions: generated.mp4 is 12.1875 seconds, 480x832 at 16fps, video-only, and repeats already-published scene_id 7 / Art room paint surprise (episode 40522021). 49 full-render samples at 4fps plus 8fps dialogue/cut-window checks confirm low-activity pose 4.5–7.625s; no final bobo_fresh.mp4, episode.json, captions-timing.json or final encoded mix. Piper line remains provisional; music/effects/voice are separate WAV stems, effects RMS 13.98dB below music, no foley provenance or subjective listening. Held/rejected; no pending gate, no publication. Provider quota remains unverified.",
   "latest_check": {
-    "checked_at": "2026-11-12T22:52:59+05:00",
+    "checked_at": "2026-11-12T23:35:23+05:00",
     "latest_daily_fresh_run": {
       "workflow": "Daily Fresh Bobo",
       "run_number": 363,
@@ -33,7 +33,7 @@
       "run_id": 41880398664,
       "artifact_id": 13349870060,
       "artifact_name": "fresh-bobo-video",
-      "downloaded_at": "2026-11-12T22:52:59+05:00",
+      "downloaded_at": "2026-11-12T23:35:23+05:00",
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
       "duration": 12.1875,
@@ -50,6 +50,7 @@
       "final_render_present": false,
       "visual_sampling_fps": 4,
       "visual_sample_count": 49,
+      "transition_sampling_fps": 8,
       "duplicate_scene_id": 7,
       "duplicate_episode": 40522021,
       "quality_passed": false
@@ -68,9 +69,9 @@
       "latest_recorded_story_accepted_date": "2026-10-18",
       "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43218044630"
     },
-    "review_record": "bobo_review_history/2026-11-12-run-43270314238-recheck-2252.json",
+    "review_record": "bobo_review_history/2026-11-12-run-43270314238-recheck-2335.json",
     "cost": 0,
-    "decision": "No current draft or new artifact. Latest run was blocked before provider contact by exhausted distinct scene references; quota remains unverified, not quota-blocked. Latest retained artifact is held as a near-duplicate and incomplete."
+    "decision": "No current draft; latest run stopped before provider contact because all eligible original scene references are used/reserved. Latest retained artifact #341 is held as a near-duplicate and technically incomplete. Provider quota is unverified; no new publication."
   },
   "recent_daily_runs_artifact_scan": [
     {
@@ -170,10 +171,10 @@
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-12-run-43270314238-recheck-2252",
-    "completed_at": "2026-11-12T22:52:59+05:00",
-    "result": "NO_CURRENT_DRAFT; DAILY_RUN_363_NO_ARTIFACT; LATEST_NONEMPTY_ARTIFACT_HELD_AS_NEAR_DUPLICATE_AND_TECHNICALLY_INCOMPLETE; NO_NEW_PUBLICATION",
-    "review_record": "bobo_review_history/2026-11-12-run-43270314238-recheck-2252.json",
+    "review_id": "2026-11-12-run-43270314238-recheck-2335",
+    "completed_at": "2026-11-12T23:35:23+05:00",
+    "result": "NO_CURRENT_DRAFT; DAILY_RUN_363_NO_ARTIFACT; ARTIFACT_341_RECHECKED_AND_HELD_AS_NEAR_DUPLICATE_AND_INCOMPLETE; NO_NEW_PUBLICATION",
+    "review_record": "bobo_review_history/2026-11-12-run-43270314238-recheck-2335.json",
     "latest_daily_run_id": 43270314238,
     "latest_daily_run_number": 363,
     "artifact_count": 0,
