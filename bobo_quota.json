@@ -2,16 +2,26 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-12T06:37:50+05:00",
+  "last_observed_at": "2026-11-12T07:17:13+05:00",
   "last_generation_run_id": 43064323722,
-  "last_provider_result": "2026-11-12 06:37 PK recheck: no Daily Fresh Bobo run corresponding to the 06:30 scheduled slot was visible yet (possible GitHub scheduler/queue delay, not a quota result). Latest visible Daily Fresh #361 (run 43064323722) produced zero artifacts and stopped at the distinct-scene guard before contacting Hugging Face. Downloaded latest non-empty artifact #341 and re-reviewed the exact generated.mp4: stale duplicate Art room story, 12.1875s, no embedded audio or spoken subtitle. Provider quota remains untested; no publication.",
+  "last_provider_result": "07:17 PK recheck: no 12 Nov Daily Fresh Bobo run visible after the 06:30, 06:50 or 07:10 scheduled slots. Latest visible run #361 (11 Nov 22:03 PK) produced zero artifacts and stopped at scene-reference exhaustion before contacting Hugging Face. No quota error observed. Last known free-provider calls were 4 Nov: runs #340 and #341 each generated three clips, then failed during local finishing (CC0 foley checksum mismatch; unsupported FFmpeg alimiter latency option), not provider quota.",
   "latest_check": {
-    "checked_at": "2026-11-12T06:37:50+05:00",
-    "scheduled_attempt": {
-      "scheduled_for": "2026-11-12T06:30:00+05:00",
-      "matching_run_visible": false,
-      "interpretation": "Possible scheduler/queue delay; no provider request or quota error evidenced."
-    },
+    "checked_at": "2026-11-12T07:17:13+05:00",
+    "scheduled_attempts": [
+      {
+        "scheduled_for": "2026-11-12T06:30:00+05:00",
+        "matching_run_visible": false
+      },
+      {
+        "scheduled_for": "2026-11-12T06:50:00+05:00",
+        "matching_run_visible": false
+      },
+      {
+        "scheduled_for": "2026-11-12T07:10:00+05:00",
+        "matching_run_visible": false
+      }
+    ],
+    "scheduler_interpretation": "No 12 November Daily Fresh Bobo run visible by 07:17 PK; scheduler/queue delay is possible, not a provider quota result.",
     "latest_daily_fresh_run": {
       "workflow": "Daily Fresh Bobo",
       "run_number": 361,
@@ -23,42 +33,36 @@
       "artifact_count": 0,
       "provider_called": false,
       "quota_error_observed": false,
-      "evidence": [
-        "fresh_bobo.py stopped at the distinct-scene guard: all eligible original scene references were already used or reserved.",
-        "No Hugging Face ZeroGPU request was made; provider quota availability remains untested.",
-        "fresh_output was empty and upload-artifact reported no files."
-      ],
       "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43064323722"
     },
-    "latest_artifact": {
-      "run_id": 43064323722,
-      "artifact_count": 0,
-      "downloaded": false,
-      "reason": "fresh_output empty; latest visible run stopped before provider call."
+    "provider_history": {
+      "last_known_success_date": "2026-11-04",
+      "run340": {
+        "run_id": 41874452697,
+        "provider_called": true,
+        "clips_generated": 3,
+        "local_failure": "CC0 snow foley SHA256 mismatch",
+        "quota_error": false,
+        "story_deliberately_rejected": true
+      },
+      "run341": {
+        "run_id": 41880398664,
+        "provider_called": true,
+        "clips_generated": 3,
+        "local_failure": "FFmpeg alimiter latency=true unsupported in that run",
+        "quota_error": false,
+        "story_duplicate": true,
+        "current_voice_code_no_longer_contains_latency_option": true
+      }
     },
     "latest_nonempty_artifact": {
       "run_number": 341,
       "run_id": 41880398664,
       "artifact_id": 13349870060,
-      "artifact_name": "fresh-bobo-video",
-      "created_at": "2026-11-04T22:48:50+05:00",
-      "downloaded_at": "2026-11-12T06:37:50+05:00",
-      "downloaded_file": "bobo-run-341-last-available.zip",
-      "zip_bytes": 8092018,
+      "downloaded_at": "2026-11-12T07:17:13+05:00",
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
-      "video_file": "generated.mp4",
-      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/41880398664",
-      "reviewed_file_effect_note": "Measured effect windows were approximately 10-12dB below music; no perceptual or naturalness claim."
-    },
-    "pending_gate": {
-      "bobo_review_pending_json_exists": false,
-      "bobo_pending_directory_exists": false,
-      "approval_status": "published",
-      "approval_episode": 40522037,
-      "unpublished_approved_reserve_count": 0,
-      "gate_cleared": false,
-      "note": "No pending gate exists to clear; approval already refers to a published episode."
+      "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+      "result": "duplicate Art room story, 12.1875 seconds, no embedded audio/subtitle/final mix; held"
     },
     "scene_blocker": {
       "eligible_scene_ids": [
@@ -73,29 +77,30 @@
         5,
         6
       ],
-      "unused_eligible_scene_references": 0
+      "unused_eligible_scene_references": 0,
+      "story_queue_reference": "story02.jpg only; already-published umbrella story"
     },
-    "provider_quota_status": "untested_provider_not_contacted",
-    "latest_publish_workflow": {
-      "workflow": "Publish Reviewed Bobo",
-      "run_number": 99,
-      "run_id": 43087451690,
-      "job_id": 130755463574,
+    "pending_gate": {
+      "bobo_review_pending_json_exists": false,
+      "bobo_pending_directory_exists": false,
+      "approval_status": "published",
+      "approval_episode": 40522037,
+      "unpublished_approved_reserve_count": 0
+    },
+    "publication": {
+      "latest_run_number": 99,
+      "latest_run_id": 43087451690,
       "conclusion": "success",
-      "artifact_download": "skipped",
       "facebook_publication": "skipped",
-      "instagram_reel": "https://www.instagram.com/reel/DeorySgAMGk/",
-      "instagram_story": "https://www.instagram.com/stories/bobogigglegrove/4010648416802624085",
+      "instagram_reel": "skipped",
+      "instagram_story": "skipped",
       "facebook_story": "skipped",
-      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43087451690",
       "latest_accepted_episode": 40522037,
-      "latest_accepted_title": "Bobo's Upside-Down Umbrella",
-      "facebook_video_id": "2296956914491800",
-      "latest_accepted_date": "2026-10-18",
-      "facebook_story_status": "accepted"
+      "latest_accepted_date": "2026-10-18"
     },
-    "decision": "No current draft exists. Latest visible generation run produced no artifact and stopped before provider contact because no unused eligible original scene reference remains. The last available artifact is a stale duplicate, 12.1875-second video-only intermediate without captions or embedded audio. Hold it; do not publish. Wait for a new matching original scene reference and a fresh artifact.",
-    "cost": 0
+    "review_record": "bobo_review_history/2026-11-12-run-43064323722-recheck-0717.json",
+    "cost": 0,
+    "decision": "No new draft; do not publish stale duplicate. Current blocker is scene-reference exhaustion and no new scheduled run visible yet, not a confirmed provider quota block."
   },
   "recent_daily_runs_artifact_scan": [
     {
@@ -188,237 +193,14 @@
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-12-run-41880398664-artifact-recheck-0637",
-    "completed_at": "2026-11-12T06:37:50+05:00",
-    "result": "NO_CURRENT_DRAFT; LATEST_VISIBLE_GENERATION_RUN_361_HAS_ZERO_ARTIFACTS_AND_STOPPED_BEFORE_PROVIDER; STALE_DUPLICATE_INCOMPLETE_ARTIFACT_HELD; NO_PUBLICATION",
-    "latest_generation": {
-      "workflow": "Daily Fresh Bobo",
-      "run_number": 361,
-      "run_id": 43064323722,
-      "job_id": 130675059884,
-      "created_at": "2026-11-11T22:03:08+05:00",
-      "completed_at": "2026-11-11T22:03:33+05:00",
-      "conclusion": "success",
-      "artifact_count": 0,
-      "provider_called": false,
-      "quota_error_observed": false,
-      "evidence": [
-        "fresh_bobo.py stopped at the distinct-scene guard: all eligible original scene references were already used or reserved.",
-        "No Hugging Face ZeroGPU request was made; provider quota availability remains untested.",
-        "fresh_output was empty and upload-artifact reported no files."
-      ],
-      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43064323722"
-    },
-    "scheduled_attempt": {
-      "scheduled_for": "2026-11-12T06:30:00+05:00",
-      "checked_at": "2026-11-12T06:37:50+05:00",
-      "matching_run_visible": false,
-      "interpretation": "No matching run was visible yet; this may be GitHub schedule/queue delay. It is not evidence of a provider quota error."
-    },
-    "latest_artifact": {
-      "run_number": 341,
-      "run_id": 41880398664,
-      "artifact_id": 13349870060,
-      "artifact_name": "fresh-bobo-video",
-      "created_at": "2026-11-04T22:48:50+05:00",
-      "downloaded_at": "2026-11-12T06:37:50+05:00",
-      "downloaded_file": "bobo-run-341-last-available.zip",
-      "zip_bytes": 8092018,
-      "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
-      "video_file": "generated.mp4",
-      "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/41880398664"
-    },
-    "artifact_review": {
-      "title": "Art room paint surprise",
-      "scene_id": 7,
-      "duplicate_check": {
-        "existing_episode": 40522021,
-        "existing_title": "Art room paint surprise",
-        "existing_scene_id": 7,
-        "facebook_video_id": "2212226773511644",
-        "result": "Same already-published story/scene. Different render SHA does not make it a distinct daily video."
-      },
-      "sampling": {
-        "full_video_fps": 4,
-        "full_video_samples": 49,
-        "dialogue_window_fps": 8,
-        "dialogue_window_samples": 12,
-        "ending_mouth_window_fps": 8,
-        "ending_mouth_window_samples": 14,
-        "method": "Downloaded exact GitHub Actions artifact ZIP, extracted generated.mp4, decoded full video and reviewed contact sheets at 4fps plus 8fps around provisional voice timing and ending mouth movement."
-      },
-      "observed_actions": {
-        "opening_brush_action": {
-          "start": 0.125,
-          "end": 4,
-          "approximate": true,
-          "description": "Bobo moves brush against painting while holding palette."
-        },
-        "brush_handling_and_gaze_shift": {
-          "start": 4.25,
-          "end": 8,
-          "approximate": true,
-          "description": "Continued brush/painting interaction with downward gaze and hand movement."
-        },
-        "final_brush_and_gesture": {
-          "start": 8.125,
-          "end": 10.75,
-          "approximate": true,
-          "description": "Final brush movement and gesture toward painting."
-        },
-        "late_open_mouth_expression": {
-          "start": 10.9,
-          "end": 11.4,
-          "approximate": true,
-          "description": "Mouth opens across several sampled frames; no intelligible words inferred."
-        }
-      },
-      "voice": {
-        "exact_provisional_text": "Time to paint!",
-        "provisional_start": 0.35,
-        "provisional_end": 1.1761,
-        "voice_line_wav_sha256": "444fb3dce88d17713213a9b869cbc24317ad1a3062979d0ad41154e64679fa3c",
-        "final_encoded_mix_present": false,
-        "spoken_subtitle_present": false,
-        "mouth_alignment": "At the provisional 0.35-1.1761s cue, sampled mouth remains smile/closed while brush action continues. A later open-mouth gesture appears around 10.9-11.4s, but no speech is inferred.",
-        "intelligibility": "Not verified; the MP4 contains no audio stream and no final encoded mix.",
-        "listening_verified": false,
-        "lip_sync_verified": false
-      },
-      "captions": {
-        "captions_timing_json_present": false,
-        "srt_present": false,
-        "spoken_subtitle_present": false,
-        "transition_review": "No rendered caption file or transitions to verify."
-      },
-      "technical": {
-        "duration_seconds": 12.1875,
-        "required_duration_seconds": [
-          10.95,
-          11.05
-        ],
-        "duration_gate": "fail",
-        "codec": "H.264",
-        "resolution": "480x832",
-        "fps": 16,
-        "video_decodes": true,
-        "audio_stream_present": false,
-        "episode_json_present": false,
-        "dialogue_timing_json_present": true,
-        "shot_review_status": "awaiting_visual_verification"
-      },
-      "audio_stems": {
-        "files": [
-          "audio.wav",
-          "original_music.wav",
-          "scene_effects.wav",
-          "voice-track.wav",
-          "voice-line.wav"
-        ],
-        "final_mix_embedded_in_mp4": false,
-        "measured_dbfs": {
-          "audio_wav": {
-            "rms": -22.46,
-            "peak": -6.85
-          },
-          "original_music_wav": {
-            "rms": -29.64,
-            "peak": -14.47
-          },
-          "scene_effects_wav": {
-            "rms": -43.62,
-            "peak": -17.08
-          },
-          "voice_track_wav": {
-            "rms": -45.61,
-            "peak": -16.81
-          },
-          "voice_line_wav": {
-            "rms": -34.37,
-            "peak": -16.81
-          },
-          "voice_window_0_35_1_176": {
-            "voice_track_rms": -34.37,
-            "music_rms": -29.94,
-            "music_ducking_observed": false
-          }
-        },
-        "effects": [
-          {
-            "type": "brush friction",
-            "time": 2.2,
-            "source": "procedurally synthesized noise",
-            "material_match": "unverified",
-            "listening_verified": false
-          },
-          {
-            "type": "brush friction",
-            "time": 4.26,
-            "source": "procedurally synthesized noise",
-            "material_match": "unverified",
-            "listening_verified": false
-          }
-        ],
-        "effects_relative_to_music": "Measured effect windows were approximately 10-12dB below music; no perceptual or naturalness claim.",
-        "music_variant": null,
-        "music_style": null,
-        "music_audibility": "Waveform measurements only; subjective audibility not verified.",
-        "listening_verified": false
-      },
-      "visual": "Recognizable 3D Bobo in red shirt and painting interaction. Full sample shows useful brush movement early and later gesture; this does not overcome duplicate plot, incorrect duration, absent final audio/subtitles/metadata.",
-      "quality_passed": false,
-      "repair_decision": "Do not repair for publication: even if locally remixed/re-timed, this is the same already-published art-room story and cannot count as a distinct video. No re-render or regeneration attempted."
-    },
-    "pending_gate": {
-      "bobo_review_pending_json_exists": false,
-      "bobo_pending_directory_exists": false,
-      "approval_status": "published",
-      "approval_episode": 40522037,
-      "unpublished_approved_reserve_count": 0,
-      "gate_cleared": false,
-      "note": "No pending gate exists to clear; approval already refers to a published episode."
-    },
-    "latest_publication": {
-      "workflow": "Publish Reviewed Bobo",
-      "run_number": 99,
-      "run_id": 43087451690,
-      "job_id": 130755463574,
-      "conclusion": "success",
-      "artifact_download": "skipped",
-      "facebook_publication": "skipped",
-      "instagram_reel": "https://www.instagram.com/reel/DeorySgAMGk/",
-      "instagram_story": "https://www.instagram.com/stories/bobogigglegrove/4010648416802624085",
-      "facebook_story": "skipped",
-      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43087451690",
-      "latest_accepted_episode": 40522037,
-      "latest_accepted_title": "Bobo's Upside-Down Umbrella",
-      "facebook_video_id": "2296956914491800",
-      "latest_accepted_date": "2026-10-18",
-      "facebook_story_status": "accepted"
-    },
-    "scene_blocker": {
-      "eligible_scene_ids": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        7
-      ],
-      "retired_scene_ids": [
-        5,
-        6
-      ],
-      "unused_eligible_scene_references": 0
-    },
-    "provider_quota_status": "untested_provider_not_contacted",
-    "repair_attempted": false,
-    "publication_attempted": false,
-    "cost": 0,
-    "decision": "No current draft exists. Latest visible generation run produced no artifact and stopped before provider contact because no unused eligible original scene reference remains. The last available artifact is a stale duplicate, 12.1875-second video-only intermediate without captions or embedded audio. Hold it; do not publish. Wait for a new matching original scene reference and a fresh artifact."
+    "review_id": "2026-11-12-run-43064323722-recheck-0717",
+    "completed_at": "2026-11-12T07:17:13+05:00",
+    "result": "NO_CURRENT_DRAFT; RUN361_ZERO_ARTIFACTS; LATEST_NONEMPTY_RUN341_DUPLICATE_AND_INCOMPLETE; NO_PUBLICATION",
+    "review_record": "bobo_review_history/2026-11-12-run-43064323722-recheck-0717.json",
+    "provider_quota_status": "last_known_free_provider_success_2026-11-04; current_availability_unverified_since_then",
+    "cost": 0
   },
-  "provider_quota_status": "untested_provider_not_contacted",
+  "provider_quota_status": "last_known_free_provider_success_2026-11-04; current_availability_unverified_since_then",
   "latest_nonempty_artifact": {
     "run_number": 341,
     "run_id": 41880398664,
@@ -426,12 +208,15 @@
     "artifact_id": 13349870060,
     "artifact_name": "fresh-bobo-video",
     "created_at": "2026-11-04T17:48:50Z",
-    "downloaded_at": "2026-11-12T06:37:50+05:00",
-    "downloaded_file": "bobo-run-341-last-available.zip",
+    "downloaded_at": "2026-11-12T07:17:13+05:00",
+    "downloaded_file": "bobo-run-341-recheck.zip",
     "zip_bytes": 8092018,
     "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
     "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/41880398664"
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/41880398664",
+    "rechecked": true,
+    "duplicate_story": true,
+    "quality_passed": false
   },
   "latest_publish_workflow": {
     "run_number": 99,
