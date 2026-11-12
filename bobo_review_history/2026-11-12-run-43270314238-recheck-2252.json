@@ -98,7 +98,9 @@
         ]
       },
       "scene": "Sunny art room, same scene_id 7 and painting/brush setup as already-published episode 40522021 'Art room paint surprise'.",
-      "decision": "Near-duplicate/reused scene-story risk; not eligible as a distinct daily video."
+      "decision": "Near-duplicate/reused scene-story risk; not eligible as a distinct daily video.",
+      "transition_sample_fps": 8,
+      "transition_sampled_frames": 46
     },
     "quality_passed": false,
     "hold_reasons": [
@@ -112,7 +114,20 @@
     ],
     "audio_note": "Separate 11-second WAV stems exist, but no final encoded video mix was present. No subjective listening or intelligibility claim made.",
     "cost": 0,
-    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/41880398664"
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/41880398664",
+    "sound_review": {
+      "music_stem_rms_dbfs": -29.64,
+      "effects_stem_rms_dbfs": -43.62,
+      "effects_below_music_db": 13.98,
+      "music_style_metadata_present": false,
+      "foley_provenance_present": false,
+      "scene_effect_action_mapping_present": false,
+      "final_mix_present": false,
+      "perceptual_music_audibility_verified": false,
+      "perceptual_effect_audibility_verified": false,
+      "natural_foley_verified": false,
+      "note": "Separate WAV level measurements only. No claim of hearing the music/effects or of perceptual naturalness."
+    }
   },
   "publication": {
     "latest_publish_workflow": {
