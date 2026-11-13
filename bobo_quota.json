@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-13T14:19:15+05:00",
+  "last_observed_at": "2026-11-13T15:17:28+05:00",
   "last_generation_run_id": 43388581129,
-  "last_provider_result": "14:19 PK 13 November: latest Daily Fresh Bobo run #364 completed successfully but produced no artifact. Logs confirm fresh_bobo.py stopped before Hugging Face because all eligible original scene references were used/reserved; no provider quota error was observed. Re-downloaded latest non-empty artifact #341 (ZIP SHA256 4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd; generated.mp4 SHA256 2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a). Inspected 49 frames at 4fps and dialogue/cut/pause windows at 8fps. It duplicates published art-room scene_id 7 / episode 40522021, is 12.1875s video-only 480x832 at 16fps, with a 3.125s low-activity pose; no final export, embedded audio, captions timing or episode metadata. Separate WAVs only; effects stem RMS is 13.98dB below music. No subjective listening or ASR of final mix. Held; no repair/publication. Provider availability remains unverified.",
+  "last_provider_result": "15:17 PK 13 November: rechecked latest Daily Fresh Bobo run #364 and re-downloaded latest non-empty artifact #341. Run #364 succeeded without artifact and stopped before Hugging Face because all eligible original scene references are used/reserved; no provider quota error observed. Artifact #341 was inspected at 4fps (49 frames) and 8fps (98 frames); it repeats published art-room episode 40522021, lasts 12.1875s, has no embedded audio, final export, episode.json or captions timing. Separate WAV measurements show effects 13.98dB below music; no subjective listening or final-mix ASR. Held, no repair/publication. Provider availability remains unverified.",
   "latest_check": {
-    "checked_at": "2026-11-13T14:19:15+05:00",
+    "checked_at": "2026-11-13T15:17:28+05:00",
     "latest_daily_run": {
       "workflow": "Daily Fresh Bobo",
       "run_number": 364,
@@ -15,10 +15,9 @@
       "conclusion": "success",
       "completed_at": "2026-11-13T12:50:24+05:00",
       "artifact_count": 0,
-      "artifact_upload_log": "No files were found with the provided path: fresh_output/. No artifacts will be uploaded.",
       "provider_called": false,
       "quota_error_observed": false,
-      "blocker": "fresh_bobo.py stopped before provider contact: all eligible original scene references in SCENE_CANDIDATE_ORDER (7,1,2,0,3,4) are used or reserved; scene IDs 5 and 6 are retired.",
+      "blocker": "all eligible original scene references are used or reserved; scene IDs 5 and 6 retired",
       "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43388581129"
     },
     "pending_gate": {
@@ -26,7 +25,7 @@
       "bobo_pending_directory_entry_for_current_draft": false,
       "approval_status": "published",
       "approval_episode": 40522037,
-      "action": "No current pending gate exists; preserve the already-published approval."
+      "action": "No current pending gate exists. Preserve the already-published approval; nothing to clear."
     },
     "latest_nonempty_artifact": {
       "run_number": 341,
@@ -35,8 +34,7 @@
       "artifact_id": 13349870060,
       "artifact_name": "fresh-bobo-video",
       "downloaded_via": "GitHub Actions workflow artifact download",
-      "downloaded_at": "2026-11-13T14:19:15+05:00",
-      "zip_file": "bobo-run-341-artifact.zip",
+      "zip_file": "bobo-run-341-latest-nonempty.zip",
       "zip_bytes": 8092018,
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "generated_mp4": "generated.mp4",
@@ -65,57 +63,43 @@
       "captions_timing_present": false,
       "final_render_present": false,
       "final_bobo_fresh_mp4_present": false,
-      "rechecked": true,
-      "duplicate_story": true,
-      "quality_passed": false,
-      "duration": 12.1875,
-      "width": 480,
-      "height": 832,
-      "fps": 16,
-      "embedded_audio": false,
-      "visual_sampling_fps": 4,
-      "visual_sample_count": 49,
-      "transition_sampling_fps": 8,
-      "duplicate_scene_id": 7,
-      "duplicate_episode": 40522021,
-      "decision": "Held: duplicate published setting, overlength intermediate video-only file, missing final mix/subtitle."
+      "rechecked": true
     },
-    "publication": {
-      "latest_publish_run_number": 101,
-      "latest_publish_run_id": 43300352300,
-      "latest_publish_job_id": 131469542973,
-      "conclusion": "success",
-      "facebook_publication": "skipped; no due approved reserve entry",
-      "instagram_reel": "skipped",
-      "instagram_story": "skipped",
-      "facebook_story": "skipped",
+    "decision": {
+      "status": "held",
+      "reasons": [
+        "duplicate published visual premise",
+        "12.1875s outside the 10.95–11.05s target",
+        "no embedded audio/final mix",
+        "no exact spoken subtitle or caption timing",
+        "final-mix intelligibility unavailable",
+        "3.125s low-activity interval"
+      ],
+      "repairs_attempted": false,
+      "repair_reason": "Do not finish a duplicate visual into a second daily video. Shortening would violate the 11-second requirement and would not resolve duplicate provenance.",
+      "facebook_publication": "not attempted",
+      "instagram_reel": "not attempted",
+      "instagram_story": "not attempted",
+      "facebook_story": "not attempted",
+      "pending_gate_cleared": false,
+      "cost": 0
+    },
+    "provider_quota_status": "Unverified since the last confirmed free provider success on 2026-11-04. Run #364 did not contact Hugging Face and showed no quota error; the blocker is exhausted eligible original scene references. The stored 2026-10-18 retry_after value is historical, not evidence of a reset.",
+    "publication_status": {
       "new_publication_this_check": false,
-      "metricool_latest_bobo_reel": {
-        "facebook_date": "2026-10-20",
-        "facebook_reel_id": "1436338491806872",
-        "instagram_date": "2026-10-20",
-        "instagram_reel_id": "17875962633650829"
-      },
-      "metricool_scheduled_posts_nov13_to_nov20": 0,
-      "story_status": {
-        "latest_facebook_story_analytics": "2026-10-18",
-        "instagram_story_analytics_rows_returned": 0,
-        "note": "Metricool returned one Facebook Story row on 18 October and no Instagram Story rows; no newer Story acceptance is recorded."
-      },
-      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43300352300"
+      "latest_publish_workflow_run_number": 101,
+      "latest_publish_workflow_run_id": 43300352300,
+      "latest_publish_workflow_conclusion": "success",
+      "latest_publish_workflow_actions": "artifact download, Facebook publication, Instagram Reel, Instagram Story and Facebook Story all skipped because no due approved reserve entry existed",
+      "metricool_brand": "Bobo Giggle Grove",
+      "metricool_scheduled_posts_2026_11_13_to_2026_11_20": 0,
+      "repository_ledger_entries_published_2026_11_13": 0,
+      "latest_recorded_bobo_reel": "2026-10-20",
+      "latest_recorded_facebook_story": "2026-10-18",
+      "instagram_story_rows_returned": 0
     },
-    "publisher_path": {
-      "path": ".github/workflows/publish-reviewed-bobo.yml",
-      "inspected": true,
-      "existing_checks": "Exact reviewed artifact SHA256, 10.95–11.05s duration, mandatory speech/subtitle evidence, observed-action/caption/effect review, duplicate protection and upload-intent idempotency.",
-      "secrets": "Existing FB_PAGE_ID and FB_PAGE_ACCESS_TOKEN referenced through masked GitHub Actions environment variables; no secret read or printed.",
-      "changes_made": false,
-      "reason": "No current artifact qualifies for approval or publication."
-    },
-    "review_record": "bobo_review_history/2026-11-13-run-43388581129-recheck-1419.json",
-    "cost": 0,
-    "decision": "NO_CURRENT_DRAFT; DAILY_RUN_364_NO_ARTIFACT; ARTIFACT_341_REDOWNLOADED_AND_HELD_AS_DUPLICATE_AND_INCOMPLETE; NO_NEW_PUBLICATION.",
-    "provider_quota_status": "Unverified since the last confirmed free provider success on 2026-11-04. Latest generation attempt stopped at the distinct-scene guard before contacting Hugging Face."
+    "review_record": "bobo_review_history/2026-11-13-run-43388581129-recheck-1517.json",
+    "cost": 0
   },
   "recent_daily_runs_artifact_scan": [
     {
@@ -222,10 +206,10 @@
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-13-run-43388581129-recheck-1419",
-    "completed_at": "2026-11-13T14:19:15+05:00",
+    "review_id": "2026-11-13-run-43388581129-recheck-1517",
+    "completed_at": "2026-11-13T15:17:28+05:00",
     "result": "NO_CURRENT_DRAFT; DAILY_RUN_364_NO_ARTIFACT; ARTIFACT_341_REDOWNLOADED_AND_HELD_AS_DUPLICATE_AND_INCOMPLETE; NO_NEW_PUBLICATION",
-    "review_record": "bobo_review_history/2026-11-13-run-43388581129-recheck-1419.json",
+    "review_record": "bobo_review_history/2026-11-13-run-43388581129-recheck-1517.json",
     "latest_daily_run_id": 43388581129,
     "latest_daily_run_number": 364,
     "artifact_count": 0,
@@ -238,7 +222,7 @@
     "pending_gate": false,
     "publication_run_id": 43300352300,
     "publication_steps": "all skipped",
-    "provider_quota_status": "unverified; provider not contacted due scene-reference exhaustion",
+    "provider_quota_status": "unverified; provider not contacted because eligible original scene references are exhausted",
     "cost": 0
   },
   "provider_quota_status": "last_known_free_provider_success_2026-11-04; current availability unverified because latest Daily Fresh Bobo run #364 stopped at the distinct-scene guard before contacting Hugging Face.",
