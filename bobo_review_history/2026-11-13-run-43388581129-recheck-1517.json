@@ -1,0 +1,198 @@
+{
+  "review_id": "2026-11-13-run-43388581129-recheck-1517",
+  "completed_at": "2026-11-13T15:17:28+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "latest_daily_run": {
+    "workflow": "Daily Fresh Bobo",
+    "run_number": 364,
+    "run_id": 43388581129,
+    "job_id": 131762796923,
+    "conclusion": "success",
+    "completed_at": "2026-11-13T12:50:24+05:00",
+    "artifact_count": 0,
+    "artifact_upload_log": "No files were found with the provided path: fresh_output/. No artifacts will be uploaded.",
+    "provider_called": false,
+    "quota_error_observed": false,
+    "blocker": "fresh_bobo.py stopped before contacting Hugging Face because every eligible original scene reference is used or reserved; scene IDs 5 and 6 are retired.",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43388581129"
+  },
+  "current_pending_gate": {
+    "bobo_review_pending_json_exists": false,
+    "bobo_pending_directory_entry_for_current_draft": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "action": "No current pending gate exists. Preserve the already-published approval; nothing to clear."
+  },
+  "latest_nonempty_artifact": {
+    "run_number": 341,
+    "run_id": 41880398664,
+    "job_id": 126751027283,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_via": "GitHub Actions workflow artifact download",
+    "zip_file": "bobo-run-341-latest-nonempty.zip",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_mp4": "generated.mp4",
+    "generated_mp4_bytes": 2779364,
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "contents": [
+      "generated.mp4",
+      "shot0.mp4",
+      "shot1.mp4",
+      "shot2.mp4",
+      "reference.png",
+      "continuation.png",
+      "dialogue-timing.json",
+      "shot1-review.json",
+      "shot2-review.json",
+      "shot3-review.json",
+      "voice-line.wav",
+      "voice-raw.wav",
+      "voice-track.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "audio.wav",
+      "shots.txt"
+    ],
+    "episode_json_present": false,
+    "captions_timing_present": false,
+    "final_render_present": false,
+    "final_bobo_fresh_mp4_present": false,
+    "rechecked": true
+  },
+  "visual_review": {
+    "full_render_sample_fps": 4,
+    "full_render_sample_count": 49,
+    "transition_sample_fps": 8,
+    "transition_sample_count": 98,
+    "caption_transitions_present": 0,
+    "observed_actions": {
+      "bobo_already_holding_brush_and_palette": [
+        0,
+        0.25
+      ],
+      "first_visible_brush_strokes": [
+        0.5,
+        4.375
+      ],
+      "low_activity_front_facing_pose": [
+        4.5,
+        7.625
+      ],
+      "brush_strokes_resume": [
+        7.75,
+        10
+      ],
+      "brush_lift_and_late_reaction": [
+        10,
+        12.1875
+      ]
+    },
+    "finding": "The actual generated.mp4 was inspected across the full duration at 4fps and 8fps. It shows Bobo in a sunny art room with easel and palette, painting, holding a long front-facing low-activity pose for about 3.125 seconds, then resuming brush movement and reacting near the end. No caption transitions exist because captions-timing.json is absent."
+  },
+  "duplicate_check": {
+    "duplicate": true,
+    "prior_episode": 40522021,
+    "prior_title": "Art room paint surprise",
+    "prior_scene_id": 7,
+    "prior_setting": "a sunny art room with a small easel and paint palette",
+    "prior_facebook_video_id": "2212226773511644",
+    "decision": "Same already-published story premise/scene. Caption or audio changes cannot make this a distinct daily video."
+  },
+  "voice": {
+    "engine": "Piper local CPU",
+    "exact_provisional_text": "Time to paint!",
+    "provisional_start": 0.35,
+    "provisional_end": 1.1761,
+    "source_voice_line_wav_present": true,
+    "voice_track_wav_present": true,
+    "final_encoded_voice_present": false,
+    "exact_spoken_subtitle_present": false,
+    "final_mix_asr_or_listening_verification": false,
+    "voice_line_wav_rms_dbfs": -34.37,
+    "decision": "The intermediate package has separate voice WAVs only. No final encoded mix or exact spoken subtitle exists. No intelligibility or lip-sync claim."
+  },
+  "sound": {
+    "audio_wav_duration_seconds": 11,
+    "audio_wav_rms_dbfs": -22.46,
+    "audio_wav_peak_dbfs": -6.85,
+    "music_stem_rms_dbfs": -29.64,
+    "music_stem_peak_dbfs": -14.47,
+    "effects_stem_rms_dbfs": -43.62,
+    "effects_stem_peak_dbfs": -17.08,
+    "effects_below_music_rms_db": 13.98,
+    "voice_track_rms_dbfs_full_11s": -45.61,
+    "effect_source": "Procedurally synthesized brush-like noise; no verified recorded foley provenance.",
+    "music_style_metadata_present": false,
+    "final_mix_present": false,
+    "subjective_music_audibility_verified": false,
+    "subjective_effect_audibility_verified": false,
+    "natural_foley_verified": false,
+    "note": "Waveform measurements only. The MP4 has no audio stream; no claim of hearing music/effects, perceptual audibility, naturalness or music ducking."
+  },
+  "technical": {
+    "generated_duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "video_codec": "H.264",
+    "resolution": "480x832",
+    "fps": 16,
+    "encoded_audio_stream": false,
+    "ffmpeg_decode_check": "passed for intermediate video stream",
+    "final_export": false,
+    "finding": "Overlength intermediate video-only file; not a publishable final export."
+  },
+  "decision": {
+    "status": "held",
+    "reasons": [
+      "duplicate published visual premise",
+      "12.1875s outside the 10.95–11.05s target",
+      "no embedded audio/final mix",
+      "no exact spoken subtitle or caption timing",
+      "final-mix intelligibility unavailable",
+      "3.125s low-activity interval"
+    ],
+    "repairs_attempted": false,
+    "repair_reason": "Do not finish a duplicate visual into a second daily video. Shortening would violate the 11-second requirement and would not resolve duplicate provenance.",
+    "facebook_publication": "not attempted",
+    "instagram_reel": "not attempted",
+    "instagram_story": "not attempted",
+    "facebook_story": "not attempted",
+    "pending_gate_cleared": false,
+    "cost": 0
+  },
+  "publication_status": {
+    "new_publication_this_check": false,
+    "latest_publish_workflow_run_number": 101,
+    "latest_publish_workflow_run_id": 43300352300,
+    "latest_publish_workflow_conclusion": "success",
+    "latest_publish_workflow_actions": "artifact download, Facebook publication, Instagram Reel, Instagram Story and Facebook Story all skipped because no due approved reserve entry existed",
+    "metricool_brand": "Bobo Giggle Grove",
+    "metricool_scheduled_posts_2026_11_13_to_2026_11_20": 0,
+    "repository_ledger_entries_published_2026_11_13": 0,
+    "latest_recorded_bobo_reel": "2026-10-20",
+    "latest_recorded_facebook_story": "2026-10-18",
+    "instagram_story_rows_returned": 0
+  },
+  "publisher_path": {
+    "path": ".github/workflows/publish-reviewed-bobo.yml",
+    "inspected": true,
+    "checks_present": [
+      "exact artifact SHA256",
+      "10.95–11.05s duration",
+      "mandatory speech and exact subtitle",
+      "independent ASR or actual-listening evidence on final encoded mix",
+      "observed-action/caption/effect review",
+      "episode duplicate protection",
+      "upload-intent idempotency",
+      "existing FB_PAGE_ID and FB_PAGE_ACCESS_TOKEN secrets used via masked environment"
+    ],
+    "changes_made": false,
+    "reason": "No current draft qualifies for approval or publication."
+  },
+  "provider_quota_status": "Unverified since the last confirmed free provider success on 2026-11-04. Run #364 did not contact Hugging Face and showed no quota error; the blocker is exhausted eligible original scene references. The stored 2026-10-18 retry_after value is historical, not evidence of a reset.",
+  "cost": 0
+}
