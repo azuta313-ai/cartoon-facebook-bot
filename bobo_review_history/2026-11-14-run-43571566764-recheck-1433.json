@@ -1,0 +1,218 @@
+{
+  "review_id": "daily-fresh-bobo-2026-11-14-run-43571566764-recheck-1433",
+  "completed_at": "2026-11-14T14:33:55+05:00",
+  "status": "held_historical_duplicate_incomplete",
+  "publication_allowed": false,
+  "pending_gate_present": false,
+  "latest_daily_fresh_run": {
+    "run_id": 43571566764,
+    "run_number": 366,
+    "created_at": "2026-11-14T07:32:21Z",
+    "conclusion": "success",
+    "artifact_uploaded": false,
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_blocked": false,
+    "observed_blocker": "fresh_bobo.py exited before any Hugging Face request: all eligible original scene references are already in the recent/published/reserve set; hold rather than duplicate.",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43571566764"
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "action": "No pending gate exists; preserve the published approval and do not clear or rewrite a nonexistent gate."
+  },
+  "latest_nonempty_daily_artifact": {
+    "source_run_id": 41880398664,
+    "run_number": 341,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "artifact_created_at": "2026-11-04T17:48:50Z",
+    "downloaded_via": "GitHub Actions workflow artifact download",
+    "downloaded_at": "2026-11-14T14:33:55+05:00",
+    "zip_file": "bobo-run-341-latest-nonempty.zip",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_mp4": "generated.mp4",
+    "generated_mp4_bytes": 2779364,
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "contents": [
+      "generated.mp4",
+      "shot0.mp4",
+      "shot1.mp4",
+      "shot2.mp4",
+      "reference.png",
+      "continuation.png",
+      "dialogue-timing.json",
+      "voice-line.wav",
+      "voice-track.wav",
+      "audio.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "shot1-review.json",
+      "shot2-review.json",
+      "shot3-review.json",
+      "shots.txt"
+    ],
+    "missing_final_files": [
+      "bobo_fresh.mp4",
+      "episode.json",
+      "captions-timing.json",
+      "captions.srt",
+      "automatic-review.json",
+      "facebook-caption.txt"
+    ]
+  },
+  "visual_review": {
+    "full_render_sampling_fps": 4,
+    "full_render_sample_count": 49,
+    "transition_sampling_fps": 8,
+    "transition_sample_count": 98,
+    "observed_actions": {
+      "bobo_holding_brush_and_palette": {
+        "start": 0,
+        "end": 0.25
+      },
+      "brush_strokes_initial": {
+        "start": 0.5,
+        "end": 4.0625
+      },
+      "turn_to_camera_and_pose": {
+        "start": 4.125,
+        "end": 5.25
+      },
+      "low_activity_front_facing_pose": {
+        "start": 5.5,
+        "end": 7.625
+      },
+      "brush_strokes_resume": {
+        "start": 8,
+        "end": 10
+      },
+      "ending_turn_and_gesture": {
+        "start": 10.5,
+        "end": 12.1875
+      }
+    },
+    "opening_purposeful_action": "Brush movement is first clearly observed at approximately 0.5s; not demonstrated before 0.5s.",
+    "pacing_finding": "A comparatively low-activity front-facing pose occupies approximately 5.5–7.625s.",
+    "duplicate_provenance": {
+      "scene_id": 7,
+      "prior_published_episode": 40522021,
+      "prior_title": "Art room paint surprise",
+      "finding": "Same sunny art-room easel, palette and painting setup; not a distinct new video."
+    }
+  },
+  "dialogue": {
+    "engine": "Piper local CPU",
+    "exact_provisional_text": "Time to paint!",
+    "provisional_start": 0.35,
+    "provisional_end": 1.1761,
+    "piper_sidecar_present": true,
+    "voice_track_sidecar_present": true,
+    "final_encoded_voice_present": false,
+    "final_mix_present": false,
+    "exact_spoken_subtitle_present": false,
+    "intelligibility_verified": false,
+    "independent_asr_performed": false,
+    "subjective_listening_performed": false,
+    "note": "The MP4 is video-only. Sidecar voice files do not establish audible speech in the final encoded mix."
+  },
+  "captions": {
+    "captions_timing_json_present": false,
+    "captions_srt_present": false,
+    "caption_transitions_reviewed": 0,
+    "mappings": [],
+    "note": "No caption timing artifact exists; no action-caption or spoken-subtitle timing can be approved."
+  },
+  "audio_sidecars": {
+    "measurement_method": "PCM RMS/peak measurements only; no subjective listening",
+    "audio_mix": {
+      "duration_seconds": 11,
+      "rms_dbfs": -22.46,
+      "peak_dbfs": -6.85
+    },
+    "original_music": {
+      "duration_seconds": 11,
+      "rms_dbfs": -29.64,
+      "peak_dbfs": -14.47
+    },
+    "scene_effects": {
+      "duration_seconds": 11,
+      "rms_dbfs": -43.62,
+      "peak_dbfs": -17.08
+    },
+    "voice_track": {
+      "duration_seconds": 11,
+      "rms_dbfs": -45.61,
+      "peak_dbfs": -16.81
+    },
+    "voice_line": {
+      "duration_seconds": 0.8261,
+      "rms_dbfs": -34.37,
+      "peak_dbfs": -16.81
+    },
+    "effects_vs_music_rms_difference_db": -13.98,
+    "music_variant_style_metadata_present": false,
+    "foley_source_provenance_present": false,
+    "effect_action_mappings": [],
+    "naturalness_verified": false,
+    "subjective_music_audibility_verified": false,
+    "final_encoded_mix_present": false,
+    "note": "audio.wav is a pre-voice music/effects sidecar, not embedded in generated.mp4. Waveform levels do not prove perceptual audibility or naturalness."
+  },
+  "technical": {
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "codec": "H.264",
+    "resolution": "480x832",
+    "fps": 16,
+    "embedded_audio_stream": false,
+    "video_decode_pass": true,
+    "final_export_present": false,
+    "episode_json_present": false
+  },
+  "decision": {
+    "status": "rejection_unchanged",
+    "reasons": [
+      "Reuses published scene_id 7 / episode 40522021.",
+      "12.1875s is outside the required 10.95–11.05s range.",
+      "Intermediate video has no embedded audio or final encoded voice mix.",
+      "No exact spoken subtitle or caption timing file exists.",
+      "Shot review sidecars remain awaiting_visual_verification.",
+      "A low-activity pose lasts approximately 5.5–7.625s.",
+      "Effects are approximately 14dB below music by RMS and have no observed-action/source map; perceptual naturalness is unverified."
+    ],
+    "repairs_attempted": false,
+    "repair_reason": "Changing duration, captions or audio cannot turn the reused published art-room premise into a distinct video. Retain the historical rejection.",
+    "facebook_publication": "not_attempted",
+    "instagram_reel": "not_attempted",
+    "instagram_story": "not_attempted",
+    "facebook_story": "not_attempted",
+    "pending_gate_cleared": false,
+    "cost": 0
+  },
+  "publication_check": {
+    "latest_publish_workflow_run_number": 103,
+    "latest_publish_workflow_run_id": 43496280395,
+    "conclusion": "success",
+    "main_video_upload_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "new_platform_acceptance": false
+  },
+  "provider_status": "Free provider availability remains unverified. Run #366 did not contact Hugging Face and produced no quota error. The stored 2026-10-18 retry_after is historical, not evidence of a current reset.",
+  "cost": 0
+}
