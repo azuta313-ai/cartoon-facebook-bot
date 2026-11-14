@@ -1,0 +1,172 @@
+{
+  "review_id": "2026-11-14-run-43469692517-recheck-0653",
+  "completed_at": "2026-11-14T06:56:56.611+05:00",
+  "status": "no_current_draft_historical_artifact_held",
+  "result": "NO_CURRENT_DRAFT; RUN_365_NO_ARTIFACT; RUN_341_LATEST_NONEMPTY_ARTIFACT_DOWNLOADED_AND_RECHECKED; DUPLICATE_AND_INCOMPLETE; NO_NEW_PUBLICATION",
+  "latest_daily_run": {
+    "workflow": "Daily Fresh Bobo",
+    "run_number": 365,
+    "run_id": 43469692517,
+    "job_id": 132038010186,
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "blocker": "fresh_bobo.py stopped before contacting Hugging Face: all eligible distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43469692517"
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_exists": false,
+    "bobo_pending_directory_entry_for_current_draft": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "action": "No pending gate exists. Preserve the published approval and do not clear or rewrite a nonexistent gate."
+  },
+  "latest_nonempty_artifact": {
+    "run_number": 341,
+    "run_id": 41880398664,
+    "job_id": 126751027283,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_via": "GitHub Actions workflow artifact download",
+    "downloaded_at": "2026-11-14T06:56:56.611+05:00",
+    "zip_file": "bobo-run-341-latest-nonempty.zip",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_mp4": "generated.mp4",
+    "generated_mp4_bytes": 2779364,
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "episode_json_present": false,
+    "captions_timing_json_present": false,
+    "captions_srt_present": false,
+    "final_render_present": false,
+    "final_bobo_fresh_mp4_present": false,
+    "embedded_audio": false,
+    "duration_seconds": 12.1875,
+    "width": 480,
+    "height": 832,
+    "fps": 16,
+    "video_decode_pass": true,
+    "visual_sampling_fps": 4,
+    "visual_sample_count": 49,
+    "transition_sampling_fps": 8,
+    "transition_sample_count": 98,
+    "duplicate_episode": 40522021,
+    "duplicate_scene_id": 7,
+    "rechecked": true
+  },
+  "visual_review": {
+    "observed_actions": {
+      "bobo_already_holding_brush_and_palette": [
+        0,
+        0.25
+      ],
+      "visible_brush_strokes": [
+        0.5,
+        4.0625
+      ],
+      "low_activity_upright_camera_facing_pose": [
+        5.5,
+        7.625
+      ],
+      "brush_strokes_resume": [
+        8,
+        10
+      ],
+      "ending_turn_and_gesture": [
+        10.5,
+        12.1875
+      ]
+    },
+    "finding": "The exact downloaded frames show 3D Bobo in a red shirt painting at the same sunny art-room easel and paint-palette setup as published episode 40522021 ('Art room paint surprise'). This is reused visual premise, not a distinct new video."
+  },
+  "dialogue": {
+    "exact_provisional_text": "Time to paint!",
+    "start": 0.35,
+    "end": 1.1761,
+    "engine": "Piper local CPU",
+    "piper_voice_line_wav_present": true,
+    "voice_track_wav_present": true,
+    "final_encoded_voice_present": false,
+    "final_mix_present": false,
+    "spoken_subtitle_present": false,
+    "captions_timing_json_present": false,
+    "intelligibility_verified": false,
+    "independent_asr_performed": false,
+    "subjective_listening_performed": false,
+    "note": "The generated MP4 has no audio stream. The Piper line and voice WAVs are sidecars only; final-mix speech intelligibility and subtitle synchronization cannot be verified."
+  },
+  "sound": {
+    "pre_voice_mix_rms_dbfs": -22.5,
+    "pre_voice_mix_peak_dbfs": -6.8,
+    "music_rms_dbfs": -29.6,
+    "music_peak_dbfs": -14.5,
+    "effects_rms_dbfs": -43.6,
+    "effects_peak_dbfs": -17.1,
+    "effects_vs_music_rms_difference_db": -14,
+    "voice_track_rms_dbfs": -45.6,
+    "voice_track_peak_dbfs": -16.8,
+    "foley_provenance_present": false,
+    "effects_action_mapping_present": false,
+    "subjective_music_audibility_verified": false,
+    "effects_naturalness_verified": false,
+    "note": "Separate WAV stems were measured only. The effects stem is about 14 dB below the music stem by RMS; no perceptual audibility/naturalness or action alignment is claimed."
+  },
+  "technical": {
+    "codec": "H.264",
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "resolution": "480x832",
+    "fps": 16,
+    "embedded_audio_stream": false,
+    "video_decode_pass": true,
+    "final_encoded_video": false,
+    "duration_pass": false
+  },
+  "decision": {
+    "status": "held_historical_duplicate_incomplete",
+    "reasons": [
+      "same published scene_id 7 art-room painting premise as episode 40522021",
+      "12.1875s is outside the 10.95–11.05 second requirement",
+      "intermediate video has no embedded audio stream or final mix",
+      "no exact spoken subtitle or caption timing file",
+      "final-mix speech intelligibility cannot be verified",
+      "low-activity pose from approximately 5.5–7.625s"
+    ],
+    "repairs_attempted": false,
+    "repair_reason": "Do not turn a duplicate published visual premise into a second distinct video. Relabelling or trimming would not repair provenance and satisfy the eleven-second requirement.",
+    "facebook_publication": "not attempted",
+    "instagram_reel": "not attempted",
+    "instagram_story": "not attempted",
+    "facebook_story": "not attempted",
+    "pending_gate_cleared": false,
+    "cost": 0
+  },
+  "publication_status": {
+    "new_publication_this_check": false,
+    "latest_publish_workflow_run_number": 103,
+    "latest_publish_workflow_run_id": 43496280395,
+    "latest_publish_workflow_conclusion": "success",
+    "artifact_download": "skipped",
+    "facebook_publication": "skipped",
+    "instagram_reel": "skipped",
+    "instagram_story": "skipped",
+    "facebook_story": "skipped",
+    "reason": "The latest publish job had no due unpublished approved reserve entry; all platform steps were skipped.",
+    "latest_recorded_facebook_reel_date": "2026-10-20",
+    "latest_recorded_facebook_story_date": "2026-10-18",
+    "latest_recorded_instagram_reel_date": "2026-10-18",
+    "latest_recorded_instagram_story_date": "2026-10-18"
+  },
+  "provider_quota_status": "Unverified since the last confirmed free provider success on 2026-11-04. Run #365 did not contact Hugging Face because all eligible distinct scene references are used/reserved; no quota error was observed. The stored 2026-10-18 retry_after is historical, not evidence of a reset.",
+  "cost": 0
+}
