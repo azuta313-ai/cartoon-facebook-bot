@@ -1,0 +1,222 @@
+{
+  "review_id": "2026-11-14-run-43611760314-recheck-2310",
+  "completed_at": "2026-11-14T23:10:24+05:00",
+  "repository_commit": "407821bffb561ed620e4e61695645490450a6b8d",
+  "latest_daily_run": {
+    "workflow": "Daily Fresh Bobo",
+    "run_number": 367,
+    "run_id": 43611760314,
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43611760314",
+    "started_at": "2026-11-14T20:44:08+05:00",
+    "completed_at": "2026-11-14T20:44:36+05:00",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "artifact_uploaded": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "provider_contacted": false,
+    "quota_error_observed": false,
+    "schedule_note": "No later Daily Fresh Bobo run appeared in the latest workflow-run listing by 23:10 PK; this does not establish a provider quota error."
+  },
+  "latest_nonempty_artifact": {
+    "workflow": "Daily Fresh Bobo",
+    "run_number": 341,
+    "run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_via": "GitHub Actions workflow artifact download",
+    "downloaded_at": "2026-11-14T23:10:24+05:00",
+    "zip_file": "bobo-run-341-latest-nonempty.zip",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_mp4": "generated.mp4",
+    "generated_mp4_bytes": 2779364,
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "files": [
+      "generated.mp4",
+      "shot0.mp4",
+      "shot1.mp4",
+      "shot2.mp4",
+      "reference.png",
+      "continuation.png",
+      "contact_4fps.jpg",
+      "contact_8fps.jpg",
+      "dialogue-timing.json",
+      "shot1-review.json",
+      "shot2-review.json",
+      "shot3-review.json",
+      "voice-line.wav",
+      "voice-raw.wav",
+      "voice-track.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "audio.wav",
+      "shots.txt"
+    ],
+    "episode_json_present": false,
+    "captions_timing_present": false,
+    "final_render_present": false,
+    "final_bobo_fresh_mp4_present": false,
+    "zip_sha256_verified_after_download": true
+  },
+  "technical_review": {
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "duration_pass": false,
+    "video_codec": "H.264",
+    "width": 480,
+    "height": 832,
+    "fps": 16,
+    "frames": 195,
+    "embedded_audio": false,
+    "final_render_present": false,
+    "caption_timing_file_present": false,
+    "episode_metadata_present": false,
+    "playable_intermediate": true,
+    "technical_decision": "Intermediate video-only generation artifact; not a publishable final render."
+  },
+  "visual_review": {
+    "full_render_sample_fps": 4,
+    "full_render_sample_count": 49,
+    "transition_sample_fps": 8,
+    "transition_sample_count": 98,
+    "timing_precision": "Approximate observed intervals from sampled frames, not frame-accurate tracking.",
+    "observed_actions": {
+      "orient_toward_easel": [
+        0,
+        1
+      ],
+      "brush_held_near_canvas_with_small_arm_adjustments": [
+        1,
+        3.875
+      ],
+      "turn_back_toward_camera": [
+        3.875,
+        4.75
+      ],
+      "front_facing_palette_and_brush_hold": [
+        4.75,
+        7
+      ],
+      "turn_toward_easel_again": [
+        7,
+        8
+      ],
+      "brush_near_canvas_again": [
+        8,
+        9
+      ],
+      "turn_toward_camera_reaction": [
+        9,
+        10.5
+      ],
+      "ending_arm_and_brush_gestures": [
+        10.5,
+        12.1875
+      ]
+    },
+    "shot_review_files_status": "All three shot review JSON files remain awaiting_visual_verification with visual_action_verified=false.",
+    "summary": "Recognizable 3D Bobo in red shirt; small brush/arm movements and turns are visible, with no major sampled corruption. The art-room/easel/paintbrush premise repeats the already-published art-room story."
+  },
+  "duplicate_check": {
+    "duplicate_story": true,
+    "scene_id": 7,
+    "prior_published_episode": 40522021,
+    "prior_title": "Art room paint surprise",
+    "prior_setting": "A sunny art room with a small easel and paint palette.",
+    "observed_setting": "Same art-room easel/paintbrush/palette premise.",
+    "decision": "Reject as non-distinct from already-published art-room story; remuxing, captions or audio changes cannot make this plot distinct."
+  },
+  "speech_review": {
+    "engine": "Piper local CPU",
+    "exact_provisional_text": "Time to paint!",
+    "planned_start": 0.35,
+    "planned_end": 1.1761,
+    "placement_status": "provisional; requires actual rendered mouth/action review",
+    "voice_line_wav_present": true,
+    "voice_track_wav_present": true,
+    "subtitle_present": false,
+    "final_encoded_mix_present": false,
+    "mouth_action_verified": false,
+    "intelligibility_verified": false,
+    "listening_verified": false,
+    "lip_sync_verified": false,
+    "decision": "Mandatory voice exists only as separate provisional assets; no final encoded mix or spoken subtitle to verify."
+  },
+  "caption_review": {
+    "captions_timing_json_present": false,
+    "observed_action_caption_mappings": [],
+    "decision": "No final caption transitions to inspect or approve."
+  },
+  "audio_review": {
+    "final_encoded_mix_present": false,
+    "separate_stems_present": [
+      "voice-line.wav",
+      "voice-track.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "audio.wav"
+    ],
+    "measured_rms_dbfs": {
+      "audio_wav": -22.5,
+      "original_music_wav": -29.6,
+      "scene_effects_wav": -43.6,
+      "voice_track_wav": -45.6,
+      "voice_line_wav": -34.4
+    },
+    "effect_to_music_rms_difference_db": -14,
+    "scene_effect_event_mapping": [],
+    "music_variant_metadata_present": false,
+    "music_style_metadata_present": false,
+    "subjective_listening_performed": false,
+    "perceptual_effect_naturalness_verified": false,
+    "decision": "Separate WAV stems only. Effects stem is about 14 dB below music by RMS; this does not establish perceptual audibility. No timestamped foley map or final mux exists."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "action": "No pending gate exists; none cleared or rewritten."
+  },
+  "latest_publish_workflow": {
+    "run_number": 105,
+    "run_id": 43623456568,
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43623456568",
+    "conclusion": "success",
+    "main_video_upload_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "No due unpublished approved reserve entry."
+  },
+  "publication": {
+    "new_publication_this_check": false,
+    "facebook_acceptance_for_this_artifact": false,
+    "instagram_reel_or_story_for_this_artifact": false,
+    "no_upload_attempted": true,
+    "latest_ledger_episode": 40522037,
+    "latest_recorded_acceptance_date": "2026-10-18"
+  },
+  "provider_status": {
+    "free_provider_availability": "unverified",
+    "latest_run_contacted_hugging_face": false,
+    "quota_blocked": false,
+    "quota_error_observed": false,
+    "last_confirmed_free_provider_reach": "2026-11-04; runs #340 and #341 reached free Hugging Face ZeroGPU and generated clips before local finishing failures.",
+    "actual_blocker": "All eligible original scene references are already recent, published or reserved; generator stopped before contacting the provider.",
+    "stored_retry_after": "2026-10-18T16:30:58.401196+05:00",
+    "retry_after_note": "Historical backoff only; not evidence of a current quota reset."
+  },
+  "decision": "REJECTED_AS_DUPLICATE_AND_INCOMPLETE; NO_CURRENT_DRAFT; NO_NEW_PUBLICATION",
+  "repair_action": "No repair attempted. The only non-empty artifact is a duplicate story and lacks the final 11-second encoded render, caption timing, verified speech mix and observed effect mappings. Re-rendering cannot make the same art-room plot distinct.",
+  "cost": 0
+}
