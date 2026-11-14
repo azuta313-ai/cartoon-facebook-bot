@@ -2,21 +2,21 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-14T15:20:32+05:00",
-  "last_generation_run_id": 43469692517,
-  "last_provider_result": "2026-11-14T07:39:59+05:00: Daily Fresh Bobo #365 has no artifact and stopped before contacting Hugging Face because all eligible original scene references are already used/reserved. Re-downloaded run #341 artifact 13349870060; confirmed ZIP and MP4 SHA256, inspected 49 frames at 4fps and 98 at 8fps. It repeats published art-room episode 40522021, is 12.1875s, 480x832 at 16fps and video-only; no episode.json, caption timing, or final render. Held; no repair/publication. No pending gate. Free-provider availability remains unverified.",
+  "last_observed_at": "2026-11-14T21:32:49+05:00",
+  "last_generation_run_id": 43611760314,
+  "last_provider_result": "2026-11-14T20:44:08+05:00: Daily Fresh Bobo #367 completed successfully but produced no artifact. fresh_bobo.py stopped before Hugging Face because all eligible original scene references are already recent/published/reserved; no quota error. Downloaded latest non-empty artifact #341 (artifact 13349870060), verified ZIP SHA256 4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd and generated.mp4 SHA256 2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a. Inspected 49 frames at 4fps and 98 at 8fps. It repeats published art-room episode 40522021; intermediate is 12.1875s, 480x832 at 16fps, video-only, with no episode.json, caption timing or final render. Piper line remains provisional; final-mix intelligibility, captions and foley cannot be verified. Rejected as duplicate/incomplete; no repair or publication. No pending gate. Free-provider availability remains unverified.",
   "latest_check": {
-    "checked_at": "2026-11-14T15:20:32+05:00",
+    "checked_at": "2026-11-14T21:32:49+05:00",
     "latest_daily_run": {
-      "run_id": 43571566764,
-      "run_number": 366,
+      "run_id": 43611760314,
+      "run_number": 367,
       "conclusion": "success",
       "artifact_count": 0,
       "artifact_uploaded": false,
       "provider_called": false,
       "quota_blocked": false,
-      "observed_blocker": "fresh_bobo.py stopped before any Hugging Face request because every eligible original scene reference is already recent, published, or reserved.",
-      "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43571566764"
+      "observed_blocker": "fresh_bobo.py stopped before any Hugging Face request because all eligible original scene references are already recent, published, or reserved.",
+      "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43611760314"
     },
     "pending_gate": {
       "bobo_review_pending_json_present": false,
@@ -38,12 +38,12 @@
       "artifact_name": "fresh-bobo-video",
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-      "downloaded_at": "2026-11-14T15:20:32+05:00",
-      "decision": "rejection_unchanged"
+      "downloaded_at": "2026-11-14T21:32:49+05:00",
+      "decision": "rejected_duplicate_incomplete"
     },
     "latest_publish_workflow": {
-      "run_number": 103,
-      "run_id": 43496280395,
+      "run_number": 104,
+      "run_id": 43589507160,
       "conclusion": "success",
       "main_video_upload_step": "skipped",
       "instagram_reel_step": "skipped",
@@ -51,8 +51,8 @@
       "facebook_story_step": "skipped",
       "reason": "No due unpublished approved reserve entry; current approval is already published."
     },
-    "provider_status": "Free Hugging Face availability remains unverified. Daily Fresh Bobo #366 did not contact the provider and produced no quota error. The stored 2026-10-18 retry_after is historical, not evidence of a current reset.",
-    "review_record": "bobo_review_history/2026-11-14-run-43571566764-recheck-1520.json",
+    "provider_status": "Free Hugging Face availability remains unverified. Daily Fresh Bobo #367 did not contact the provider and produced no quota error. The stored 2026-10-18 retry_after is historical, not evidence of a current reset.",
+    "review_record": "bobo_review_history/2026-11-14-run-43611760314-recheck-2132.json",
     "cost": 0
   },
   "recent_daily_runs_artifact_scan": [
@@ -164,15 +164,29 @@
       "artifact_count": 0,
       "provider_called": false,
       "reason": "All eligible original scene references were used/reserved; generator stopped before Hugging Face request."
+    },
+    {
+      "run_number": 366,
+      "run_id": 43571566764,
+      "artifact_count": 0,
+      "provider_called": false,
+      "reason": "All eligible original scene references were already used/reserved."
+    },
+    {
+      "run_number": 367,
+      "run_id": 43611760314,
+      "artifact_count": 0,
+      "provider_called": false,
+      "reason": "All eligible original scene references were already used/reserved; no quota error."
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-14-run-43469692517-recheck-0739",
-    "completed_at": "2026-11-14T07:39:59+05:00",
-    "result": "NO_CURRENT_DRAFT; DAILY_RUN_365_NO_ARTIFACT; RUN_341_ARTIFACT_REDOWNLOADED_AND_REVIEWED; DUPLICATE_INCOMPLETE; NO_NEW_PUBLICATION",
-    "review_record": "bobo_review_history/2026-11-14-run-43469692517-recheck-0739.json",
-    "latest_daily_run_id": 43469692517,
-    "latest_daily_run_number": 365,
+    "review_id": "2026-11-14-run-43611760314-recheck-2132",
+    "completed_at": "2026-11-14T21:32:49+05:00",
+    "result": "NO_CURRENT_DRAFT; DAILY_RUN_367_NO_ARTIFACT; RUN_341_ARTIFACT_DOWNLOADED_AND_REVIEWED; DUPLICATE_INCOMPLETE_REJECTED; NO_NEW_PUBLICATION",
+    "review_record": "bobo_review_history/2026-11-14-run-43611760314-recheck-2132.json",
+    "latest_daily_run_id": 43611760314,
+    "latest_daily_run_number": 367,
     "artifact_count": 0,
     "provider_called": false,
     "quota_error_observed": false,
@@ -181,9 +195,9 @@
     "latest_nonempty_artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
     "latest_nonempty_artifact_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
     "pending_gate": false,
-    "publication_run_id": 43496280395,
-    "publication_steps": "artifact download and all platform publishing steps skipped",
-    "provider_quota_status": "Unverified since the last confirmed free provider success on 2026-11-04. Daily run #365 did not contact Hugging Face because all eligible original scene references are already published/recent/reserved; no quota error was observed. The stored 2026-10-18 retry_after is historical, not evidence of a reset.",
+    "publication_run_id": 43589507160,
+    "publication_steps": "all Facebook/Instagram video and Story upload steps skipped",
+    "provider_quota_status": "Unverified since the last confirmed free provider reach on 2026-11-04. Daily run #367 stopped before Hugging Face because all eligible original scene references are already used/reserved; no quota error was observed.",
     "cost": 0
   },
   "provider_quota_status": "Free provider availability remains unverified. Run #366 did not contact Hugging Face and produced no quota error. The stored 2026-10-18 retry_after is historical, not evidence of a current reset.",
