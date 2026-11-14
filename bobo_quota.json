@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-14T22:07:51+05:00",
+  "last_observed_at": "2026-11-14T23:10:24+05:00",
   "last_generation_run_id": 43611760314,
-  "last_provider_result": "2026-11-14 20:44 PK: Daily Fresh Bobo #367 completed successfully but produced no artifact. Generator stopped before Hugging Face because every eligible original scene reference is recent, published or reserved; no quota error was observed.",
+  "last_provider_result": "2026-11-14 20:44 PK: Daily Fresh Bobo #367 completed successfully with no artifact. The distinct-scene guard stopped before Hugging Face; no quota error. Re-downloaded and re-reviewed the latest non-empty artifact #341; rejected as duplicate/incomplete.",
   "latest_check": {
-    "checked_at": "2026-11-14T22:07:51+05:00",
+    "checked_at": "2026-11-14T23:10:24+05:00",
     "latest_daily_run": {
       "run_id": 43611760314,
       "run_number": 367,
@@ -29,7 +29,7 @@
         40522037
       ],
       "all_reserve_entries_already_in_published_ledger": true,
-      "action": "No pending gate; none cleared."
+      "action": "No pending gate exists; none cleared or rewritten."
     },
     "latest_nonempty_artifact": {
       "run_number": 341,
@@ -38,12 +38,12 @@
       "artifact_name": "fresh-bobo-video",
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-      "downloaded_at": "2026-11-14T22:07:51+05:00",
+      "downloaded_at": "2026-11-14T23:10:24+05:00",
       "decision": "rejected_duplicate_incomplete"
     },
     "latest_publish_workflow": {
-      "run_number": 104,
-      "run_id": 43589507160,
+      "run_number": 105,
+      "run_id": 43623456568,
       "conclusion": "success",
       "main_video_upload_step": "skipped",
       "instagram_reel_step": "skipped",
@@ -51,8 +51,8 @@
       "facebook_story_step": "skipped",
       "reason": "No due unpublished approved reserve entry."
     },
-    "provider_status": "Free Hugging Face availability remains unverified; latest run did not contact provider and did not encounter quota error.",
-    "review_record": "bobo_review_history/2026-11-14-run-43611760314-recheck-2207.json",
+    "provider_status": "Free Hugging Face availability remains unverified; latest Daily Fresh run did not contact provider and did not encounter quota error.",
+    "review_record": "bobo_review_history/2026-11-14-run-43611760314-recheck-2310.json",
     "cost": 0
   },
   "recent_daily_runs_artifact_scan": [
@@ -181,10 +181,10 @@
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-14-run-43611760314-recheck-2207",
-    "completed_at": "2026-11-14T22:07:51+05:00",
-    "result": "NO_CURRENT_DRAFT; DAILY_RUN_367_NO_ARTIFACT; RUN_341_ARTIFACT_REDOWNLOADED_AND_REVIEWED; DUPLICATE_INCOMPLETE_REJECTED; NO_NEW_PUBLICATION",
-    "review_record": "bobo_review_history/2026-11-14-run-43611760314-recheck-2207.json",
+    "review_id": "2026-11-14-run-43611760314-recheck-2310",
+    "completed_at": "2026-11-14T23:10:24+05:00",
+    "result": "NO_CURRENT_DRAFT; DAILY_RUN_367_NO_ARTIFACT; RUN_341_ARTIFACT_REDOWNLOADED_AND_REVIEWED; DUPLICATE_INCOMPLETE_REJECTED; PUBLISH_RUN_105_SKIPPED; NO_NEW_PUBLICATION",
+    "review_record": "bobo_review_history/2026-11-14-run-43611760314-recheck-2310.json",
     "latest_daily_run_id": 43611760314,
     "latest_daily_run_number": 367,
     "artifact_count": 0,
@@ -195,7 +195,7 @@
     "latest_nonempty_artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
     "latest_nonempty_artifact_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
     "pending_gate": false,
-    "publication_run_id": 43589507160,
+    "publication_run_id": 43623456568,
     "publication_steps": "Facebook/Instagram video and Story upload steps all skipped; no due unpublished approved reserve entry.",
     "provider_quota_status": "Unverified. Run #367 stopped before Hugging Face due to exhausted eligible distinct original scene references; no quota error was observed.",
     "cost": 0
@@ -208,7 +208,7 @@
     "artifact_id": 13349870060,
     "artifact_name": "fresh-bobo-video",
     "downloaded_via": "GitHub Actions workflow artifact download",
-    "downloaded_at": "2026-11-14T14:33:55+05:00",
+    "downloaded_at": "2026-11-14T23:10:24+05:00",
     "zip_file": "bobo-run-341-latest-nonempty.zip",
     "zip_bytes": 8092018,
     "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
@@ -251,29 +251,28 @@
     "transition_sampling_fps": 8,
     "duplicate_scene_id": 7,
     "duplicate_episode": 40522021,
-    "decision": "Held: duplicate published setting, overlength intermediate video-only file, missing final mix/subtitle.",
+    "decision": "rejected_duplicate_incomplete",
     "zip_sha256_verified_after_download": true
   },
   "latest_publish_workflow": {
-    "run_number": 102,
-    "run_id": 43421702937,
-    "job_id": 131873011771,
+    "run_number": 105,
+    "run_id": 43623456568,
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43623456568",
     "conclusion": "success",
-    "artifact_download": "skipped",
-    "facebook_publication": "skipped",
-    "instagram_reel": "skipped",
-    "instagram_story": "skipped",
-    "facebook_story": "skipped",
-    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43421702937"
+    "main_video_upload_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "No due unpublished approved reserve entry."
   },
   "publication_status": {
     "new_publication_this_check": false,
-    "latest_publish_workflow_run_number": 103,
-    "latest_publish_workflow_run_id": 43496280395,
+    "latest_publish_workflow_run_number": 105,
+    "latest_publish_workflow_run_id": 43623456568,
     "latest_publish_workflow_conclusion": "success",
-    "publish_steps": "all Facebook/Instagram video and Story upload steps skipped; no due unpublished approved reserve entry",
-    "reason": "No pending draft exists; current approval is already published and all reserve entries are in the ledger."
+    "publish_steps": "Facebook/Instagram video and Story upload steps all skipped; no due unpublished approved reserve entry.",
+    "reason": "No pending draft exists; all three approved reserve entries are already in the published ledger."
   },
-  "review_record": "bobo_review_history/2026-11-14-run-43571566764-recheck-1433.json",
+  "review_record": "bobo_review_history/2026-11-14-run-43611760314-recheck-2310.json",
   "cost": 0
 }
