@@ -2,22 +2,21 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-14T14:33:55+05:00",
+  "last_observed_at": "2026-11-14T15:20:32+05:00",
   "last_generation_run_id": 43469692517,
   "last_provider_result": "2026-11-14T07:39:59+05:00: Daily Fresh Bobo #365 has no artifact and stopped before contacting Hugging Face because all eligible original scene references are already used/reserved. Re-downloaded run #341 artifact 13349870060; confirmed ZIP and MP4 SHA256, inspected 49 frames at 4fps and 98 at 8fps. It repeats published art-room episode 40522021, is 12.1875s, 480x832 at 16fps and video-only; no episode.json, caption timing, or final render. Held; no repair/publication. No pending gate. Free-provider availability remains unverified.",
   "latest_check": {
-    "checked_at": "2026-11-14T14:33:55+05:00",
+    "checked_at": "2026-11-14T15:20:32+05:00",
     "latest_daily_run": {
       "run_id": 43571566764,
       "run_number": 366,
-      "created_at": "2026-11-14T07:32:21Z",
       "conclusion": "success",
-      "artifact_uploaded": false,
       "artifact_count": 0,
+      "artifact_uploaded": false,
       "provider_called": false,
       "quota_blocked": false,
-      "observed_blocker": "fresh_bobo.py exited before any Hugging Face request: all eligible original scene references are already in the recent/published/reserve set; hold rather than duplicate.",
-      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43571566764"
+      "observed_blocker": "fresh_bobo.py stopped before any Hugging Face request because every eligible original scene reference is already recent, published, or reserved.",
+      "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43571566764"
     },
     "pending_gate": {
       "bobo_review_pending_json_present": false,
@@ -30,19 +29,31 @@
         40522037
       ],
       "all_reserve_entries_already_in_published_ledger": true,
-      "action": "No pending gate exists; preserve the published approval and do not clear or rewrite a nonexistent gate."
+      "action": "No pending gate exists; no gate was cleared or changed."
     },
     "latest_nonempty_artifact": {
       "run_number": 341,
       "run_id": 41880398664,
       "artifact_id": 13349870060,
       "artifact_name": "fresh-bobo-video",
-      "downloaded_at": "2026-11-14T14:33:55+05:00",
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+      "downloaded_at": "2026-11-14T15:20:32+05:00",
       "decision": "rejection_unchanged"
     },
-    "review_record": "bobo_review_history/2026-11-14-run-43571566764-recheck-1433.json"
+    "latest_publish_workflow": {
+      "run_number": 103,
+      "run_id": 43496280395,
+      "conclusion": "success",
+      "main_video_upload_step": "skipped",
+      "instagram_reel_step": "skipped",
+      "instagram_story_step": "skipped",
+      "facebook_story_step": "skipped",
+      "reason": "No due unpublished approved reserve entry; current approval is already published."
+    },
+    "provider_status": "Free Hugging Face availability remains unverified. Daily Fresh Bobo #366 did not contact the provider and produced no quota error. The stored 2026-10-18 retry_after is historical, not evidence of a current reset.",
+    "review_record": "bobo_review_history/2026-11-14-run-43571566764-recheck-1520.json",
+    "cost": 0
   },
   "recent_daily_runs_artifact_scan": [
     {
