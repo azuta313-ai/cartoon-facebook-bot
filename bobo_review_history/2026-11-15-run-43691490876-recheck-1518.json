@@ -1,0 +1,229 @@
+{
+  "review_id": "2026-11-15-run-43691490876-recheck-1518",
+  "completed_at": "2026-11-15T15:18:19+05:00",
+  "latest_daily_run": {
+    "workflow": "Daily Fresh Bobo",
+    "run_number": 369,
+    "run_id": 43691490876,
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43691490876",
+    "conclusion": "success",
+    "job_id": 132742897772,
+    "artifact_count": 0,
+    "artifact_uploaded": false,
+    "provider_contacted": false,
+    "quota_error_observed": false,
+    "observed_blocker": "fresh_bobo.py stopped at the distinct-scene guard: all six eligible non-retired original scene references (7,1,2,0,3,4) were already used/recent/reserved; no Hugging Face request was made."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "action": "No pending gate existed; none cleared, rewritten or approved."
+  },
+  "latest_nonempty_artifact": {
+    "workflow": "Daily Fresh Bobo",
+    "run_number": 341,
+    "run_id": 41880398664,
+    "job_id": 126751027283,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_via": "GitHub Actions artifact download",
+    "downloaded_at": "2026-11-15T15:18:19+05:00",
+    "zip_file": "bobo-run-341-latest-nonempty.zip",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "zip_sha256_verified_after_download": true,
+    "generated_mp4": "generated.mp4",
+    "generated_mp4_bytes": 2779364,
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "contents": [
+      "generated.mp4",
+      "shot0.mp4",
+      "shot1.mp4",
+      "shot2.mp4",
+      "reference.png",
+      "continuation.png",
+      "dialogue-timing.json",
+      "shot1-review.json",
+      "shot2-review.json",
+      "shot3-review.json",
+      "voice-line.wav",
+      "voice-raw.wav",
+      "voice-track.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "audio.wav",
+      "shots.txt"
+    ],
+    "final_render_present": false,
+    "episode_json_present": false,
+    "captions_timing_present": false,
+    "bobo_fresh_mp4_present": false,
+    "technical_review": {
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "duration_pass": false,
+      "codec": "H.264",
+      "width": 480,
+      "height": 832,
+      "fps": 16,
+      "video_frames": 195,
+      "embedded_audio": false,
+      "video_decodes": true
+    },
+    "visual_review": {
+      "full_video_sample_fps": 4,
+      "full_video_sample_count": 49,
+      "transition_sample_fps": 8,
+      "transition_sample_count": 98,
+      "observed_actions": [
+        {
+          "start": 0,
+          "end": 3.75,
+          "action": "Bobo turns toward the easel and moves the brush across the existing painting"
+        },
+        {
+          "start": 3.75,
+          "end": 4.75,
+          "action": "Bobo turns back toward the camera"
+        },
+        {
+          "start": 4.75,
+          "end": 7,
+          "action": "Bobo holds front-facing with palette and brush; limited movement"
+        },
+        {
+          "start": 7,
+          "end": 9,
+          "action": "Bobo turns back and moves the brush near the canvas again"
+        },
+        {
+          "start": 9,
+          "end": 12.1875,
+          "action": "Bobo turns toward camera and makes ending arm/brush gestures"
+        }
+      ],
+      "summary": "Recognizable 3D Bobo in a red shirt in the same art-room/easel/paintbrush/palette premise as published episode 40522021. A front-facing hold is visible around 4.75–7 seconds. The 12.1875-second intermediate render is not the required 11-second final.",
+      "duplicate_check": {
+        "duplicate_story": true,
+        "duplicate_scene_id": 7,
+        "duplicate_episode": 40522021,
+        "duplicate_title": "Art room paint surprise",
+        "decision": "Reject as same published premise; changed SHA/audio/captions cannot make the footage distinct."
+      }
+    },
+    "caption_review": {
+      "captions_timing_json_present": false,
+      "episode_json_present": false,
+      "observed_action_caption_mappings": [],
+      "decision": "No final captions or caption transitions are present to time against the observed actions."
+    },
+    "speech_review": {
+      "engine": "Piper local CPU",
+      "provisional_text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "subtitle_present": false,
+      "final_encoded_mix_present": false,
+      "mouth_action_verified": false,
+      "intelligibility_verified": false,
+      "listening_verified": false,
+      "lip_sync_verified": false,
+      "decision": "Piper WAV sidecars are provisional only; the MP4 has no audio stream and no spoken subtitle/final mix, so speech cannot be verified."
+    },
+    "audio_sidecar_measurements_dbfs": {
+      "audio_wav": {
+        "duration": 11,
+        "rms": -22.46,
+        "peak": -6.85
+      },
+      "original_music_wav": {
+        "duration": 11,
+        "rms": -29.64,
+        "peak": -14.47
+      },
+      "scene_effects_wav": {
+        "duration": 11,
+        "rms": -43.62,
+        "peak": -17.08
+      },
+      "voice_track_wav": {
+        "duration": 11,
+        "rms": -45.61,
+        "peak": -16.81
+      },
+      "voice_line_wav": {
+        "duration": 0.8261,
+        "rms": -34.37,
+        "peak": -16.81
+      },
+      "effects_to_music_rms_difference_db": -13.98
+    },
+    "audio_review_limitations": [
+      "The generated MP4 has no embedded audio stream.",
+      "Separate WAV sidecars do not establish the final encoded mix.",
+      "No music_variant/music_style metadata or action-to-effect source/type/timestamp map is present.",
+      "Waveform measurements do not establish perceived music audibility, speech intelligibility or natural foley quality.",
+      "No subjective listening or final-mix ASR was performed."
+    ],
+    "decision": "REJECTED_DUPLICATE_INCOMPLETE",
+    "repair_action": "No repair attempted: duration, captions and final mix are incomplete, and the visual premise duplicates a published episode. Trimming or remuxing cannot make it a distinct story."
+  },
+  "latest_publish_workflow": {
+    "run_number": 105,
+    "run_id": 43623456568,
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43623456568",
+    "conclusion": "success",
+    "main_video_upload_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "No due unpublished approved reserve entry."
+  },
+  "publication_status": {
+    "new_publication_this_check": false,
+    "latest_recorded_publication": {
+      "episode": 40522037,
+      "title": "Bobo's Upside-Down Umbrella",
+      "facebook_published_at": "2026-10-18T17:28:38.324797+05:00",
+      "facebook_video_id": "2296956914491800",
+      "instagram_reel_status": "accepted",
+      "instagram_reel_permalink": "https://www.instagram.com/reel/DeorySgAMGk/",
+      "instagram_story_status": "accepted",
+      "facebook_story_status": "accepted"
+    },
+    "reason": "No current pending draft; no new upload attempted or accepted."
+  },
+  "provider_status": {
+    "free_hugging_face_availability": "unverified",
+    "latest_daily_run_contacted_provider": false,
+    "quota_error_observed": false,
+    "actual_blocker": "All six eligible original scene references are already used/recent/reserved; run #369 stopped before provider contact.",
+    "stored_retry_after": "2026-10-18T16:30:58.401196+05:00",
+    "retry_after_is_historical": true,
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "eligible_scene_ids": [
+      7,
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "conclusion": "No evidence of a current provider quota reset or quota failure. A new suitable original scene reference is needed before a zero-cost provider attempt."
+  },
+  "cost": 0
+}
