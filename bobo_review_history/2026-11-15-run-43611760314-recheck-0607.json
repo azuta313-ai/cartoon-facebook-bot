@@ -1,0 +1,205 @@
+{
+  "review_id": "2026-11-15-run-43611760314-recheck-0607",
+  "completed_at": "2026-11-15T06:07:38+05:00",
+  "latest_daily_run": {
+    "workflow": "Daily Fresh Bobo",
+    "run_number": 367,
+    "run_id": 43611760314,
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43611760314",
+    "conclusion": "success",
+    "job_id": 132498126145,
+    "artifact_count": 0,
+    "artifact_uploaded": false,
+    "provider_contacted": false,
+    "quota_error_observed": false,
+    "log_observation": "fresh_bobo.py exited at the distinct-scene guard: all distinct original scene references were recent, published or reserved; upload-artifact then reported no files in fresh_output/."
+  },
+  "latest_nonempty_artifact": {
+    "workflow": "Daily Fresh Bobo",
+    "run_number": 341,
+    "run_id": 41880398664,
+    "job_id": 126751027283,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_via": "GitHub Actions artifact download",
+    "downloaded_at": "2026-11-15T06:07:38+05:00",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_mp4": "generated.mp4",
+    "generated_mp4_bytes": 2779364,
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "zip_sha256_verified": true,
+    "files": [
+      "generated.mp4",
+      "shot0.mp4",
+      "shot1.mp4",
+      "shot2.mp4",
+      "reference.png",
+      "continuation.png",
+      "contact_4fps.jpg",
+      "contact_8fps.jpg",
+      "dialogue-timing.json",
+      "shot1-review.json",
+      "shot2-review.json",
+      "shot3-review.json",
+      "voice-line.wav",
+      "voice-raw.wav",
+      "voice-track.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "audio.wav",
+      "shots.txt"
+    ],
+    "final_render_present": false,
+    "episode_json_present": false,
+    "captions_timing_present": false,
+    "bobo_fresh_mp4_present": false
+  },
+  "technical_review": {
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "duration_pass": false,
+    "codec": "H.264",
+    "width": 480,
+    "height": 832,
+    "fps": 16,
+    "frames": 195,
+    "embedded_audio": false,
+    "video_decodes": true,
+    "decision": "Intermediate video-only file; not a publishable final render."
+  },
+  "visual_review": {
+    "full_render_sample_fps": 4,
+    "full_render_sample_count": 49,
+    "transition_sample_fps": 8,
+    "transition_sample_count": 98,
+    "observed_actions": {
+      "orient_toward_easel": [
+        0,
+        1
+      ],
+      "brush_near_canvas_small_arm_adjustments": [
+        1,
+        3.875
+      ],
+      "turn_back_toward_camera": [
+        3.875,
+        4.75
+      ],
+      "front_facing_palette_and_brush_hold": [
+        4.75,
+        7
+      ],
+      "turn_toward_easel_again": [
+        7,
+        8
+      ],
+      "brush_near_canvas_again": [
+        8,
+        9
+      ],
+      "turn_toward_camera_reaction": [
+        9,
+        10.5
+      ],
+      "ending_arm_and_brush_gestures": [
+        10.5,
+        12.1875
+      ]
+    },
+    "summary": "Recognizable 3D Bobo in red shirt. Sampled frames show a repeated art-room/easel/paintbrush/palette setup with small brush and arm adjustments, several turns, a long front-facing hold and ending gestures. This is the same premise as already-published episode 40522021, Art room paint surprise.",
+    "duplicate_check": {
+      "duplicate_story": true,
+      "duplicate_scene_id": 7,
+      "prior_published_episode": 40522021,
+      "prior_title": "Art room paint surprise",
+      "decision": "Reject: same art-room painting premise; captions/audio changes or remuxing cannot make it a distinct story."
+    }
+  },
+  "caption_review": {
+    "captions_timing_json_present": false,
+    "episode_json_present": false,
+    "observed_action_caption_mappings": [],
+    "decision": "No final captions or caption transitions exist in this artifact to time against observed actions."
+  },
+  "speech_review": {
+    "engine": "Piper local CPU",
+    "provisional_text": "Time to paint!",
+    "provisional_start": 0.35,
+    "provisional_end": 1.1761,
+    "subtitle_present": false,
+    "final_encoded_mix_present": false,
+    "mouth_action_verified": false,
+    "intelligibility_verified": false,
+    "listening_verified": false,
+    "lip_sync_verified": false,
+    "voice_track_wav_rms_dbfs": -45.61,
+    "voice_line_wav_rms_dbfs": -34.37,
+    "decision": "Piper WAVs are separate provisional assets only. No final encoded mix or spoken subtitle exists; intelligibility cannot be verified."
+  },
+  "audio_review": {
+    "final_encoded_mix_present": false,
+    "embedded_audio": false,
+    "separate_audio_wav_present": true,
+    "separate_stems_present": [
+      "audio.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "voice-track.wav",
+      "voice-line.wav"
+    ],
+    "measured_rms_dbfs": {
+      "audio_wav": -22.46,
+      "original_music_wav": -29.64,
+      "scene_effects_wav": -43.62,
+      "voice_track_wav": -45.61,
+      "voice_line_wav": -34.37
+    },
+    "effects_to_music_rms_difference_db": -13.98,
+    "music_variant_metadata_present": false,
+    "music_style_metadata_present": false,
+    "scene_effect_event_mapping": [],
+    "subjective_listening_performed": false,
+    "perceptual_effect_naturalness_verified": false,
+    "decision": "Stems only. Effects stem measures about 14 dB below music; no timestamped action/effect map. These measurements do not establish perceived audibility or naturalness."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "action": "No pending gate exists; none cleared or rewritten."
+  },
+  "latest_publish_workflow": {
+    "run_number": 105,
+    "run_id": 43623456568,
+    "conclusion": "success",
+    "main_video_upload_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "No due unpublished approved reserve entry."
+  },
+  "provider_status": {
+    "free_hugging_face_availability": "unverified",
+    "latest_daily_run_contacted_provider": false,
+    "quota_blocked": false,
+    "quota_error_observed": false,
+    "last_confirmed_free_provider_reach": "2026-11-04, run #341 reached free Hugging Face and generated clips before local FFmpeg voice-mix failure.",
+    "actual_current_blocker": "All eligible original scene references are already recent, published or reserved; run #367 stopped before provider contact.",
+    "stored_retry_after": "2026-10-18T16:30:58.401196+05:00",
+    "retry_after_is_historical": true
+  },
+  "decision": "REJECTED_AS_DUPLICATE_AND_INCOMPLETE; NO_CURRENT_DRAFT; NO_NEW_PUBLICATION",
+  "repair_action": "No repair attempted: the only non-empty artifact repeats a published story and lacks the final 11-second encoded render, subtitle timing, verified final-mix speech and observed effect mapping. Trimming or re-mixing cannot make its visuals distinct.",
+  "cost": 0
+}
