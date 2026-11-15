@@ -30,25 +30,23 @@
     "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
     "zip_sha256_verified": true,
     "files": [
-      "generated.mp4",
-      "shot0.mp4",
-      "shot1.mp4",
-      "shot2.mp4",
-      "reference.png",
       "continuation.png",
-      "contact_4fps.jpg",
-      "contact_8fps.jpg",
       "dialogue-timing.json",
+      "audio.wav",
+      "generated.mp4",
+      "original_music.wav",
+      "reference.png",
+      "scene_effects.wav",
+      "shot0.mp4",
       "shot1-review.json",
+      "shot1.mp4",
       "shot2-review.json",
+      "shot2.mp4",
       "shot3-review.json",
+      "shots.txt",
       "voice-line.wav",
       "voice-raw.wav",
-      "voice-track.wav",
-      "original_music.wav",
-      "scene_effects.wav",
-      "audio.wav",
-      "shots.txt"
+      "voice-track.wav"
     ],
     "final_render_present": false,
     "episode_json_present": false,
@@ -117,7 +115,8 @@
       "prior_published_episode": 40522021,
       "prior_title": "Art room paint surprise",
       "decision": "Reject: same art-room painting premise; captions/audio changes or remuxing cannot make it a distinct story."
-    }
+    },
+    "local_contact_sheets_generated_from_downloaded_video": true
   },
   "caption_review": {
     "captions_timing_json_present": false,
