@@ -1,0 +1,135 @@
+{
+  "review_id": "2026-11-15-run-43734557074-recheck-2146",
+  "completed_at": "2026-11-15T21:46:37+05:00",
+  "result": "NO_CURRENT_DRAFT; DAILY_RUN_370_NO_ARTIFACT; SCENE_REFERENCE_POOL_EXHAUSTED_BEFORE_PROVIDER; PRIOR_NONEMPTY_ARTIFACT_341_RECONFIRMED_REJECTED; NO_NEW_PUBLICATION",
+  "latest_daily_run": {
+    "run_number": 370,
+    "run_id": 43734557074,
+    "conclusion": "success",
+    "created_at": "2026-11-15T16:16:35Z",
+    "updated_at": "2026-11-15T16:16:57Z",
+    "artifact_count": 0,
+    "artifact_uploaded": false,
+    "provider_called": false,
+    "quota_blocked": false,
+    "observed_blocker": "fresh_bobo.py stopped before Hugging Face: all distinct original scene references are already in the recent/reserve set.",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43734557074"
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "action": "No pending gate exists; no gate was cleared or rewritten."
+  },
+  "latest_nonempty_artifact": {
+    "run_number": 341,
+    "run_id": 41880398664,
+    "job_id": 126751027283,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_via": "GitHub Actions artifact download connector",
+    "downloaded_at": "2026-11-15T21:46:37+05:00",
+    "zip_file": "bobo-run-341-latest-nonempty.zip",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "zip_sha256_verified_after_download": true,
+    "generated_mp4": "generated.mp4",
+    "generated_mp4_bytes": 2779364,
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "contents": [
+      "generated.mp4",
+      "shot0.mp4",
+      "shot1.mp4",
+      "shot2.mp4",
+      "reference.png",
+      "continuation.png",
+      "dialogue-timing.json",
+      "shot1-review.json",
+      "shot2-review.json",
+      "shot3-review.json",
+      "voice-line.wav",
+      "voice-raw.wav",
+      "voice-track.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "audio.wav",
+      "shots.txt"
+    ],
+    "episode_json_present": false,
+    "captions_timing_present": false,
+    "final_render_present": false,
+    "final_bobo_fresh_mp4_present": false,
+    "duration": 12.1875,
+    "width": 480,
+    "height": 832,
+    "fps": 16,
+    "video_stream": "H.264",
+    "embedded_audio": false,
+    "visual_sampling_fps": 4,
+    "visual_sample_count": 49,
+    "transition_sampling_fps": 8,
+    "transition_sample_count": 98,
+    "observed_actions": {
+      "brush_canvas_motion": [
+        0.375,
+        4.0625
+      ],
+      "face_turn_and_proud_reaction": [
+        4.25,
+        7.75
+      ],
+      "returns_to_canvas_and_points": [
+        8,
+        12.1875
+      ]
+    },
+    "dialogue_timing": {
+      "provisional_text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "captions_timing_file_absent": true,
+      "final_mix_speech_verification": false
+    },
+    "audio_stems": {
+      "audio_wav_duration": 11,
+      "original_music_wav_duration": 11,
+      "scene_effects_wav_duration": 11,
+      "voice_track_wav_duration": 11,
+      "voice_line_wav_duration": 0.826063,
+      "note": "Separate WAV stems only; no final encoded video mix. Levels and presence do not establish intelligibility, audibility, effect realism or caption sync."
+    },
+    "caption_mapping": [],
+    "effect_mapping": [],
+    "duplicate_story": true,
+    "duplicate_scene_id": 7,
+    "duplicate_episode": 40522021,
+    "decision": "rejected_duplicate_incomplete",
+    "quality_passed": false
+  },
+  "latest_publish_workflow": {
+    "run_number": 106,
+    "run_id": 43710941549,
+    "conclusion": "success",
+    "main_video_upload_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "No due unpublished approved reserve entry.",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43710941549"
+  },
+  "publication_status": {
+    "new_publication_this_check": false,
+    "ledger_entries_for_2026_11_15": 0,
+    "upload_steps": "All Facebook/Instagram video and Story upload steps skipped.",
+    "reason": "No current draft and all existing approved reserve entries already exist in the published ledger."
+  },
+  "provider_status": "Free Hugging Face availability remains unverified. Run #370 did not contact the provider because the distinct-scene reference pool was exhausted; no quota error was observed. The stored 2026-10-18 retry_after is historical, not evidence of a current quota reset.",
+  "cost": 0
+}
