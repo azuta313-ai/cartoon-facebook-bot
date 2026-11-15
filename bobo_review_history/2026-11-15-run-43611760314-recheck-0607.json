@@ -196,7 +196,30 @@
     "last_confirmed_free_provider_reach": "2026-11-04, run #341 reached free Hugging Face and generated clips before local FFmpeg voice-mix failure.",
     "actual_current_blocker": "All eligible original scene references are already recent, published or reserved; run #367 stopped before provider contact.",
     "stored_retry_after": "2026-10-18T16:30:58.401196+05:00",
-    "retry_after_is_historical": true
+    "retry_after_is_historical": true,
+    "scene_candidate_ids": [
+      7,
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "published_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "scene_selection_conclusion": "All six non-retired candidate scene IDs are already represented in published/reserved episodes; no eligible distinct scene reference remains."
   },
   "decision": "REJECTED_AS_DUPLICATE_AND_INCOMPLETE; NO_CURRENT_DRAFT; NO_NEW_PUBLICATION",
   "repair_action": "No repair attempted: the only non-empty artifact repeats a published story and lacks the final 11-second encoded render, subtitle timing, verified final-mix speech and observed effect mapping. Trimming or re-mixing cannot make its visuals distinct.",
