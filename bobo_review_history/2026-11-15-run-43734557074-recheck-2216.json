@@ -1,0 +1,161 @@
+{
+  "review_id": "2026-11-15-run-43734557074-recheck-2216",
+  "completed_at": "2026-11-15T22:18:43+05:00",
+  "result": "NO_CURRENT_DRAFT; LATEST_DAILY_RUN_370_NO_ARTIFACT; SCENE_REFERENCE_POOL_EXHAUSTED_BEFORE_PROVIDER; LATEST_NONEMPTY_ARTIFACT_341_RECONFIRMED_REJECTED; NO_NEW_PUBLICATION",
+  "latest_daily_run": {
+    "run_number": 370,
+    "run_id": 43734557074,
+    "conclusion": "success",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43734557074",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "log_observation": "fresh_bobo.py stopped at its distinct-scene guard: all eligible original scene references were already in the recent/reserve set. Artifact upload step warned that fresh_output/ contained no files."
+  },
+  "latest_nonempty_daily_artifact": {
+    "run_number": 341,
+    "run_id": 41880398664,
+    "job_id": 126751027283,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "zip_name": "bobo-run-341-latest-nonempty.zip",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "downloaded_again_this_review": true,
+    "contents": [
+      "generated.mp4",
+      "shot0.mp4",
+      "shot1.mp4",
+      "shot2.mp4",
+      "reference.png",
+      "continuation.png",
+      "dialogue-timing.json",
+      "shot1-review.json",
+      "shot2-review.json",
+      "shot3-review.json",
+      "voice-line.wav",
+      "voice-raw.wav",
+      "voice-track.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "audio.wav",
+      "shots.txt"
+    ],
+    "generated_mp4": {
+      "path": "generated.mp4",
+      "bytes": 2779364,
+      "sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+      "codec": "H.264",
+      "width": 480,
+      "height": 832,
+      "fps": 16,
+      "duration_seconds": 12.1875,
+      "embedded_audio": false,
+      "final_render": false
+    },
+    "missing_required_files": [
+      "episode.json",
+      "captions-timing.json",
+      "bobo_fresh.mp4"
+    ],
+    "visual_review": {
+      "full_render_sampling_fps": 4,
+      "full_render_sample_count": 49,
+      "transition_sampling_fps": 8,
+      "transition_sample_count": 98,
+      "observed_actions": {
+        "initial_turn_and_brush_reach": {
+          "start": 0.5,
+          "end": 0.75,
+          "notes": "Bobo turns from the viewer toward the easel and reaches the brush."
+        },
+        "brush_at_canvas_and_held_painting_pose": {
+          "start": 0.75,
+          "end": 4.125,
+          "notes": "Brush remains at the canvas; sampled motion is limited and the pose is held for much of this interval."
+        },
+        "front_facing_reaction_pause": {
+          "start": 4.25,
+          "end": 7.875,
+          "notes": "Bobo faces the viewer with only small expression/eye changes; prolonged low-action pause."
+        },
+        "return_to_canvas_and_final_gesture": {
+          "start": 8,
+          "end": 12.1875,
+          "notes": "Bobo turns back toward the easel, then raises/extends an arm and returns toward a front-facing pose near the end."
+        }
+      },
+      "pacing": "Opening reach begins around the 0.5-second boundary; the long 4.25–7.875-second low-action reaction pause fails the lively-action-across-the-full-video requirement."
+    },
+    "captions": {
+      "timing_file_present": false,
+      "mapping": [],
+      "spoken_line": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "subtitle_present": false,
+      "action_caption_alignment_verified": false
+    },
+    "audio": {
+      "final_encoded_mix_present": false,
+      "embedded_video_audio": false,
+      "separate_stem_durations_seconds": {
+        "audio_wav": 11,
+        "original_music_wav": 11,
+        "scene_effects_wav": 11,
+        "voice_track_wav": 11,
+        "voice_line_wav": 0.826063
+      },
+      "speech_intelligibility_verified": false,
+      "music_audibility_verified": false,
+      "effect_perceptual_realism_verified": false,
+      "effect_action_mapping": [],
+      "notes": "Only separate WAV stems are present. No subjective listening or intelligibility claim is made; no final encoded mix exists."
+    },
+    "duplicate_check": {
+      "decision": "duplicate_or_near_duplicate",
+      "scene_id": 7,
+      "matches_published_episode": 40522021,
+      "published_title": "Art room paint surprise",
+      "basis": "Same art-room paint-surprise premise and scene reference already recorded in published_bobo.json; a different file hash does not make the same story/scene a distinct daily video."
+    },
+    "decision": "rejected_duplicate_incomplete",
+    "quality_passed": false,
+    "repair_attempted": false,
+    "repair_reason": "This is already-used story/scene material; trimming/re-mixing it would not make it a distinct original video and would not fix the absent final mix/caption review."
+  },
+  "latest_publish_workflow": {
+    "run_number": 106,
+    "run_id": 43710941549,
+    "conclusion": "success",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43710941549",
+    "main_video_upload": "skipped",
+    "instagram_reel_upload": "skipped",
+    "instagram_story_upload": "skipped",
+    "facebook_story_upload": "skipped",
+    "reason": "No due unpublished approved reserve entry."
+  },
+  "gate_state": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_published": true,
+    "action": "No pending gate existed; no gate was cleared or rewritten."
+  },
+  "publication_status": {
+    "ledger_entries_for_2026_11_15": 0,
+    "new_publication_this_review": false,
+    "facebook_video": "none today",
+    "instagram_reel": "none today",
+    "instagram_story": "none today",
+    "facebook_story": "none today"
+  },
+  "provider_status": "Free Hugging Face provider availability remains unverified. No provider request was made because the distinct-scene reference pool was exhausted; no quota error was observed. The stored 2026-10-18 retry_after is historical and does not establish a current reset.",
+  "cost": 0
+}
