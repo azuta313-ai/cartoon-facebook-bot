@@ -1,0 +1,197 @@
+{
+  "review_id": "2026-11-15-run-43638597729-recheck-0757",
+  "completed_at": "2026-11-15T08:04:56.086+05:00",
+  "result": "NO_CURRENT_DRAFT; DAILY_RUN_368_NO_ARTIFACT; GENERATION_SKIPPED_BEFORE_PROVIDER_DUE_TO_DISTINCT_SCENE_REFERENCE_EXHAUSTION; LATEST_NONEMPTY_RUN_341_REDOWNLOADED_AND_REVIEWED; DUPLICATE_INCOMPLETE_REJECTED; NO_NEW_PUBLICATION",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "latest_daily_run": {
+    "run_id": 43638597729,
+    "run_number": 368,
+    "workflow": "Daily Fresh Bobo",
+    "created_at_utc": "2026-11-14T20:38:55Z",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "artifact_uploaded": false,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "blocker": "fresh_bobo.py stopped before any Hugging Face request: all distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43638597729"
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "action": "No pending gate existed; none was cleared or rewritten."
+  },
+  "latest_nonempty_artifact": {
+    "run_number": 341,
+    "run_id": 41880398664,
+    "job_id": 126751027283,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "artifact_created_at": "2026-11-04T17:48:50Z",
+    "downloaded_via": "GitHub Actions workflow artifact download",
+    "downloaded_at": "2026-11-15T08:04:56.086+05:00",
+    "zip_file": "bobo-run-341-latest-nonempty.zip",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "contents": [
+      "generated.mp4",
+      "shot0.mp4",
+      "shot1.mp4",
+      "shot2.mp4",
+      "reference.png",
+      "continuation.png",
+      "dialogue-timing.json",
+      "shot1-review.json",
+      "shot2-review.json",
+      "shot3-review.json",
+      "voice-line.wav",
+      "voice-raw.wav",
+      "voice-track.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "audio.wav",
+      "shots.txt"
+    ],
+    "generated_mp4": {
+      "file": "generated.mp4",
+      "bytes": 2779364,
+      "sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+      "duration_seconds": 12.1875,
+      "width": 480,
+      "height": 832,
+      "fps": 16,
+      "video_codec": "H.264",
+      "audio_stream_present": false
+    },
+    "review_sampling": {
+      "full_video_sample_fps": 4,
+      "full_video_sample_count": 49,
+      "transition_sample_fps": 8,
+      "transition_sample_count": 98,
+      "visual_observations": [
+        {
+          "start": 0,
+          "end": 2,
+          "action": "Bobo stands with palette and brush, then turns toward the easel."
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "action": "Brush reaches and moves across the existing painting; no new visual reveal confirmed."
+        },
+        {
+          "start": 4,
+          "end": 6,
+          "action": "Bobo turns back toward camera and pauses briefly."
+        },
+        {
+          "start": 6,
+          "end": 8.5,
+          "action": "Bobo looks down toward palette/brush; no paint accident or new outcome confirmed."
+        },
+        {
+          "start": 8.5,
+          "end": 12.1875,
+          "action": "Bobo smiles and gestures with the brush; no final spoken action is embedded."
+        }
+      ],
+      "first_purposeful_action_by_seconds": null,
+      "note": "Sampled at the required rates. Because this is a stale, duplicate, unfinished artifact, no approval timing was staged."
+    },
+    "completeness": {
+      "episode_json_present": false,
+      "captions_timing_json_present": false,
+      "final_bobo_fresh_mp4_present": false,
+      "final_render_present": false,
+      "shot_action_reviews_verified": false,
+      "shot1_visual_action_verified": false,
+      "shot2_visual_action_verified": false,
+      "shot3_visual_action_verified": false,
+      "spoken_line": {
+        "text": "Time to paint!",
+        "start": 0.35,
+        "end": 1.1761,
+        "placement": "provisional",
+        "subtitle_present": false,
+        "mouth_action_verified": false
+      },
+      "decision": "rejected_duplicate_incomplete"
+    },
+    "duplicate_check": {
+      "duplicate_episode": 40522021,
+      "duplicate_title": "Art room paint surprise",
+      "duplicate_scene_id": 7,
+      "duplicate_setting": "a sunny art room with a small easel and paint palette",
+      "published_facebook_video_id": "2212226773511644",
+      "reason": "Same art-room painting premise and scene reference as a previously published Bobo story; different generated SHA does not make the story/footage distinct."
+    },
+    "audio_sidecar_measurements_dbfs": {
+      "combined_audio_wav": {
+        "duration": 11,
+        "rms": -22.46,
+        "peak": -6.85
+      },
+      "original_music_wav": {
+        "duration": 11,
+        "rms": -29.64,
+        "peak": -14.47
+      },
+      "scene_effects_wav": {
+        "duration": 11,
+        "rms": -43.62,
+        "peak": -17.08
+      },
+      "voice_track_wav": {
+        "duration": 11,
+        "rms": -45.61,
+        "peak": -16.81
+      },
+      "voice_line_wav": {
+        "duration": 0.8261,
+        "rms": -34.37,
+        "peak": -16.81
+      }
+    },
+    "audio_review_limitations": [
+      "The generated MP4 has no audio stream.",
+      "Separate WAV sidecars do not establish the final encoded mix.",
+      "No effect source/type/timestamp mapping or episode music_variant/music_style metadata is present.",
+      "Waveform levels alone cannot establish perceptual music audibility, natural foley quality, or speech intelligibility.",
+      "No subjective listening or final-mix ASR was claimed."
+    ]
+  },
+  "latest_publish_workflow": {
+    "run_number": 105,
+    "run_id": 43623456568,
+    "conclusion": "success",
+    "main_video_upload_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "No due unpublished approved reserve entry.",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43623456568"
+  },
+  "latest_recorded_publication": {
+    "episode": 40522037,
+    "title": "Bobo's Upside-Down Umbrella",
+    "facebook_published_at": "2026-10-18T17:28:38.324797+05:00",
+    "facebook_video_id": "2296956914491800",
+    "instagram_reel_status": "accepted",
+    "instagram_reel_permalink": "https://www.instagram.com/reel/DeorySgAMGk/",
+    "instagram_story_status": "accepted",
+    "facebook_story_status": "accepted",
+    "note": "No newer publication is recorded in published_bobo.json."
+  },
+  "provider_status": "Free Hugging Face availability remains unverified: latest run #368 did not contact the provider because all eligible distinct original scene references are recent/published/reserved. This is not evidence of quota exhaustion or reset.",
+  "publication_status": "No new Facebook/Instagram video or Story was attempted or accepted in this check. The latest scheduled publication run skipped all upload steps because there was no due unpublished approved reserve entry.",
+  "target_status": "Two distinct daily videos cannot be met while no new eligible original scene reference or completed distinct artifact exists; do not reuse old scenes or claim posts.",
+  "cost": 0
+}
