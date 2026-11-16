@@ -515,19 +515,15 @@
     "repair_decision": "Not repaired for publication: this is a reused Art Room Paint Surprise plot already present as episode 40522021. Audio/duration repair would not make it a distinct daily video."
   },
   "latest_publish_workflow": {
-    "latest_publish_workflow_run_number": 107,
-    "latest_publish_workflow_run_id": 43748246628,
+    "run_number": 107,
+    "run_id": 43748246628,
     "conclusion": "success",
-    "facebook_video_step": "skipped",
+    "main_video_upload_step": "skipped",
     "instagram_reel_step": "skipped",
     "instagram_story_step": "skipped",
     "facebook_story_step": "skipped",
     "reason": "No due unpublished approved reserve entry.",
-    "new_publication_this_check": false,
-    "ledger_entries_for_2026_11_16": 0,
-    "latest_recorded_long_v2_episode": 40522037,
-    "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
-    "note": "No new Facebook/Instagram video or Story acceptance recorded today."
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43748246628"
   },
   "publication_status": {
     "new_publication_this_check": false,
