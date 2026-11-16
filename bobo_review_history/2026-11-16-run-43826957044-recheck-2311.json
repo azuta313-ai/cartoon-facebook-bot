@@ -1,0 +1,166 @@
+{
+  "schema": "bobo-exact-artifact-review-v1",
+  "completed_at": "2026-11-16T23:11:25+05:00",
+  "decision": "rejected",
+  "publication_eligible": false,
+  "reason": "The only latest nonempty Daily Fresh Bobo artifact is a stale duplicate of the already-published Art room paint surprise episode 40522021. It is 12.1875 seconds, has no MP4 audio stream, and lacks episode.json and captions-timing.json. Re-rendering or repairing the same footage would not create a distinct daily video.",
+  "source": {
+    "repository": "azuta313-ai/cartoon-facebook-bot",
+    "workflow": "Daily Fresh Bobo",
+    "latest_run_number": 372,
+    "latest_run_id": 43826957044,
+    "latest_run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43826957044",
+    "latest_run_created_at": "2026-11-16T07:53:11Z",
+    "latest_run_conclusion": "success",
+    "latest_run_artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "latest_nonempty_run_number": 341,
+    "artifact_run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "artifact_created_at": "2026-11-04T17:48:50Z",
+    "artifact_downloaded_at": "2026-11-16T23:11:25+05:00",
+    "artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_path": "generated.mp4",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "video_bytes": 2779364
+  },
+  "visual_review": {
+    "full_render_sampling_fps": 4,
+    "full_render_sample_count": 49,
+    "speech_window_sampling_fps": 8,
+    "speech_window_sample_count": 16,
+    "speech_window": "0.000–1.875 seconds; no captions-timing.json exists, so there were no caption transitions to inspect",
+    "observed_actions": {
+      "initial_brush_reach_and_canvas_contact": [
+        0.625,
+        4
+      ],
+      "low_activity_front_facing_reaction": [
+        4.5,
+        6.875
+      ],
+      "resumed_brush_work": [
+        7,
+        10.375
+      ],
+      "ending_reaction_and_hand_gestures": [
+        10.5,
+        12.1875
+      ]
+    },
+    "purposeful_action_by_seconds": 0.625,
+    "required_max_seconds": 0.5,
+    "character": "Recognizable 3D Bobo in red shirt, painting at an art-room easel.",
+    "duplicate": {
+      "episode": 40522021,
+      "title": "Art room paint surprise",
+      "scene_id": 7,
+      "published_facebook_video_id": "2212226773511644",
+      "reason": "Same art-room painting premise and setup; not a distinct new story."
+    },
+    "notes": "The 49-frame 4fps contact sheet shows the same painting setup throughout. First clear brush/canvas action starts after the 0.5-second threshold; 4.5–6.875 seconds is comparatively low activity. No major decode corruption observed in sampled frames."
+  },
+  "captions": {
+    "episode_json_present": false,
+    "captions_timing_json_present": false,
+    "exact_spoken_subtitle_present": false,
+    "provisional_dialogue": {
+      "text": "Time to paint!",
+      "start": 0.35,
+      "end": 1.1761,
+      "engine": "Piper local CPU",
+      "placement": "provisional only"
+    },
+    "mouth_observation": "8fps opening samples show only a brief mouth opening near the start and a mostly closed mouth through the provisional speech window; no lip-sync claim."
+  },
+  "audio_review": {
+    "final_mp4_audio_streams": 0,
+    "final_encoded_mix_present": false,
+    "separate_wav_stems_present": true,
+    "measured_stems_dbfs": {
+      "audio": {
+        "mean": -22.46,
+        "peak": -6.85
+      },
+      "original_music": {
+        "mean": -29.64,
+        "peak": -14.47
+      },
+      "scene_effects": {
+        "mean": -43.62,
+        "peak": -17.08
+      },
+      "voice_track": {
+        "mean": -45.61,
+        "peak": -16.81
+      },
+      "voice_line": {
+        "mean": -34.37,
+        "peak": -16.81
+      }
+    },
+    "effects": "The separate effects stem is approximately 14 dB lower in RMS than the music stem. No per-effect source/timestamp/action mapping is present, so alignment and perceptual naturalness cannot be verified.",
+    "music": "Only a separate music stem is present; no final MP4 audio stream. Subjective music audibility is not verified.",
+    "speech": "A separate Piper line and voice WAV exist, but neither is embedded in the MP4. No final-mix ASR or listening verification is possible.",
+    "subjective_listening_performed": false,
+    "asr_on_final_mix_performed": false,
+    "lip_sync_verified": false,
+    "conclusion": "Waveform measurements do not establish intelligible final-mix speech, audible music, music ducking or natural-sounding effects."
+  },
+  "technical_review": {
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "duration_pass": false,
+    "video_codec": "H.264",
+    "width": 480,
+    "height": 832,
+    "fps": 16,
+    "video_streams": 1,
+    "audio_streams": 0,
+    "decode_pass": true,
+    "technical_publication_pass": false,
+    "missing_files": [
+      "episode.json",
+      "captions-timing.json",
+      "final_render",
+      "bobo_fresh.mp4"
+    ]
+  },
+  "repair_assessment": {
+    "repaired": false,
+    "reason": "The footage duplicates the already-published art-room premise. Trimming, remixing or captioning it would not make it a distinct story, and the missing final audio/caption metadata cannot be reconstructed as proof of an approved render.",
+    "cost": 0
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_published": true,
+    "action": "No pending gate existed; none was cleared or rewritten."
+  },
+  "publication": {
+    "latest_publisher_run_number": 108,
+    "latest_publisher_run_id": 43868012516,
+    "latest_publisher_conclusion": "success",
+    "facebook_video_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "No due approved unpublished reserve entry.",
+    "new_publication_this_check": false,
+    "new_facebook_or_instagram_acceptance_on_2026_11_16": false
+  },
+  "cost": 0
+}
