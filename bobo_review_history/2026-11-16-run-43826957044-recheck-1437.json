@@ -1,0 +1,211 @@
+{
+  "review_id": "2026-11-16-run-43826957044-recheck-1437",
+  "completed_at": "2026-11-16T14:37:54+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "result": "NO_PENDING_GATE; LATEST_DAILY_RUN_372_ZERO_ARTIFACTS; LAST_NONEMPTY_ARTIFACT_341_REDOWNLOADED_AND_REVIEWED; REJECTED_DUPLICATE_INCOMPLETE; SCENE_REFERENCE_POOL_EXHAUSTED; NO_PUBLICATION",
+  "latest_daily_run": {
+    "run_number": 372,
+    "run_id": 43826957044,
+    "workflow": ".github/workflows/daily.yml",
+    "event": "schedule",
+    "created_at": "2026-11-16T07:53:11Z",
+    "updated_at": "2026-11-16T07:53:37Z",
+    "conclusion": "success",
+    "job_id": 133162960319,
+    "artifact_count": 0,
+    "artifact_uploaded": false,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "credential_preflight": "Facebook Page and Instagram connection accessible; secrets not printed.",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43826957044"
+  },
+  "generation_blocker": {
+    "type": "distinct_scene_reference_exhaustion",
+    "eligible_scene_ids": [
+      7,
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "forbidden_scene_ids": [
+      5,
+      6
+    ],
+    "eligible_ids_already_used_or_reserved": [
+      7,
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "matching_assets_present": [
+      "assets/scenes/scene0.jpg",
+      "assets/scenes/scene1.jpg",
+      "assets/scenes/scene2.jpg",
+      "assets/scenes/scene3.jpg",
+      "assets/scenes/scene4.jpg",
+      "assets/scenes/scene7.jpg"
+    ],
+    "note": "All six permitted candidates are already represented in published history or reserved entries. Scene IDs 5 and 6 remain forbidden (spaceship and snowball). A new original matching scene reference and policy/story entry are required before generation can proceed without duplication.",
+    "provider_status": "Not tested; generator exited before Hugging Face request.",
+    "quota_status": "No quota error observed; free-provider availability remains unverified.",
+    "cost": 0
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "action": "No pending gate existed; none was cleared or rewritten."
+  },
+  "latest_nonempty_artifact": {
+    "run_number": 341,
+    "run_id": 41880398664,
+    "job_id": 126751027283,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "created_at": "2026-11-04T17:48:50Z",
+    "downloaded_at": "2026-11-16T14:37:54+05:00",
+    "downloaded_via": "GitHub Actions workflow artifact download tool",
+    "zip_file": "bobo-last-nonempty-artifact-341.zip",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "zip_sha256_verified": true,
+    "video_file": "generated.mp4",
+    "video_bytes": 2779364,
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "contents": [
+      "generated.mp4",
+      "shot0.mp4",
+      "shot1.mp4",
+      "shot2.mp4",
+      "reference.png",
+      "continuation.png",
+      "dialogue-timing.json",
+      "shot1-review.json",
+      "shot2-review.json",
+      "shot3-review.json",
+      "voice-line.wav",
+      "voice-raw.wav",
+      "voice-track.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "audio.wav",
+      "shots.txt"
+    ],
+    "absent": [
+      "episode.json",
+      "captions-timing.json",
+      "final_render",
+      "bobo_fresh.mp4"
+    ],
+    "technical": {
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "width": 480,
+      "height": 832,
+      "fps": 16,
+      "video_codec": "H.264",
+      "video_streams": 1,
+      "audio_streams": 0,
+      "decode": "passed",
+      "duration_pass": false
+    },
+    "visual_review": {
+      "full_video_sampling_fps": 4,
+      "full_video_sample_count": 49,
+      "supplemental_transition_sampling_fps": 8,
+      "supplemental_sample_count": 98,
+      "observed_actions": {
+        "initial_brush_reach_and_canvas_contact": [
+          0.625,
+          4
+        ],
+        "low_activity_front_facing_reaction_with_small_gestures": [
+          4.5,
+          6.875
+        ],
+        "resumed_brush_work": [
+          7,
+          10.375
+        ],
+        "ending_reaction_and_hand_gestures": [
+          10.5,
+          12.1875
+        ]
+      },
+      "purposeful_action_by_seconds": 0.625,
+      "opening_action_target_seconds": 0.5,
+      "pacing_note": "Initial purposeful brush/canvas action is visible around 0.625s, slightly later than the 0.5s target. A low-activity front-facing reaction lasts roughly 4.5–6.875s, with minor head/arm movement; painting resumes around 7s.",
+      "duplicate_story": true,
+      "duplicate_scene_id": 7,
+      "duplicate_episode": 40522021,
+      "premise": "Art Room Paint Surprise",
+      "decision": "rejected_duplicate_story_wrong_duration_missing_embedded_audio_and_caption_metadata"
+    },
+    "dialogue_timing": {
+      "enabled": true,
+      "engine": "Piper local CPU",
+      "provisional_text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "exact_spoken_subtitle_present": false,
+      "final_encoded_speech_verified": false,
+      "lip_sync_verified": false,
+      "listening_verified": false
+    },
+    "audio": {
+      "sidecars": [
+        "audio.wav",
+        "original_music.wav",
+        "voice-track.wav",
+        "voice-line.wav",
+        "scene_effects.wav"
+      ],
+      "sidecar_duration_seconds": 11,
+      "mp4_embedded_audio": false,
+      "final_encoded_mix": false,
+      "captions_mapping": [],
+      "effects_mapping": [],
+      "music_style_metadata_present": false,
+      "note": "WAV sidecars only. No final encoded mix; no subjective listening, speech intelligibility, music audibility/ducking or perceptual foley-realism claim."
+    },
+    "quality_passed": false,
+    "repair_decision": "Not repaired for publication: this is a reused Art Room Paint Surprise plot already present as episode 40522021. Audio/duration repair would not make it a distinct daily video."
+  },
+  "publication": {
+    "latest_publish_workflow_run_number": 107,
+    "latest_publish_workflow_run_id": 43748246628,
+    "conclusion": "success",
+    "facebook_video_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "No due unpublished approved reserve entry.",
+    "new_publication_this_check": false,
+    "ledger_entries_for_2026_11_16": 0,
+    "latest_recorded_long_v2_episode": 40522037,
+    "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
+    "note": "No new Facebook/Instagram video or Story acceptance recorded today."
+  },
+  "security": {
+    "facebook_secrets_exposed": false,
+    "facebook_secrets_changed": false,
+    "publication_attempted": false,
+    "duplicate_protection_preserved": true
+  },
+  "cost": 0
+}
