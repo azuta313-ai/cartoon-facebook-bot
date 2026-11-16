@@ -1,0 +1,231 @@
+{
+  "review_id": "2026-11-16-run-43826957044-recheck-1605",
+  "completed_at": "2026-11-16T16:05:25+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "result": "NO_PENDING_GATE; DAILY_RUN_372_ZERO_ARTIFACTS; PROVIDER_NOT_CALLED_DUE_SCENE_REFERENCE_EXHAUSTION; LAST_NONEMPTY_ARTIFACT_341_REDOWNLOADED_AND_REINSPECTED; REJECTED_DUPLICATE_INCOMPLETE; NO_NEW_PUBLICATION",
+  "latest_daily_run": {
+    "run_number": 372,
+    "run_id": 43826957044,
+    "workflow": ".github/workflows/daily.yml",
+    "created_at": "2026-11-16T07:53:11Z",
+    "created_at_pakistan": "2026-11-16T12:53:11+05:00",
+    "conclusion": "success",
+    "job_id": 133162960319,
+    "artifact_count": 0,
+    "artifact_uploaded": false,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43826957044"
+  },
+  "schedule_observation": "No later Daily Fresh Bobo run was visible through 2026-11-16 16:05:25 PK. The daily workflow remains configured with its schedule in daily.yml; no schedule change was made.",
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "action": "No pending gate existed; none was cleared or rewritten."
+  },
+  "latest_nonempty_artifact": {
+    "run_number": 341,
+    "run_id": 41880398664,
+    "job_id": 126751027283,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "created_at": "2026-11-04T17:48:50Z",
+    "downloaded_at": "2026-11-16T16:05:25+05:00",
+    "downloaded_via": "GitHub Actions workflow artifact download tool",
+    "zip_file": "bobo-latest-nonempty-run341.zip",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "zip_sha256_verified": true,
+    "video_file": "generated.mp4",
+    "video_bytes": 2779364,
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "video_sha256_verified": true,
+    "contents": [
+      "generated.mp4",
+      "shot0.mp4",
+      "shot1.mp4",
+      "shot2.mp4",
+      "reference.png",
+      "continuation.png",
+      "dialogue-timing.json",
+      "shot1-review.json",
+      "shot2-review.json",
+      "shot3-review.json",
+      "voice-line.wav",
+      "voice-raw.wav",
+      "voice-track.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "audio.wav",
+      "shots.txt"
+    ],
+    "absent": [
+      "episode.json",
+      "captions-timing.json",
+      "final_render",
+      "bobo_fresh.mp4"
+    ]
+  },
+  "technical_review": {
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "width": 480,
+    "height": 832,
+    "fps": 16,
+    "video_codec": "H.264",
+    "video_streams": 1,
+    "audio_streams": 0,
+    "decode": "passed",
+    "duration_pass": false,
+    "technical_publication_pass": false
+  },
+  "visual_review": {
+    "full_video_sampling_fps": 4,
+    "full_video_sample_count": 49,
+    "transition_sampling_fps": 8,
+    "transition_sample_count": 98,
+    "observed_actions": {
+      "initial_brush_reach_and_canvas_contact": [
+        0.625,
+        4
+      ],
+      "low_activity_front_facing_reaction_with_small_gestures": [
+        4.5,
+        6.875
+      ],
+      "resumed_brush_work": [
+        7,
+        10.375
+      ],
+      "ending_reaction_and_hand_gestures": [
+        10.5,
+        12.1875
+      ]
+    },
+    "purposeful_action_by_seconds": 0.625,
+    "required_max_seconds": 0.5,
+    "duplicate_story": true,
+    "duplicate_scene_id": 7,
+    "duplicate_episode": 40522021,
+    "duplicate_premise": "Art room paint surprise",
+    "historical_episode_title": "Art room paint surprise",
+    "historical_episode_generated_at": "2026-10-10T21:25:00.674483+05:00",
+    "decision": "Reject/hold: repeated art-room painting premise; timing and audio defects also fail. Repairing the old file would not make it a distinct story."
+  },
+  "audio_review": {
+    "dialogue_timing": {
+      "enabled": true,
+      "engine": "Piper local CPU",
+      "provisional_text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "exact_spoken_subtitle_present": false,
+      "final_encoded_speech_verified": false,
+      "lip_sync_verified": false,
+      "listening_verified": false
+    },
+    "wav_stems": {
+      "audio": {
+        "duration_seconds": 11,
+        "sample_rate": 48000,
+        "channels": 2,
+        "mean_dbfs": -22.5,
+        "peak_dbfs": -6.8
+      },
+      "original_music": {
+        "duration_seconds": 11,
+        "sample_rate": 48000,
+        "channels": 2,
+        "mean_dbfs": -29.6,
+        "peak_dbfs": -14.5
+      },
+      "scene_effects": {
+        "duration_seconds": 11,
+        "sample_rate": 48000,
+        "channels": 2,
+        "mean_dbfs": -43.6,
+        "peak_dbfs": -17.1
+      },
+      "voice_track": {
+        "duration_seconds": 11,
+        "sample_rate": 48000,
+        "channels": 2,
+        "mean_dbfs": -45.6,
+        "peak_dbfs": -16.8
+      },
+      "voice_line": {
+        "duration_seconds": 0.826063,
+        "sample_rate": 48000,
+        "channels": 2,
+        "mean_dbfs": -34.4,
+        "peak_dbfs": -16.8
+      }
+    },
+    "final_encoded_mix_present": false,
+    "note": "The MP4 has no audio stream. WAV stems are separate; measurements are waveform-only and do not establish speech intelligibility, music audibility, ducking, or perceptual naturalness of effects. No subjective listening or lip-sync claim."
+  },
+  "scene_reference_blocker": {
+    "type": "distinct_scene_reference_exhaustion",
+    "eligible_scene_ids": [
+      7,
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "forbidden_scene_ids": [
+      5,
+      6
+    ],
+    "eligible_ids_already_used_or_reserved": [
+      7,
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "existing_scene_assets": [
+      "assets/scenes/scene0.jpg",
+      "assets/scenes/scene1.jpg",
+      "assets/scenes/scene2.jpg",
+      "assets/scenes/scene3.jpg",
+      "assets/scenes/scene4.jpg",
+      "assets/scenes/scene7.jpg"
+    ],
+    "matching_story_queue_asset_already_used": "assets/story_queue/story02.jpg",
+    "note": "No unused permitted matching scene reference is present. A new original scene reference and matching storyboard/policy entry are required. No paid generation or mismatched reference fallback used."
+  },
+  "publication_status": {
+    "latest_publish_workflow_run_number": 107,
+    "latest_publish_workflow_run_id": 43748246628,
+    "latest_publish_workflow_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43748246628",
+    "conclusion": "success",
+    "facebook_video_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "No due unpublished approved reserve entry.",
+    "ledger_entries_for_2026_11_16": 0,
+    "latest_recorded_episode": 40522037,
+    "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
+    "new_publication_this_check": false,
+    "credentials_exposed": false,
+    "upload_attempted": false
+  },
+  "provider_status": "Not tested in run #372 because generation stopped at the scene-reference guard. No quota error was observed; free Hugging Face availability remains unverified. Stored 2026-10-18 retry_after is historical, not evidence of a current reset.",
+  "cost": 0
+}
