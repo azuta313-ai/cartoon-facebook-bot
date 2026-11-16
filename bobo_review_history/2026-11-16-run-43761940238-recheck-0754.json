@@ -1,0 +1,145 @@
+{
+  "review_id": "2026-11-16-run-43761940238-recheck-0754",
+  "completed_at": "2026-11-16T07:54:19+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "result": "NO_PENDING_GATE; LATEST_VERIFIABLE_DAILY_RUN_371_HAS_ZERO_ARTIFACTS; ARTIFACT_341_REDOWNLOADED_AND_REVIEWED; REJECTED_DUPLICATE_DURATION_AND_MISSING_FINAL_AUDIO; NO_PUBLICATION",
+  "latest_verifiable_daily_run": {
+    "run_number": 371,
+    "run_id": 43761940238,
+    "workflow": ".github/workflows/daily.yml",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43761940238",
+    "job_id": 132958453953,
+    "job_steps": "All steps completed successfully; generation step exited before contacting Hugging Face; upload-artifact reported fresh_output/ empty."
+  },
+  "latest_run_discovery_limit": "GitHub connector exposed run-specific artifact/job tools but no repository-wide Actions run-list operation. The 07:50 Pakistan scheduled attempt could not be independently enumerated in this check; run #371 is the latest run verified directly.",
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "approval_final_sha256": "7eee8fa76a602beb98cb91a3d7e83814fe10a99c4a25d3ea4d69d58723533c68",
+    "action": "No pending gate existed; no gate was cleared or rewritten."
+  },
+  "latest_nonempty_artifact": {
+    "run_number": 341,
+    "run_id": 41880398664,
+    "job_id": 126751027283,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_at": "2026-11-16T07:54:19+05:00",
+    "downloaded_via": "GitHub Actions artifact download tool",
+    "zip_file": "bobo-run-341-recheck-0754.zip",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "video_file": "generated.mp4",
+    "video_bytes": 2779364,
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "technical": {
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "width": 480,
+      "height": 832,
+      "fps": 16,
+      "video_codec": "H.264",
+      "video_streams": 1,
+      "audio_streams": 0,
+      "decode": "passed",
+      "duration_pass": false
+    },
+    "visual_review": {
+      "full_video_sampling_fps": 4,
+      "full_video_sample_count": 49,
+      "supplemental_sampling_fps": 8,
+      "supplemental_sample_count": 98,
+      "observed_actions": {
+        "brush_to_canvas": [
+          0,
+          4
+        ],
+        "front_facing_brush_pose": [
+          4.25,
+          6.75
+        ],
+        "resumed_brush_work": [
+          6.75,
+          10.25
+        ],
+        "ending_camera_reaction_and_hand_gesture": [
+          10.5,
+          12.125
+        ]
+      },
+      "purposeful_action_visible_by_seconds": 0.5,
+      "bobo_3d_red_shirt_recognizable": true,
+      "prolonged_pose_observed": true,
+      "caption_transition_samples": "No caption timing file exists, so there are no valid caption transitions to approve."
+    },
+    "story_identity": {
+      "duplicate_story": true,
+      "duplicate_scene_id": 7,
+      "duplicate_episode": 40522021,
+      "premise": "Art Room Paint Surprise",
+      "distinct_story": false
+    },
+    "dialogue_timing": {
+      "enabled": true,
+      "engine": "Piper local CPU",
+      "provisional_text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "exact_spoken_subtitle_present": false,
+      "final_encoded_speech_verified": false,
+      "lip_sync_verified": false,
+      "listening_verified": false
+    },
+    "audio": {
+      "embedded_audio_stream": false,
+      "sidecars": [
+        "audio.wav",
+        "original_music.wav",
+        "voice-track.wav",
+        "voice-line.wav",
+        "scene_effects.wav"
+      ],
+      "sidecars_duration_seconds": 11,
+      "final_encoded_mix": false,
+      "caption_mapping": [],
+      "effect_mapping": [],
+      "music_style_metadata_present": false,
+      "note": "Separate WAV sidecars are not the final encoded mix. No subjective listening, speech intelligibility, music audibility/ducking or natural foley realism is claimed."
+    },
+    "absent": [
+      "episode.json",
+      "captions-timing.json",
+      "final_render",
+      "bobo_fresh.mp4"
+    ],
+    "decision": "rejected_duplicate_story_wrong_duration_missing_embedded_audio_and_caption_metadata"
+  },
+  "publication_status": {
+    "latest_verified_publish_run_number": 107,
+    "latest_verified_publish_run_id": 43748246628,
+    "facebook_video_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "No due unpublished approved reserve entry.",
+    "new_publication_this_check": false,
+    "ledger_entries_for_2026_11_16": 0,
+    "latest_recorded_published_episode": 40522037,
+    "note": "No new Facebook/Instagram video or Story acceptance is recorded for 16 November."
+  },
+  "security": {
+    "facebook_secrets_exposed": false,
+    "facebook_secrets_changed": false,
+    "publication_attempted": false
+  },
+  "cost": 0
+}
