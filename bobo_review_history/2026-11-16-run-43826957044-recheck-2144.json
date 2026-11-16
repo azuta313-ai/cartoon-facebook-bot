@@ -1,0 +1,240 @@
+{
+  "review_id": "2026-11-16-run-43826957044-recheck-2144",
+  "completed_at": "2026-11-16T21:44:00+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "result": "NO_PENDING_GATE; DAILY_RUN_372_ZERO_ARTIFACTS; PROVIDER_NOT_CALLED_DUE_SCENE_REFERENCE_EXHAUSTION; NO_LATER_DAILY_RUN_VISIBLE_BY_2144_PK; PUBLISH_RUN_108_ALL_UPLOAD_STEPS_SKIPPED; RUN341_ARTIFACT_REDOWNLOADED_AND_HASH_VERIFIED; DUPLICATE_121875S_VIDEO_WITHOUT_ENCODED_AUDIO_OR_CAPTIONS; HELD_AND_REJECTED; NO_NEW_PUBLICATION",
+  "latest_daily_run": {
+    "run_number": 372,
+    "run_id": 43826957044,
+    "workflow": ".github/workflows/daily.yml",
+    "created_at": "2026-11-16T07:53:11Z",
+    "created_at_pakistan": "2026-11-16T12:53:11+05:00",
+    "conclusion": "success",
+    "job_id": 133162960319,
+    "artifact_count": 0,
+    "artifact_uploaded": false,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "quota_blocked": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43826957044"
+  },
+  "schedule_observation": "No later Daily Fresh Bobo run appears in the latest GitHub Actions run listing by 2026-11-16 21:44 PK, although daily.yml still has a configured Asia/Karachi schedule. This is an invocation/scheduling gap; its cause is not established. Run #372 did not contact Hugging Face, so provider availability remains untested.",
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "reserve_entries_already_in_published_ledger": true,
+    "action": "No pending gate existed; none cleared or rewritten."
+  },
+  "latest_publish_run": {
+    "run_number": 108,
+    "run_id": 43868012516,
+    "workflow": ".github/workflows/publish-reviewed-bobo.yml",
+    "created_at": "2026-11-16T12:35:51Z",
+    "created_at_pakistan": "2026-11-16T17:35:51+05:00",
+    "conclusion": "success",
+    "job_id": 133301469380,
+    "facebook_video_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "No approved due unpublished reserve entry; pipeline returned not-ready.",
+    "upload_attempted": false,
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43868012516"
+  },
+  "latest_nonempty_artifact": {
+    "run_number": 341,
+    "run_id": 41880398664,
+    "job_id": 126751027283,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "created_at": "2026-11-04T17:48:50Z",
+    "downloaded_at": "2026-11-16T21:44:00+05:00",
+    "downloaded_via": "GitHub Actions artifact download tool",
+    "zip_file": "bobo-run341-recheck.zip",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "zip_sha256_verified": true,
+    "video_file": "generated.mp4",
+    "video_bytes": 2779364,
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "video_sha256_verified": true,
+    "contents": [
+      "generated.mp4",
+      "shot0.mp4",
+      "shot1.mp4",
+      "shot2.mp4",
+      "reference.png",
+      "continuation.png",
+      "dialogue-timing.json",
+      "shot1-review.json",
+      "shot2-review.json",
+      "shot3-review.json",
+      "voice-line.wav",
+      "voice-raw.wav",
+      "voice-track.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "audio.wav",
+      "shots.txt"
+    ],
+    "absent": [
+      "episode.json",
+      "captions-timing.json",
+      "final_render",
+      "bobo_fresh.mp4"
+    ]
+  },
+  "technical_review": {
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "width": 480,
+    "height": 832,
+    "fps": 16,
+    "video_codec": "H.264",
+    "video_streams": 1,
+    "audio_streams": 0,
+    "decode": "passed",
+    "duration_pass": false,
+    "technical_publication_pass": false,
+    "captions_visible_in_sampled_frames": false,
+    "caption_timing_metadata_present": false
+  },
+  "visual_review": {
+    "full_video_sampling_fps": 4,
+    "full_video_sample_count": 49,
+    "transition_sampling_fps": 8,
+    "transition_sample_count": 98,
+    "observed_actions": {
+      "initial_brush_reach_and_canvas_contact": [
+        0.625,
+        4
+      ],
+      "low_activity_front_facing_reaction_with_small_gestures": [
+        4.5,
+        6.875
+      ],
+      "resumed_brush_work": [
+        7,
+        10.375
+      ],
+      "ending_reaction_and_hand_gestures": [
+        10.5,
+        12.1875
+      ]
+    },
+    "purposeful_action_by_seconds": 0.625,
+    "required_max_seconds": 0.5,
+    "duplicate_story": true,
+    "duplicate_scene_id": 7,
+    "duplicate_episode": 40522021,
+    "duplicate_premise": "Art room paint surprise",
+    "decision": "Reject/hold: same Art Room Paint Surprise premise as published episode 40522021; opening action is later than 0.5s, duration exceeds 11-second tolerance, and final video has no embedded audio or captions. No repair attempted because changing captions/audio/duration cannot make this plot distinct."
+  },
+  "audio_review": {
+    "dialogue_timing": {
+      "enabled": true,
+      "engine": "Piper local CPU",
+      "provisional_text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "exact_spoken_subtitle_present": false,
+      "final_encoded_speech_verified": false,
+      "lip_sync_verified": false,
+      "listening_verified": false
+    },
+    "wav_files": {
+      "audio": {
+        "duration_seconds": 11,
+        "sample_rate": 48000,
+        "channels": 2,
+        "mean_dbfs": -22.46,
+        "peak_dbfs": -6.85
+      },
+      "original_music": {
+        "duration_seconds": 11,
+        "sample_rate": 48000,
+        "channels": 2,
+        "mean_dbfs": -29.64,
+        "peak_dbfs": -14.47
+      },
+      "scene_effects": {
+        "duration_seconds": 11,
+        "sample_rate": 48000,
+        "channels": 2,
+        "mean_dbfs": -43.62,
+        "peak_dbfs": -17.08
+      },
+      "voice_track": {
+        "duration_seconds": 11,
+        "sample_rate": 48000,
+        "channels": 2,
+        "mean_dbfs": -45.61,
+        "peak_dbfs": -16.81
+      },
+      "voice_line": {
+        "duration_seconds": 0.8261,
+        "sample_rate": 48000,
+        "channels": 2,
+        "mean_dbfs": -34.37,
+        "peak_dbfs": -16.81
+      }
+    },
+    "final_encoded_mix_present": false,
+    "independent_asr_available": false,
+    "subjective_listening_performed": false,
+    "effect_action_mapping_present": false,
+    "music_variant_metadata_present": false,
+    "note": "Separate WAV files and waveform measurements do not prove intelligibility, audible music, ducking, or perceptual naturalness of effects. The MP4 contains no audio stream; no final encoded mix, exact spoken subtitle mapping, episode.json, or effect-to-action mapping was supplied. No listening, ASR, or lip-sync claim."
+  },
+  "publication_status": {
+    "latest_publish_run_number": 108,
+    "latest_publish_run_id": 43868012516,
+    "facebook_video_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "ledger_entries_for_2026_11_16": 0,
+    "latest_recorded_episode": 40522037,
+    "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
+    "latest_recorded_facebook_video": true,
+    "latest_recorded_instagram_media": true,
+    "story_acceptance_recorded": false,
+    "new_publication_this_check": false,
+    "credentials_exposed": false,
+    "upload_attempted": false
+  },
+  "publication_path_review": {
+    "workflow": ".github/workflows/publish-reviewed-bobo.yml",
+    "inspected": true,
+    "checks_present": [
+      "exact artifact run download",
+      "reviewed SHA256 equals final SHA256",
+      "duplicate ledger guard",
+      "10.95–11.05s duration check",
+      "spoken subtitle exact text/timing check",
+      "final encoded speech verification by independent ASR or actual listening",
+      "observed caption/action mapping",
+      "effect source/type/level and action mapping",
+      "opening action timing",
+      "upload-intent duplicate protection"
+    ],
+    "action": "No workflow change or upload was needed because no qualified approval was ready."
+  },
+  "provider_status": "Free Hugging Face availability remains unverified. Latest generation run #372 stopped at the distinct-scene guard before any provider request; no quota error was observed. Stored retry_after 2026-10-18 is historical, not evidence of a current reset.",
+  "cost": 0,
+  "review_assets": {
+    "frame_sheet_4fps": "/mnt/data/bobo341/recheck_4fps.png",
+    "frame_sheet_8fps": "/mnt/data/bobo341/recheck_8fps.png"
+  }
+}
