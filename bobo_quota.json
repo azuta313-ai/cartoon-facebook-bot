@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-16T22:32:13+05:00",
+  "last_observed_at": "2026-11-16T23:11:25+05:00",
   "last_generation_run_id": 43826957044,
-  "last_provider_result": "2026-11-16 22:32 PK: No new Daily Fresh Bobo run since run #372 (12:53 PK). Run #372 stopped before Hugging Face because all six permitted original scene references are used/reserved; zero artifacts and no quota error. Downloaded and re-reviewed the latest nonempty artifact #341 (artifact 13349870060): duplicate Art room paint surprise premise (episode40522021), 12.1875sec, 480x832/16fps, no MP4 audio stream, no captions-timing.json or episode.json. Separate Piper/music/effects WAVs do not establish final-mix speech, music ducking or natural effects. Rejected from publication; no repair because same plot cannot count as distinct. No pending gate existed. Latest publisher run #108 succeeded but all four platform upload steps were skipped for lack of a due approved unpublished reserve entry. No new Facebook/Instagram video or Story acceptance on 16 Nov. Free quota remains untested, not confirmed blocked or reset; cost 0.",
+  "last_provider_result": "2026-11-16 23:11 PK: Re-downloaded and rechecked the latest nonempty Daily Fresh Bobo artifact #341 (artifact 13349870060; exact ZIP SHA verified). It is the already-published Art room paint surprise premise (episode40522021), 12.1875sec, 480x832/16fps, and has no MP4 audio stream, no captions-timing.json and no episode.json. Full video sampled at 4fps (49 frames); provisional Piper window sampled at 8fps (16 frames). First clear brush/canvas action begins at 0.625sec; low-activity reaction from 4.5–6.875sec. Separate WAV stems do not prove final-mix speech, music audibility/ducking or natural effects. Deliberately rejected; no repair because same plot cannot count as distinct. Latest Daily Fresh run #372 did not call the provider and produced no artifact because all six permitted original scene references are used/reserved; no quota error. No pending gate exists. Latest publisher run #108 succeeded but skipped all four platform uploads because no due approved unpublished reserve entry. No new Facebook/Instagram video or Story acceptance on 16 Nov. Free quota remains untested, not confirmed blocked or reset; cost 0.",
   "latest_check": {
-    "checked_at": "2026-11-16T22:32:13+05:00",
+    "checked_at": "2026-11-16T23:11:25+05:00",
     "latest_daily_run": {
       "run_number": 372,
       "run_id": 43826957044,
@@ -39,14 +39,14 @@
       "artifact_id": 13349870060,
       "artifact_name": "fresh-bobo-video",
       "created_at": "2026-11-04T17:48:50Z",
-      "downloaded_at": "2026-11-16T22:32:13+05:00",
+      "downloaded_at": "2026-11-16T23:11:25+05:00",
       "downloaded_via": "GitHub Actions workflow artifact download tool",
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a"
     },
     "exact_artifact_review": {
       "schema": "bobo-exact-artifact-review-v1",
-      "completed_at": "2026-11-16T22:32:13+05:00",
+      "completed_at": "2026-11-16T23:11:25+05:00",
       "decision": "rejected",
       "publication_eligible": false,
       "reason": "This stale artifact repeats the already-published Art room paint surprise premise (episode 40522021) and has multiple material final-render defects. Do not count a repair of these visuals as a distinct daily video.",
@@ -75,7 +75,7 @@
         "full_render_sampling_fps": 4,
         "full_render_sample_count": 49,
         "cue_window_sampling_fps": 8,
-        "cue_window_sample_count": 17,
+        "cue_window_sample_count": 16,
         "cue_window": "0.000–2.000 seconds; no captions-timing.json exists, so no caption transitions were available to inspect",
         "observed_actions": {
           "first_brush_reach_and_canvas_contact": [
@@ -250,7 +250,7 @@
     },
     "provider_status": "Free Hugging Face availability is unverified. Latest generation run stopped before provider contact because all six permitted scene references are used/reserved; no quota error was observed. Stored retry_after is historical and not evidence of a current reset.",
     "cost": 0,
-    "review_record": "bobo_review_history/2026-11-16-run-43826957044-artifact-41880398664-review-2232.json"
+    "review_record": "bobo_review_history/2026-11-16-run-43826957044-recheck-2311.json"
   },
   "recent_daily_runs_artifact_scan": [
     {
