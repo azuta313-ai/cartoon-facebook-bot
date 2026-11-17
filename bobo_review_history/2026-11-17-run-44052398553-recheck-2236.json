@@ -186,5 +186,90 @@
     "nov17_ledger_entries": 0,
     "note": "Repository ledger contains no new Bobo video or Story acceptance for 2026-11-17. Latest bot-recorded video remains episode 40522037."
   },
-  "cost": 0
+  "cost": 0,
+  "independent_artifact_recheck": {
+    "completed_at": "2026-11-17T23:08:16+05:00",
+    "artifact_id": 13349870060,
+    "artifact_run_id": 41880398664,
+    "artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "sampled_review": {
+      "full_video_fps": 4,
+      "full_video_frames": 49,
+      "shot_join_fps": 8,
+      "shot_join_frames": 74,
+      "caption_timing_file_present": false,
+      "caption_transitions_present": false,
+      "observed_actions": {
+        "brush_reach_and_canvas_contact": [
+          0.625,
+          4
+        ],
+        "low_activity_front_facing_reaction": [
+          4.5,
+          6.875
+        ],
+        "resumed_brush_work": [
+          7,
+          10.375
+        ],
+        "ending_reaction_and_hand_gestures": [
+          10.5,
+          12.1875
+        ]
+      },
+      "opening_action_seconds": 0.625,
+      "opening_action_limit_seconds": 0.5,
+      "visual_observation": "3D Bobo in red shirt is visible. The sampled footage repeats the already-published art-room painting premise (episode 40522021, scene 7). The 4.5–6.875s interval is mostly front-facing with small gestures; brush action resumes afterward. Shot joins sampled at 8 fps.",
+      "decision": "HOLD / REJECT AS A DISTINCT NEW VIDEO. Trimming, captions or audio changes cannot make the repeated story distinct."
+    },
+    "encoded_file": {
+      "path": "generated.mp4",
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "width": 480,
+      "height": 832,
+      "fps": 16,
+      "video_codec": "h264",
+      "audio_streams": 0,
+      "decode_pass": true,
+      "final_render_present": false,
+      "episode_json_present": false,
+      "captions_timing_json_present": false
+    },
+    "provisional_dialogue": {
+      "engine": "Piper local CPU",
+      "text": "Time to paint!",
+      "start": 0.35,
+      "end": 1.1761,
+      "exact_spoken_subtitle_present": false,
+      "final_encoded_speech_verified": false
+    },
+    "audio_measurements_only": {
+      "final_encoded_mix_present": false,
+      "subjective_listening_performed": false,
+      "intelligibility_verified": false,
+      "music_audibility_verified": false,
+      "effect_naturalness_verified": false,
+      "rms_dbfs": {
+        "audio_wav": -22.46,
+        "original_music_wav": -29.64,
+        "scene_effects_wav": -43.62,
+        "voice_track_wav": -45.61,
+        "voice_line_wav": -34.37
+      },
+      "peak_dbfs": {
+        "audio_wav": -6.85,
+        "original_music_wav": -14.47,
+        "scene_effects_wav": -17.08,
+        "voice_track_wav": -16.81,
+        "voice_line_wav": -16.81
+      },
+      "note": "WAV stems are separate and are not muxed into generated.mp4. These measurements do not establish audible balance, intelligibility, music ducking or perceptual effect quality."
+    },
+    "repair_or_publication": "No repair or publication attempted: the visual premise is a duplicate and the only MP4 is overlength/video-only with no exact spoken subtitle or final mix. No pending gate existed to clear. Zero paid generation."
+  }
 }
