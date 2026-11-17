@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-17T06:15:13+05:00",
+  "last_observed_at": "2026-11-17T07:31:48+05:00",
   "last_generation_run_id": 43939978375,
   "last_provider_result": "2026-11-17 06:15 PK: Latest Daily Fresh Bobo run #373 (43939978375) completed successfully but stopped before contacting Hugging Face because all six permitted original scene references are already used/reserved. It produced no fresh_output files and no workflow artifact; upload-artifact warned that no files were found. No quota error was observed, so free provider availability remains untested. Re-downloaded latest nonempty artifact #341 (artifact 13349870060) and verified ZIP SHA256 4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd and video SHA256 2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a. It repeats already-published Art room paint surprise (episode40522021), is 12.1875sec, H264 480x832/16fps, and has no MP4 audio stream, episode.json or captions-timing.json. Reviewed 49 frames at 4fps and 9 cue-window frames at 8fps; first clear brush contact 0.625s, low-activity reaction 4.5–6.875s. Piper cue 'Time to paint!' remains provisional 0.35–1.1761s with no exact subtitle/final encoded speech. Separate WAV stems do not prove audible music, ducking, natural effects or intelligible final-mix speech. Deliberately held/rejected; no repair because duplicate visuals cannot count as distinct. No pending gate exists. Latest publisher run #109 (43970819357) skipped Facebook video, Instagram Reel, Instagram Story and Facebook Story. No new platform acceptance on 17 Nov. Cost 0.",
   "latest_check": {
-    "checked_at": "2026-11-17T06:15:13+05:00",
+    "checked_at": "2026-11-17T07:31:48+05:00",
     "latest_daily_run": {
       "run_number": 373,
       "run_id": 43939978375,
@@ -19,7 +19,7 @@
       "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
       "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/43939978375"
     },
-    "schedule_observation": "No later Daily Fresh Bobo run was visible by 06:15 PK on 17 November. The configured 06:10 PK slot had not appeared in Actions at that check; cause not established.",
+    "schedule_observation": "No newer Daily Fresh Bobo run visible at 07:31 PK; no current run or artifact found. Cause of missing scheduled invocations is unknown.",
     "pending_gate": {
       "bobo_review_pending_json_present": false,
       "bobo_pending_directory_present": false,
@@ -39,12 +39,15 @@
       "artifact_id": 13349870060,
       "artifact_name": "fresh-bobo-video",
       "created_at": "2026-11-04T17:48:50Z",
-      "downloaded_at": "2026-11-17T06:15:13+05:00",
+      "downloaded_at": "2026-11-17T07:30:00+05:00",
       "downloaded_via": "GitHub Actions workflow artifact download tool",
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+      "zip_sha256_verified": true,
       "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-      "review_record": "bobo_review_history/2026-11-17-run-43939978375-recheck-0615.json",
-      "decision": "rejected as stale duplicate with duration/audio/caption defects"
+      "video_sha256_verified": true,
+      "duration_seconds": 12.1875,
+      "video_audio_streams": 0,
+      "decision": "rejected as stale duplicate of published Art room paint surprise episode 40522021"
     },
     "latest_publish_run": {
       "run_number": 109,
@@ -67,10 +70,11 @@
       "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00"
     },
     "blockers": {
-      "primary": "All six permitted original scene references are already used or reserved; only story02.jpg is present in the story_queue and it has already been used.",
-      "provider": "Provider was not called, so free Hugging Face quota availability remains untested; no quota error observed.",
-      "schedule": "No later Daily Fresh Bobo invocation visible by 06:15 PK; reason unknown."
+      "primary": "All six permitted original scene references are already used or reserved; only story02.jpg is present in story_queue and it has already been used.",
+      "provider": "Free Hugging Face availability is unverified because the latest Daily Fresh Bobo run stopped before contacting the provider. No quota error was observed. The stored 2026-10-18 retry_after is historical, not proof of a reset.",
+      "schedule": "No newer Daily Fresh Bobo run visible at 07:31 PK; cause unknown."
     },
+    "review_record": "bobo_review_history/2026-11-17-run-43939978375-recheck-0731.json",
     "cost": 0
   },
   "recent_daily_runs_artifact_scan": [
@@ -238,9 +242,9 @@
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-17-run-43939978375-recheck-0615",
-    "completed_at": "2026-11-17T06:15:13+05:00",
-    "result": "NO_CURRENT_DRAFT; DAILY_RUN_373_ZERO_ARTIFACTS; PROVIDER_NOT_CALLED_DUE_SCENE_REFERENCE_EXHAUSTION; STALE_ARTIFACT_341_REDOWNLOADED_AND_HASH_VERIFIED; DUPLICATE_12.1875S_MP4_WITHOUT_ENCODED_AUDIO_OR_CAPTIONS_REJECTED; NO_PENDING_GATE; PUBLISH_RUN_109_ALL_UPLOAD_STEPS_SKIPPED; NO_NEW_PUBLICATION; COST_ZERO",
+    "review_id": "2026-11-17-run-43939978375-recheck-0731",
+    "completed_at": "2026-11-17T07:31:48+05:00",
+    "result": "NO_CURRENT_DRAFT; DAILY_RUN_373_ZERO_ARTIFACTS; PROVIDER_NOT_CALLED_DUE_SCENE_REFERENCE_EXHAUSTION; NONEMPTY_ARTIFACT_341_DOWNLOADED_AND_HASH_VERIFIED; DUPLICATE_12.1875S_MP4_WITHOUT_ENCODED_AUDIO_OR_CAPTION_TIMING_REJECTED; NO_PENDING_GATE; PUBLISH_RUN_109_ALL_UPLOAD_STEPS_SKIPPED; NO_NEW_PUBLICATION; COST_ZERO",
     "latest_daily_run_id": 43939978375,
     "latest_daily_run_number": 373,
     "artifact_count": 0,
@@ -258,12 +262,13 @@
     "latest_nonempty_artifact_run_id": 41880398664,
     "latest_nonempty_artifact_id": 13349870060,
     "latest_nonempty_artifact_zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "latest_nonempty_artifact_video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
     "pending_gate": false,
     "publication_attempted": false,
     "cost": 0,
-    "review_record": "bobo_review_history/2026-11-17-run-43939978375-recheck-0615.json"
+    "review_record": "bobo_review_history/2026-11-17-run-43939978375-recheck-0731.json"
   },
-  "provider_quota_status": "Free Hugging Face availability is unverified. Latest Daily Fresh Bobo run #373 stopped before provider contact because all six permitted original scene references are already used or reserved; no quota error was observed. The historical 2026-10-18 retry_after is not evidence of a current reset.",
+  "provider_quota_status": "Free Hugging Face availability remains unverified. Daily Fresh Bobo run #373 stopped before provider contact because all six permitted original scene references are used/reserved; no quota error was observed. No current run after #373 was visible at 07:31 PK. The historical 2026-10-18 retry_after is not evidence of a current reset.",
   "latest_nonempty_artifact": {
     "run_number": 341,
     "run_id": 41880398664,
