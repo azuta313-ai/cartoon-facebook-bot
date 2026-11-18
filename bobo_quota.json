@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-18T15:54:17+05:00",
+  "last_observed_at": "2026-11-18T22:00:17+05:00",
   "last_generation_run_id": 44267198278,
-  "last_provider_result": "18 November 15:54 PK independent recheck: Daily Fresh Bobo run #376 still has zero artifacts; log confirms the generator stopped before provider contact because all eligible original scene references are used/recent/reserved. No quota error was observed; free provider availability remains untested. Re-downloaded latest nonempty artifact #341 from GitHub Actions and verified ZIP SHA256 4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd and video SHA256 2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a. Full 49-frame 4fps review and 8fps shot-join windows confirm the already-published Art room paint surprise premise, first purposeful action at 0.625s, two hard joins, 12.1875s duration, video-only MP4, no exact spoken subtitle/final mix/episode metadata. WAV stem levels measured only; no subjective listening or ASR. Hold/reject; no repair can make this a distinct story. No pending gate. Publisher #110 skipped all four upload steps; no new Facebook/Instagram Reel or Story acceptance. Cost zero.",
+  "last_provider_result": "18 November 22:00 PK manual recheck: no pending review draft exists; approval file is already published. Latest confirmed Daily Fresh Bobo run #376 (13:28 PK) completed successfully with zero artifacts; its log shows fresh_bobo.py stopped before Hugging Face because all six eligible original scene references were used/recent/reserved. No quota error was observed, so free-provider availability remains untested. Downloaded artifact #341 again from GitHub Actions; verified ZIP SHA256 4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd and generated.mp4 SHA256 2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a. Independently sampled full video at 4fps and both joins at 8fps; duplicate Art room paint premise, 12.1875s duration, first purposeful action 0.625s, two hard joins, video-only MP4, no exact spoken subtitle or final mix. No subjective listening or ASR. Hold/reject; no repair can make it distinct. No pending gate. Publish run #110 skipped all four platform upload steps. No new Facebook/Instagram video or Story acceptance. Full Actions run enumeration is unavailable in the connected GitHub tools; #376 is the latest confirmed run in repository records, and a newer zero-artifact run cannot be excluded. Zero cost.",
   "latest_check": {
-    "checked_at": "2026-11-18T15:54:17+05:00",
+    "checked_at": "2026-11-18T22:00:17+05:00",
     "latest_daily_run": {
       "run_number": 376,
       "run_id": 44267198278,
@@ -38,12 +38,12 @@
       "run_id": 41880398664,
       "artifact_id": 13349870060,
       "artifact_name": "fresh-bobo-video",
-      "downloaded_at": "2026-11-18T15:52:00+05:00",
+      "downloaded_at": "2026-11-18T22:00:17+05:00",
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
       "duration_seconds": 12.1875,
       "video_audio_streams": 0,
-      "decision": "Held/rejected as duplicate art-room painting premise; first purposeful action late, 12.1875s, no encoded audio/subtitle/final metadata."
+      "decision": "Held/rejected as duplicate Art room painting premise; 12.1875s, first action 0.625s, two hard joins, no MP4 audio stream, exact spoken subtitle file or final metadata."
     },
     "latest_publish_run": {
       "run_number": 110,
@@ -117,7 +117,8 @@
       "final_mix_present": false,
       "quality_passed": false,
       "decision": "Held/rejected as a distinct new story; no repair or publication."
-    }
+    },
+    "actions_run_enumeration": "Connected GitHub Actions tools expose artifacts and jobs by known run ID but do not list all repository workflow runs. Run #376 is the latest confirmed run in repository records; a newer zero-artifact run cannot be excluded."
   },
   "recent_daily_runs_artifact_scan": [
     {
@@ -300,20 +301,21 @@
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-18-run-44267198278-recheck-1554",
-    "completed_at": "2026-11-18T15:54:17+05:00",
-    "result": "NO_CURRENT_DRAFT; DAILY_RUN_376_ZERO_ARTIFACTS; PROVIDER_NOT_CALLED_DUE_TO_SCENE_REFERENCE_EXHAUSTION; LAST_NONEMPTY_ARTIFACT_341_REDOWNLOADED_AND_SHA_VERIFIED; DUPLICATE_AND_TECHNICAL_HOLD_CONFIRMED; NO_PENDING_GATE; PUBLISH_RUN_110_ALL_UPLOADS_SKIPPED; NO_NEW_PLATFORM_ACCEPTANCE; COST_ZERO",
-    "latest_daily_run_id": 44267198278,
-    "latest_daily_run_number": 376,
+    "review_id": "2026-11-18-manual-recheck-2200",
+    "completed_at": "2026-11-18T22:00:17+05:00",
+    "result": "NO_CURRENT_PENDING_DRAFT; LAST_CONFIRMED_DAILY_RUN_376_ZERO_ARTIFACTS; ARTIFACT_341_REDOWNLOADED_AND_VISUALLY_RECHECKED; DUPLICATE_AND_TECHNICAL_HOLD; NO_FINAL_MIX_OR_CAPTION_FILE; PROVIDER_NOT_CALLED_DUE_TO_SCENE_REFERENCE_EXHAUSTION; NO_NEW_PUBLICATION_ACCEPTANCE; COST_ZERO",
+    "latest_confirmed_daily_run_id": 44267198278,
+    "latest_confirmed_daily_run_number": 376,
     "artifact_count": 0,
     "provider_called": false,
     "quota_error_observed": false,
     "pending_gate": false,
-    "latest_publish_run_id": 44088332425,
-    "latest_publish_run_number": 110,
+    "latest_confirmed_publish_run_id": 44088332425,
+    "latest_confirmed_publish_run_number": 110,
     "publication_attempted": false,
     "cost": 0,
-    "review_record": "bobo_review_history/2026-11-18-run-44267198278-recheck-1554.json"
+    "review_record": "bobo_review_history/2026-11-18-manual-recheck-2200.json",
+    "actions_run_enumeration": "Unavailable; no repository-wide latest-runs endpoint in connected GitHub tools."
   },
   "provider_quota_status": "Free Hugging Face availability remains unverified. Daily Fresh Bobo run #376 stopped before provider contact because all eligible original scene references are already used/recent/reserved; no quota error was observed. No current quota reset can be inferred from the historical retry_after.",
   "latest_nonempty_artifact": {
