@@ -163,5 +163,61 @@
     "facebook_video_id": "2296956914491800",
     "instagram_reel": "https://www.instagram.com/reel/DeorySgAMGk/"
   },
-  "cost": 0
+  "cost": 0,
+  "reverification": {
+    "checked_at": "2026-11-19T22:09:06+05:00",
+    "artifact_downloaded_again": true,
+    "artifact_id": 13349870060,
+    "source_run_id": 41880398664,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "independent_visual_check": {
+      "sample_rate_fps": 4,
+      "samples": 49,
+      "observations": [
+        {
+          "start": 0,
+          "end": 4,
+          "action": "Bobo reaches toward the easel and moves the brush across the canvas"
+        },
+        {
+          "start": 4.5,
+          "end": 6.875,
+          "action": "Front-facing reaction with comparatively low activity and small gestures"
+        },
+        {
+          "start": 7,
+          "end": 10.375,
+          "action": "Brush work resumes at the same art-room easel"
+        },
+        {
+          "start": 10.5,
+          "end": 12.1875,
+          "action": "Ending face and hand gestures"
+        }
+      ]
+    },
+    "technical_recheck": {
+      "duration_seconds": 12.1875,
+      "dimensions": "480x832",
+      "fps": 16,
+      "video_codec": "H.264",
+      "audio_streams": 0,
+      "absent": [
+        "episode.json",
+        "captions-timing.json",
+        "bobo_fresh.mp4",
+        "final muxed video"
+      ],
+      "separate_wav_stems_present": true,
+      "final_mix_and_speech_intelligibility_verified": false,
+      "subjective_effect_realism_or_music_audibility_claimed": false,
+      "caption_transition_review": "Not possible: no caption timeline or final muxed render."
+    },
+    "result": "UNCHANGED_HOLD_DUPLICATE_INCOMPLETE_ARTIFACT",
+    "pending_gate": "No pending gate exists; none cleared or rewritten.",
+    "publication": "No Facebook/Instagram video or Story published in this check.",
+    "generation": "Latest Daily Fresh Bobo run #378 had zero artifacts; provider was not called and no quota error occurred. Generator stopped at distinct-scene guard.",
+    "cost": 0
+  }
 }
