@@ -63,8 +63,9 @@
     "generation_blockers": {
       "primary": "All eligible original scene references are used/recent/reserved; scene IDs 5 and 6 are forbidden; assets/scenes/scene8.jpg is absent and scene_id 8 is not supported by the selector/generator.",
       "provider": "Free Hugging Face availability remains unverified because no provider request was made. No quota error was observed.",
-      "character_reference": "The root bobo_reference.jpg is the wrong bear/overalls character; the correct Joyful Bobo Monkey Profile Portrait.png is in the Library.",
-      "next_step": "Commit the correct original Bobo portrait and matching rooftop-pinwheel scene8 reference, then add scene_id 8 to scene policy and generator before the next zero-cost provider attempt."
+      "character_reference": "The correct Joyful Bobo Monkey Profile Portrait.png is in the Library. The matching rooftop pinwheel scene image bobo_blows_a_rainbow_pinwheel.png is present as a current conversation attachment, but assets/scenes/scene8.jpg is still absent from GitHub; no binary asset was committed in this check.",
+      "next_step": "Commit the matching rooftop pinwheel image as assets/scenes/scene8.jpg and the correct portrait as assets/characters/bobo_reference.jpg, then add scene_id 8 to bobo_scene_policy.py, fresh_bobo.py and bobo_voice.py before the next zero-cost provider attempt. Bind the pinwheel storyboard to the next episode and place its Piper line in the third-shot reaction window.",
+      "scene_reference_attachment": "bobo_blows_a_rainbow_pinwheel.png (current conversation attachment; visually inspected; not committed to repository)"
     },
     "review_record": "bobo_review_history/2026-11-19-run-379-recheck-2342.json",
     "review_id": "2026-11-19-run-379-recheck-2342",
@@ -282,9 +283,10 @@
     "downloaded_video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
     "decision": "No current draft. Historical artifact #341 is a duplicate, 12.1875-second intermediate without a muxed audio stream or final subtitle timeline; no publication.",
     "review_record": "bobo_review_history/2026-11-19-run-379-recheck-2342.json",
-    "cost": 0
+    "cost": 0,
+    "scene_reference_attachment": "bobo_blows_a_rainbow_pinwheel.png is available in the current conversation, but not in GitHub assets/scenes; generation remains stopped by missing scene8 repository asset and selector support."
   },
-  "provider_quota_status": "Free Hugging Face availability is unverified. Latest Daily Fresh Bobo run #379 stopped before a provider request because all eligible original scene references are used/recent/reserved; assets/scenes/scene8.jpg and scene_id 8 selector support are missing. No quota error was observed. retry_after 2026-10-18 is historical and is not a current reset.",
+  "provider_quota_status": "Free Hugging Face availability is unverified. Latest Daily Fresh Bobo run #379 stopped before a provider request because all eligible original scene references are used/recent/reserved; scene8 is still missing from GitHub assets and the selector/generator. A matching rooftop pinwheel image exists in this conversation but is not committed. No quota error was observed. retry_after 2026-10-18 is historical and is not a current reset.",
   "latest_nonempty_artifact": {
     "run_number": 341,
     "run_id": 41880398664,
