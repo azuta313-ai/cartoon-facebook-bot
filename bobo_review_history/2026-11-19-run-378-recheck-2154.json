@@ -1,0 +1,167 @@
+{
+  "review_id": "2026-11-19-run-378-recheck-2154",
+  "completed_at": "2026-11-19T21:54:11+05:00",
+  "result": "NO_CURRENT_PENDING_DRAFT; DAILY_RUN_378_ZERO_ARTIFACTS; HISTORICAL_ARTIFACT_341_REDOWNLOADED_AND_REVIEWED; REJECT_DUPLICATE_AND_TECHNICAL_HOLD; NO_PUBLICATION",
+  "latest_daily_run": {
+    "workflow": ".github/workflows/daily.yml",
+    "run_number": 378,
+    "run_id": 44489590838,
+    "completed_at": "2026-11-19T08:40:46Z",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/44489590838"
+  },
+  "latest_nonempty_artifact": {
+    "source_run_number": 341,
+    "source_run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_at": "2026-11-19T21:54:11+05:00",
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "zip_sha256_verified": true,
+    "video_file": "generated.mp4",
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "video_sha256_verified": true,
+    "contents": [
+      "generated.mp4",
+      "shot0.mp4",
+      "shot1.mp4",
+      "shot2.mp4",
+      "reference.png",
+      "continuation.png",
+      "dialogue-timing.json",
+      "shot1-review.json",
+      "shot2-review.json",
+      "shot3-review.json",
+      "voice-line.wav",
+      "voice-raw.wav",
+      "voice-track.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "audio.wav",
+      "shots.txt"
+    ],
+    "absent": [
+      "episode.json",
+      "captions-timing.json",
+      "bobo_fresh.mp4",
+      "final muxed video"
+    ]
+  },
+  "exact_file_review": {
+    "full_render_sample_fps": 4,
+    "full_render_sample_count": 49,
+    "transition_sample_fps": 8,
+    "transition_sample_count": 98,
+    "observed_actions": {
+      "initial_brush_reach_and_canvas_contact": [
+        0.625,
+        4
+      ],
+      "low_activity_front_facing_reaction_with_small_gestures": [
+        4.5,
+        6.875
+      ],
+      "resumed_brush_work": [
+        7,
+        10.375
+      ],
+      "ending_reaction_and_hand_gestures": [
+        10.5,
+        12.1875
+      ]
+    },
+    "purposeful_action_by_seconds": 0.625,
+    "duplicate_story": true,
+    "duplicate_scene_id": 7,
+    "duplicate_episode": 40522021,
+    "duplicate_premise": "Art room paint surprise",
+    "duration_seconds": 12.1875,
+    "required_duration_seconds": [
+      10.95,
+      11.05
+    ],
+    "width": 480,
+    "height": 832,
+    "fps": 16,
+    "video_codec": "H.264",
+    "audio_streams": 0,
+    "video_decode": "passed",
+    "captions_timeline_present": false,
+    "spoken_subtitle_present": false,
+    "voice": {
+      "engine": "Piper local CPU",
+      "provisional_text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "final_encoded_mix_present": false,
+      "intelligibility_verified": false,
+      "lip_sync_verified": false,
+      "listening_verified": false
+    },
+    "separate_wav_stems_waveform_only": {
+      "final_audio_mix": {
+        "duration_seconds": 11,
+        "mean_dbfs": -22.46,
+        "peak_dbfs": -6.85
+      },
+      "original_music": {
+        "duration_seconds": 11,
+        "mean_dbfs": -29.64,
+        "peak_dbfs": -14.47
+      },
+      "scene_effects": {
+        "duration_seconds": 11,
+        "mean_dbfs": -43.62,
+        "peak_dbfs": -17.08
+      },
+      "voice_track": {
+        "duration_seconds": 11,
+        "mean_dbfs": -45.61,
+        "peak_dbfs": -16.81
+      },
+      "voice_line": {
+        "duration_seconds": 0.8261,
+        "mean_dbfs": -34.37,
+        "peak_dbfs": -16.81
+      }
+    },
+    "audio_limitation": "The MP4 has no audio stream. Separate WAV stems and waveform levels do not establish final-mix speech intelligibility, music audibility/ducking, or perceptual effect realism. No subjective listening or lip-sync claim.",
+    "decision": "HOLD/REJECT as a publishable candidate: reused art-room painting premise, exceeds 11-second window, action starts after 0.5 seconds, extended low-activity reaction, missing final mux/audio and spoken subtitle timeline. Repairs cannot make reused footage a distinct original video."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "action": "No current pending gate existed; nothing was cleared or rewritten."
+  },
+  "latest_publish_run": {
+    "run_number": 112,
+    "run_id": 44526694796,
+    "conclusion": "success",
+    "all_publication_steps": "skipped",
+    "reason": "No due approved unpublished reserve entry."
+  },
+  "provider_status": {
+    "free_provider_availability": "unverified",
+    "provider_called": false,
+    "quota_error_observed": false,
+    "blocker": "All eligible original scene references are used/recent/reserved. Only story02.jpg remains and it is already used; scene IDs 5 and 6 are forbidden. assets/scenes/scene8.jpg is absent. Root bobo_reference.jpg is not the required red-shirt monkey reference.",
+    "zero_paid_generation": true
+  },
+  "publication": {
+    "new_facebook_video": false,
+    "new_instagram_reel": false,
+    "new_facebook_story": false,
+    "new_instagram_story": false,
+    "latest_ledger_episode": 40522037,
+    "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
+    "facebook_video_id": "2296956914491800",
+    "instagram_reel": "https://www.instagram.com/reel/DeorySgAMGk/"
+  },
+  "cost": 0
+}
