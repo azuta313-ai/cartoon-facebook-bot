@@ -1,0 +1,175 @@
+{
+  "review_id": "2026-11-19-run-378-artifact-341-recheck-1521",
+  "completed_at": "2026-11-19T15:21:20+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "current_generation_run": {
+    "workflow": ".github/workflows/daily.yml",
+    "run_number": 378,
+    "run_id": 44489590838,
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/44489590838",
+    "status": "completed",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_published": true,
+    "gate_cleared": false,
+    "reason": "No current pending gate existed."
+  },
+  "historical_artifact_review": {
+    "source_run_number": 341,
+    "source_run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_again": true,
+    "downloaded_at": "2026-11-19T15:10:24+05:00",
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "file": "generated.mp4",
+    "duration_seconds": 12.1875,
+    "video": {
+      "codec": "h264",
+      "width": 480,
+      "height": 832,
+      "frame_rate": 16,
+      "playable_decode": true,
+      "audio_stream_present": false
+    },
+    "sampling": {
+      "full_render_sample_fps": 4,
+      "full_render_samples": 49,
+      "transition_sample_fps": 8,
+      "voice_window_samples": [
+        0,
+        1.5
+      ],
+      "ending_window_samples": [
+        11,
+        12.125
+      ],
+      "observed_actions": {
+        "brush_and_canvas_interaction": [
+          0.5,
+          3.75
+        ],
+        "palette_or_downward_hand_movement": [
+          4,
+          4.25
+        ],
+        "front_facing_low_activity_pose": [
+          4.5,
+          6.75
+        ],
+        "return_to_canvas_and_brush_movement": [
+          7,
+          8.75
+        ],
+        "ending_gestures": [
+          9,
+          10.5
+        ],
+        "sampled_mouth_open_windows": [
+          [
+            0.375,
+            0.5
+          ],
+          [
+            11,
+            11.5
+          ]
+        ]
+      }
+    },
+    "captions": {
+      "captions_timing_json_present": false,
+      "captions_srt_present": false,
+      "spoken_subtitle_present": false,
+      "caption_transition_review_possible": false
+    },
+    "voice": {
+      "provisional_text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "piper_source_assets_present": true,
+      "final_encoded_voice_present": false,
+      "final_mix_speech_intelligibility_verified": false,
+      "verification_method": "unavailable",
+      "listening_claim": false,
+      "note": "The MP4 contains no audio stream. The brief mouth-open sample near 0.375-0.5s and a later mouth-open sequence near 11.0-11.5s do not establish spoken words or intelligibility."
+    },
+    "audio_assets": {
+      "separate_audio_wav_seconds": 11,
+      "separate_voice_track_seconds": 11,
+      "separate_music_seconds": 11,
+      "separate_effects_seconds": 11,
+      "final_muxed_mix_present": false,
+      "levels_only": {
+        "mix_rms_dbfs": -22.46,
+        "mix_peak_dbfs": -6.85,
+        "music_rms_dbfs": -29.64,
+        "effects_rms_dbfs": -43.62,
+        "voice_track_rms_dbfs": -45.61
+      },
+      "subjective_audibility_or_naturalness_verified": false
+    },
+    "metadata": {
+      "episode_json_present": false,
+      "music_variant_or_style_verifiable": false,
+      "final_render_present": false
+    },
+    "duplicate_check": {
+      "duplicate_story": "Art room paint surprise",
+      "already_published_episode": 40522021,
+      "classification": "same story premise; not a distinct new video"
+    },
+    "decision": "REJECT_AS_CURRENT_PUBLICATION_CANDIDATE",
+    "reasons": [
+      "Historical art-room painting premise duplicates published episode 40522021.",
+      "Duration 12.1875 seconds is outside the required 10.95-11.05 second range.",
+      "MP4 has no audio stream; no final encoded Piper voice or final mix.",
+      "Exact spoken subtitle and caption timing are absent.",
+      "episode.json and final bobo_fresh.mp4 are absent."
+    ],
+    "repairs": "No repair performed: this is a historical intermediate, not a current pending draft, and the story is a duplicate. Re-rendering its audio/captions would not make it a distinct video."
+  },
+  "publication": {
+    "new_publication_on_2026_11_19": false,
+    "latest_repository_recorded_episode": 40522037,
+    "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
+    "facebook_acceptance_recorded": true,
+    "instagram_reel_acceptance_recorded": true,
+    "facebook_story_acceptance_recorded": true,
+    "instagram_story_acceptance_recorded": true,
+    "latest_publication_workflow_run": 111,
+    "latest_publication_workflow_run_id": 44308243489,
+    "latest_publication_workflow_result": "skipped: no due approved unpublished reserve entry",
+    "secrets_exposed_or_changed": false
+  },
+  "generation_blocker": {
+    "provider_quota": "UNTESTED_NOT_CONFIRMED_BLOCKED",
+    "reason": "Run #378 stopped before contacting Hugging Face; no quota response was received.",
+    "scene_reference_exhaustion": true,
+    "existing_storyboard": "bobo_storyboard_pinwheel.json",
+    "storyboard_scene_id": 8,
+    "storyboard_status": "reference_generated_but_not_committed_to_repository",
+    "missing_repository_asset": "assets/scenes/scene8.jpg",
+    "selector_supports_scene_8": false,
+    "generator_scene_array_supports_scene_8": false,
+    "repository_root_character_reference_is_wrong": "bobo_reference.jpg depicts a bear in blue overalls.",
+    "correct_original_bobo_reference": "The user-approved red-shirt monkey portrait and four-pose sheet are present in the Library, not in the repository.",
+    "next_step": "Commit the correct Bobo character reference and matching scene8 reference, then add scene_id 8 to the scene selector and generator before making a zero-cost Hugging Face attempt."
+  },
+  "cost": 0
+}
