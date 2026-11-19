@@ -161,8 +161,15 @@
   "generation_blocker": {
     "primary": "All eligible original scene references are used/recent/reserved. Scene IDs 5 and 6 are forbidden. assets/scenes/scene8.jpg is absent, and bobo_scene_policy.py/fresh_bobo.py do not yet support scene_id 8.",
     "provider": "Free Hugging Face ZeroGPU availability remains unverified because run #379 stopped before any provider request. No quota error was observed.",
-    "character_reference": "The repository root bobo_reference.jpg is not the required red-shirt monkey. The correct Joyful Bobo Monkey Profile Portrait.png exists in the Library, but the matching rooftop-pinwheel scene reference is not committed to the repository.",
-    "next_step": "Commit the correct original Bobo character reference and a matching rooftop-pinwheel scene reference as assets/scenes/scene8.jpg, then add scene_id 8 to the scene selector and generator before a zero-cost provider attempt. Do not reuse the painting scene or substitute the bear reference."
+    "character_reference": "The correct Joyful Bobo Monkey Profile Portrait.png is present in the Library and visually matches the red-shirt monkey. Repository root bobo_reference.jpg remains the wrong bear/overalls image; no repository binary asset was changed.",
+    "next_step": "Commit the matching rooftop pinwheel image as assets/scenes/scene8.jpg and the correct portrait as assets/characters/bobo_reference.jpg, then add scene_id 8 to bobo_scene_policy.py, fresh_bobo.py and bobo_voice.py before the next zero-cost provider attempt. Keep the pinwheel storyboard bound to the next episode and its third-shot voice window.",
+    "scene_reference_attachment": {
+      "file_name": "bobo_blows_a_rainbow_pinwheel.png",
+      "source": "current conversation attachment",
+      "visual_inspection": "Matching 3D red-shirt Bobo blowing toward a rainbow pinwheel on a rooftop terrace with potted plants and skyline",
+      "repository_path": "assets/scenes/scene8.jpg",
+      "committed": false
+    }
   },
   "publication": {
     "latest_publish_workflow": {
@@ -188,5 +195,14 @@
   },
   "secrets_exposed_or_changed": false,
   "paid_generation_used": false,
-  "cost": 0
+  "cost": 0,
+  "repository_changes": {
+    "review_history_recorded": true,
+    "quota_status_updated": true,
+    "scene8_binary_asset_found_in_conversation": true,
+    "scene8_binary_asset_committed": false,
+    "generator_code_changed": false,
+    "pending_or_approval_gate_changed": false,
+    "secrets_exposed_or_changed": false
+  }
 }
