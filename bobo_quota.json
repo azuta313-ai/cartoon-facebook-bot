@@ -2,34 +2,23 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-19T07:13:09+05:00",
+  "last_observed_at": "2026-11-19T14:46:09+05:00",
   "last_generation_run_id": 44364365481,
-  "last_provider_result": "19 November 07:13 PK recheck: latest Daily Fresh Bobo run #377 has zero artifacts and stopped before Hugging Face because all six eligible original scene references are used/recent/reserved. No provider request and no quota error. Re-downloaded last nonempty artifact #341 and independently checked ZIP SHA256 4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd and generated.mp4 SHA256 2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a. Intermediate repeats published art-room painting episode 40522021, is 12.1875s, has no muxed audio, no final render and no final subtitle timeline; rejected as a distinct new video. No current pending gate; no publication. The repository bobo_reference.jpg is the wrong bear/overalls character; correct Bobo portrait located in Library. New pinwheel storyboard committed, matching scene still not yet committed. Free provider quota remains untested; no paid video generation.",
+  "last_provider_result": "19 November 14:46 PK recheck: latest Daily Fresh Bobo run #378 completed successfully but produced zero artifacts. fresh_bobo.py stopped before any Hugging Face request because all eligible original scene references are already used/recent/reserved. No provider request and no quota error. The historical nonempty artifact #341 was re-downloaded and its hashes verified; it remains the repeated art-room painting premise from published episode 40522021, 12.1875 seconds, no muxed audio, no final render or caption timeline. No current pending gate and no new publication. Zero paid generation.",
   "latest_check": {
-    "checked_at": "2026-11-19T07:13:09+05:00",
+    "checked_at": "2026-11-19T14:46:09+05:00",
     "latest_daily_run": {
       "workflow": ".github/workflows/daily.yml",
-      "run_number": 377,
-      "run_id": 44364365481,
-      "created_at": "2026-11-18T17:57:25Z",
-      "completed_at": "2026-11-18T17:57:50Z",
+      "run_number": 378,
+      "run_id": 44489590838,
+      "created_at": "2026-11-19T08:40:23Z",
+      "completed_at": "2026-11-19T08:40:46Z",
       "conclusion": "success",
       "artifact_count": 0,
       "provider_called": false,
       "quota_error_observed": false,
       "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
-      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/44364365481"
-    },
-    "latest_publish_run": {
-      "workflow": ".github/workflows/publish-reviewed-bobo.yml",
-      "run_number": 111,
-      "run_id": 44308243489,
-      "conclusion": "success",
-      "facebook_video_step": "skipped",
-      "instagram_reel_step": "skipped",
-      "instagram_story_step": "skipped",
-      "facebook_story_step": "skipped",
-      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/44308243489"
+      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/44489590838"
     },
     "pending_gate": {
       "bobo_review_pending_json_present": false,
@@ -49,15 +38,12 @@
       "source_run_id": 41880398664,
       "artifact_id": 13349870060,
       "artifact_name": "fresh-bobo-video",
-      "downloaded_at": "2026-11-19T07:13:09+05:00",
+      "downloaded_at": "2026-11-19T14:46:09+05:00",
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "zip_sha256_verified": true,
       "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
       "generated_mp4_sha256_verified": true,
-      "duration_seconds": 12.1875,
-      "audio_streams": 0,
-      "visual_review": "49 frames at 4fps; 20 transition samples at 8fps; same art-room painting premise as episode 40522021; first purposeful action 0.625s; low-activity span 4.5–6.875s",
-      "decision": "deliberately rejected as a distinct new video; no final render or muxed audio"
+      "classification": "Historical intermediate duplicate, not a current publishable draft."
     },
     "publication_status": {
       "new_publication_on_2026_11_19": false,
@@ -69,17 +55,11 @@
       "facebook_story_status": "accepted_in_repository_ledger"
     },
     "blockers": {
-      "primary": "All six eligible original scene references are used/recent/reserved; scene IDs 5 and 6 are forbidden. Only story02.jpg remains in story_queue and is already used.",
-      "provider": "Free Hugging Face availability remains unverified because no provider request was made. No quota error was observed; retry_after is historical, not a current reset.",
-      "character_reference": "Repository bobo_reference.jpg is a bear in blue overalls; the correct Bobo monkey portrait exists in the Library but is not committed in the repository.",
-      "next_step": "Commit a matching new original Bobo scene reference and extend scene policy/generator support for scene_id 8 before the next zero-cost provider attempt."
-    },
-    "storyboard_prepared": {
-      "path": "bobo_storyboard_pinwheel.json",
-      "commit": "5acdbc5eb893ef52a04d746f8c033a41d9da6908",
-      "status": "plan committed; matching scene image not committed"
-    },
-    "cost": 0
+      "primary": "All six eligible original scene references are used/recent/reserved; scene IDs 5 and 6 are forbidden. Only story02.jpg remains and is already used.",
+      "provider": "Free Hugging Face availability remains unverified because no provider request was made. No quota error observed; retry_after is historical, not a current reset.",
+      "character_reference": "The repository root bobo_reference.jpg is a bear in blue overalls; the correct red-shirt monkey portrait exists in the Library but is not committed in the repository.",
+      "next_step": "Commit the matching original rooftop-pinwheel scene reference as assets/scenes/scene8.jpg and extend scene policy/generator support for scene_id 8 before the next zero-cost provider attempt. Do not reuse the bear reference or retired/recent scenes."
+    }
   },
   "recent_daily_runs_artifact_scan": [
     {
@@ -267,14 +247,22 @@
       "provider_called": false,
       "quota_blocked": false,
       "reason": "All six eligible original scene references were already used/recent/reserved; generator stopped before any Hugging Face request. No fresh_output files and no artifact uploaded."
+    },
+    {
+      "run_number": 378,
+      "run_id": 44489590838,
+      "artifact_count": 0,
+      "provider_called": false,
+      "quota_blocked": false,
+      "reason": "All distinct original scene references are in the recent/reserve set; generator stopped before any Hugging Face request."
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-19-run-377-recheck-0713",
-    "completed_at": "2026-11-19T07:13:09+05:00",
-    "result": "NO_CURRENT_PENDING_DRAFT; DAILY_RUN_377_ZERO_ARTIFACTS; GENERATION_SKIPPED_BEFORE_PROVIDER_DUE_TO_SCENE_REFERENCE_EXHAUSTION; LAST_NONEMPTY_ARTIFACT_341_REDOWNLOADED_AND_REVIEWED; DUPLICATE_PREMISE_AND_TECHNICAL_HOLD; NO_NEW_PUBLICATION; COST_NO_EXTERNAL_PAID_VIDEO_GENERATION",
-    "latest_confirmed_daily_run_id": 44364365481,
-    "latest_confirmed_daily_run_number": 377,
+    "review_id": "2026-11-19-run-378-recheck-1446",
+    "completed_at": "2026-11-19T14:46:09+05:00",
+    "result": "NO_CURRENT_PENDING_DRAFT; DAILY_RUN_378_ZERO_ARTIFACTS; GENERATION_SKIPPED_BEFORE_PROVIDER_DUE_TO_SCENE_REFERENCE_EXHAUSTION; HISTORICAL_ARTIFACT_341_RECONFIRMED_DUPLICATE_AND_TECHNICAL_HOLD; NO_NEW_PUBLICATION; COST_ZERO",
+    "latest_confirmed_daily_run_id": 44489590838,
+    "latest_confirmed_daily_run_number": 378,
     "artifact_count": 0,
     "provider_called": false,
     "quota_error_observed": false,
@@ -282,12 +270,11 @@
     "downloaded_artifact_id": 13349870060,
     "downloaded_artifact_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
     "downloaded_video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
-    "decision": "deliberately rejected as a distinct new video; no publication",
-    "review_record": "bobo_review_history/2026-11-19-run-377-recheck-0713.json",
-    "storyboard_path": "bobo_storyboard_pinwheel.json",
+    "decision": "No current draft. Historical artifact #341 remains deliberately rejected as a duplicate and technically incomplete. No publication.",
+    "review_record": "bobo_review_history/2026-11-19-run-378-recheck-1446.json",
     "cost": 0
   },
-  "provider_quota_status": "Free Hugging Face availability remains unverified. Latest Daily Fresh Bobo run #377 stopped before a provider request because all eligible original scene references are used/recent/reserved. No quota error was observed. The historical retry_after is not a current reset.",
+  "provider_quota_status": "Free Hugging Face availability remains unverified. Latest Daily Fresh Bobo run #378 stopped before a provider request because all eligible original scene references are used/recent/reserved. No quota error was observed. The historical retry_after is not a current reset.",
   "latest_nonempty_artifact": {
     "run_number": 341,
     "run_id": 41880398664,
