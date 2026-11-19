@@ -1,0 +1,80 @@
+{
+  "version": "bobo-original-pinwheel-v1",
+  "story_id": "bobo-original-pinwheel-20261119",
+  "status": "reference_generated_but_not_committed_to_repository",
+  "title": "Bobo's Pinwheel Surprise",
+  "proposed_scene_id": 8,
+  "duration_seconds": 11,
+  "cost": 0,
+  "character_reference": "Joyful Bobo Monkey Profile Portrait.png from the Library: golden-brown fur, spiky tuft, large brown eyes and rounded ears, red shirt. Preserve the same recognizable monkey; no bear/overalls substitution.",
+  "scene_reference": {
+    "intended_repository_path": "assets/scenes/scene8.jpg",
+    "generated_in_this_review": true,
+    "committed": false,
+    "note": "A matching rooftop-pinwheel scene image was generated from the Library Bobo portrait, but the binary image has not been committed to GitHub; do not run generation until the reference is present in the repository."
+  },
+  "premise": "Bobo gives a colorful pinwheel one gentle puff; a breeze spins it faster than expected, then it slows and he proudly presents it.",
+  "voice_line": "Wind power!",
+  "voice_placement": {
+    "provisional_start_seconds": 8.15,
+    "final_timing_source": "dialogue-timing.json measured from the rendered Piper track and the observed final reaction",
+    "note": "Do not treat the planned start as verified; reposition only after observing the rendered action."
+  },
+  "shots": [
+    {
+      "shot": 1,
+      "seconds": "0-4",
+      "action": "Bobo raises the rainbow pinwheel immediately and gives one gentle puff. The blades begin visibly spinning; he keeps the wooden handle steady.",
+      "required_evidence": [
+        "Purposeful movement begins within 0.5 seconds",
+        "Bobo visibly blows toward the pinwheel",
+        "The pinwheel blades visibly start turning"
+      ],
+      "end_pose": "Bobo holds the pinwheel upright while its blades continue turning."
+    },
+    {
+      "shot": 2,
+      "seconds": "4-8",
+      "action": "A light breeze makes the pinwheel spin faster and wobble. Bobo adjusts his grip and follows the moving blades with his eyes and upper body, remaining lively.",
+      "required_evidence": [
+        "Pinwheel rotation visibly changes speed or wobbles",
+        "Bobo makes a purposeful grip adjustment",
+        "No prolonged stationary anticipation or unrelated prop"
+      ],
+      "end_pose": "The pinwheel begins to slow while Bobo steadies the handle."
+    },
+    {
+      "shot": 3,
+      "seconds": "8-11",
+      "action": "The pinwheel slows. Bobo steadies it, turns it toward the camera, points at it and gives a small shoulder wiggle. He says the brief line 'Wind power!' during the observed reaction.",
+      "required_evidence": [
+        "Pinwheel visibly slows",
+        "Bobo steadies and presents the same pinwheel",
+        "Spoken line is rendered by local Piper and independently verified in the final encoded mix",
+        "Exact spoken subtitle matches dialogue-timing.json"
+      ],
+      "end_pose": "Bobo and the pinwheel remain visible together."
+    }
+  ],
+  "caption_policy": "Do not invent action captions from planned beats. Add only the exact spoken subtitle until observed-action onset/completion is measured; inspect each transition at 8 fps.",
+  "effects_plan": [],
+  "effects_note": "No arbitrary boings, pitch sweeps or celebration chimes. Add only restrained natural foley after the rendered contact/action is observed and a free source is verified; no subjective realism claim without listening.",
+  "music_policy": "Select a distinct instrument/style variant not used in the last three published videos and preserve it through all repairs.",
+  "review_gates": {
+    "full_render_sample_fps": 4,
+    "transition_sample_fps": 8,
+    "duration_range_seconds": [
+      10.95,
+      11.05
+    ],
+    "exact_review_sha256_required": true,
+    "duplicate_visual_and_plot_check_required": true,
+    "final_mix_speech_verification": [
+      "actual_listening",
+      "independent_asr"
+    ],
+    "waveform_only_speech_verification_allowed": false,
+    "paid_generation_allowed": false,
+    "publication_requires_exact_reviewed_artifact": true
+  }
+}
