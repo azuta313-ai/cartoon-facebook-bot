@@ -1,0 +1,134 @@
+{
+  "review_id": "2026-11-20-run-380-recheck-1552",
+  "completed_at": "2026-11-20T15:53:40+05:00",
+  "result": "NO_CURRENT_PENDING_DRAFT; LATEST_DAILY_RUN_380_ZERO_ARTIFACTS; PROVIDER_NOT_CALLED_DUE_TO_SCENE_REFERENCE_EXHAUSTION; HISTORICAL_ARTIFACT_341_REDOWNLOADED_AND_REVIEWED; REJECT_AS_PUBLISHABLE_INTERMEDIATE; NO_NEW_PUBLICATION",
+  "run_inventory": {
+    "checked_at": "2026-11-20T15:53:40+05:00",
+    "latest_daily_run": {
+      "workflow": ".github/workflows/daily.yml",
+      "run_number": 380,
+      "run_id": 44702460314,
+      "job_id": 136173875553,
+      "created_at": "2026-11-20T08:25:50Z",
+      "completed_at": "2026-11-20T08:26:12Z",
+      "conclusion": "success",
+      "artifact_count": 0,
+      "provider_called": false,
+      "quota_error_observed": false,
+      "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/44702460314"
+    },
+    "latest_run_verified_from": "GitHub Actions repository run list, first page; run #380 is newest visible Daily Fresh Bobo run.",
+    "inventory_complete_for_visible_first_page": true
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "approval_title": "Bobo's Upside-Down Umbrella",
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_published": true,
+    "action": "No current pending gate existed; none was cleared or rewritten."
+  },
+  "latest_nonempty_artifact": {
+    "source_run_number": 341,
+    "source_run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "created_at": "2026-11-04T17:48:50Z",
+    "downloaded_at": "2026-11-20T15:53:40+05:00",
+    "downloaded_via": "GitHub Actions artifact download tool",
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "zip_sha256_verified": true,
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "generated_mp4_sha256_verified": true,
+    "generated_mp4_duration_seconds": 12.1875,
+    "generated_mp4_resolution": "480x832",
+    "generated_mp4_fps": 16,
+    "generated_mp4_has_audio": false,
+    "final_bobo_fresh_mp4_present": false,
+    "episode_json_present": false,
+    "captions_timing_json_present": false,
+    "automatic_review_json_present": false,
+    "dialogue": {
+      "exact_text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "piper_track_present": true,
+      "final_encoded_mix_present": false,
+      "final_mix_intelligibility_verified": false,
+      "asr_or_actual_listening_performed": false
+    },
+    "visual_review": {
+      "full_video_sampled_fps": 4,
+      "full_video_sample_count": 49,
+      "transition_sampled_fps": 8,
+      "transition_contact_sheets": 5,
+      "observations": "Sampled full 12.1875-second intermediate: recognizable 3D Bobo in red shirt at an art easel; brush-hand and upper-body gestures are visible. Later sampled frames include repeated open-mouth expressions beyond the early provisional speech window; without the final muxed voice this cannot be cleared as speech/action alignment. Shot review JSONs remain awaiting_visual_verification."
+    },
+    "audio_review": {
+      "stems_present": [
+        "audio.wav",
+        "original_music.wav",
+        "scene_effects.wav",
+        "voice-track.wav",
+        "voice-line.wav"
+      ],
+      "final_encoded_mix_present": false,
+      "generated_mp4_audio_stream_present": false,
+      "measured_levels_dbfs": {
+        "audio_mix_rms": -22.46,
+        "audio_mix_peak": -6.85,
+        "music_stem_rms": -29.64,
+        "music_stem_peak": -14.47,
+        "effects_stem_rms": -43.62,
+        "effects_stem_peak": -17.08,
+        "full_voice_track_rms": -45.61,
+        "voice_line_rms": -34.37
+      },
+      "subjective_listening_performed": false,
+      "music_audibility_verified": false,
+      "perceptual_effect_naturalness_verified": false,
+      "note": "Only separate WAV stems are present; waveform levels do not establish audible/perceptually natural music or effects."
+    },
+    "caption_review": {
+      "captions_timing_json_present": false,
+      "spoken_dialogue_cue_present_in_dialogue_timing_json": true,
+      "exact_caption_manifest_present": false,
+      "transition_alignment_review_possible": false,
+      "note": "No final caption manifest exists in this intermediate artifact; no action-caption transitions can be approved."
+    },
+    "technical_result": "INCOMPLETE: generated.mp4 is 12.1875 seconds, 480x832 at 16fps, video-only; no final 10.95–11.05-second export, no muxed audio, no final subtitle manifest, and no final episode metadata.",
+    "decision": "Hold/reject as a publishable artifact. Historical intermediate only; not a current pending draft."
+  },
+  "publication_status": {
+    "new_publication_on_2026_11_20": false,
+    "latest_recorded_episode": 40522037,
+    "latest_recorded_title": "Bobo's Upside-Down Umbrella",
+    "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
+    "latest_recorded_facebook_video_id": "2296956914491800",
+    "instagram_reel": "https://www.instagram.com/reel/DeorySgAMGk/",
+    "instagram_reel_status": "accepted_in_repository_ledger",
+    "instagram_story": "https://www.instagram.com/stories/bobogigglegrove/4010648416802624085",
+    "instagram_story_status": "accepted_in_repository_ledger",
+    "facebook_story_status": "accepted_in_repository_ledger",
+    "latest_publish_run_number": 112,
+    "latest_publish_run_id": 44526694796,
+    "latest_publish_run_created_at": "2026-11-19T12:44:29Z",
+    "latest_publish_steps": "Facebook video, Instagram Reel, Instagram Story and Facebook Story steps all skipped",
+    "latest_publish_reason": "No due approved unpublished reserve entry."
+  },
+  "generation_blockers": {
+    "primary": "All currently eligible original scene references are used/recent/reserved. Scene IDs 5 and 6 remain forbidden. The matching pinwheel storyboard exists as bobo_storyboard_pinwheel.json, but assets/scenes/scene8.jpg is absent; only the partial assets/scenes/scene8.jpg.b64.01 exists. bobo_scene_policy.py candidate order, fresh_bobo.py scene arrays/simple prompts, and bobo_voice.py LINES stop at scene_id 7. The generator does not load the pinwheel storyboard.",
+    "provider": "Run #380 stopped before any Hugging Face ZeroGPU request. No provider quota error was observed; free provider availability is unverified, not confirmed available or exhausted.",
+    "character_reference": "The matching 3D Bobo rooftop-pinwheel reference bobo_blows_a_rainbow_pinwheel.png exists in the working workspace, but it is not installed as assets/scenes/scene8.jpg in the repository.",
+    "next_step": "Install the exact scene8 reference in the repository and wire scene_id 8 plus bobo_storyboard_pinwheel.json support through bobo_scene_policy.py, fresh_bobo.py and bobo_voice.py. Preserve the 'Wind power!' line in the third-shot reaction window, then allow a fresh free-only run; do not fall back to an unrelated scene or pay for generation."
+  },
+  "review_record": "bobo_review_history/2026-11-20-run-380-recheck-1552.json",
+  "cost": 0
+}
