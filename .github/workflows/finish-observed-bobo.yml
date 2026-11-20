@@ -43,10 +43,10 @@ jobs:
         continue-on-error: true
         run: |
           python -m venv .asr-venv
-          .asr-venv/bin/python -m pip install --disable-pip-version-check --timeout 60 --retries 2 faster-whisper==1.1.1 requests==2.32.5 huggingface-hub==0.27.1 fsspec==2024.10.0
+          .asr-venv/bin/python -m pip install --disable-pip-version-check --timeout 60 --retries 2 faster-whisper==1.1.1 av==14.4.0 requests==2.32.5 huggingface-hub==0.27.1 fsspec==2024.10.0
           .asr-venv/bin/python - <<'PY'
           from importlib.metadata import version
-          for name in ('faster-whisper','huggingface-hub','fsspec','requests'):
+          for name in ('faster-whisper','av','huggingface-hub','fsspec','requests'):
               try: print(name,version(name))
               except Exception as exc: print(name,'unavailable',type(exc).__name__)
           PY
@@ -62,7 +62,7 @@ jobs:
           out=Path('fresh_output')
           expected=json.loads((out/'dialogue-timing.json').read_text())['cues'][0]['text']
           report={'method':'independent_asr','model':'Systran/faster-whisper-tiny.en','input':'final encoded mix from bobo_fresh.mp4, decoded to mono 16kHz','expected_text':expected,'status':'unavailable','python_executable':sys.executable,'module_spec':str(importlib.util.find_spec('faster_whisper'))}
-          for package in ('faster-whisper','huggingface-hub','fsspec'):
+          for package in ('faster-whisper','av','huggingface-hub','fsspec'):
               try: report.setdefault('package_versions',{})[package]=version(package)
               except PackageNotFoundError: report.setdefault('package_versions',{})[package]=None
           try:
