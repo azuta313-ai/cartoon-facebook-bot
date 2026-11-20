@@ -2,30 +2,32 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-20T14:42:19+05:00",
-  "last_generation_run_id": 44584954244,
-  "last_provider_result": "Latest verified Daily Fresh Bobo run #379 (19 November 23:10 PK) completed successfully with zero artifacts. Generator stopped before any Hugging Face request because all eligible original scene references are used/recent/reserved; the matching pinwheel storyboard exists but scene8 repository asset and selector/voice support are absent. No provider quota response was received.",
+  "last_observed_at": "2026-11-20T15:53:40+05:00",
+  "last_generation_run_id": 44702460314,
+  "last_provider_result": "Latest verified Daily Fresh Bobo run #380 (20 November 13:25 PK) completed successfully with zero artifacts. Generator stopped before any Hugging Face request because all eligible original scene references are used/recent/reserved; no provider quota response was received.",
   "latest_check": {
-    "checked_at": "2026-11-20T07:44:03+05:00",
+    "checked_at": "2026-11-20T15:53:40+05:00",
     "latest_daily_run": {
       "workflow": ".github/workflows/daily.yml",
-      "run_number": 379,
-      "run_id": 44584954244,
-      "created_at": "2026-11-19T18:10:24Z",
-      "completed_at": "2026-11-19T18:10:47Z",
+      "run_number": 380,
+      "run_id": 44702460314,
+      "job_id": 136173875553,
+      "created_at": "2026-11-20T08:25:50Z",
+      "completed_at": "2026-11-20T08:26:12Z",
       "conclusion": "success",
       "artifact_count": 0,
       "provider_called": false,
       "quota_error_observed": false,
       "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
-      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/44584954244",
-      "no_newer_daily_run_visible_as_of": "2026-11-20T07:44:03+05:00"
+      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/44702460314",
+      "no_newer_daily_run_visible_as_of": "2026-11-20T15:53:40+05:00"
     },
     "pending_gate": {
       "bobo_review_pending_json_present": false,
       "bobo_pending_directory_present": false,
       "approval_status": "published",
       "approval_episode": 40522037,
+      "approval_title": "Bobo's Upside-Down Umbrella",
       "reserve_entries": [
         40522030,
         40522032,
@@ -39,7 +41,7 @@
       "source_run_id": 41880398664,
       "artifact_id": 13349870060,
       "artifact_name": "fresh-bobo-video",
-      "downloaded_at": "2026-11-20T07:44:03+05:00",
+      "downloaded_at": "2026-11-20T15:53:40+05:00",
       "downloaded_via": "GitHub Actions artifact download tool",
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "zip_sha256_verified": true,
@@ -50,25 +52,29 @@
     "publication_status": {
       "new_publication_on_2026_11_20": false,
       "latest_recorded_episode": 40522037,
+      "latest_recorded_title": "Bobo's Upside-Down Umbrella",
       "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
       "latest_recorded_facebook_video_id": "2296956914491800",
       "instagram_reel": "https://www.instagram.com/reel/DeorySgAMGk/",
+      "instagram_reel_status": "accepted_in_repository_ledger",
+      "instagram_story": "https://www.instagram.com/stories/bobogigglegrove/4010648416802624085",
       "instagram_story_status": "accepted_in_repository_ledger",
       "facebook_story_status": "accepted_in_repository_ledger",
       "latest_publish_run_number": 112,
       "latest_publish_run_id": 44526694796,
+      "latest_publish_run_created_at": "2026-11-19T12:44:29Z",
       "latest_publish_steps": "Facebook video, Instagram Reel, Instagram Story and Facebook Story steps all skipped",
       "latest_publish_reason": "No due approved unpublished reserve entry."
     },
     "generation_blockers": {
-      "primary": "All currently eligible original scene references are used/recent/reserved. Scene IDs 5 and 6 remain forbidden. The matching pinwheel storyboard exists as bobo_storyboard_pinwheel.json, but assets/scenes/scene8.jpg is absent and bobo_scene_policy.py, fresh_bobo.py and bobo_voice.py do not support scene_id 8. The generator only loads bobo_storyboard_pilot.json when its episode matches.",
-      "provider": "Free Hugging Face ZeroGPU availability remains unverified because run #379 stopped before any provider request. No quota error was observed in this run. Earlier runs #340 and #341 reached free ZeroGPU and generated three clips before local finishing failures; neither recorded a provider quota error.",
-      "character_reference": "The matching rooftop-pinwheel image bobo_blows_a_rainbow_pinwheel.png is available in the current workspace, and the correct Joyful Bobo Monkey Profile Portrait.png is in the Library; neither has been installed as a repository asset in this check.",
-      "next_step": "Install the exact scene8 reference and add scene_id 8 plus bobo_storyboard_pinwheel.json support to bobo_scene_policy.py, fresh_bobo.py and bobo_voice.py. Keep the Piper line in the third-shot reaction window. No paid generation or unrelated scene fallback."
+      "primary": "All currently eligible original scene references are used/recent/reserved. Scene IDs 5 and 6 remain forbidden. The matching pinwheel storyboard exists as bobo_storyboard_pinwheel.json, but assets/scenes/scene8.jpg is absent; only the partial assets/scenes/scene8.jpg.b64.01 exists. bobo_scene_policy.py candidate order, fresh_bobo.py scene arrays/simple prompts, and bobo_voice.py LINES stop at scene_id 7. The generator does not load the pinwheel storyboard.",
+      "provider": "Run #380 stopped before any Hugging Face ZeroGPU request. No provider quota error was observed; free provider availability is unverified, not confirmed available or exhausted.",
+      "character_reference": "The matching 3D Bobo rooftop-pinwheel reference bobo_blows_a_rainbow_pinwheel.png exists in the working workspace, but it is not installed as assets/scenes/scene8.jpg in the repository.",
+      "next_step": "Install the exact scene8 reference in the repository and wire scene_id 8 plus bobo_storyboard_pinwheel.json support through bobo_scene_policy.py, fresh_bobo.py and bobo_voice.py. Preserve the 'Wind power!' line in the third-shot reaction window, then allow a fresh free-only run; do not fall back to an unrelated scene or pay for generation."
     },
-    "review_record": "bobo_review_history/2026-11-20-run-379-recheck-0744.json",
-    "review_id": "2026-11-20-run-379-recheck-0744",
-    "result": "NO_CURRENT_PENDING_DRAFT; DAILY_RUN_379_ZERO_ARTIFACTS; PROVIDER_NOT_CALLED_DUE_TO_SCENE_REFERENCE_EXHAUSTION; HISTORICAL_ARTIFACT_341_REDOWNLOADED_AND_REVIEWED; REJECT_DUPLICATE_INCOMPLETE_ARTIFACT; NO_NEW_PUBLICATION",
+    "review_record": "bobo_review_history/2026-11-20-run-380-recheck-1552.json",
+    "review_id": "2026-11-20-run-380-recheck-1552",
+    "result": "NO_CURRENT_PENDING_DRAFT; LATEST_DAILY_RUN_380_ZERO_ARTIFACTS; PROVIDER_NOT_CALLED_DUE_TO_SCENE_REFERENCE_EXHAUSTION; HISTORICAL_ARTIFACT_341_REDOWNLOADED_AND_REVIEWED; REJECT_AS_PUBLISHABLE_INTERMEDIATE; NO_NEW_PUBLICATION",
     "cost": 0
   },
   "recent_daily_runs_artifact_scan": [
@@ -265,57 +271,68 @@
       "provider_called": false,
       "quota_blocked": false,
       "reason": "All distinct original scene references are in the recent/reserve set; generator stopped before any Hugging Face request."
+    },
+    {
+      "run_number": 379,
+      "run_id": 44584954244,
+      "artifact_count": 0,
+      "provider_called": false,
+      "quota_blocked": false,
+      "reason": "All distinct original scene references are used/recent/reserved; generator stopped before provider request."
+    },
+    {
+      "run_number": 380,
+      "run_id": 44702460314,
+      "artifact_count": 0,
+      "provider_called": false,
+      "quota_blocked": false,
+      "reason": "All distinct original scene references are used/recent/reserved; generator stopped before provider request."
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-20-run-341-recheck-1442",
-    "completed_at": "2026-11-20T14:42:19+05:00",
-    "result": "NO_CURRENT_PENDING_DRAFT; LATEST_VERIFIED_DAILY_RUN_379_ZERO_ARTIFACTS; PROVIDER_NOT_CALLED_DUE_TO_SCENE_REFERENCE_EXHAUSTION; HISTORICAL_ARTIFACT_341_INCOMPLETE_INTERMEDIATE_NOT_PUBLISHABLE; NO_NEW_PUBLICATION",
+    "review_id": "2026-11-20-run-380-recheck-1552",
+    "completed_at": "2026-11-20T15:53:40+05:00",
+    "result": "NO_CURRENT_PENDING_DRAFT; LATEST_DAILY_RUN_380_ZERO_ARTIFACTS; PROVIDER_NOT_CALLED_DUE_TO_SCENE_REFERENCE_EXHAUSTION; HISTORICAL_ARTIFACT_341_REDOWNLOADED_AND_REVIEWED; REJECT_AS_PUBLISHABLE_INTERMEDIATE; NO_NEW_PUBLICATION",
     "run_inventory": {
-      "latest_verified_daily_run": {
+      "checked_at": "2026-11-20T15:53:40+05:00",
+      "latest_daily_run": {
         "workflow": ".github/workflows/daily.yml",
-        "run_number": 379,
-        "run_id": 44584954244,
-        "job_id": 135775279172,
-        "created_at": "2026-11-19T18:10:24Z",
-        "completed_at": "2026-11-19T18:10:47Z",
+        "run_number": 380,
+        "run_id": 44702460314,
+        "job_id": 136173875553,
+        "created_at": "2026-11-20T08:25:50Z",
+        "completed_at": "2026-11-20T08:26:12Z",
         "conclusion": "success",
         "artifact_count": 0,
         "provider_called": false,
         "quota_error_observed": false,
         "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
-        "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/44584954244"
+        "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/44702460314"
       },
-      "inventory_complete": false,
-      "limitation": "The connected GitHub Actions integration exposes run details by known run_id but no list-workflow-runs action. Run #379 is the latest run ID verified in the repository record and directly rechecked here; a newer scheduled run after the 07:44 repository check cannot be ruled out from this connector."
+      "latest_run_verified_from": "GitHub Actions repository run list, first page; run #380 is newest visible Daily Fresh Bobo run.",
+      "inventory_complete_for_visible_first_page": true
     },
     "pending_gate": {
       "bobo_review_pending_json_present": false,
+      "bobo_pending_directory_present": false,
       "approval_status": "published",
       "approval_episode": 40522037,
       "approval_title": "Bobo's Upside-Down Umbrella",
-      "known_pending_paths_checked": [
-        "bobo_pending/40522030.json",
-        "bobo_pending/40522032.json",
-        "bobo_pending/40522037.json"
-      ],
-      "known_pending_paths_found": 0,
       "reserve_entries": [
         40522030,
         40522032,
         40522037
       ],
-      "all_known_reserve_entries_published": true,
-      "action": "No pending gate existed; no pending file was cleared or rewritten."
+      "all_reserve_entries_already_published": true,
+      "action": "No current pending gate existed; none was cleared or rewritten."
     },
     "latest_nonempty_artifact": {
       "source_run_number": 341,
       "source_run_id": 41880398664,
-      "job_id": 126751027283,
       "artifact_id": 13349870060,
       "artifact_name": "fresh-bobo-video",
       "created_at": "2026-11-04T17:48:50Z",
-      "downloaded_at": "2026-11-20T14:42:19+05:00",
+      "downloaded_at": "2026-11-20T15:53:40+05:00",
       "downloaded_via": "GitHub Actions artifact download tool",
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "zip_sha256_verified": true,
@@ -323,6 +340,7 @@
       "generated_mp4_sha256_verified": true,
       "generated_mp4_duration_seconds": 12.1875,
       "generated_mp4_resolution": "480x832",
+      "generated_mp4_fps": 16,
       "generated_mp4_has_audio": false,
       "final_bobo_fresh_mp4_present": false,
       "episode_json_present": false,
@@ -340,28 +358,44 @@
       "visual_review": {
         "full_video_sampled_fps": 4,
         "full_video_sample_count": 49,
-        "transition_windows_sampled_fps": 8,
-        "transition_sample_count": 32,
-        "observations": "3D Bobo in red shirt at art easel; brush-hand and upper-body gestures visible in sampled frames. The archived shot review JSON files explicitly remain awaiting_visual_verification. This was not a completed final render."
+        "transition_sampled_fps": 8,
+        "transition_contact_sheets": 5,
+        "observations": "Sampled full 12.1875-second intermediate: recognizable 3D Bobo in red shirt at an art easel; brush-hand and upper-body gestures are visible. Later sampled frames include repeated open-mouth expressions beyond the early provisional speech window; without the final muxed voice this cannot be cleared as speech/action alignment. Shot review JSONs remain awaiting_visual_verification."
       },
       "audio_review": {
-        "music_and_effect_stems_present": true,
+        "stems_present": [
+          "audio.wav",
+          "original_music.wav",
+          "scene_effects.wav",
+          "voice-track.wav",
+          "voice-line.wav"
+        ],
         "final_encoded_mix_present": false,
+        "generated_mp4_audio_stream_present": false,
+        "measured_levels_dbfs": {
+          "audio_mix_rms": -22.46,
+          "audio_mix_peak": -6.85,
+          "music_stem_rms": -29.64,
+          "music_stem_peak": -14.47,
+          "effects_stem_rms": -43.62,
+          "effects_stem_peak": -17.08,
+          "full_voice_track_rms": -45.61,
+          "voice_line_rms": -34.37
+        },
         "subjective_listening_performed": false,
+        "music_audibility_verified": false,
         "perceptual_effect_naturalness_verified": false,
-        "note": "The archived audio.wav and voice-track.wav are separate WAV assets; the generated MP4 has no audio stream. Do not infer intelligibility or natural sound from waveform/decoding."
+        "note": "Only separate WAV stems are present; waveform levels do not establish audible/perceptually natural music or effects."
       },
-      "technical_result": "INCOMPLETE: intermediate-only 12.1875-second video, no audio stream, not within 10.95-11.05 seconds, no final export or final caption manifest.",
-      "decision": "REJECT_AS_PUBLISHABLE_ARTIFACT; historical intermediate only; not a current pending draft."
-    },
-    "scene8_reference_status": {
-      "storyboard": "bobo_storyboard_pinwheel.json exists, story_id bobo-original-pinwheel-20261119, proposed_scene_id 8.",
-      "repository_reference": "assets/scenes/scene8.jpg is absent.",
-      "partial_payload": "assets/scenes/scene8.jpg.b64.01 exists; .b64.02 and .b64.03 are absent.",
-      "selector_support": "bobo_scene_policy.py candidate order remains (7,1,2,0,3,4); scene_id 8 is not eligible.",
-      "generator_support": "fresh_bobo.py SCENES, ACTION_BEATS, PROMOTION, SERIES_LINES and simple action arrays stop at scene_id 7; no scene8 dispatch.",
-      "voice_support": "No scene8-specific default line mapping; storyboard line Wind power! is not wired into the default board selection.",
-      "blocker": "Scene-reference upload and code wiring are incomplete. This is a production/reference blocker, not a confirmed Hugging Face quota error."
+      "caption_review": {
+        "captions_timing_json_present": false,
+        "spoken_dialogue_cue_present_in_dialogue_timing_json": true,
+        "exact_caption_manifest_present": false,
+        "transition_alignment_review_possible": false,
+        "note": "No final caption manifest exists in this intermediate artifact; no action-caption transitions can be approved."
+      },
+      "technical_result": "INCOMPLETE: generated.mp4 is 12.1875 seconds, 480x832 at 16fps, video-only; no final 10.95–11.05-second export, no muxed audio, no final subtitle manifest, and no final episode metadata.",
+      "decision": "Hold/reject as a publishable artifact. Historical intermediate only; not a current pending draft."
     },
     "publication_status": {
       "new_publication_on_2026_11_20": false,
@@ -370,13 +404,21 @@
       "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
       "latest_recorded_facebook_video_id": "2296956914491800",
       "instagram_reel": "https://www.instagram.com/reel/DeorySgAMGk/",
-      "instagram_reel_status": "accepted",
+      "instagram_reel_status": "accepted_in_repository_ledger",
       "instagram_story": "https://www.instagram.com/stories/bobogigglegrove/4010648416802624085",
-      "instagram_story_status": "accepted",
-      "facebook_story_status": "accepted",
+      "instagram_story_status": "accepted_in_repository_ledger",
+      "facebook_story_status": "accepted_in_repository_ledger",
       "latest_publish_run_number": 112,
       "latest_publish_run_id": 44526694796,
-      "note": "Latest ledger entry remains 18 October; no new Facebook/Instagram video or Story acceptance recorded on 20 November."
+      "latest_publish_run_created_at": "2026-11-19T12:44:29Z",
+      "latest_publish_steps": "Facebook video, Instagram Reel, Instagram Story and Facebook Story steps all skipped",
+      "latest_publish_reason": "No due approved unpublished reserve entry."
+    },
+    "generation_blockers": {
+      "primary": "All currently eligible original scene references are used/recent/reserved. Scene IDs 5 and 6 remain forbidden. The matching pinwheel storyboard exists as bobo_storyboard_pinwheel.json, but assets/scenes/scene8.jpg is absent; only the partial assets/scenes/scene8.jpg.b64.01 exists. bobo_scene_policy.py candidate order, fresh_bobo.py scene arrays/simple prompts, and bobo_voice.py LINES stop at scene_id 7. The generator does not load the pinwheel storyboard.",
+      "provider": "Run #380 stopped before any Hugging Face ZeroGPU request. No provider quota error was observed; free provider availability is unverified, not confirmed available or exhausted.",
+      "character_reference": "The matching 3D Bobo rooftop-pinwheel reference bobo_blows_a_rainbow_pinwheel.png exists in the working workspace, but it is not installed as assets/scenes/scene8.jpg in the repository.",
+      "next_step": "Install the exact scene8 reference in the repository and wire scene_id 8 plus bobo_storyboard_pinwheel.json support through bobo_scene_policy.py, fresh_bobo.py and bobo_voice.py. Preserve the 'Wind power!' line in the third-shot reaction window, then allow a fresh free-only run; do not fall back to an unrelated scene or pay for generation."
     },
     "cost": 0
   },
