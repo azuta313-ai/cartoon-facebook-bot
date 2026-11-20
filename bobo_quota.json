@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-19T23:42:11+05:00",
+  "last_observed_at": "2026-11-20T06:19:07+05:00",
   "last_generation_run_id": 44584954244,
-  "last_provider_result": "19 November 23:10 PK: latest Daily Fresh Bobo run #379 completed successfully with zero artifacts. Generator stopped before any Hugging Face request because all eligible original scene references are used/recent/reserved; scene8 reference and selector support are absent. No provider quota response was received.",
+  "last_provider_result": "Latest verified Daily Fresh Bobo run #379 (19 November 23:10 PK) completed successfully with zero artifacts. Generator stopped before any Hugging Face request because all eligible original scene references are used/recent/reserved; the matching pinwheel storyboard exists but scene8 repository asset and selector/voice support are absent. No provider quota response was received.",
   "latest_check": {
-    "checked_at": "2026-11-19T23:42:11+05:00",
+    "checked_at": "2026-11-20T06:19:07+05:00",
     "latest_daily_run": {
       "workflow": ".github/workflows/daily.yml",
       "run_number": 379,
@@ -38,7 +38,7 @@
       "source_run_id": 41880398664,
       "artifact_id": 13349870060,
       "artifact_name": "fresh-bobo-video",
-      "downloaded_at": "2026-11-19T23:42:11+05:00",
+      "downloaded_at": "2026-11-20T06:19:07+05:00",
       "downloaded_via": "GitHub Actions artifact download tool",
       "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
       "zip_sha256_verified": true,
@@ -47,29 +47,27 @@
       "classification": "Historical duplicate and technically incomplete intermediate; not a current publishable draft."
     },
     "publication_status": {
-      "new_publication_on_2026_11_19": false,
+      "new_publication_on_2026_11_20": false,
       "latest_recorded_episode": 40522037,
       "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
       "latest_recorded_facebook_video_id": "2296956914491800",
       "instagram_reel": "https://www.instagram.com/reel/DeorySgAMGk/",
       "instagram_story_status": "accepted_in_repository_ledger",
       "facebook_story_status": "accepted_in_repository_ledger",
-      "instagram_story_status_detail": "accepted_in_repository_ledger",
       "latest_publish_run_number": 112,
       "latest_publish_run_id": 44526694796,
-      "latest_publish_steps": "all skipped",
+      "latest_publish_steps": "Facebook video, Instagram Reel, Instagram Story and Facebook Story steps all skipped",
       "latest_publish_reason": "No due approved unpublished reserve entry."
     },
     "generation_blockers": {
-      "primary": "All eligible original scene references are used/recent/reserved; scene IDs 5 and 6 are forbidden; assets/scenes/scene8.jpg is absent and scene_id 8 is not supported by the selector/generator.",
-      "provider": "Free Hugging Face availability remains unverified because no provider request was made. No quota error was observed.",
-      "character_reference": "The correct Joyful Bobo Monkey Profile Portrait.png is in the Library. The matching rooftop pinwheel scene image bobo_blows_a_rainbow_pinwheel.png is present as a current conversation attachment, but assets/scenes/scene8.jpg is still absent from GitHub; no binary asset was committed in this check.",
-      "next_step": "Commit the matching rooftop pinwheel image as assets/scenes/scene8.jpg and the correct portrait as assets/characters/bobo_reference.jpg, then add scene_id 8 to bobo_scene_policy.py, fresh_bobo.py and bobo_voice.py before the next zero-cost provider attempt. Bind the pinwheel storyboard to the next episode and place its Piper line in the third-shot reaction window.",
-      "scene_reference_attachment": "bobo_blows_a_rainbow_pinwheel.png (current conversation attachment; visually inspected; not committed to repository)"
+      "primary": "All eligible original scene references are used/recent/reserved. Scene IDs 5 and 6 are forbidden. The matching pinwheel storyboard exists as bobo_storyboard_pinwheel.json, but assets/scenes/scene8.jpg is absent and bobo_scene_policy.py, fresh_bobo.py and bobo_voice.py do not support scene_id 8.",
+      "provider": "Free Hugging Face ZeroGPU availability remains unverified because run #379 stopped before a provider request. No quota error was observed. Earlier runs #340 and #341 reached free ZeroGPU and generated three clips before local finishing failures; neither recorded a provider quota error.",
+      "character_reference": "The matching rooftop pinwheel image bobo_blows_a_rainbow_pinwheel.png is available in the current workspace, and the correct Joyful Bobo Monkey Profile Portrait.png is in the Library; neither has been installed as the required repository assets in this check.",
+      "next_step": "Install assets/scenes/scene8.jpg and assets/characters/bobo_reference.jpg, then add scene_id 8 support to bobo_scene_policy.py, fresh_bobo.py and bobo_voice.py. Use the existing bobo_storyboard_pinwheel.json and place its Piper line in the third-shot reaction window. No paid generation or unrelated scene fallback."
     },
-    "review_record": "bobo_review_history/2026-11-19-run-379-recheck-2342.json",
-    "review_id": "2026-11-19-run-379-recheck-2342",
-    "result": "NO_CURRENT_PENDING_DRAFT; DAILY_RUN_379_ZERO_ARTIFACTS; PROVIDER_NOT_CALLED_DUE_TO_DISTINCT_SCENE_REFERENCE_EXHAUSTION; HISTORICAL_ARTIFACT_341_REDOWNLOADED_AND_REVIEWED; REJECT_DUPLICATE_INCOMPLETE_ARTIFACT; NO_NEW_PUBLICATION",
+    "review_record": "bobo_review_history/2026-11-20-run-379-recheck-0619.json",
+    "review_id": "2026-11-20-run-379-recheck-0619",
+    "result": "NO_CURRENT_PENDING_DRAFT; DAILY_RUN_379_ZERO_ARTIFACTS; PROVIDER_NOT_CALLED_DUE_TO_SCENE_REFERENCE_EXHAUSTION; HISTORICAL_ARTIFACT_341_REDOWNLOADED_AND_REVIEWED; REJECT_DUPLICATE_INCOMPLETE_ARTIFACT; NO_NEW_PUBLICATION",
     "cost": 0
   },
   "recent_daily_runs_artifact_scan": [
@@ -286,7 +284,7 @@
     "cost": 0,
     "scene_reference_attachment": "bobo_blows_a_rainbow_pinwheel.png is available in the current conversation, but not in GitHub assets/scenes; generation remains stopped by missing scene8 repository asset and selector support."
   },
-  "provider_quota_status": "Free Hugging Face availability is unverified. Latest Daily Fresh Bobo run #379 stopped before a provider request because all eligible original scene references are used/recent/reserved; scene8 is still missing from GitHub assets and the selector/generator. A matching rooftop pinwheel image exists in this conversation but is not committed. No quota error was observed. retry_after 2026-10-18 is historical and is not a current reset.",
+  "provider_quota_status": "Free Hugging Face availability is unverified. Latest Daily Fresh Bobo run #379 stopped before any provider request because all eligible original scene references are used/recent/reserved. The matching pinwheel storyboard and source image exist, but scene8 is not installed in GitHub assets and scene_id 8 is not supported by the selector/generator/voice. No quota error was observed; the 18 October retry_after is historical, not a current reset.",
   "latest_nonempty_artifact": {
     "run_number": 341,
     "run_id": 41880398664,
