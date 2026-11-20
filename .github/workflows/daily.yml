@@ -15,6 +15,9 @@ on:
       - 'fresh_bobo.py'
       - 'bobo_foley.py'
       - 'bobo_scene_policy.py'
+      - 'bobo_voice.py'
+      - 'bobo_storyboard_pinwheel.json'
+      - 'assets/scenes/scene8.jpg'
   schedule:
     - cron: '10,30,50 6,7,8,9,14,15,16,17,21 * * *'
       timezone: Asia/Karachi
@@ -31,6 +34,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: Validate Bobo scene policy and generator syntax
+        run: |
+          python -m py_compile fresh_bobo.py bobo_scene_policy.py bobo_voice.py
+          python -m unittest test_bobo_scene_policy.py
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

@@ -16,6 +16,10 @@ class BoboScenePolicyTests(unittest.TestCase):
                 self.assertEqual(len(candidates), len(SCENE_CANDIDATE_ORDER))
                 self.assertTrue(FORBIDDEN_SCENE_IDS.isdisjoint(candidates))
 
+    def test_pinwheel_pilot_is_prioritized_once(self):
+        self.assertEqual(eligible_scene_order(20261120, 0, ())[0], 8)
+        self.assertNotIn(8, eligible_scene_order(20261120, 0, (8,)))
+
     def test_recent_scenes_are_excluded(self):
         recent = {0, 1, 4}
         candidates = eligible_scene_order(12345, 0, recent)

@@ -19,6 +19,7 @@ SCENES=[
  ('Space button surprise','a playful colorful toy spaceship cockpit','a large glowing button','He studies a glowing button, presses it carefully, and reacts with delighted surprise as lights blink.','He waves happily at the blinking lights and gives a cheeky wink.',['What does this do?','Beep beep!','Captain Bobo!'],['SpaceComedy','CaptainBobo']),
  ('Snowball tiny champion','a bright snowy playground beside a small snowman','a tiny snowball','He rolls a little snowball, holds it up like a trophy, and gives an exaggerated proud smile.','He gently places the snowball beside the snowman and celebrates.',['Snow champion!','My tiny trophy!','Coolest prize!'],['SnowDay','SnowmanFun']),
  ('Art room paint surprise','a sunny art room with a small easel and paint palette','a colorful paintbrush','He makes a careful brush stroke, notices a little paint on his hand, and smiles sheepishly.','He proudly points at his colorful painting and bows playfully.',['Masterpiece coming!','Paint everywhere!','Artist Bobo!'],['ArtComedy','LittleArtist']),
+ ('Bobo\'s Pinwheel Surprise','a sunny rooftop patio with a low wall and clear blue sky','a rainbow pinwheel on a short wooden stick','Bobo raises the pinwheel immediately, gives one gentle puff, and watches the blades begin to turn.','A light breeze spins it faster and makes it wobble; Bobo steadies the handle, turns the pinwheel toward the camera, points at it and gives a small shoulder wiggle.',['One little puff!','Spin, pinwheel!','Wind power!'],['PinwheelFun','WindPower']),
 ]
 
 # Captions describe these visible beats, rather than unrelated fixed intervals.
@@ -39,6 +40,10 @@ ACTION_BEATS=[
   'Bobo beams proudly at the tiny snowball, places it beside the snowman and celebrates.'),
  ('Bobo makes a careful brush stroke on his painting, then glances down toward his hand.',
   'Bobo notices paint on his hand, smiles sheepishly, then proudly points at the painting and bows.'),
+ ('Bobo raises the rainbow pinwheel within the first half second and gives one gentle puff. The blades visibly begin turning.',
+  'A light breeze spins the pinwheel faster and makes it wobble. Bobo adjusts his grip and follows the blades with his eyes and upper body.'),
+ ('The pinwheel slows. Bobo steadies it, turns it toward the camera, points at it and gives a small shoulder wiggle.',
+  'Bobo holds the same rainbow pinwheel proudly beside his face and says, “Wind power!” once.'),
 ]
 
 def caption_cues(captions, first_shot_duration, total=11):
@@ -55,13 +60,14 @@ PROMOTION=[
  ("Someone gave Bobo a spaceship button... 🚀😂","Curiosity just got promoted to captain.","What would you name Bobo's spaceship?"),
  ("The tiniest snowball. The proudest monkey. ❄️🏆","Bobo takes his winter championship very seriously.","Does this little champion deserve a medal?"),
  ("Bobo's masterpiece comes with a messy surprise! 🎨😆","A little paint and a lot of confidence.","What should our little artist paint next?"),
+ ("One tiny puff. One very busy pinwheel. 🌈🐒","Bobo's little breeze turns into a colorful surprise.","Would you try a pinwheel too?"),
 ]
 
 
 SERIES=['Bobo vs Everyday Things','Bobo Helps... Almost!','Bobo\'s Silly Inventions']
 SERIES_LINES=[
- ['Too big for me!','Tiny castle, big dreams!','My snack is running!','One block too many!','My feet are wet!','Captain needs instructions!','Small ball, big champion!','I painted myself!'],
- ['Where did it go?','A tiny surprise!','Snack rescued!','Stay there, tower!','That tickles!','Oh, shiny lights!','Meet your little friend!','That is my masterpiece!'],
+ ['Too big for me!','Tiny castle, big dreams!','My snack is running!','One block too many!','My feet are wet!','Captain needs instructions!','Small ball, big champion!','I painted myself!','Wind power!'],
+ ['Where did it go?','A tiny surprise!','Snack rescued!','Stay there, tower!','That tickles!','Oh, shiny lights!','Meet your little friend!','That is my masterpiece!','Look, it spins!'],
 ]
 
 def comedy_series(slot,scene_id,episode):
@@ -267,14 +273,22 @@ def main():
  if not eligible:
   print('All distinct original scene references are in the recent/reserve set; hold rather than duplicate.'); return
  scene_id=eligible[0]
- board_path=Path('bobo_storyboard_pilot.json')
- board=json.loads(board_path.read_text()) if board_path.exists() else {}
- if (board.get('episode')==episode
-     and int(board.get('scene_id',-1)) not in recent
-     and int(board.get('scene_id',-1)) not in FORBIDDEN_SCENE_IDS):
-  assert board.get('cost')==0 and len(board['shots'])==3
-  scene_id=int(board['scene_id'])
- else: board={}
+ if scene_id==8:
+  board_path=Path('bobo_storyboard_pinwheel.json')
+  board=json.loads(board_path.read_text())
+  if board.get('status')!='ready_for_free_generation' or int(board.get('proposed_scene_id',-1))!=8:
+   raise RuntimeError('Pinwheel storyboard/reference is not marked ready; no unrelated scene fallback.')
+  assert board.get('cost')==0 and len(board.get('shots',[]))==3
+  board['scene_id']=8
+ else:
+  board_path=Path('bobo_storyboard_pilot.json')
+  board=json.loads(board_path.read_text()) if board_path.exists() else {}
+  if (board.get('episode')==episode
+      and int(board.get('scene_id',-1)) not in recent
+      and int(board.get('scene_id',-1)) not in FORBIDDEN_SCENE_IDS):
+   assert board.get('cost')==0 and len(board['shots'])==3
+   scene_id=int(board['scene_id'])
+  else: board={}
  title,setting,prop,action,ending,captions,scene_tags=SCENES[scene_id]
  simple=[
   ('Bobo gently moves the existing bubble wand left and right and follows it with his eyes.', 'Bobo lowers the wand, then playfully tries to balance it in his hand.'),
@@ -285,11 +299,12 @@ def main():
   ('Bobo immediately presses the existing toy button once and watches the existing lights.', 'Bobo points between the existing button and lights, then moves his hand away. No new objects.'),
   ('Bobo gently pats the existing snowball with both hands.', 'Bobo turns the snowball in his hands then carefully lowers it beside himself.'),
   ('Bobo moves his brush gently across the existing painting.', 'Bobo lifts the brush and examines its tip, then lowers it toward the palette. No new paint accident or reveal.'),
+  ('Bobo raises the rainbow pinwheel and gives one gentle puff toward the blades.', 'Bobo steadies the same pinwheel, turns it toward the camera and gives a playful shoulder wiggle. No extra props.'),
  ]
  action,ending=simple[scene_id]
  series=comedy_series(slot,scene_id,episode)
  series['direction']='One simple prop interaction; final joke and dialogue chosen after observing rendered action.'
- series['voice_line']=['Look at that!','Let us try!','My apple!','Careful now!','A puddle!','What is this?','My snowball!','Time to paint!'][scene_id]
+ series['voice_line']=['Look at that!','Let us try!','My apple!','Careful now!','A puddle!','What is this?','My snowball!','Time to paint!','Wind power!'][scene_id]
  if board:
   title=board['title']; series['voice_line']=board['voice_line']
   action=board['shots'][0]['action']
@@ -324,7 +339,7 @@ def main():
   raise RuntimeError(f'Missing matching Bobo scene reference at {scene_reference}; no unrelated scene or paid generation will be used.')
  shutil.copyfile(scene_reference,OUT/'reference.png')
  from bobo_voice import prepare_voice,mix_voice
- voice_record=prepare_voice(OUT,scene_id,start=8.15 if serial==1 else .35,text=series['voice_line'])
+ voice_record=prepare_voice(OUT,scene_id,start=8.15 if serial==1 or scene_id==8 else .35,text=series['voice_line'])
  voice_end=voice_record['cues'][0]['end']
  if serial==1:
   action=('Bobo bends his knees, JUMPS clearly into the air, and lands in his bright yellow boots beside the tiny puddle. Exactly ONE little droplet rises; NO large splash.')
@@ -335,9 +350,22 @@ def main():
  # active footage beyond eleven seconds without freeze padding or speed changes.
  clips=[]; shot_durations=[]
  for shot in range(3):
+  third_start=None
+  if scene_id==8 and shot==2:
+   third_start=sum(shot_durations)
+   voice_record=prepare_voice(OUT,scene_id,start=third_start+.15,text=series['voice_line'])
+   voice_end=voice_record['cues'][0]['end']
   shot_prompt=prompt if shot==0 else ('Continue this exact 3D cartoon scene from the supplied last frame. Same Bobo monkey and red shirt, same '+setting+' and '+prop+'. '+ending+' Preserve clothing details exactly; no added shirt lettering. Silent physical comedy with closed-lip smiles throughout. Keep lips closed in every frame; show surprise using eyebrows, eyes and body gestures. No jaw flapping, no open-mouth laughing, no talking or lip-sync mouth motions. Lively normal-speed action begins immediately and continues through the final frame, with a quick reaction and playful moving celebration; no slow motion or long frozen pose. Smooth clear movements, fixed camera, no sudden scene changes. Complete in four seconds.')
   if board:
-   shot_prompt=('Original 3D Bobo family comedy. Preserve the supplied Bobo, red shirt, room and existing props. '+board['shots'][shot]['action']+' Required ending pose: '+board['shots'][shot]['end_pose']+' Fixed camera. Normal-speed purposeful action starts immediately. No added objects, no melting, no text, no prolonged pose. '+('Only one brief speaking window from 0.35 to '+str(voice_end)+' seconds; lips closed afterward.' if shot==0 else 'Lips closed throughout; express emotion with eyes, arms and shoulders. No talking or open-mouth laughter.'))
+   if scene_id==8:
+    if shot==2:
+     local_end=max(.25,voice_end-third_start)
+     speech_note='One brief spoken window for the exact line "Wind power!" from local 0.15 to '+str(round(local_end,3))+' seconds only; lips closed outside that window.'
+    else:
+     speech_note='No speech or mouth movement in this shot; keep lips closed and use eyes, arms and shoulders only.'
+   else:
+    speech_note=('Only one brief speaking window from 0.35 to '+str(voice_end)+' seconds; lips closed afterward.' if shot==0 else 'Lips closed throughout; express emotion with eyes, arms and shoulders. No talking or open-mouth laughter.')
+   shot_prompt=('Original 3D Bobo family comedy. Preserve the supplied Bobo, red shirt, room and existing props. '+board['shots'][shot]['action']+' Required ending pose: '+board['shots'][shot]['end_pose']+' Fixed camera. Normal-speed purposeful action starts immediately. No added objects, no melting, no text, no prolonged pose. '+speech_note)
   if serial==1:
    if shot==0:
     shot_prompt=('High-quality 3D Bobo, red shirt and yellow rain boots, same sunny puddle garden. '
@@ -442,6 +470,8 @@ def main():
  run(['ffmpeg','-v','error','-i',str(OUT/'bobo_fresh.mp4'),'-f','null','-'])
  music_db=ensure_audible_music(OUT/'bobo_fresh.mp4',scene_id,music_variant=music_variant)
  metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':30,'effects':'original scene-specific effects; no bite sample','voice':voice_record,'voice_review_required':voice_record['enabled'],'caption_kind':'spoken subtitle plus separate action captions' if voice_record['enabled'] else 'action captions; no spoken dialogue','caption_review_required':True,'caption_timing':[{'text':t,'start':a,'end':z} for t,a,z in cues],'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
+ if board:
+  metadata.update(story_id=board.get('story_id'),storyboard_version=board.get('version'),storyboard_shots=board.get('shots'))
  metadata.update(music_variant=music_variant,music_style=MUSIC_STYLES[music_variant%8],music='original procedural arrangement '+str(music_variant),sound_design_version=3,pacing_review_required=True)
  metadata['story_serial']=serial
  metadata['story_mode']='regular_original_after_2026-10-27' if serial is None else 'ten_day_story_queue'

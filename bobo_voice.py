@@ -3,7 +3,7 @@ import hashlib,json,subprocess,wave
 from pathlib import Path
 import numpy as np
 VOICE_MODEL='en_US-ljspeech-medium.onnx'
-LINES=['Look at that!','Let us try!','My apple!','Careful now!','A puddle!','What is this?','My snowball!','Time to paint!']
+LINES=['Look at that!','Let us try!','My apple!','Careful now!','A puddle!','What is this?','My snowball!','Time to paint!','Wind power!']
 
 def run(args):
     subprocess.run(args,check=True)

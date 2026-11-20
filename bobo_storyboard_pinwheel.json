@@ -1,7 +1,7 @@
 {
   "version": "bobo-original-pinwheel-v1",
   "story_id": "bobo-original-pinwheel-20261119",
-  "status": "reference_generated_but_not_committed_to_repository",
+  "status": "ready_for_free_generation",
   "title": "Bobo's Pinwheel Surprise",
   "proposed_scene_id": 8,
   "duration_seconds": 11,
@@ -10,8 +10,10 @@
   "scene_reference": {
     "intended_repository_path": "assets/scenes/scene8.jpg",
     "generated_in_this_review": true,
-    "committed": false,
-    "note": "A matching rooftop-pinwheel scene image was generated from the Library Bobo portrait, but the binary image has not been committed to GitHub; do not run generation until the reference is present in the repository."
+    "committed": true,
+    "sha256": "fbeaf146384ad8827eb120b7ff76acc40c575b5754b1858dffb999a0890cad66",
+    "dimensions": "192x341",
+    "note": "Installed from the existing generated Bobo-blows-a-rainbow-pinwheel reference in the working workspace, resized to a lightweight JPEG for free generation. Same golden-brown monkey, red shirt, rainbow pinwheel and rooftop patio."
   },
   "premise": "Bobo gives a colorful pinwheel one gentle puff; a breeze spins it faster than expected, then it slows and he proudly presents it.",
   "voice_line": "Wind power!",
