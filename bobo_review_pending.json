@@ -5,7 +5,20 @@
   "story_serial": null,
   "story_mode": "regular_original_after_2026-10-27",
   "generated_sha256": "b18f030193398ff2dba6cf461425f15ce316554283c5f40a6bfde1ce826195d4",
-  "status": "awaiting_visual_audio_review",
-  "artifact_run_id": "44777648478",
-  "created_at": "2026-11-20T21:52:27.809294+05:00"
+  "source_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
+  "final_sha256": "49fbfffbd477fb9a39c5faf432077d1cbfb2620c823b31c0361695f28f458ed7",
+  "status": "repaired_awaiting_exact_review",
+  "artifact_run_id": "44782696781",
+  "source_artifact_run_id": "44777648478",
+  "speech_asr_status": "unavailable",
+  "speech_asr": {
+    "method": "independent_asr",
+    "model": "Systran/faster-whisper-tiny.en",
+    "input": "final encoded mix from bobo_fresh.mp4, decoded to mono 16kHz",
+    "expected_text": "Wind power!",
+    "status": "unavailable",
+    "error_type": "ModuleNotFoundError",
+    "verified_at": "2026-11-20T22:24:34.143216+05:00"
+  },
+  "created_at": "2026-11-20T22:24:34.212283+05:00"
 }
