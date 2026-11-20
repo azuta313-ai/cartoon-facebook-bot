@@ -1,0 +1,171 @@
+{
+  "review_id": "2026-11-20-run-44788765258-review-2322",
+  "episode": 40522242,
+  "title": "Bobo's Pinwheel Surprise",
+  "status": "approved_exact_artifact",
+  "completed_at": "2026-11-20T23:22:21+05:00",
+  "scheduled_slot": "2026-11-21T09:00:00+05:00",
+  "artifact_run_id": "44788765258",
+  "artifact_id": 14654803280,
+  "artifact_zip_sha256": "b56077e9eb09b736b3a0a68388f72e48e53c29971734d270f702071e2ddeb8b4",
+  "generated_sha256": "b18f030193398ff2dba6cf461425f15ce316554283c5f40a6bfde1ce826195d4",
+  "final_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+  "review": {
+    "reviewed_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+    "completed_at": "2026-11-20T23:22:21+05:00",
+    "quality_passed": true,
+    "quality_standard": "17 October Snowball visual/animation benchmark with cosmetic-tolerance revision; distinct original plot/footage, recognizable 3D Bobo/red shirt, mandatory intelligible Piper line, accurate captions, exact 11-second export and duplicate protection.",
+    "full_render_sample_fps": 4,
+    "full_render_sample_count": 44,
+    "transition_sample_fps": 8,
+    "transition_samples": {
+      "title_card_frames": 14,
+      "spoken_subtitle_and_mouth_window_frames": 24
+    },
+    "duration": 11,
+    "observed_actions": {
+      "title_card": [
+        0,
+        1.5
+      ],
+      "opening_puff": [
+        0.125,
+        1.375
+      ],
+      "pinwheel_rotation_and_tracking": [
+        1.5,
+        8
+      ],
+      "handle_adjustment": [
+        8.5,
+        8.75
+      ],
+      "mouth_window": [
+        8.5,
+        9.25
+      ],
+      "presentation_and_pointing": [
+        8.25,
+        10.75
+      ],
+      "ending_reaction": [
+        9.25,
+        10.75
+      ]
+    },
+    "visual": "Reviewed the exact final SHA, all 44 samples across 11 seconds at 4 fps, plus the title-card and spoken-subtitle transitions at 8 fps. Bobo remains recognizable as the original 3D brown monkey in the red shirt; the same rainbow pinwheel is visible throughout. Opening puff begins at 0.125s and the blades visibly rotate; from 1.5–8.0s Bobo tracks the rotating pinwheel with subtle head/eye and grip movement; from 8.25–10.75s he presents it, points and reacts. One brief opening compression/pixelation artifact is confined to approximately the first 0.125–0.25s and clears; no sustained corruption or broken scene. Movement is restrained during the tracking section but not frozen; brief pauses and minor mouth-sync imperfections are within the user's 17 October tolerance. No visual reuse is indicated by the unique generated SHA, new pinwheel story/scene, and ledger comparison.",
+    "voice": {
+      "text": "It spins!",
+      "start": 8.5,
+      "end": 9.2584,
+      "subtitle_exact": true,
+      "track_present": true,
+      "mouth_action_reviewed": true,
+      "intelligibility_verified": true,
+      "verification_method": "independent_asr",
+      "verification_evidence": {
+        "model": "Systran/faster-whisper-base.en",
+        "transcript": "It spins.",
+        "input": "entire final encoded mix from bobo_fresh.mp4, decoded to mono 16kHz",
+        "language": "en",
+        "language_probability": 1,
+        "avg_logprob": -1.1149270335833232,
+        "no_speech_prob": 0.02819020114839077,
+        "segment_timestamps_note": "The ASR segment timestamp was coarse/inconsistent (0–7s) and was not used for dialogue timing. Exact cue timing was separately checked against dialogue-timing.json, the voice-track window and 8-fps observed mouth frames; final-mix/source-track correlation over 8.5–9.2584s was 0.988.",
+        "limitation": "Independent ASR verified the words in the final encoded mix; no subjective listening or phoneme-level lip synchronization is claimed."
+      },
+      "listening_verified": false,
+      "lip_sync_verified": false,
+      "mouth_alignment": "Brief open-mouth reaction observed at 8.5–9.25s; the exact spoken subtitle and voice track occupy 8.5–9.2584s. Approximate visual alignment only."
+    },
+    "captions": [
+      {
+        "text": "It spins!",
+        "start": 8.5,
+        "end": 9.2584,
+        "kind": "spoken",
+        "observed_action": "mouth_window"
+      },
+      {
+        "text": "Bobo's Pinwheel Surprise",
+        "start": 0,
+        "end": 1.5,
+        "kind": "action",
+        "observed_action": "title_card"
+      }
+    ],
+    "effects_complete": true,
+    "effects": [
+      {
+        "type": "wood",
+        "start": 8.57,
+        "duration": 0.18,
+        "observed_action": "handle_adjustment",
+        "source": "Kenney Impact Sounds / impactWood_light_000.ogg; CC0-1.0; SHA256 eb45e35b4bed784d3f120de4afec4b0d6ac09d9e143cce8cfcb7d739e1b1f3c3",
+        "level": -13.24,
+        "level_unit": "peak dBFS in scene_effects.wav stem",
+        "source_hash_verified": true,
+        "fade_in_ms": 10,
+        "fade_out_ms": 10,
+        "material_matched": true,
+        "restrained": true,
+        "listening_verified": false
+      }
+    ],
+    "effect_repair": "Removed unverified generic air/pop events. Retained one checksum-verified recorded CC0 wooden-handle tap aligned to the observed grip adjustment. No water action and no splash cue; no synthetic pitch sweep or random celebration effect. Perceptual naturalness was not claimed without listening.",
+    "music": {
+      "variant": 20,
+      "style": "gentle bell waltz",
+      "preserved": true,
+      "distinct_from_recent_published_styles": [
+        "airy flute dance (variant 10)",
+        "soft marimba bounce (variant 8)",
+        "muted piano shuffle (variant 51)"
+      ],
+      "measured_dbfs": -15.46,
+      "duck_gain": 0.22,
+      "duck_db": -13.15,
+      "duck_window": [
+        8.4,
+        9.4184
+      ],
+      "sidechain_effect_ducking": true,
+      "subjective_audibility_verified": false
+    },
+    "audio": {
+      "mean_dbfs": -18.26,
+      "peak_dbfs": -1.46,
+      "voice_reference_rms_dbfs": -21.49,
+      "encoded_speech_rms_linear": 0.1629,
+      "encoded_voice_track_correlation": 0.988,
+      "music_check_dbfs": -15.46,
+      "music_duck_gain": 0.22,
+      "subjective_listening_performed": false,
+      "note": "Final encoded audio stream is present and decodes. Level/correlation checks support voice presence, ASR supports the exact words, and mix metadata/measurements confirm music ducking; these do not establish subjective audibility or perceptual effect naturalness."
+    },
+    "pacing": {
+      "purposeful_action_by": 0.125,
+      "pass": true,
+      "notes": "Purposeful puff/pinwheel action begins within the first half-second. Pinwheel rotation and Bobo tracking continue through 1.5–8.0s; presentation/pointing and ending reaction occupy 8.25–10.75s. No freeze padding, shortening or global speed-up."
+    },
+    "technical": "Exact final artifact: 11.000s, H.264 720x1280 at 30 fps, AAC stereo 96 kHz; video and audio streams present; full decode passed; final decoded mix peak -1.46 dBFS; SHA256 verified.",
+    "artifact": {
+      "workflow_run_id": 44788765258,
+      "artifact_id": 14654803280,
+      "artifact_zip_sha256": "b56077e9eb09b736b3a0a68388f72e48e53c29971734d270f702071e2ddeb8b4",
+      "file": "bobo_fresh.mp4",
+      "final_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+      "source_workflow_run_id": 44777648478,
+      "source_artifact_id": 14650383562
+    },
+    "duplicate_check": {
+      "episode_absent_from_published_ledger": true,
+      "generated_sha_absent_from_published_ledger": true,
+      "final_sha_absent_from_published_ledger": true,
+      "story_id": "bobo-original-pinwheel-20261119",
+      "scene_id": 8,
+      "conclusion": "No matching episode or generated/final SHA in published_bobo.json; visible pinwheel plot is distinct from the latest recorded umbrella episode."
+    },
+    "cost": 0
+  }
+}
