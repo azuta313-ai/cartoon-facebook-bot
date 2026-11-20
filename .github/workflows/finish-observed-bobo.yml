@@ -38,7 +38,7 @@ jobs:
           mkdir -p voice_models
           cd voice_models
           python -m piper.download_voices en_US-ljspeech-medium
-            - run: python finish_bobo_observed.py
+      - run: python finish_bobo_observed.py
       - name: Install optional free CPU speech recognition
         continue-on-error: true
         run: pip install --disable-pip-version-check --timeout 30 --retries 1 faster-whisper==1.1.1
