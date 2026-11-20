@@ -37,20 +37,37 @@ def finish(source, plan, output):
     (output/'observed-effects.json').write_text(json.dumps(effects))
     generator.soundtrack(11,metadata['scene_id'],music_variant=metadata['music_variant'])
     mix_voice(output)
-    captions=[dict(text=cue['text'],start=voice['cues'][0]['start'],end=voice['cues'][0]['end'])]
+    voice['cues'][0]['placement']='observed open-mouth reaction at 8.5-9.25s; approximate visual alignment only'
+    voice['mouth_action_alignment_review']='Frames reviewed at 8 fps: brief open-mouth reaction spans approximately 8.5-9.25 seconds; no phoneme-level lip synchronization claimed.'
+    captions=[dict(text=cue['text'],start=voice['cues'][0]['start'],end=voice['cues'][0]['end'],kind='spoken',observed_action=cue['observed_action'],y=1160,size=34)]
     for caption in plan['captions']:
         start,end=bounds(caption['observed_action'])
         assert start<=caption['start']<caption['end']<=end
         assert caption['end']<=cue['start'] or caption['start']>=voice['cues'][0]['end']+.08
         if caption.get('outcome'): assert caption['start']>=caption['result_visible_at']
-        captions.append({k:caption[k] for k in ('text','start','end')})
+        item={k:caption[k] for k in ('text','start','end')}
+        item.update(kind='action',observed_action=caption['observed_action'])
+        if 'y' in caption: item['y']=int(caption['y'])
+        if 'size' in caption: item['size']=int(caption['size'])
+        captions.append(item)
     filters=['fps=30','scale=720:1280:force_original_aspect_ratio=increase:flags=lanczos','crop=720:1280']
     font='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
     for index,caption in enumerate(captions):
         text=output/f'finish-caption-{index}.txt'; text.write_text(caption['text'])
-        filters.append(f"drawtext=fontfile={font}:textfile={text}:fontsize=34:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y=1160:enable='gte(t,{caption['start']})*lt(t,{caption['end']})'")
+        size=int(caption.get('size',34)); y=int(caption.get('y',1160))
+        filters.append(f"drawtext=fontfile={font}:textfile={text}:fontsize={size}:fontcolor=white:box=1:boxcolor=black@0.55:boxborderw=8:x=(w-text_w)/2:y={y}:enable='gte(t,{caption['start']})*lt(t,{caption['end']})'")
     subprocess.run(['ffmpeg','-v','error','-y','-i',str(raw),'-i',str(output/'audio.wav'),'-vf',','.join(filters),'-map','0:v:0','-map','1:a:0','-af','loudnorm=I=-16:TP=-1.5:LRA=7','-c:v','libx264','-crf','16','-pix_fmt','yuv420p','-c:a','aac','-b:a','192k','-t','11','-movflags','+faststart',str(output/'bobo_fresh.mp4')],check=True)
-    metadata.update(voice=voice,caption_timing=captions,social_caption=plan['social_caption'],finishing_required=False,planned_effects_unverified=False,observed_effects=plan['effects'],review_required=True,finishing_source_sha256=plan['source_sha256'])
+    final_video=output/'bobo_fresh.mp4'
+    probe=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_type,width,height,codec_name,r_frame_rate','-of','json',str(final_video)]))
+    duration=float(probe['format']['duration'])
+    streams=probe.get('streams',[])
+    assert 10.95<=duration<=11.05, f'Final repaired duration outside 11-second range: {duration}'
+    assert any(x.get('codec_type')=='video' for x in streams) and any(x.get('codec_type')=='audio' for x in streams)
+    subprocess.run(['ffmpeg','-v','error','-i',str(final_video),'-f','null','-'],check=True)
+    final_sha=hashlib.sha256(final_video.read_bytes()).hexdigest()
+    technical={'status':'technical_pass_visual_audio_review_required','repairs':['Retimed Piper line and exact spoken subtitle to observed mouth window','Removed unverified generic air/pop effects','Added one checksum-verified CC0 wooden-handle foley cue','Preserved music variant and eleven-second duration'],'checks':{'duration_seconds':duration,'has_video':True,'has_audio':True,'subtitle_timing_valid':True,'decodes_without_errors':True},'final_sha256':final_sha}
+    (output/'automatic-review.json').write_text(json.dumps(technical,indent=2))
+    metadata.update(voice=voice,caption_timing=captions,social_caption=plan['social_caption'],finishing_required=False,planned_effects_unverified=False,observed_effects=plan['effects'],scene_effects=plan['effects'],review_required=True,finishing_source_sha256=plan['source_sha256'],final_sha256=final_sha)
     def stamp(value):
         milliseconds=round(float(value)*1000)
         return f"00:00:{milliseconds//1000:02d},{milliseconds%1000:03d}"
