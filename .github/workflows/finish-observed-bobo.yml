@@ -20,7 +20,7 @@ jobs:
           import json,os
           from pathlib import Path
           p=json.loads(Path('bobo_finishing_plan.json').read_text())
-          with open(os.environ['GITHUB_OUTPUT'],'a') as f: f.write('run_id='+str(int(p['artifact_run_id']))+'\n')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f: f.write('run_id='+str(int(p['artifact_run_id']))+'\\n')
           PY
       - uses: actions/download-artifact@v4
         with:
@@ -39,20 +39,32 @@ jobs:
           cd voice_models
           python -m piper.download_voices en_US-ljspeech-medium
       - run: python finish_bobo_observed.py
-      - name: Install optional free CPU speech recognition
+      - name: Install isolated free CPU speech recognition
         continue-on-error: true
-        run: python -m pip install --disable-pip-version-check --timeout 30 --retries 1 faster-whisper==1.1.1 requests huggingface-hub==0.27.1 fsspec==2024.10.0
+        run: |
+          python -m venv .asr-venv
+          .asr-venv/bin/python -m pip install --disable-pip-version-check --timeout 60 --retries 2 faster-whisper==1.1.1 requests==2.32.5 huggingface-hub==0.27.1 fsspec==2024.10.0
+          .asr-venv/bin/python - <<'PY'
+          from importlib.metadata import version
+          for name in ('faster-whisper','huggingface-hub','fsspec','requests'):
+              try: print(name,version(name))
+              except Exception as exc: print(name,'unavailable',type(exc).__name__)
+          PY
       - name: Independently transcribe the exact final encoded mix
         continue-on-error: true
         run: |
-          python - <<'PY'
+          .asr-venv/bin/python - <<'PY'
           import json,subprocess,sys,importlib.util
           from pathlib import Path
           from datetime import datetime
           from zoneinfo import ZoneInfo
+          from importlib.metadata import version,PackageNotFoundError
           out=Path('fresh_output')
           expected=json.loads((out/'dialogue-timing.json').read_text())['cues'][0]['text']
           report={'method':'independent_asr','model':'Systran/faster-whisper-tiny.en','input':'final encoded mix from bobo_fresh.mp4, decoded to mono 16kHz','expected_text':expected,'status':'unavailable','python_executable':sys.executable,'module_spec':str(importlib.util.find_spec('faster_whisper'))}
+          for package in ('faster-whisper','huggingface-hub','fsspec'):
+              try: report.setdefault('package_versions',{})[package]=version(package)
+              except PackageNotFoundError: report.setdefault('package_versions',{})[package]=None
           try:
               from faster_whisper import WhisperModel
               wav=subprocess.check_output(['ffmpeg','-v','error','-i',str(out/'bobo_fresh.mp4'),'-vn','-ac','1','-ar','16000','-f','wav','-'])
