@@ -1,0 +1,113 @@
+{
+  "review_id": "2026-11-20-run-341-recheck-1442",
+  "completed_at": "2026-11-20T14:42:19+05:00",
+  "result": "NO_CURRENT_PENDING_DRAFT; LATEST_VERIFIED_DAILY_RUN_379_ZERO_ARTIFACTS; PROVIDER_NOT_CALLED_DUE_TO_SCENE_REFERENCE_EXHAUSTION; HISTORICAL_ARTIFACT_341_INCOMPLETE_INTERMEDIATE_NOT_PUBLISHABLE; NO_NEW_PUBLICATION",
+  "run_inventory": {
+    "latest_verified_daily_run": {
+      "workflow": ".github/workflows/daily.yml",
+      "run_number": 379,
+      "run_id": 44584954244,
+      "job_id": 135775279172,
+      "created_at": "2026-11-19T18:10:24Z",
+      "completed_at": "2026-11-19T18:10:47Z",
+      "conclusion": "success",
+      "artifact_count": 0,
+      "provider_called": false,
+      "quota_error_observed": false,
+      "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/44584954244"
+    },
+    "inventory_complete": false,
+    "limitation": "The connected GitHub Actions integration exposes run details by known run_id but no list-workflow-runs action. Run #379 is the latest run ID verified in the repository record and directly rechecked here; a newer scheduled run after the 07:44 repository check cannot be ruled out from this connector."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "approval_title": "Bobo's Upside-Down Umbrella",
+    "known_pending_paths_checked": [
+      "bobo_pending/40522030.json",
+      "bobo_pending/40522032.json",
+      "bobo_pending/40522037.json"
+    ],
+    "known_pending_paths_found": 0,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_known_reserve_entries_published": true,
+    "action": "No pending gate existed; no pending file was cleared or rewritten."
+  },
+  "latest_nonempty_artifact": {
+    "source_run_number": 341,
+    "source_run_id": 41880398664,
+    "job_id": 126751027283,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "created_at": "2026-11-04T17:48:50Z",
+    "downloaded_at": "2026-11-20T14:42:19+05:00",
+    "downloaded_via": "GitHub Actions artifact download tool",
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "zip_sha256_verified": true,
+    "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "generated_mp4_sha256_verified": true,
+    "generated_mp4_duration_seconds": 12.1875,
+    "generated_mp4_resolution": "480x832",
+    "generated_mp4_has_audio": false,
+    "final_bobo_fresh_mp4_present": false,
+    "episode_json_present": false,
+    "captions_timing_json_present": false,
+    "automatic_review_json_present": false,
+    "dialogue": {
+      "exact_text": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761,
+      "piper_track_present": true,
+      "final_encoded_mix_present": false,
+      "final_mix_intelligibility_verified": false,
+      "asr_or_actual_listening_performed": false
+    },
+    "visual_review": {
+      "full_video_sampled_fps": 4,
+      "full_video_sample_count": 49,
+      "transition_windows_sampled_fps": 8,
+      "transition_sample_count": 32,
+      "observations": "3D Bobo in red shirt at art easel; brush-hand and upper-body gestures visible in sampled frames. The archived shot review JSON files explicitly remain awaiting_visual_verification. This was not a completed final render."
+    },
+    "audio_review": {
+      "music_and_effect_stems_present": true,
+      "final_encoded_mix_present": false,
+      "subjective_listening_performed": false,
+      "perceptual_effect_naturalness_verified": false,
+      "note": "The archived audio.wav and voice-track.wav are separate WAV assets; the generated MP4 has no audio stream. Do not infer intelligibility or natural sound from waveform/decoding."
+    },
+    "technical_result": "INCOMPLETE: intermediate-only 12.1875-second video, no audio stream, not within 10.95-11.05 seconds, no final export or final caption manifest.",
+    "decision": "REJECT_AS_PUBLISHABLE_ARTIFACT; historical intermediate only; not a current pending draft."
+  },
+  "scene8_reference_status": {
+    "storyboard": "bobo_storyboard_pinwheel.json exists, story_id bobo-original-pinwheel-20261119, proposed_scene_id 8.",
+    "repository_reference": "assets/scenes/scene8.jpg is absent.",
+    "partial_payload": "assets/scenes/scene8.jpg.b64.01 exists; .b64.02 and .b64.03 are absent.",
+    "selector_support": "bobo_scene_policy.py candidate order remains (7,1,2,0,3,4); scene_id 8 is not eligible.",
+    "generator_support": "fresh_bobo.py SCENES, ACTION_BEATS, PROMOTION, SERIES_LINES and simple action arrays stop at scene_id 7; no scene8 dispatch.",
+    "voice_support": "No scene8-specific default line mapping; storyboard line Wind power! is not wired into the default board selection.",
+    "blocker": "Scene-reference upload and code wiring are incomplete. This is a production/reference blocker, not a confirmed Hugging Face quota error."
+  },
+  "publication_status": {
+    "new_publication_on_2026_11_20": false,
+    "latest_recorded_episode": 40522037,
+    "latest_recorded_title": "Bobo's Upside-Down Umbrella",
+    "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
+    "latest_recorded_facebook_video_id": "2296956914491800",
+    "instagram_reel": "https://www.instagram.com/reel/DeorySgAMGk/",
+    "instagram_reel_status": "accepted",
+    "instagram_story": "https://www.instagram.com/stories/bobogigglegrove/4010648416802624085",
+    "instagram_story_status": "accepted",
+    "facebook_story_status": "accepted",
+    "latest_publish_run_number": 112,
+    "latest_publish_run_id": 44526694796,
+    "note": "Latest ledger entry remains 18 October; no new Facebook/Instagram video or Story acceptance recorded on 20 November."
+  },
+  "cost": 0
+}
