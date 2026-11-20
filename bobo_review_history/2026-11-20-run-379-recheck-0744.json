@@ -1,0 +1,208 @@
+{
+  "review_id": "2026-11-20-run-379-recheck-0744",
+  "completed_at": "2026-11-20T07:44:03+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "result": "NO_CURRENT_PENDING_DRAFT; DAILY_RUN_379_ZERO_ARTIFACTS; PROVIDER_NOT_CALLED_DUE_TO_SCENE_REFERENCE_EXHAUSTION; HISTORICAL_ARTIFACT_341_REDOWNLOADED_AND_REVIEWED; REJECT_DUPLICATE_INCOMPLETE_ARTIFACT; NO_NEW_PUBLICATION",
+  "latest_daily_run": {
+    "workflow": ".github/workflows/daily.yml",
+    "run_number": 379,
+    "run_id": 44584954244,
+    "created_at": "2026-11-19T18:10:24Z",
+    "completed_at": "2026-11-19T18:10:47Z",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/44584954244",
+    "no_newer_daily_run_visible_as_of": "2026-11-20T07:44:03+05:00"
+  },
+  "current_pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_status": "published",
+    "approval_episode": 40522037,
+    "reserve_entries": [
+      40522030,
+      40522032,
+      40522037
+    ],
+    "all_reserve_entries_already_published": true,
+    "action": "No current pending gate existed; none was cleared or rewritten."
+  },
+  "historical_artifact": {
+    "classification": "Historical intermediate only; not a current pending draft and not publishable.",
+    "source_run_number": 341,
+    "source_run_id": 41880398664,
+    "artifact_id": 13349870060,
+    "artifact_name": "fresh-bobo-video",
+    "downloaded_at": "2026-11-20T07:44:03+05:00",
+    "downloaded_via": "GitHub Actions artifact download tool",
+    "zip_file": "bobo-run-341-latest-artifact-recheck.zip",
+    "zip_bytes": 8092018,
+    "zip_sha256": "4f73d016642fd2cf346863c5fb99ae1f9c5f12e3c677086331976d6365d1dcdd",
+    "zip_sha256_verified": true,
+    "video_file": "generated.mp4",
+    "video_bytes": 2779364,
+    "video_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
+    "video_sha256_verified": true,
+    "present_files": [
+      "generated.mp4",
+      "shot0.mp4",
+      "shot1.mp4",
+      "shot2.mp4",
+      "reference.png",
+      "continuation.png",
+      "dialogue-timing.json",
+      "shot1-review.json",
+      "shot2-review.json",
+      "shot3-review.json",
+      "voice-line.wav",
+      "voice-raw.wav",
+      "voice-track.wav",
+      "original_music.wav",
+      "scene_effects.wav",
+      "audio.wav",
+      "shots.txt"
+    ],
+    "absent_files": [
+      "episode.json",
+      "captions-timing.json",
+      "bobo_fresh.mp4",
+      "final muxed video",
+      "automatic-review.json"
+    ]
+  },
+  "exact_artifact_review": {
+    "full_render_sample_fps": 4,
+    "full_render_sample_count": 49,
+    "transition_sample_fps": 8,
+    "transition_sample_windows_seconds": [
+      [
+        3.2,
+        4.8
+      ],
+      [
+        7.2,
+        8.8
+      ]
+    ],
+    "transition_samples_per_window": 13,
+    "observed_actions": {
+      "initial_brush_reach_and_canvas_contact": [
+        0.625,
+        4
+      ],
+      "low_activity_front_facing_reaction_with_small_gestures": [
+        4.5,
+        6.875
+      ],
+      "resumed_brush_work": [
+        7,
+        10.375
+      ],
+      "ending_reaction_and_hand_gestures": [
+        10.5,
+        12.1875
+      ]
+    },
+    "purposeful_action_by_seconds": 0.625,
+    "duplicate_check": {
+      "duplicate_story": "Art room paint surprise",
+      "duplicate_episode": 40522021,
+      "duplicate_scene_id": 7,
+      "classification": "Same art-room/easel/palette/brush painting premise as already-published episode 40522021; not a distinct original video."
+    },
+    "caption_review": {
+      "captions_timing_file_present": false,
+      "final_spoken_subtitle_present": false,
+      "caption_transition_review": "Not possible: no final caption timeline or final muxed render exists.",
+      "provisional_dialogue": "Time to paint!",
+      "provisional_start": 0.35,
+      "provisional_end": 1.1761
+    },
+    "audio_review": {
+      "mp4_audio_streams": 0,
+      "final_encoded_mix_present": false,
+      "speech_intelligibility_verified": false,
+      "music_audibility_verified": false,
+      "effect_perceptual_naturalness_verified": false,
+      "subjective_listening_performed": false,
+      "independent_asr_performed": false,
+      "separate_wav_stem_metrics_dbfs": {
+        "audio": {
+          "duration_seconds": 11,
+          "mean_dbfs": -22.46,
+          "peak_dbfs": -6.85
+        },
+        "original_music": {
+          "duration_seconds": 11,
+          "mean_dbfs": -29.64,
+          "peak_dbfs": -14.47
+        },
+        "scene_effects": {
+          "duration_seconds": 11,
+          "mean_dbfs": -43.62,
+          "peak_dbfs": -17.08
+        },
+        "voice_track": {
+          "duration_seconds": 11,
+          "mean_dbfs": -45.61,
+          "peak_dbfs": -16.81
+        },
+        "voice_line": {
+          "duration_seconds": 0.8261,
+          "mean_dbfs": -34.37,
+          "peak_dbfs": -16.81
+        }
+      },
+      "note": "Separate WAV stems are not a final encoded mix. The MP4 contains no audio stream. These measurements cannot establish speech intelligibility, music audibility/ducking or perceptual effect realism. No subjective listening or independent ASR was performed."
+    },
+    "technical_review": {
+      "duration_seconds": 12.1875,
+      "required_duration_seconds": [
+        10.95,
+        11.05
+      ],
+      "duration_pass": false,
+      "dimensions": "480x832",
+      "fps": 16,
+      "video_codec": "H.264",
+      "video_streams": 1,
+      "audio_streams": 0,
+      "video_decode": "passed",
+      "final_publication_video_present": false
+    },
+    "decision": "REJECT_AS_DISTINCT_NEW_VIDEO_AND_HOLD_AS_PUBLISHABLE_ARTIFACT",
+    "reasons": [
+      "The art-room painting/easel/palette/brush premise duplicates already-published episode 40522021.",
+      "Duration 12.1875 seconds is outside the required 10.95–11.05 second range.",
+      "Purposeful movement begins at approximately 0.625 seconds, later than the 0.5-second opening target.",
+      "A low-activity front-facing reaction spans approximately 4.5–6.875 seconds.",
+      "The MP4 has no audio stream; final encoded Piper speech and final mix are absent.",
+      "The exact spoken subtitle and caption timing are absent.",
+      "episode.json and final bobo_fresh.mp4 are absent."
+    ],
+    "repair_decision": "No repair performed: this historical intermediate duplicates a published story; adding audio/captions or changing duration would not make it a distinct new video."
+  },
+  "generation_blocker": {
+    "primary": "All currently eligible original scene references are used/recent/reserved. Scene IDs 5 and 6 remain forbidden. The matching pinwheel storyboard exists as bobo_storyboard_pinwheel.json, but assets/scenes/scene8.jpg is absent and bobo_scene_policy.py, fresh_bobo.py and bobo_voice.py do not support scene_id 8. The generator only loads bobo_storyboard_pilot.json when its episode matches.",
+    "provider": "Free Hugging Face ZeroGPU availability remains unverified because run #379 stopped before any provider request. No quota error was observed in this run. Earlier runs #340 and #341 reached free ZeroGPU and generated three clips before local finishing failures; neither recorded a provider quota error.",
+    "character_reference": "The matching rooftop-pinwheel image bobo_blows_a_rainbow_pinwheel.png is available in the current workspace, and the correct Joyful Bobo Monkey Profile Portrait.png is in the Library; neither has been installed as a repository asset in this check.",
+    "next_step": "Install the exact scene8 reference and add scene_id 8 plus bobo_storyboard_pinwheel.json support to bobo_scene_policy.py, fresh_bobo.py and bobo_voice.py. Keep the Piper line in the third-shot reaction window. No paid generation or unrelated scene fallback."
+  },
+  "publication_status": {
+    "new_publication_on_2026_11_20": false,
+    "latest_recorded_episode": 40522037,
+    "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
+    "latest_recorded_facebook_video_id": "2296956914491800",
+    "instagram_reel": "https://www.instagram.com/reel/DeorySgAMGk/",
+    "instagram_story_status": "accepted_in_repository_ledger",
+    "facebook_story_status": "accepted_in_repository_ledger",
+    "latest_publish_run_number": 112,
+    "latest_publish_run_id": 44526694796,
+    "latest_publish_steps": "Facebook video, Instagram Reel, Instagram Story and Facebook Story steps all skipped",
+    "latest_publish_reason": "No due approved unpublished reserve entry."
+  },
+  "cost": 0
+}
