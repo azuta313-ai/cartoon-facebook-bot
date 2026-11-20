@@ -41,7 +41,7 @@ jobs:
       - run: python finish_bobo_observed.py
       - name: Install optional free CPU speech recognition
         continue-on-error: true
-        run: python -m pip install --disable-pip-version-check --timeout 30 --retries 1 faster-whisper==1.1.1 requests
+        run: python -m pip install --disable-pip-version-check --timeout 30 --retries 1 faster-whisper==1.1.1 requests huggingface-hub==0.27.1 fsspec==2024.10.0
       - name: Independently transcribe the exact final encoded mix
         continue-on-error: true
         run: |
