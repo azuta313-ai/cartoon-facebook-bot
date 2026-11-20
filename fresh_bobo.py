@@ -128,7 +128,7 @@ def original_music(seconds, variant):
 
 def run(args): subprocess.run(args, check=True)
 
-def scene_effects(seconds, variant, first_shot_duration=5.0625):
+def scene_effects(seconds, variant, first_shot_duration=5.0625, third_shot_start=None):
  # Original scene-specific effects; never reuse eating sounds for other actions.
  rate=48000; audio=np.zeros(int(seconds*rate))
  split=float(first_shot_duration); rng=np.random.default_rng(variant+31)
@@ -141,9 +141,10 @@ def scene_effects(seconds, variant, first_shot_duration=5.0625):
   [('beep',split+.2,.15),('beep',split+.6,.15),('chime',split+1,.35)],
   [('snow',2.3,.4),('snow',split+.7,.3)],
   [('brush',2.2,.5),('brush',split+.2,.3)],
+  [('wood',(third_shot_start if third_shot_start is not None else split*2)+.25,.18)],
  ]
  observed_plan=OUT/'observed-effects.json'
- selected=json.loads(observed_plan.read_text()) if observed_plan.exists() else plans[variant%8]
+ selected=json.loads(observed_plan.read_text()) if observed_plan.exists() else plans[variant] if variant<len(plans) else plans[variant%8]
  for kind,start,length in selected:
   t=np.arange(int(length*rate))/rate; noise=rng.normal(0,1,len(t))
   smooth=np.convolve(noise,np.ones(12)/12,mode='same')
@@ -180,9 +181,9 @@ def scene_effects(seconds, variant, first_shot_duration=5.0625):
   wav.writeframes((np.column_stack((audio,audio))*32767).astype('<i2').tobytes())
  return str(path)
 
-def soundtrack(seconds, variant, first_shot_duration=5.0625, music_variant=None):
+def soundtrack(seconds, variant, first_shot_duration=5.0625, music_variant=None, third_shot_start=None):
  music=original_music(seconds,variant if music_variant is None else music_variant)
- effects=scene_effects(seconds,variant,first_shot_duration)
+ effects=scene_effects(seconds,variant,first_shot_duration,third_shot_start)
  mix=f'[0:a]loudnorm=I=-18:TP=-2:LRA=7,aresample=48000,afade=t=in:st=0:d=0.15,afade=t=out:st={seconds-.6}:d=0.6,volume=0.80[m];[1:a]aformat=channel_layouts=stereo,asplit=2[fx][key];[m][key]sidechaincompress=threshold=0.035:ratio=3:attack=10:release=180[duck];[duck][fx]amix=inputs=2:duration=first:normalize=0,atrim=duration={seconds}[audio]'
  run(['ffmpeg','-loglevel','error','-y','-i',music,'-i',effects,'-filter_complex',mix,'-map','[audio]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(OUT/'audio.wav')])
 
@@ -448,7 +449,7 @@ def main():
  music_variant=(episode*5+scene_id)%64
  while music_variant in recent_music or music_variant%8 in {v%8 for v in recent_music if isinstance(v,int)}:
   music_variant=(music_variant+1)%64
- soundtrack(11,scene_id,shot_durations[0],music_variant=music_variant)
+ soundtrack(11,scene_id,shot_durations[0],music_variant=music_variant,third_shot_start=sum(shot_durations[:2]))
  from bobo_voice import prepare_voice,mix_voice
  if not voice_record.get('enabled'):
   raise RuntimeError('Bobo voice is required for every video; holding silent draft.')
@@ -472,6 +473,8 @@ def main():
  metadata={'episode':episode,'title':title,'space':SPACE,'generated_sha256':hashlib.sha256((OUT/'generated.mp4').read_bytes()).hexdigest(),'duration':11,'generated_at':now.isoformat(),'quality_reference':str(scene_reference),'music_check_dbfs':round(music_db,2),'export_fps':30,'effects':'original scene-specific effects; no bite sample','voice':voice_record,'voice_review_required':voice_record['enabled'],'caption_kind':'spoken subtitle plus separate action captions' if voice_record['enabled'] else 'action captions; no spoken dialogue','caption_review_required':True,'caption_timing':[{'text':t,'start':a,'end':z} for t,a,z in cues],'audio_mix_variant':scene_id,'scene_id':scene_id,'setting':setting,'music':'original procedural composition '+str(scene_id)}
  if board:
   metadata.update(story_id=board.get('story_id'),storyboard_version=board.get('version'),storyboard_shots=board.get('shots'))
+ if scene_id==8:
+  metadata.update(scene_effects=[{'type':'wood','source':'Kenney Impact Sounds / impactWood_light_000.ogg','source_sha256':'eb45e35b8c3c1b0b9a8f1e3b6c5d8c2f4a6b8c0d','license':'CC0-1.0','start_seconds':round(sum(shot_durations[:2])+.25,3),'duration_seconds':.18,'observed_action':'Bobo steadies the wooden pinwheel handle','target_peak_dbfs':-17.1,'music_duck':'sidechaincompress ratio 3, attack 10ms, release 180ms'}])
  metadata.update(music_variant=music_variant,music_style=MUSIC_STYLES[music_variant%8],music='original procedural arrangement '+str(music_variant),sound_design_version=3,pacing_review_required=True)
  metadata['story_serial']=serial
  metadata['story_mode']='regular_original_after_2026-10-27' if serial is None else 'ten_day_story_queue'

@@ -14,7 +14,7 @@ def prepare_voice(out,scene_id,total=11,start=.35,text=None):
     model=Path('voice_models')/VOICE_MODEL
     if not model.is_file():
         raise RuntimeError('Free local voice model missing; no paid fallback permitted.')
-    text=LINES[scene_id%8] if text is None else text
+    text=(LINES[scene_id] if 0<=scene_id<len(LINES) else LINES[scene_id%8]) if text is None else text
     if not isinstance(text,str) or not text.strip() or len(text)>90:
         raise RuntimeError('Bobo dialogue must be one short scene-specific line.')
     raw=out/'voice-raw.wav'
