@@ -67,6 +67,18 @@ def finish(source, plan, output):
     final_sha=hashlib.sha256(final_video.read_bytes()).hexdigest()
     technical={'status':'technical_pass_visual_audio_review_required','repairs':['Retimed Piper line and exact spoken subtitle to observed mouth window','Removed unverified generic air/pop effects','Added one checksum-verified CC0 wooden-handle foley cue','Preserved music variant and eleven-second duration'],'checks':{'duration_seconds':duration,'has_video':True,'has_audio':True,'subtitle_timing_valid':True,'decodes_without_errors':True},'final_sha256':final_sha}
     (output/'automatic-review.json').write_text(json.dumps(technical,indent=2))
+    spoken_text=str(cue['text'])
+    previous_line=str(metadata.get('comedy_series',{}).get('voice_line',''))
+    def replace_line(value):
+        if isinstance(value,dict):
+            return {k:replace_line(v) for k,v in value.items()}
+        if isinstance(value,list):
+            return [replace_line(v) for v in value]
+        if isinstance(value,str) and previous_line:
+            return value.replace(previous_line,spoken_text)
+        return value
+    metadata=replace_line(metadata)
+    metadata.setdefault('comedy_series',{})['voice_line']=spoken_text
     metadata.update(voice=voice,caption_timing=captions,social_caption=plan['social_caption'],finishing_required=False,planned_effects_unverified=False,observed_effects=plan['effects'],scene_effects=plan['effects'],review_required=True,finishing_source_sha256=plan['source_sha256'],final_sha256=final_sha,music_check_dbfs=round(generator.music_level(final_video),2))
     def stamp(value):
         milliseconds=round(float(value)*1000)
