@@ -6,9 +6,9 @@
   "story_mode": "regular_original_after_2026-10-27",
   "generated_sha256": "b18f030193398ff2dba6cf461425f15ce316554283c5f40a6bfde1ce826195d4",
   "source_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
-  "final_sha256": "49fbfffbd477fb9a39c5faf432077d1cbfb2620c823b31c0361695f28f458ed7",
+  "final_sha256": "19780f4fd588bacb0c67b7cb7f5d21944bc5c74a86b5a5f1405f7df971c66a86",
   "status": "repaired_awaiting_exact_review",
-  "artifact_run_id": "44782696781",
+  "artifact_run_id": "44783589110",
   "source_artifact_run_id": "44777648478",
   "speech_asr_status": "unavailable",
   "speech_asr": {
@@ -17,8 +17,11 @@
     "input": "final encoded mix from bobo_fresh.mp4, decoded to mono 16kHz",
     "expected_text": "Wind power!",
     "status": "unavailable",
+    "python_executable": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+    "module_spec": "ModuleSpec(name='faster_whisper', loader=<_frozen_importlib_external.SourceFileLoader object at 0x7cf9de530ad0>, origin='/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/faster_whisper/__init__.py', submodule_search_locations=['/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/faster_whisper'])",
     "error_type": "ModuleNotFoundError",
-    "verified_at": "2026-11-20T22:24:34.143216+05:00"
+    "error": "No module named 'requests'",
+    "verified_at": "2026-11-20T22:29:36.241210+05:00"
   },
-  "created_at": "2026-11-20T22:24:34.212283+05:00"
+  "created_at": "2026-11-20T22:29:36.303024+05:00"
 }
