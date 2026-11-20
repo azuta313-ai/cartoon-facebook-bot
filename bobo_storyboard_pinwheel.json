@@ -16,7 +16,7 @@
     "note": "Verified repository image shows the golden-brown 3D monkey Bobo in his red shirt holding the rainbow pinwheel on the rooftop patio. This is the matching reference for the queued pinwheel storyboard."
   },
   "premise": "Bobo gives a colorful pinwheel one gentle puff; a breeze spins it faster than expected, then it slows and he proudly presents it.",
-  "voice_line": "Wind power!",
+  "voice_line": "It spins!",
   "voice_placement": {
     "provisional_start_seconds": 8.15,
     "final_timing_source": "dialogue-timing.json measured from the rendered Piper track and the observed final reaction",
@@ -48,7 +48,7 @@
     {
       "shot": 3,
       "seconds": "8-11",
-      "action": "The pinwheel slows. Bobo steadies it, turns it toward the camera, points at it and gives a small shoulder wiggle. He says the brief line 'Wind power!' during the observed reaction.",
+      "action": "The pinwheel slows. Bobo steadies it, turns it toward the camera, points at it and gives a small shoulder wiggle. He says the brief line 'It spins!' during the observed reaction.",
       "required_evidence": [
         "Pinwheel visibly slows",
         "Bobo steadies and presents the same pinwheel",
