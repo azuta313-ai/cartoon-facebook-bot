@@ -9,11 +9,11 @@
   "character_reference": "Joyful Bobo Monkey Profile Portrait.png from the Library: golden-brown fur, spiky tuft, large brown eyes and rounded ears, red shirt. Preserve the same recognizable monkey; no bear/overalls substitution.",
   "scene_reference": {
     "intended_repository_path": "assets/scenes/scene8.jpg",
-    "generated_in_this_review": true,
     "committed": true,
-    "sha256": "fbeaf146384ad8827eb120b7ff76acc40c575b5754b1858dffb999a0890cad66",
+    "git_blob_sha": "2582181db586705c39e3ef55834757778260f8b6",
+    "content_hash_type": "Git blob SHA-1",
     "dimensions": "192x341",
-    "note": "Installed from the existing generated Bobo-blows-a-rainbow-pinwheel reference in the working workspace, resized to a lightweight JPEG for free generation. Same golden-brown monkey, red shirt, rainbow pinwheel and rooftop patio."
+    "note": "Verified repository image shows the golden-brown 3D monkey Bobo in his red shirt holding the rainbow pinwheel on the rooftop patio. This is the matching reference for the queued pinwheel storyboard."
   },
   "premise": "Bobo gives a colorful pinwheel one gentle puff; a breeze spins it faster than expected, then it slows and he proudly presents it.",
   "voice_line": "Wind power!",
