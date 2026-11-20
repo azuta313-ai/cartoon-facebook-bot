@@ -6,28 +6,45 @@
   "story_mode": "regular_original_after_2026-10-27",
   "generated_sha256": "b18f030193398ff2dba6cf461425f15ce316554283c5f40a6bfde1ce826195d4",
   "source_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
-  "final_sha256": "edd3446e27f8babc2b7f6d67f04004fe3ded137238218370ace88436fa68e511",
+  "final_sha256": "6090a2cfb5009a3c9ca263a393a8bcc8fbda789a257088e345aaed055ff6ddd5",
   "status": "repaired_awaiting_exact_review",
-  "artifact_run_id": "44786999518",
+  "artifact_run_id": "44787445785",
   "source_artifact_run_id": "44777648478",
-  "speech_asr_status": "unavailable",
+  "speech_asr_status": "mismatch",
   "speech_asr": {
     "method": "independent_asr",
     "model": "Systran/faster-whisper-tiny.en",
     "input": "final encoded mix from bobo_fresh.mp4, decoded to mono 16kHz",
     "expected_text": "Wind power!",
-    "status": "unavailable",
+    "status": "mismatch",
     "python_executable": "/home/runner/work/cartoon-facebook-bot/cartoon-facebook-bot/.asr-venv/bin/python",
-    "module_spec": "None",
+    "module_spec": "ModuleSpec(name='faster_whisper', loader=<_frozen_importlib_external.SourceFileLoader object at 0x7a63b4bcdb80>, origin='/home/runner/work/cartoon-facebook-bot/cartoon-facebook-bot/.asr-venv/lib/python3.12/site-packages/faster_whisper/__init__.py', submodule_search_locations=['/home/runner/work/cartoon-facebook-bot/cartoon-facebook-bot/.asr-venv/lib/python3.12/site-packages/faster_whisper'])",
     "package_versions": {
-      "faster-whisper": null,
-      "av": null,
-      "huggingface-hub": null,
-      "fsspec": null
+      "faster-whisper": "1.1.1",
+      "av": "19.0.2",
+      "huggingface-hub": "0.27.1",
+      "fsspec": "2024.10.0"
     },
-    "error_type": "ModuleNotFoundError",
-    "error": "No module named 'faster_whisper'",
-    "verified_at": "2026-11-20T22:51:12.127528+05:00"
+    "transcript": "No, no, no, no. Wait, power.",
+    "language": "en",
+    "language_probability": 1,
+    "segments": [
+      {
+        "start": 0.0,
+        "end": 8.52,
+        "text": "No, no, no, no.",
+        "avg_logprob": -1.4727316167619493,
+        "no_speech_prob": 0.16682493686676025
+      },
+      {
+        "start": 8.52,
+        "end": 10.28,
+        "text": "Wait, power.",
+        "avg_logprob": -1.4727316167619493,
+        "no_speech_prob": 0.16682493686676025
+      }
+    ],
+    "verified_at": "2026-11-20T22:54:27.017416+05:00"
   },
-  "created_at": "2026-11-20T22:51:12.184996+05:00"
+  "created_at": "2026-11-20T22:54:27.135451+05:00"
 }
