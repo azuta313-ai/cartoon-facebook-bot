@@ -169,11 +169,13 @@ def scene_effects(seconds, variant, first_shot_duration=5.0625, third_shot_start
   else: signal=smooth*env*.6
   from bobo_foley import recorded_effect
   recorded=recorded_effect(kind,length,OUT)
-  if recorded is not None: signal=recorded
+  is_recorded=recorded is not None
+  if is_recorded: signal=recorded
   signal=signal/max(1,float(np.max(np.abs(signal))))
   a=int(start*rate); z=min(len(audio),a+len(signal))
   gain={'splash':.22,'pop':.28,'wood':.30,'tap':.24,'wood_creak':.28,'roll':.30,'sand':.28,'snow':.30,'brush':.24,'air':.25,'beep':.20,'chime':.18}.get(kind,.25)
-  gain=min(gain,(.06 if kind=='splash' else .14)/max(float(np.max(np.abs(signal))),1e-9))
+  peak_limit=.06 if kind=='splash' else (.22 if is_recorded else .14)
+  gain=min(gain,peak_limit/max(float(np.max(np.abs(signal))),1e-9))
   if a<z: audio[a:z]+=signal[:z-a]*gain
  path=OUT/'scene_effects.wav'
  with wave.open(str(path),'wb') as wav:
@@ -184,7 +186,7 @@ def scene_effects(seconds, variant, first_shot_duration=5.0625, third_shot_start
 def soundtrack(seconds, variant, first_shot_duration=5.0625, music_variant=None, third_shot_start=None):
  music=original_music(seconds,variant if music_variant is None else music_variant)
  effects=scene_effects(seconds,variant,first_shot_duration,third_shot_start)
- mix=f'[0:a]loudnorm=I=-18:TP=-2:LRA=7,aresample=48000,afade=t=in:st=0:d=0.15,afade=t=out:st={seconds-.6}:d=0.6,volume=0.80[m];[1:a]aformat=channel_layouts=stereo,asplit=2[fx][key];[m][key]sidechaincompress=threshold=0.035:ratio=3:attack=10:release=180[duck];[duck][fx]amix=inputs=2:duration=first:normalize=0,atrim=duration={seconds}[audio]'
+ mix=f'[0:a]loudnorm=I=-18:TP=-2:LRA=7,aresample=48000,afade=t=in:st=0:d=0.15,afade=t=out:st={seconds-.6}:d=0.6,volume=0.80[m];[1:a]aformat=channel_layouts=stereo,asplit=2[fx][key];[m][key]sidechaincompress=threshold=0.025:ratio=4:attack=5:release=220[duck];[duck][fx]amix=inputs=2:duration=first:normalize=0,atrim=duration={seconds}[audio]'
  run(['ffmpeg','-loglevel','error','-y','-i',music,'-i',effects,'-filter_complex',mix,'-map','[audio]','-ar','48000','-ac','2','-c:a','pcm_s16le',str(OUT/'audio.wav')])
 
 def music_level(video):
