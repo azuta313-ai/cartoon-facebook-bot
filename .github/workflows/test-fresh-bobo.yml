@@ -87,7 +87,7 @@ jobs:
           assert '-->' in (b.OUT/'captions.srt').read_text()
           assert metadata['music_check_dbfs'] > -30
           assert Path(metadata['quality_reference']).read_bytes() == (b.OUT/'reference.png').read_bytes()
-          assert metadata['setting'] and metadata['scene_id'] in range(8)
+          assert metadata['setting'] and metadata['scene_id'] in range(len(b.SCENES))
           assert metadata['story_serial'] is None
           assert metadata['story_mode']=='regular_original_after_2026-10-27'
           assert metadata['title']==b.SCENES[metadata['scene_id']][0]
