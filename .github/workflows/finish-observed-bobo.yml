@@ -38,14 +38,66 @@ jobs:
           mkdir -p voice_models
           cd voice_models
           python -m piper.download_voices en_US-ljspeech-medium
-      - run: python finish_bobo_observed.py
+            - run: python finish_bobo_observed.py
+      - name: Install optional free CPU speech recognition
+        continue-on-error: true
+        run: pip install --disable-pip-version-check --timeout 30 --retries 1 faster-whisper==1.1.1
+      - name: Independently transcribe the exact final encoded mix
+        continue-on-error: true
+        run: |
+          python - <<'PY'
+          import json,subprocess
+          from pathlib import Path
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          out=Path('fresh_output')
+          expected=json.loads((out/'dialogue-timing.json').read_text())['cues'][0]['text']
+          report={'method':'independent_asr','model':'Systran/faster-whisper-tiny.en','input':'final encoded mix from bobo_fresh.mp4, decoded to mono 16kHz','expected_text':expected,'status':'unavailable'}
+          try:
+              from faster_whisper import WhisperModel
+              wav=subprocess.check_output(['ffmpeg','-v','error','-i',str(out/'bobo_fresh.mp4'),'-vn','-ac','1','-ar','16000','-f','wav','-'])
+              tmp=Path('/tmp/bobo-final-mix-16k.wav'); tmp.write_bytes(wav)
+              model=WhisperModel('Systran/faster-whisper-tiny.en',device='cpu',compute_type='int8')
+              segments,info=model.transcribe(str(tmp),language='en',beam_size=5,vad_filter=False,condition_on_previous_text=False)
+              segments=list(segments)
+              transcript=' '.join(x.text.strip() for x in segments).strip()
+              normalize=lambda value:' '.join(''.join(ch.lower() if ch.isalnum() else ' ' for ch in str(value)).split())
+              report.update(status='passed' if transcript and normalize(transcript)==normalize(expected) else 'mismatch',transcript=transcript,language=info.language,language_probability=info.language_probability,segments=[{'start':x.start,'end':x.end,'text':x.text.strip(),'avg_logprob':x.avg_logprob,'no_speech_prob':x.no_speech_prob} for x in segments])
+          except Exception as exc:
+              report.update(status='unavailable',error_type=type(exc).__name__)
+          report['verified_at']=datetime.now(ZoneInfo('Asia/Karachi')).isoformat()
+          (out/'speech-asr-review.json').write_text(json.dumps(report,indent=2))
+          print('Final-mix ASR status:',report['status'])
+          print('Recognized text:',report.get('transcript','(not available)'))
+          PY
       - run: |
           python - <<'PY'
           import json,os
           from pathlib import Path
-          p=json.loads(Path('bobo_finishing_plan.json').read_text())
-          p={'episode':p['episode'],'artifact_run_id':os.environ['GITHUB_RUN_ID'],'status':'awaiting_visual_audio_review','source_sha256':p['source_sha256']}
-          Path('bobo_review_pending.json').write_text(json.dumps(p,indent=2))
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          plan=json.loads(Path('bobo_finishing_plan.json').read_text())
+          metadata=json.loads(Path('fresh_output/episode.json').read_text())
+          technical=json.loads(Path('fresh_output/automatic-review.json').read_text())
+          asr_path=Path('fresh_output/speech-asr-review.json')
+          asr=json.loads(asr_path.read_text()) if asr_path.exists() else {'status':'unavailable','method':'independent_asr'}
+          record={
+            'episode':metadata['episode'],
+            'title':metadata['title'],
+            'scene_id':metadata['scene_id'],
+            'story_serial':metadata.get('story_serial'),
+            'story_mode':metadata.get('story_mode'),
+            'generated_sha256':metadata['generated_sha256'],
+            'source_sha256':plan['source_sha256'],
+            'final_sha256':technical['final_sha256'],
+            'status':'repaired_awaiting_exact_review',
+            'artifact_run_id':os.environ['GITHUB_RUN_ID'],
+            'source_artifact_run_id':str(plan['artifact_run_id']),
+            'speech_asr_status':asr.get('status','unavailable'),
+            'speech_asr':asr,
+            'created_at':datetime.now(ZoneInfo('Asia/Karachi')).isoformat()
+          }
+          Path('bobo_review_pending.json').write_text(json.dumps(record,indent=2))
           PY
           git config user.name 'Bobo automation'
           git config user.email 'bobo-bot@users.noreply.github.com'
