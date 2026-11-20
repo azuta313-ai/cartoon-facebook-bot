@@ -6,9 +6,9 @@
   "story_mode": "regular_original_after_2026-10-27",
   "generated_sha256": "b18f030193398ff2dba6cf461425f15ce316554283c5f40a6bfde1ce826195d4",
   "source_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
-  "final_sha256": "caa5cf59271bf8ede21cc73395d394abf76bb020fb7c6c0b934eeeeaab3bcc2e",
+  "final_sha256": "edd3446e27f8babc2b7f6d67f04004fe3ded137238218370ace88436fa68e511",
   "status": "repaired_awaiting_exact_review",
-  "artifact_run_id": "44786539583",
+  "artifact_run_id": "44786999518",
   "source_artifact_run_id": "44777648478",
   "speech_asr_status": "unavailable",
   "speech_asr": {
@@ -18,15 +18,16 @@
     "expected_text": "Wind power!",
     "status": "unavailable",
     "python_executable": "/home/runner/work/cartoon-facebook-bot/cartoon-facebook-bot/.asr-venv/bin/python",
-    "module_spec": "ModuleSpec(name='faster_whisper', loader=<_frozen_importlib_external.SourceFileLoader object at 0x78ead313ec30>, origin='/home/runner/work/cartoon-facebook-bot/cartoon-facebook-bot/.asr-venv/lib/python3.12/site-packages/faster_whisper/__init__.py', submodule_search_locations=['/home/runner/work/cartoon-facebook-bot/cartoon-facebook-bot/.asr-venv/lib/python3.12/site-packages/faster_whisper'])",
+    "module_spec": "None",
     "package_versions": {
-      "faster-whisper": "1.1.1",
-      "huggingface-hub": "0.27.1",
-      "fsspec": "2024.10.0"
+      "faster-whisper": null,
+      "av": null,
+      "huggingface-hub": null,
+      "fsspec": null
     },
-    "error_type": "TypeError",
-    "error": "open() got an unexpected keyword argument 'metadata_errors'",
-    "verified_at": "2026-11-20T22:48:09.271128+05:00"
+    "error_type": "ModuleNotFoundError",
+    "error": "No module named 'faster_whisper'",
+    "verified_at": "2026-11-20T22:51:12.127528+05:00"
   },
-  "created_at": "2026-11-20T22:48:09.383203+05:00"
+  "created_at": "2026-11-20T22:51:12.184996+05:00"
 }
