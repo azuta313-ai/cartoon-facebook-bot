@@ -474,7 +474,7 @@ def main():
  if board:
   metadata.update(story_id=board.get('story_id'),storyboard_version=board.get('version'),storyboard_shots=board.get('shots'))
  if scene_id==8:
-  metadata.update(scene_effects=[{'type':'wood','source':'Kenney Impact Sounds / impactWood_light_000.ogg','source_sha256':'eb45e35b8c3c1b0b9a8f1e3b6c5d8c2f4a6b8c0d','license':'CC0-1.0','start_seconds':round(sum(shot_durations[:2])+.25,3),'duration_seconds':.18,'observed_action':'Bobo steadies the wooden pinwheel handle','target_peak_dbfs':-17.1,'music_duck':'sidechaincompress ratio 3, attack 10ms, release 180ms'}])
+  metadata.update(scene_effects=[{'type':'wood','source':'Kenney Impact Sounds / impactWood_light_000.ogg','source_sha256':'eb45e35b4bed784d3f120de4afec4b0d6ac09d9e143cce8cfcb7d739e1b1f3c3','license':'CC0-1.0','start_seconds':round(sum(shot_durations[:2])+.25,3),'duration_seconds':.18,'observed_action':'Bobo steadies the wooden pinwheel handle','target_peak_dbfs':-17.1,'music_duck':'sidechaincompress ratio 3, attack 10ms, release 180ms'}])
  metadata.update(music_variant=music_variant,music_style=MUSIC_STYLES[music_variant%8],music='original procedural arrangement '+str(music_variant),sound_design_version=3,pacing_review_required=True)
  metadata['story_serial']=serial
  metadata['story_mode']='regular_original_after_2026-10-27' if serial is None else 'ten_day_story_queue'
