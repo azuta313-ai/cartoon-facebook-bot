@@ -24,7 +24,7 @@ def prepare_voice(out,scene_id,total=11,start=.35,text=None):
     clip=out/'voice-line.wav'
     # Small pitch lift for a consistent cartoon voice; retain intelligibility.
     run(['ffmpeg','-v','error','-y','-i',str(raw),'-af',
-         'silenceremove=start_periods=1:start_duration=0.02:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_duration=0.02:start_threshold=-45dB,areverse,asetrate=25357,aresample=48000,loudnorm=I=-17:TP=-2:LRA=7',
+         'silenceremove=start_periods=1:start_duration=0.02:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_duration=0.02:start_threshold=-45dB,areverse,aresample=48000,loudnorm=I=-17:TP=-2:LRA=7',
          '-ar','48000','-ac','2','-c:a','pcm_s16le',str(clip)])
     with wave.open(str(clip),'rb') as wav:
         rate=wav.getframerate(); channels=wav.getnchannels()
@@ -42,7 +42,7 @@ def prepare_voice(out,scene_id,total=11,start=.35,text=None):
         wav.setnchannels(channels);wav.setsampwidth(2);wav.setframerate(rate);wav.writeframes(track.tobytes())
     cue={'text':text,'start':start,'end':round(start+duration,4),'kind':'spoken dialogue','placement':'provisional; requires actual rendered mouth/action review'}
     record={'enabled':True,'engine':'Piper local CPU','model':VOICE_MODEL,'model_sha256':hashlib.sha256(model.read_bytes()).hexdigest(),
-            'voice_sha256':hashlib.sha256(clip.read_bytes()).hexdigest(),'language':'en-US','pitch_factor':1.15,'cost':0,
+            'voice_sha256':hashlib.sha256(clip.read_bytes()).hexdigest(),'language':'en-US','pitch_factor':1.0,'cost':0,
             'lip_sync_verified':False,'listening_verified':False,'cues':[cue],
             'license':'Piper GPL-3.0; voice repository MIT; LJ Speech source public domain',
             'license_source':'https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD'}
