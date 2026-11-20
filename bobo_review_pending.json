@@ -6,9 +6,9 @@
   "story_mode": "regular_original_after_2026-10-27",
   "generated_sha256": "b18f030193398ff2dba6cf461425f15ce316554283c5f40a6bfde1ce826195d4",
   "source_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
-  "final_sha256": "61df6b6e89b9f6b3be8953ea6600e25e17cac85346bb696f7ee574a82ef87d8e",
+  "final_sha256": "caa5cf59271bf8ede21cc73395d394abf76bb020fb7c6c0b934eeeeaab3bcc2e",
   "status": "repaired_awaiting_exact_review",
-  "artifact_run_id": "44783954762",
+  "artifact_run_id": "44786539583",
   "source_artifact_run_id": "44777648478",
   "speech_asr_status": "unavailable",
   "speech_asr": {
@@ -17,11 +17,16 @@
     "input": "final encoded mix from bobo_fresh.mp4, decoded to mono 16kHz",
     "expected_text": "Wind power!",
     "status": "unavailable",
-    "python_executable": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
-    "module_spec": "ModuleSpec(name='faster_whisper', loader=<_frozen_importlib_external.SourceFileLoader object at 0x715283956c30>, origin='/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/faster_whisper/__init__.py', submodule_search_locations=['/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/faster_whisper'])",
+    "python_executable": "/home/runner/work/cartoon-facebook-bot/cartoon-facebook-bot/.asr-venv/bin/python",
+    "module_spec": "ModuleSpec(name='faster_whisper', loader=<_frozen_importlib_external.SourceFileLoader object at 0x78ead313ec30>, origin='/home/runner/work/cartoon-facebook-bot/cartoon-facebook-bot/.asr-venv/lib/python3.12/site-packages/faster_whisper/__init__.py', submodule_search_locations=['/home/runner/work/cartoon-facebook-bot/cartoon-facebook-bot/.asr-venv/lib/python3.12/site-packages/faster_whisper'])",
+    "package_versions": {
+      "faster-whisper": "1.1.1",
+      "huggingface-hub": "0.27.1",
+      "fsspec": "2024.10.0"
+    },
     "error_type": "TypeError",
     "error": "open() got an unexpected keyword argument 'metadata_errors'",
-    "verified_at": "2026-11-20T22:31:50.528149+05:00"
+    "verified_at": "2026-11-20T22:48:09.271128+05:00"
   },
-  "created_at": "2026-11-20T22:31:50.646977+05:00"
+  "created_at": "2026-11-20T22:48:09.383203+05:00"
 }
