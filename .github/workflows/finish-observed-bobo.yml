@@ -75,7 +75,7 @@ jobs:
               from faster_whisper import WhisperModel
               wav=subprocess.check_output(['ffmpeg','-v','error','-i',str(out/'bobo_fresh.mp4'),'-vn','-ac','1','-ar','16000','-f','wav','-'])
               tmp=Path('/tmp/bobo-final-mix-16k.wav'); tmp.write_bytes(wav)
-              model=WhisperModel('Systran/faster-whisper-tiny.en',device='cpu',compute_type='int8')
+              model=WhisperModel('Systran/faster-whisper-base.en',device='cpu',compute_type='int8')
               segments,info=model.transcribe(str(tmp),language='en',beam_size=5,vad_filter=False,condition_on_previous_text=False)
               segments=list(segments)
               transcript=' '.join(x.text.strip() for x in segments).strip()
