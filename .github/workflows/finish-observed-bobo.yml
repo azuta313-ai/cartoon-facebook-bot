@@ -43,7 +43,7 @@ jobs:
         continue-on-error: true
         run: |
           python -m venv .asr-venv
-          .asr-venv/bin/python -m pip install --disable-pip-version-check --timeout 60 --retries 2 faster-whisper==1.1.1 av==14.4.0 requests==2.32.5 huggingface-hub==0.27.1 fsspec==2024.10.0
+          .asr-venv/bin/python -m pip install --disable-pip-version-check --timeout 60 --retries 2 faster-whisper==1.1.1 av==19.0.2 requests==2.32.5 huggingface-hub==0.27.1 fsspec==2024.10.0
           .asr-venv/bin/python - <<'PY'
           from importlib.metadata import version
           for name in ('faster-whisper','av','huggingface-hub','fsspec','requests'):
@@ -66,6 +66,12 @@ jobs:
               try: report.setdefault('package_versions',{})[package]=version(package)
               except PackageNotFoundError: report.setdefault('package_versions',{})[package]=None
           try:
+              import av
+              _av_open=av.open
+              def _av_open_compat(*args,**kwargs):
+                  kwargs.pop('metadata_errors',None)
+                  return _av_open(*args,**kwargs)
+              av.open=_av_open_compat
               from faster_whisper import WhisperModel
               wav=subprocess.check_output(['ffmpeg','-v','error','-i',str(out/'bobo_fresh.mp4'),'-vn','-ac','1','-ar','16000','-f','wav','-'])
               tmp=Path('/tmp/bobo-final-mix-16k.wav'); tmp.write_bytes(wav)
