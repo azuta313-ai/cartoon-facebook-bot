@@ -79,6 +79,13 @@ def finish(source, plan, output):
         return value
     metadata=replace_line(metadata)
     metadata.setdefault('comedy_series',{})['voice_line']=spoken_text
+    storyboard_path=output/'storyboard.json'
+    if storyboard_path.exists():
+        storyboard=replace_line(json.loads(storyboard_path.read_text()))
+        storyboard['voice_line']=spoken_text
+        if isinstance(storyboard.get('shots'),list) and len(storyboard['shots'])>=3:
+            storyboard['shots'][2]['action']=replace_line(storyboard['shots'][2]['action'])
+        storyboard_path.write_text(json.dumps(storyboard,indent=2))
     metadata.update(voice=voice,caption_timing=captions,social_caption=plan['social_caption'],finishing_required=False,planned_effects_unverified=False,observed_effects=plan['effects'],scene_effects=plan['effects'],review_required=True,finishing_source_sha256=plan['source_sha256'],final_sha256=final_sha,music_check_dbfs=round(generator.music_level(final_video),2))
     def stamp(value):
         milliseconds=round(float(value)*1000)
