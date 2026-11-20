@@ -1,35 +1,65 @@
 {
-  "episode": 40522037,
-  "artifact_run_id": 39091647324,
-  "source_sha256": "6c33d3dacfab3ad31c30d0e437d1c826d90f0799a74386d265d0f74d747b78fc",
+  "episode": 40522242,
+  "artifact_run_id": 44777648478,
+  "source_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
   "observed_from_full_render": true,
   "observed_actions": {
-    "umbrella_turn_and_lower": [
-      0.625,
-      1.625
+    "title_card": [
+      0,
+      1.5
     ],
-    "bowl_on_ground": [
-      1.625,
-      11
+    "opening_puff": [
+      0.125,
+      1.375
     ],
-    "leaf_fall_and_handling": [
-      8.375,
-      9.625
+    "pinwheel_rotation_and_tracking": [
+      1.5,
+      8
+    ],
+    "handle_adjustment": [
+      8.5,
+      8.75
+    ],
+    "mouth_window": [
+      8.5,
+      9.25
+    ],
+    "presentation_and_pointing": [
+      8.25,
+      10.75
     ],
     "ending_reaction": [
       9.25,
-      10.5
+      10.75
     ]
   },
   "purposeful_action_by": 0.125,
   "speech": {
-    "text": "Leaf catcher!",
-    "start": 9.375,
-    "observed_action": "ending_reaction",
+    "text": "Wind power!",
+    "start": 8.5,
+    "observed_action": "mouth_window",
     "mouth_window_observed": true
   },
-  "captions": [],
-  "effects": [],
-  "social_caption": "An umbrella with a new job. 🍂☂️🐒\nBobo finds a playful use for his upside-down umbrella.\nFollow Bobo Giggle Grove for the next little adventure.\n#Bobo #3DAnimation #AutumnAdventure",
-  "review_notes": "Full source8fps reviewed. Move exact line to observed late reaction after leaf arrival. Remove unrelated scene0 bubble/pop effects rather than invent contact sounds; natural foley remains to be verified before final approval. Preserve music10 airy flute dance; no GPU regeneration. Mouth shapes approximate only under relaxed Snowball benchmark."
+  "captions": [
+    {
+      "text": "Bobo's Pinwheel Surprise",
+      "start": 0,
+      "end": 1.5,
+      "observed_action": "title_card",
+      "y": 150,
+      "size": 36
+    }
+  ],
+  "effects": [
+    {
+      "type": "wood",
+      "start": 8.57,
+      "duration": 0.18,
+      "observed_action": "handle_adjustment",
+      "source": "Kenney Impact Sounds / impactWood_light_000.ogg; pinned CC0-1.0 source and SHA256 in bobo_foley.py",
+      "material_matched": true
+    }
+  ],
+  "social_caption": "A tiny puff gets Bobo's rainbow pinwheel spinning, and he proudly shows it off. 🌈🐒\nFollow Bobo Giggle Grove for the next little adventure. 🌳🐒\n#Bobo #3DAnimation #AnimatedShorts",
+  "review_notes": "Downloaded exact Daily Fresh Bobo run 381 artifact. Reviewed all 44 full-render samples at 4 fps and title/spoken-subtitle transitions at 8 fps. Opening puff and pinwheel rotation are visible; a brief initial 0.0-0.125s compression/pixelation glitch clears by 0.25s. During 1.5-8.0s the pinwheel keeps rotating while Bobo tracks it; body movement is restrained but not a frozen frame. At 8.25-10.75s Bobo presents the pinwheel and points. Retimed the Piper line from 8.276s to an observed 8.5s mouth window; remeasure end from the newly rendered Piper file. Remove the prior unproven generic air/pop effect events; replace with one verified CC0 wooden-handle foley cue at 8.57s during the observed grip/presentation movement. Preserve music variant 20, gentle bell waltz. No subjective listening or lip-sync claim. Final-mix ASR step will independently verify the encoded spoken line; hold if ASR is unavailable or mismatched."
 }
