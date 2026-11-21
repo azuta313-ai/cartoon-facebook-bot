@@ -6,7 +6,7 @@
   "last_generation_run_id": 44777648478,
   "last_provider_result": "Daily Fresh Bobo #381 connected to the free Hugging Face ZeroGPU Space and produced the source artifact for episode 40522242. Finish Observed Bobo Draft #13 repaired that same source and independently transcribed the final encoded mix as 'It spins.' Latest Daily Fresh Bobo #389 made no provider request because this exact draft was pending review; no quota error was observed.",
   "latest_check": {
-    "checked_at": "2026-11-20T23:22:21+05:00",
+    "checked_at": "2026-11-21T15:05:57+05:00",
     "latest_daily_run": {
       "workflow": ".github/workflows/daily.yml",
       "run_number": 389,
@@ -40,27 +40,59 @@
       "result": "Exact repaired artifact reviewed and approved; staged for the 21 November 09:00 Pakistan slot, not yet published."
     },
     "pending_gate": {
-      "bobo_review_pending_json_present": true,
+      "bobo_review_pending_json_present": false,
       "episode": 40522242,
       "title": "Bobo's Pinwheel Surprise",
-      "status": "reviewed_approved_waiting_scheduled_slot",
-      "approval_status": "approved",
-      "action": "Preserve pending gate until Facebook accepts the exact reviewed file; no duplicate generation while this draft is pending."
+      "status": "cleared_after_facebook_acceptance",
+      "approval_status": "published_all_platforms_accepted",
+      "cleared_at": "2026-11-21T14:55:22.746982+05:00",
+      "action": "Exact reviewed SHA was accepted by Facebook; Instagram Reel and both Stories were subsequently accepted. No pending draft gate remains."
     },
     "publication_status": {
-      "new_publication_on_2026_11_20": false,
-      "next_due_approved_slot": "2026-11-21T09:00:00+05:00",
+      "new_publication_on_2026_11_21": true,
       "episode": 40522242,
-      "status": "staged_not_published",
-      "latest_recorded_episode": 40522037,
-      "latest_recorded_title": "Bobo's Upside-Down Umbrella",
-      "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
-      "latest_recorded_facebook_video_id": "2296956914491800"
+      "title": "Bobo's Pinwheel Surprise",
+      "status": "published_all_platforms_accepted",
+      "published_at": "2026-11-21T14:55:22.746982+05:00",
+      "distinct_videos_published_today": 1,
+      "daily_target": 2,
+      "facebook_video_id": "2143383803215254",
+      "instagram_reel_id": "18135447925755686",
+      "instagram_reel_permalink": "https://www.instagram.com/reel/Df_9RbeAAYV/",
+      "instagram_story_id": "18152414131561566",
+      "instagram_story_permalink": "https://www.instagram.com/stories/bobogigglegrove/4035213599726115308",
+      "facebook_story_video_id": "3351153948428426",
+      "facebook_story_accepted_at": "2026-11-21T14:56:49.411099+05:00"
     },
     "generation_blockers": {
-      "primary": "No current draft-generation blocker beyond the approved episode's publication gate. The pinwheel scene-8 reference, storyboard and generator/voice support were successfully used by run #381.",
-      "provider": "The free Hugging Face ZeroGPU endpoint succeeded on run #381. Latest run #389 did not call the provider because an unreviewed draft existed; no quota error observed. Future availability remains unverified.",
-      "next_step": "Allow the exact reviewed episode to reach its scheduled slot and verify platform acceptance. After the pending gate clears, attempt a second distinct original video for the 17:00 slot using free generation only; do not reuse pinwheel or historical footage."
+      "primary": "No current pending draft. The second distinct video is blocked by exhaustion of the eligible original scene-reference pool, not by an observed quota error.",
+      "provider": "Free Hugging Face ZeroGPU generation succeeded on run #381 (20 November); run #389 made no provider request because the prior draft was pending. No quota error was observed.",
+      "eligible_scene_ids": [],
+      "used_scene_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "candidate_scene_order": [
+        8,
+        7,
+        1,
+        2,
+        0,
+        3,
+        4
+      ],
+      "retired_scene_ids": [
+        5,
+        6
+      ],
+      "next_step": "Add a new original matching scene reference and corresponding fresh_bobo.py SCENES and bobo_scene_policy.py entry before another zero-cost generation request; do not reuse historical footage."
     }
   },
   "recent_daily_runs_artifact_scan": [
