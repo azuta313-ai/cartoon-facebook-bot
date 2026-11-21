@@ -2355,6 +2355,12 @@
       "container_id": "17922063195533114",
       "media_id": "18152414131561566",
       "permalink": "https://www.instagram.com/stories/bobogigglegrove/4035213599726115308"
+    },
+    "story": {
+      "date": "2026-11-21",
+      "status": "attempt_started",
+      "source_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+      "strategy": "One reviewed, captioned, voiced mini-adventure per slot; no extra generation; test Story exposure and follower growth without attributing causation."
     }
   }
 }
