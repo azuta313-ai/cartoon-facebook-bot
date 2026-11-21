@@ -18,7 +18,7 @@
   "review_id": "2026-11-20-run-44788765258-review-2322",
   "review_record": "bobo_review_history/2026-11-20-run-44788765258-review-2322.json",
   "scheduled_slot": "2026-11-21T09:00:00+05:00",
-  "publication_status": "approved_waiting_scheduled_slot",
+  "publication_status": "approved_due_slot_recheck",
   "review": {
     "reviewed_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
     "completed_at": "2026-11-20T23:22:21+05:00",
@@ -176,5 +176,6 @@
       "conclusion": "No matching episode or generated/final SHA in published_bobo.json; visible pinwheel plot is distinct from the latest recorded umbrella episode."
     },
     "cost": 0
-  }
+  },
+  "publication_recheck_at": "2026-11-21T14:52:26+05:00"
 }
