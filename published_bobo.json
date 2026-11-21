@@ -2358,9 +2358,10 @@
     },
     "story": {
       "date": "2026-11-21",
-      "status": "attempt_started",
+      "status": "upload_started",
       "source_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
-      "strategy": "One reviewed, captioned, voiced mini-adventure per slot; no extra generation; test Story exposure and follower growth without attributing causation."
+      "strategy": "One reviewed, captioned, voiced mini-adventure per slot; no extra generation; test Story exposure and follower growth without attributing causation.",
+      "video_id": "3351153948428426"
     }
   }
 }
