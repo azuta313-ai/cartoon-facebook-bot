@@ -2347,6 +2347,11 @@
       "container_id": "17922062808533114",
       "media_id": "18135447925755686",
       "permalink": "https://www.instagram.com/reel/Df_9RbeAAYV/"
+    },
+    "instagram_story": {
+      "status": "attempt_started",
+      "source_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+      "date": "2026-11-21"
     }
   }
 }
