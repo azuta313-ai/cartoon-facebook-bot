@@ -93,7 +93,8 @@
         6
       ],
       "next_step": "Add a new original matching scene reference and corresponding fresh_bobo.py SCENES and bobo_scene_policy.py entry before another zero-cost generation request; do not reuse historical footage."
-    }
+    },
+    "run_inventory_note": "Run #389 is the last Daily Fresh run ID retained in the prior repository status snapshot and was verified to have no artifact. This recheck directly verified the latest nonempty artifact (#381), the final repair artifact (#13), the current approval/ledger and absence of the pending gate; it did not obtain an exhaustive repository-wide Actions run listing. Do not interpret #389 as an exhaustive latest-run claim."
   },
   "recent_daily_runs_artifact_scan": [
     {
