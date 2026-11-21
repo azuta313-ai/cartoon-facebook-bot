@@ -2,7 +2,7 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-20T23:22:21+05:00",
+  "last_observed_at": "2026-11-21T15:05:57+05:00",
   "last_generation_run_id": 44777648478,
   "last_provider_result": "Daily Fresh Bobo #381 connected to the free Hugging Face ZeroGPU Space and produced the source artifact for episode 40522242. Finish Observed Bobo Draft #13 repaired that same source and independently transcribed the final encoded mix as 'It spins.' Latest Daily Fresh Bobo #389 made no provider request because this exact draft was pending review; no quota error was observed.",
   "latest_check": {
@@ -277,6 +277,226 @@
   ],
   "latest_manual_recheck": {
     "review_id": "2026-11-20-run-44788765258-review-2322",
+    "checked_at": "2026-11-21T15:05:57+05:00",
+    "result": "EXACT_REVIEWED_ARTIFACT_PUBLISHED_ALL_PLATFORMS_ACCEPTED; PENDING_GATE_CLEARED; NO_CURRENT_DRAFT",
+    "episode": 40522242,
+    "title": "Bobo's Pinwheel Surprise",
+    "final_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+    "source_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
+    "source_artifact": {
+      "run_id": 44777648478,
+      "artifact_id": 14650383562,
+      "zip_sha256": "d734b8f68d288d6d836d5fd4c4d2ea25aed718a815f073289f4aefb8b04616c5"
+    },
+    "final_artifact": {
+      "run_id": 44788765258,
+      "artifact_id": 14654803280,
+      "zip_sha256": "b56077e9eb09b736b3a0a68388f72e48e53c29971734d270f702071e2ddeb8b4"
+    },
+    "review": {
+      "completed_at": "2026-11-20T23:22:21+05:00",
+      "full_render_sample_fps": 4,
+      "full_render_sample_count": 44,
+      "transition_sample_fps": 8,
+      "duration_seconds": 11,
+      "observed_actions": {
+        "opening_puff": [
+          0.125,
+          1.375
+        ],
+        "pinwheel_rotation_and_tracking": [
+          1.5,
+          8
+        ],
+        "handle_adjustment": [
+          8.5,
+          8.75
+        ],
+        "mouth_window": [
+          8.5,
+          9.25
+        ],
+        "presentation_and_pointing": [
+          8.25,
+          10.75
+        ],
+        "ending_reaction": [
+          9.25,
+          10.75
+        ]
+      },
+      "speech": {
+        "text": "It spins!",
+        "start": 8.5,
+        "end": 9.2584,
+        "verification": "Systran/faster-whisper-base.en on final encoded mix; transcript matched",
+        "subjective_listening": false,
+        "lip_sync_claim": false
+      },
+      "captions": [
+        {
+          "text": "Bobo's Pinwheel Surprise",
+          "start": 0,
+          "end": 1.5,
+          "kind": "title"
+        },
+        {
+          "text": "It spins!",
+          "start": 8.5,
+          "end": 9.2584,
+          "kind": "spoken"
+        }
+      ],
+      "effect": {
+        "type": "wood",
+        "start": 8.57,
+        "duration": 0.18,
+        "source": "Kenney Impact Sounds impactWood_light_000.ogg; CC0-1.0; SHA256 verified",
+        "peak_dbfs": -13.24,
+        "material_matched": true,
+        "subjective_naturalness_verified": false
+      },
+      "music": {
+        "variant": 20,
+        "style": "gentle bell waltz",
+        "measured_dbfs": -15.46,
+        "duck_gain": 0.22,
+        "duck_window": [
+          8.4,
+          9.4184
+        ],
+        "subjective_audibility_verified": false
+      },
+      "technical": {
+        "codec": "H.264",
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "audio": "AAC stereo 96kHz",
+        "duration_seconds": 11,
+        "full_decode": true
+      },
+      "cosmetic_note": "Brief opening compression/pixelation clears by approximately 0.25s; accepted under 17 October cosmetic-tolerance revision."
+    },
+    "publication": {
+      "published_at": "2026-11-21T14:55:22.746982+05:00",
+      "facebook_video": {
+        "status": "accepted",
+        "id": "2143383803215254"
+      },
+      "instagram_reel": {
+        "status": "accepted",
+        "id": "18135447925755686",
+        "permalink": "https://www.instagram.com/reel/Df_9RbeAAYV/"
+      },
+      "instagram_story": {
+        "status": "accepted",
+        "id": "18152414131561566",
+        "permalink": "https://www.instagram.com/stories/bobogigglegrove/4035213599726115308"
+      },
+      "facebook_story": {
+        "status": "accepted",
+        "id": "3351153948428426",
+        "accepted_at": "2026-11-21T14:56:49.411099+05:00"
+      }
+    },
+    "pending_gate": {
+      "present": false,
+      "cleared_at": "2026-11-21T14:55:22.746982+05:00",
+      "reason": "Facebook accepted the exact reviewed SHA; platform acceptance subsequently recorded for Instagram Reel and both Stories."
+    },
+    "daily_count": {
+      "date": "2026-11-21",
+      "distinct_videos_published": 1,
+      "target": 2
+    },
+    "generation": {
+      "provider_last_success": {
+        "run_number": 381,
+        "run_id": 44777648478,
+        "date": "2026-11-20"
+      },
+      "latest_recorded_daily_run_without_artifact": {
+        "run_number": 389,
+        "run_id": 44788576261,
+        "provider_called": false,
+        "quota_error_observed": false,
+        "reason": "Existing draft was pending review at that time."
+      },
+      "quota_blocked": false,
+      "candidate_scene_order": [
+        8,
+        7,
+        1,
+        2,
+        0,
+        3,
+        4
+      ],
+      "used_scene_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "eligible_scene_ids": [],
+      "blocker": "All candidate scene references have already been used; scene IDs 5 and 6 are retired. A new original matching scene reference and corresponding SCENES/policy entry are required before another free generation request."
+    },
+    "cost": 0
+  },
+  "provider_quota_status": "Free Hugging Face ZeroGPU generation succeeded on Daily Fresh Bobo run #381 on 20 November 2026; no quota error was observed. The exact reviewed episode was published on 21 November. The current blocker for another distinct video is exhausted eligible scene references, not an observed provider quota block. Future free availability is unverified.",
+  "latest_nonempty_artifact": {
+    "run_number": 381,
+    "run_id": 44777648478,
+    "artifact_id": 14650383562,
+    "artifact_name": "fresh-bobo-video",
+    "created_at": "2026-11-20T16:54:38Z",
+    "artifact_zip_bytes": 12523127,
+    "artifact_zip_sha256": "d734b8f68d288d6d836d5fd4c4d2ea25aed718a815f073289f4aefb8b04616c5",
+    "video_file": "bobo_fresh.mp4",
+    "video_bytes": 5335517,
+    "video_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
+    "classification": "Latest nonempty Daily Fresh Bobo source artifact; repaired final artifact is separately recorded below."
+  },
+  "latest_publish_workflow": {
+    "run_number": 114,
+    "run_id": 44792419377,
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/44792419377",
+    "conclusion": "success",
+    "approval_validation": "passed",
+    "reserve_staging": "success",
+    "facebook_video_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "Approved episode 40522242 is for the 21 November 09:00 Pakistan slot; the 20 November staging run correctly preserved the pending gate and did not publish early."
+  },
+  "publication_status": {
+    "new_publication_this_check": false,
+    "ledger_entries_for_2026_11_16": 0,
+    "latest_recorded_video_episode": 40522037,
+    "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
+    "facebook_video_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "note": "Publish run #108 skipped all four upload operations. No new Facebook/Instagram video or Story acceptance recorded for 2026-11-16."
+  },
+  "review_record": "bobo_review_history/2026-11-19-run-379-recheck-2342.json",
+  "cost": 0,
+  "generation_blockers": {
+    "primary": "The eligible original scene references are used/recent/reserved. The new pinwheel storyboard is present but scene8.jpg is absent; only assets/scenes/scene8.jpg.b64.01 exists, with no .02/.03. bobo_scene_policy.py and fresh_bobo.py do not support scene_id 8.",
+    "provider": "Free Hugging Face ZeroGPU availability remains unverified because run #379 stopped before any provider request. No quota error was observed.",
+    "next_step": "Complete and verify the exact scene8 reference asset, then wire scene_id 8 and bobo_storyboard_pinwheel.json into bobo_scene_policy.py, fresh_bobo.py and the voice/caption timing path. Preserve the third-shot reaction placement for the Piper line. No paid generation or unrelated-scene fallback."
+  },
+  "latest_manual_recheck_result": "FREE_ZERO_GPU_GENERATION_SUCCEEDED_RUN_381; EXACT_PINWHEEL_ARTIFACT_REPAIRED_AND_ASR_VERIFIED; FULL_4FPS_AND_CAPTION_TRANSITION_8FPS_REVIEW_PASSED; APPROVAL_STAGED_IN_RESERVE_BY_PUBLISH_RUN_114; NOT_YET_PUBLISHED; PENDING_GATE_RETAINED; SECOND_DAILY_VIDEO_NOT_YET_GENERATED",
+  "previous_manual_recheck": {
+    "review_id": "2026-11-20-run-44788765258-review-2322",
     "completed_at": "2026-11-20T23:22:21+05:00",
     "result": "APPROVED_EXACT_ARTIFACT_AND_STAGED_FOR_2026-11-21_09:00_PK; NO_FACEBOOK_ACCEPTANCE_YET",
     "run_inventory": {
@@ -323,8 +543,7 @@
     },
     "next_step": "Verify Facebook/Instagram/Story acceptance after the due slot. Only after the pending gate clears, attempt the second distinct video for the 17:00 slot with zero-cost generation."
   },
-  "provider_quota_status": "Free Hugging Face ZeroGPU generation was observed succeeding in Daily Fresh Bobo run #381 on 20 November 2026. The latest run #389 skipped generation because episode 40522242 was awaiting exact-file review; no provider quota error was observed in that run. Future free availability is not guaranteed.",
-  "latest_nonempty_artifact": {
+  "previous_nonempty_artifact": {
     "run_number": 341,
     "run_id": 41880398664,
     "job_id": 126751027283,
@@ -485,37 +704,5 @@
     "generated_mp4_sha256": "2447d38deb4d761a59bf5d2f101aa486e67c90de8331902341ceed6d90af1d6a",
     "generated_mp4_sha256_verified": true,
     "classification": "Historical intermediate only; incomplete, no final audio/video export, not publishable."
-  },
-  "latest_publish_workflow": {
-    "run_number": 114,
-    "run_id": 44792419377,
-    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/44792419377",
-    "conclusion": "success",
-    "approval_validation": "passed",
-    "reserve_staging": "success",
-    "facebook_video_step": "skipped",
-    "instagram_reel_step": "skipped",
-    "instagram_story_step": "skipped",
-    "facebook_story_step": "skipped",
-    "reason": "Approved episode 40522242 is for the 21 November 09:00 Pakistan slot; the 20 November staging run correctly preserved the pending gate and did not publish early."
-  },
-  "publication_status": {
-    "new_publication_this_check": false,
-    "ledger_entries_for_2026_11_16": 0,
-    "latest_recorded_video_episode": 40522037,
-    "latest_recorded_video_published_at": "2026-10-18T17:28:38.324797+05:00",
-    "facebook_video_step": "skipped",
-    "instagram_reel_step": "skipped",
-    "instagram_story_step": "skipped",
-    "facebook_story_step": "skipped",
-    "note": "Publish run #108 skipped all four upload operations. No new Facebook/Instagram video or Story acceptance recorded for 2026-11-16."
-  },
-  "review_record": "bobo_review_history/2026-11-19-run-379-recheck-2342.json",
-  "cost": 0,
-  "generation_blockers": {
-    "primary": "The eligible original scene references are used/recent/reserved. The new pinwheel storyboard is present but scene8.jpg is absent; only assets/scenes/scene8.jpg.b64.01 exists, with no .02/.03. bobo_scene_policy.py and fresh_bobo.py do not support scene_id 8.",
-    "provider": "Free Hugging Face ZeroGPU availability remains unverified because run #379 stopped before any provider request. No quota error was observed.",
-    "next_step": "Complete and verify the exact scene8 reference asset, then wire scene_id 8 and bobo_storyboard_pinwheel.json into bobo_scene_policy.py, fresh_bobo.py and the voice/caption timing path. Preserve the third-shot reaction placement for the Piper line. No paid generation or unrelated-scene fallback."
-  },
-  "latest_manual_recheck_result": "FREE_ZERO_GPU_GENERATION_SUCCEEDED_RUN_381; EXACT_PINWHEEL_ARTIFACT_REPAIRED_AND_ASR_VERIFIED; FULL_4FPS_AND_CAPTION_TRANSITION_8FPS_REVIEW_PASSED; APPROVAL_STAGED_IN_RESERVE_BY_PUBLISH_RUN_114; NOT_YET_PUBLISHED; PENDING_GATE_RETAINED; SECOND_DAILY_VIDEO_NOT_YET_GENERATED"
+  }
 }
