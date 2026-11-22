@@ -1,0 +1,180 @@
+{
+  "review_id": "2026-11-22-run-45047254055-recheck-2244",
+  "completed_at": "2026-11-22T22:44:33+05:00",
+  "status": "no_new_draft_latest_daily_run_no_artifact; previously_published_final_artifact_rechecked",
+  "latest_daily_run": {
+    "workflow": "Daily Fresh Bobo",
+    "run_number": 394,
+    "run_id": 45047254055,
+    "created_at": "2026-11-22T17:03:22Z",
+    "created_at_pakistan": "2026-11-22T22:03:22+05:00",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "log_verified": true,
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45047254055"
+  },
+  "previous_daily_run": {
+    "run_number": 393,
+    "run_id": 45000488319,
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false
+  },
+  "latest_nonempty_daily_source_artifact": {
+    "workflow_run_id": 44777648478,
+    "artifact_id": 14650383562,
+    "artifact_name": "fresh-bobo-video",
+    "artifact_zip_sha256": "d734b8f68d288d6d836d5fd4c4d2ea25aed718a815f073289f4aefb8b04616c5",
+    "source_video_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
+    "downloaded_and_verified": true
+  },
+  "final_reviewed_artifact": {
+    "workflow_run_id": 44788765258,
+    "artifact_id": 14654803280,
+    "artifact_name": "fresh-bobo-video",
+    "artifact_zip_sha256": "b56077e9eb09b736b3a0a68388f72e48e53c29971734d270f702071e2ddeb8b4",
+    "file": "bobo_fresh.mp4",
+    "final_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+    "duration_seconds": 11,
+    "downloaded_and_verified": true,
+    "source_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe"
+  },
+  "visual_review": {
+    "full_render_sample_fps": 4,
+    "full_render_sample_count": 44,
+    "opening_transition_sample_fps": 8,
+    "opening_transition_sample_count": 12,
+    "spoken_subtitle_transition_sample_fps": 8,
+    "spoken_subtitle_transition_sample_count": 12,
+    "observed_actions": {
+      "opening_puff": [
+        0.125,
+        1.375
+      ],
+      "pinwheel_rotation_and_tracking": [
+        1.5,
+        8
+      ],
+      "handle_adjustment": [
+        8.5,
+        8.75
+      ],
+      "presentation_and_pointing": [
+        8.25,
+        10.75
+      ],
+      "ending_reaction": [
+        9.25,
+        10.75
+      ]
+    },
+    "result": "Original 3D brown monkey Bobo in red shirt and same rainbow pinwheel remain recognizable. Pinwheel rotation is visible; Bobo tracks it through the middle section, then presents and points. The tracking section is comparatively restrained but not frozen. A brief opening compression/pixelation artifact clears by approximately 0.25s. This is an already-published historical file, not a new pending draft."
+  },
+  "captions": {
+    "spoken_text": "It spins!",
+    "spoken_start": 8.5,
+    "spoken_end": 9.2584,
+    "spoken_subtitle_exact": true,
+    "title": "Bobo's Pinwheel Surprise",
+    "title_start": 0,
+    "title_end": 1.5,
+    "action_caption_policy": "No unobserved action captions were added."
+  },
+  "voice": {
+    "engine": "Piper local CPU",
+    "cost": 0,
+    "verification_method": "independent_asr",
+    "asr_model": "Systran/faster-whisper-base.en",
+    "asr_transcript": "It spins.",
+    "asr_input": "final encoded mix from bobo_fresh.mp4 decoded to mono 16kHz",
+    "intelligibility_verified_by_asr": true,
+    "subjective_listening_performed": false,
+    "lip_sync_verified": false,
+    "note": "No subjective listening or phoneme-level lip synchronization is claimed."
+  },
+  "audio": {
+    "music_variant": 20,
+    "music_style": "gentle bell waltz",
+    "music_measured_dbfs": -15.46,
+    "voice_duck_gain": 0.22,
+    "voice_duck_db": -13.15,
+    "duck_window": [
+      8.4,
+      9.4184
+    ],
+    "effect": {
+      "type": "wood",
+      "source": "Kenney Impact Sounds / impactWood_light_000.ogg",
+      "license": "CC0-1.0",
+      "source_sha256": "eb45e35b4bed784d3f120de4afec4b0d6ac09d9e143cce8cfcb7d739e1b1f3c3",
+      "timestamp": 8.57,
+      "duration_seconds": 0.18,
+      "peak_dbfs_in_effect_stem": -13.24,
+      "observed_action": "handle_adjustment",
+      "fade_in_ms": 10,
+      "fade_out_ms": 10,
+      "subjective_naturalness_listening_verified": false
+    },
+    "removed_effects": "Unverified generic air/pop events removed; no water action, so no splash cue."
+  },
+  "technical": {
+    "duration_seconds": 11,
+    "video": "H.264 720x1280 30fps",
+    "audio": "AAC stereo 96kHz",
+    "full_decode_passed": true,
+    "final_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd"
+  },
+  "publication": {
+    "publication_workflow_run_id": 45022172760,
+    "publication_workflow_run_number": 119,
+    "publication_workflow_result": "success_noop; no unpublished approved episode, all publish steps skipped",
+    "status": "previously_published_all_platforms_accepted",
+    "published_at": "2026-11-21T14:55:22.746982+05:00",
+    "facebook_video_id": "2143383803215254",
+    "instagram_reel_id": "18135447925755686",
+    "instagram_reel_permalink": "https://www.instagram.com/reel/Df_9RbeAAYV/",
+    "instagram_story_id": "18152414131561566",
+    "instagram_story_permalink": "https://www.instagram.com/stories/bobogigglegrove/4035213599726115308",
+    "facebook_story_video_id": "3351153948428426",
+    "facebook_story_post_id": "1819762365731527",
+    "pending_gate": "cleared",
+    "pending_file_present": false,
+    "pending_directory_present": false,
+    "distinct_videos_published_2026_11_22": 0,
+    "daily_target": 2
+  },
+  "generation_blocker": {
+    "reason": "No pending draft and no unpublished approved reserve. All eligible distinct original scene references are used/recent/reserved.",
+    "candidate_scene_ids": [
+      8,
+      7,
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "used_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7,
+      8
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "eligible_scene_ids": [],
+    "provider_contacted": false,
+    "quota_error_observed": false,
+    "free_quota_availability": "unverified",
+    "next_step": "Add one new original matching scene reference plus its fresh_bobo.py SCENES/storyboard entry and bobo_scene_policy.py eligibility entry before attempting free generation. Do not use an unrelated-scene fallback."
+  },
+  "cost": 0
+}
