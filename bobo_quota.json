@@ -2,32 +2,38 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-22T21:18:11+05:00",
-  "last_generation_run_id": 44777648478,
-  "last_provider_result": "Daily Fresh Bobo #393 completed successfully but stopped before any Hugging Face request because all eligible distinct original scene references are used/recent/reserved. No artifact was produced and no provider quota error was observed. Free quota availability remains unverified. The latest available source artifact is run #381; its repaired exact final artifact was re-downloaded, SHA-verified, sampled at 4fps/8fps, and is already accepted on Facebook, Instagram Reel and both Story surfaces.",
+  "last_observed_at": "2026-11-22T22:44:33+05:00",
+  "last_generation_run_id": 45047254055,
+  "last_provider_result": "Daily Fresh Bobo #394 completed successfully but produced no artifact: fresh_bobo.py stopped at the distinct-scene guard before any Hugging Face request because all eligible original scene references are already used/recent/reserved. No provider quota error was observed; free quota availability remains unverified. No pending draft or unpublished approved reserve exists. The most recent nonempty Daily Fresh source artifact is run #381; its repaired exact final artifact was downloaded, SHA-verified and rechecked, and is already accepted on Facebook, Instagram Reel, Instagram Story and Facebook Story.",
   "latest_check": {
-    "checked_at": "2026-11-22T21:18:11+05:00",
+    "checked_at": "2026-11-22T22:44:33+05:00",
     "latest_daily_run": {
       "workflow": ".github/workflows/daily.yml",
-      "run_number": 393,
-      "run_id": 45000488319,
-      "job_id": 137140720450,
-      "created_at": "2026-11-22T07:56:32Z",
-      "created_at_pakistan": "2026-11-22T12:56:32+05:00",
+      "run_number": 394,
+      "run_id": 45047254055,
+      "job_id": 137284437739,
+      "created_at": "2026-11-22T17:03:22Z",
+      "created_at_pakistan": "2026-11-22T22:03:22+05:00",
       "conclusion": "success",
       "artifact_count": 0,
       "provider_called": false,
       "quota_error_observed": false,
       "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
-      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45000488319",
-      "newer_daily_run_visible_as_of_check": false
+      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45047254055"
     },
     "previous_daily_run": {
-      "run_number": 392,
-      "run_id": 44953971112,
+      "run_number": 393,
+      "run_id": 45000488319,
       "artifact_count": 0,
       "provider_called": false,
       "quota_error_observed": false
+    },
+    "latest_publish_run": {
+      "workflow": ".github/workflows/publish-reviewed-bobo.yml",
+      "run_number": 119,
+      "run_id": 45022172760,
+      "conclusion": "success_noop",
+      "publish_steps": "skipped; no unpublished approved episode"
     },
     "latest_nonempty_daily_artifact": {
       "run_number": 381,
@@ -42,7 +48,7 @@
       "zip_sha256": "b56077e9eb09b736b3a0a68388f72e48e53c29971734d270f702071e2ddeb8b4",
       "final_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
       "review_id": "2026-11-20-run-44788765258-review-2322",
-      "result": "Exact final 11-second artifact downloaded and rechecked at 4fps/8fps; final-mix ASR transcript matched; platform ledger confirms acceptance on Facebook, Instagram Reel, Instagram Story and Facebook Story."
+      "result": "Downloaded and independently rechecked at 4fps/8fps; exact final-mix ASR transcript matched; no subjective listening claimed; already published on Facebook, Instagram Reel and both Story surfaces."
     },
     "pending_gate": {
       "bobo_review_pending_json_present": false,
@@ -65,7 +71,7 @@
     },
     "generation_blockers": {
       "primary": "No pending draft and no unpublished approved reserve. All eligible distinct original scene references are used/recent/reserved.",
-      "provider": "Provider not contacted by run #393; no quota error observed. Free quota availability remains unverified.",
+      "provider": "Provider not contacted by run #394; no quota error observed. Free quota availability remains unverified.",
       "eligible_scene_ids": [],
       "candidate_scene_ids": [
         8,
@@ -91,10 +97,9 @@
       ],
       "next_step": "Add one new original matching scene reference plus its fresh_bobo.py SCENES/storyboard entry and bobo_scene_policy.py eligibility entry before a zero-cost provider attempt. Do not use an unrelated-scene fallback."
     },
-    "audit_record": "bobo_review_history/2026-11-22-run-45000488319-recheck-2118.json",
-    "cost": 0,
+    "audit_record": "bobo_review_history/2026-11-22-run-45047254055-recheck-2244.json",
     "manual_artifact_recheck": {
-      "review_id": "2026-11-22-run-45000488319-recheck-1543",
+      "review_id": "2026-11-22-run-45047254055-recheck-2244",
       "source_artifact_id": 14650383562,
       "final_artifact_id": 14654803280,
       "source_zip_sha256": "d734b8f68d288d6d836d5fd4c4d2ea25aed718a815f073289f4aefb8b04616c5",
@@ -105,15 +110,15 @@
       "full_render_sample_fps": 4,
       "full_render_sample_count": 44,
       "transition_sample_fps": 8,
-      "transition_sample_count": 25,
+      "opening_transition_sample_count": 12,
+      "spoken_transition_sample_count": 12,
       "duration_seconds": 11,
       "speech_asr": "It spins.",
-      "speech_asr_source": "speech-asr-review.json in downloaded exact final artifact",
       "subjective_listening_performed": false,
       "effect_naturalness_listening_verified": false,
       "publication_status": "previously_published_all_four_surfaces",
       "pending_gate": "cleared",
-      "status": "previously_published_exact_artifact_rechecked; no new draft or publication"
+      "status": "no_new_draft; exact previously published artifact rechecked"
     }
   },
   "recent_daily_runs_artifact_scan": [
