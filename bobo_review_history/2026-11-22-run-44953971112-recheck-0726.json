@@ -217,5 +217,32 @@
     "free_quota_status": "unverified; latest run did not contact the provider",
     "next_step": "Add a new original matching scene reference and corresponding fresh_bobo.py SCENES and bobo_scene_policy.py entry before another zero-cost generation request. Do not reuse historical footage or assume quota reset."
   },
-  "cost": 0
+  "cost": 0,
+  "source_daily_artifact": {
+    "workflow": "Daily Fresh Bobo",
+    "run_id": 44777648478,
+    "run_number": 381,
+    "artifact_id": 14650383562,
+    "artifact_zip_sha256": "d734b8f68d288d6d836d5fd4c4d2ea25aed718a815f073289f4aefb8b04616c5",
+    "video_file": "bobo_fresh.mp4",
+    "source_video_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
+    "generated_source_sha256": "b18f030193398ff2dba6cf461425f15ce316554283c5f40a6bfde1ce826195d4",
+    "duration_seconds": 11,
+    "voice_line": "Wind power!",
+    "provisional_timing": [
+      8.276,
+      8.9517
+    ],
+    "status": "technical_pass_visual_review_required; not approved for publication"
+  },
+  "finalization_provenance": {
+    "workflow": "Finish Observed Bobo Draft",
+    "run_id": 44788765258,
+    "run_number": 13,
+    "artifact_id": 14654803280,
+    "final_video_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+    "generated_source_sha256_unchanged": "b18f030193398ff2dba6cf461425f15ce316554283c5f40a6bfde1ce826195d4",
+    "same_generated_video_preserved": true,
+    "repair_summary": "Replaced the provisional 'Wind power!' line after ASR disagreement with natural-pitch Piper 'It spins!', repositioned it to the observed mouth window at 8.5–9.2584s, updated the exact spoken subtitle, removed unverified generic air/pop events, and retained one checksum-verified CC0 wooden-handle tap. No new video generation; same generated.mp4 and source shot clips were preserved."
+  }
 }
