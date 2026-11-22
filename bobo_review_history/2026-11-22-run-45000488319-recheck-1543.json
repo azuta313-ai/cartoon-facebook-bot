@@ -1,0 +1,258 @@
+{
+  "review_id": "2026-11-22-run-45000488319-recheck-1543",
+  "completed_at": "2026-11-22T15:43:43+05:00",
+  "status": "NO_PENDING_DRAFT; latest Daily Fresh Bobo run produced no artifact; previously published exact final artifact independently re-downloaded and rechecked",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "latest_daily_run": {
+    "workflow": ".github/workflows/daily.yml",
+    "run_number": 393,
+    "run_id": 45000488319,
+    "job_id": 137140720450,
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45000488319",
+    "created_at": "2026-11-22T07:56:32Z",
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate."
+  },
+  "previous_daily_run": {
+    "run_number": 392,
+    "run_id": 44953971112,
+    "conclusion": "success",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false
+  },
+  "pending_state": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "pending_draft": false,
+    "unpublished_approved_reserve_count": 0,
+    "reserve_records": [
+      "40522030",
+      "40522032",
+      "40522037",
+      "40522242"
+    ],
+    "reserve_ledger_check": "All four reserve episode keys are already present in published_bobo.json; no unpublished reserve file is available.",
+    "latest_approval_status": "published_all_platforms_accepted",
+    "pending_gate": "cleared",
+    "cleared_at": "2026-11-21T14:55:22.746982+05:00"
+  },
+  "downloaded_artifacts": [
+    {
+      "role": "latest_nonempty_Daily_Fresh_Bobo_source_artifact",
+      "workflow_run_number": 381,
+      "workflow_run_id": 44777648478,
+      "artifact_id": 14650383562,
+      "artifact_name": "fresh-bobo-video",
+      "artifact_zip_sha256": "d734b8f68d288d6d836d5fd4c4d2ea25aed718a815f073289f4aefb8b04616c5",
+      "source_video": "bobo_fresh.mp4",
+      "source_video_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
+      "generated_video_sha256": "b18f030193398ff2dba6cf461425f15ce316554283c5f40a6bfde1ce826195d4",
+      "downloaded_via": "GitHub Actions artifact download tool",
+      "sha256_verified": true,
+      "classification": "Provisional source render; not the published file."
+    },
+    {
+      "role": "exact_repaired_reviewed_and_published_final",
+      "workflow_run_id": 44788765258,
+      "workflow_run_number": 13,
+      "artifact_id": 14654803280,
+      "artifact_name": "fresh-bobo-video",
+      "artifact_zip_sha256": "b56077e9eb09b736b3a0a68388f72e48e53c29971734d270f702071e2ddeb8b4",
+      "video_file": "bobo_fresh.mp4",
+      "final_video_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+      "downloaded_via": "GitHub Actions artifact download tool",
+      "sha256_verified": true,
+      "matches_approval_and_published_ledger": true,
+      "classification": "Previously published exact final artifact; rechecked in this run, not republished."
+    }
+  ],
+  "source_to_final_repair": {
+    "same_generated_video_sha256": "b18f030193398ff2dba6cf461425f15ce316554283c5f40a6bfde1ce826195d4",
+    "source_dialogue": {
+      "text": "Wind power!",
+      "start": 8.276,
+      "end": 8.9517,
+      "pitch_factor": 1.15,
+      "provisional": true
+    },
+    "final_dialogue": {
+      "text": "It spins!",
+      "start": 8.5,
+      "end": 9.2584,
+      "pitch_factor": 1,
+      "subtitle_exact": true
+    },
+    "summary": "The final used the same generated visual source; only local Piper line/placement, spoken subtitle, observed-action foley and final mix were repaired. No different video was substituted and called reviewed."
+  },
+  "exact_final_artifact_review": {
+    "episode": 40522242,
+    "title": "Bobo's Pinwheel Surprise",
+    "story_id": "bobo-original-pinwheel-20261119",
+    "scene_id": 8,
+    "reviewed_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+    "duration_seconds": 11,
+    "video": {
+      "codec": "H.264",
+      "width": 720,
+      "height": 1280,
+      "fps": 30,
+      "decoding": "passed"
+    },
+    "audio": {
+      "final_mix_volumedetect_mean_dbfs": -18.3,
+      "final_mix_peak_dbfs": -1.4,
+      "voice_window_volumedetect_mean_dbfs": -16.7,
+      "voice_window_peak_dbfs": -1.4,
+      "music_variant": 20,
+      "music_style": "gentle bell waltz",
+      "music_measured_dbfs": -15.46,
+      "music_duck_gain": 0.22,
+      "music_duck_db": -13.15,
+      "duck_window": [
+        8.4,
+        9.4184
+      ],
+      "effect": {
+        "type": "recorded wooden-handle tap",
+        "source": "Kenney Impact Sounds / impactWood_light_000.ogg",
+        "license": "CC0-1.0",
+        "source_sha256": "eb45e35b4bed784d3f120de4afec4b0d6ac09d9e143cce8cfcb7d739e1b1f3c3",
+        "start": 8.57,
+        "duration": 0.18,
+        "observed_action": "handle_adjustment",
+        "stem_peak_dbfs": -13.2,
+        "source_hash_verified": true,
+        "listening_verified": false,
+        "perceptual_naturalness_claimed": false
+      },
+      "splash": "Not applicable; no visible water action.",
+      "subjective_music_audibility_verified": false,
+      "subjective_effect_naturalness_verified": false,
+      "no_synthetic_pitch_sweep_or_random_chime": true
+    },
+    "full_render_sample_fps": 4,
+    "full_render_sample_count": 44,
+    "transition_sample_fps": 8,
+    "transition_sample_windows": [
+      {
+        "window": "title_card",
+        "start": 0,
+        "end": 1.75,
+        "sampled_frames": 14
+      },
+      {
+        "window": "spoken_subtitle_and_mouth",
+        "start": 8.25,
+        "end": 9.6,
+        "sampled_frames": 11
+      }
+    ],
+    "observed_actions": {
+      "opening_puff_and_pinwheel_rotation": [
+        0.125,
+        1.375
+      ],
+      "pinwheel_rotation_and_bobo_tracking": [
+        1.5,
+        8
+      ],
+      "handle_adjustment": [
+        8.5,
+        8.75
+      ],
+      "mouth_window": [
+        8.5,
+        9.25
+      ],
+      "presentation_and_pointing": [
+        8.25,
+        10.75
+      ],
+      "ending_reaction": [
+        9.25,
+        10.75
+      ]
+    },
+    "visual_findings": "All 44 4-fps frames and the 8-fps title/speech transition windows were sampled and inspected. Original recognizable 3D brown monkey Bobo in red shirt and the rainbow pinwheel remain visible. Purposeful pinwheel activity is present in the opening half-second; rotation continues while Bobo tracks it through the middle; he presents/points and reacts in the ending. A brief opening compression/pixelation artifact clears by about 0.25s; no sustained corruption. Midsection movement is restrained but not frozen; minor cosmetic imperfections remain within the 17 October tolerance.",
+    "captions": [
+      {
+        "text": "Bobo's Pinwheel Surprise",
+        "start": 0,
+        "end": 1.5,
+        "kind": "action",
+        "observed_action": "title_card",
+        "transition_checked_at_fps": 8
+      },
+      {
+        "text": "It spins!",
+        "start": 8.5,
+        "end": 9.2584,
+        "kind": "spoken",
+        "observed_action": "mouth_window",
+        "transition_checked_at_fps": 8
+      }
+    ],
+    "voice": {
+      "engine": "Piper local CPU",
+      "cost": 0,
+      "exact_text": "It spins!",
+      "start": 8.5,
+      "end": 9.2584,
+      "subtitle_exact": true,
+      "final_mix_asr_record": {
+        "method": "independent_asr",
+        "model": "Systran/faster-whisper-base.en",
+        "input": "entire final encoded mix from bobo_fresh.mp4, decoded to mono 16kHz",
+        "transcript": "It spins.",
+        "normalized_words_match": true,
+        "source": "speech-asr-review.json included in exact downloaded final artifact"
+      },
+      "listening_performed_in_this_run": false,
+      "lip_sync_claimed": false,
+      "limitation": "ASR evidence in the artifact supports the words; no subjective listening or phoneme-level lip synchronization is claimed."
+    },
+    "pacing": {
+      "purposeful_action_by": 0.125,
+      "movement_continues_through_ending": true,
+      "freeze_padding": false,
+      "global_speedup": false,
+      "shortened": false
+    },
+    "cost": 0
+  },
+  "publication": {
+    "new_publication_this_run": false,
+    "existing_publication_status": "accepted_all_four_surfaces",
+    "published_at": "2026-11-21T14:55:22.746982+05:00",
+    "facebook_video_id": "2143383803215254",
+    "instagram_reel_id": "18135447925755686",
+    "instagram_reel_permalink": "https://www.instagram.com/reel/Df_9RbeAAYV/",
+    "instagram_story_id": "18152414131561566",
+    "facebook_story_video_id": "3351153948428426",
+    "facebook_story_accepted_at": "2026-11-21T14:56:49.411099+05:00",
+    "pending_gate": "cleared_after_acceptance",
+    "verification_scope": "Repository approval and publication ledger records; no new live Meta API request was made."
+  },
+  "daily_target": {
+    "date": "2026-11-22",
+    "distinct_videos_published": 0,
+    "target": 2,
+    "previous_date": "2026-11-21",
+    "previous_date_distinct_videos_published": 1
+  },
+  "generation_blocker": {
+    "primary": "No pending draft and no unpublished approved reserve. All permitted original scene IDs 0,1,2,3,4,7,8 are used/recent/reserved; scene IDs 5 and 6 are retired.",
+    "provider": "Daily Fresh Bobo #393 did not call Hugging Face and reported no quota error. Free provider quota availability is unverified, not confirmed exhausted.",
+    "next_step": "Create/install one new original matching scene reference and add its matching SCENES/storyboard entry in fresh_bobo.py plus its eligibility in bobo_scene_policy.py before another zero-cost provider attempt. Do not reuse historical footage or retired scenes.",
+    "paid_generation_used": false
+  },
+  "publication_path_review": {
+    "path": ".github/workflows/publish-reviewed-bobo.yml",
+    "inspected": true,
+    "controls": "The workflow stages only due reviewed reserve entries, checks the exact artifact SHA256 and 10.95-11.05s duration, validates mandatory final-mix ASR/listening evidence, caption/action mappings, effect metadata, pacing/music/mouth review, duplicate ledger and upload-intent guard. Existing FB_PAGE_ID and FB_PAGE_ACCESS_TOKEN secrets are used without printing. Pending records are cleared after Facebook acceptance. No publication action was taken because there was no new eligible file."
+  }
+}
