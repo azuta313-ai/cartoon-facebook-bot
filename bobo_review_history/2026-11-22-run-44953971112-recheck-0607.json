@@ -193,5 +193,35 @@
     ],
     "next_step": "Add a new original matching scene reference and matching fresh_bobo.py SCENES plus bobo_scene_policy.py entry before the next zero-cost generation request. Do not reuse historical footage or infer quota availability from the old retry_after timestamp."
   },
-  "cost": 0
+  "cost": 0,
+  "source_final_provenance_comparison": {
+    "source_daily_artifact_id": 14650383562,
+    "final_reviewed_artifact_id": 14654803280,
+    "identical_files": [
+      {
+        "file": "generated.mp4",
+        "sha256": "b18f030193398ff2dba6cf461425f15ce316554283c5f40a6bfde1ce826195d4"
+      },
+      {
+        "file": "shot0.mp4",
+        "sha256": "2d977a59212efbf0297df9e39b111e4fd81048bbe66aa257db430720d80c8dd9"
+      },
+      {
+        "file": "shot1.mp4",
+        "sha256": "4f8883bd12533cfe38e5b02b8af383ae0798468e2562874dc682136bcf03e9df"
+      },
+      {
+        "file": "shot2.mp4",
+        "sha256": "2224d91111e333e29d62d9b41fda14a5c59e3751972ac69dc70709d6b8af27f3"
+      },
+      {
+        "file": "reference.png",
+        "sha256": "b8bc6532f5c058fd2ba27f01e1e169851e8bbf58f3eac807dd2dd06d28c939b7"
+      }
+    ],
+    "conclusion": "The final repair artifact retains the byte-identical generated source video, all three shot clips and reference image from the Daily Fresh source artifact. The final bobo_fresh.mp4 SHA changed only after local finishing (audio/voice/caption/render); this was not a replacement generation.",
+    "original_provisional_voice_line": "Wind power!",
+    "final_asr_matched_piper_line": "It spins!",
+    "note": "The spoken line was revised after independent ASR did not consistently recognize the original wording; the underlying visual footage was preserved."
+  }
 }
