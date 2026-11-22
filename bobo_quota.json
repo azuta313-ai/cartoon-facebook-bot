@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-22T06:07:32+05:00",
+  "last_observed_at": "2026-11-22T07:26:16+05:00",
   "last_generation_run_id": 44777648478,
   "last_provider_result": "Daily Fresh Bobo #392 completed successfully but stopped before any Hugging Face request because all distinct original scene references were in the recent/reserve set. No artifact was produced and no provider quota error was observed. The latest existing exact final artifact is episode 40522242, already reviewed and accepted on Facebook, Instagram Reel and both Story surfaces on 21 November.",
   "latest_check": {
-    "checked_at": "2026-11-22T06:07:32+05:00",
+    "checked_at": "2026-11-22T07:26:16+05:00",
     "latest_daily_run": {
       "workflow": ".github/workflows/daily.yml",
       "run_number": 392,
@@ -79,8 +79,23 @@
       ],
       "next_step": "Add a new original matching scene reference and corresponding fresh_bobo.py SCENES and bobo_scene_policy.py entry before another zero-cost generation request; do not reuse historical footage."
     },
-    "audit_record": "bobo_review_history/2026-11-22-run-44953971112-recheck-0607.json",
-    "cost": 0
+    "audit_record": "bobo_review_history/2026-11-22-run-44953971112-recheck-0726.json",
+    "cost": 0,
+    "manual_artifact_recheck": {
+      "review_id": "2026-11-22-run-44953971112-recheck-0726",
+      "artifact_id": 14654803280,
+      "video_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+      "sha256_verified": true,
+      "full_render_sample_fps": 4,
+      "full_render_sample_count": 44,
+      "transition_sample_fps": 8,
+      "transition_sample_count": 24,
+      "duration_seconds": 11,
+      "final_mix_peak_dbfs": -1.4581,
+      "final_mix_rms_dbfs": -18.2599,
+      "speech_asr": "It spins.",
+      "subjective_listening_performed": false
+    }
   },
   "recent_daily_runs_artifact_scan": [
     {
@@ -311,40 +326,35 @@
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-22-run-44953971112-recheck-0607",
-    "checked_at": "2026-11-22T06:07:32+05:00",
-    "result": "NO_PENDING_DRAFT; LATEST_DAILY_RUN_392_STOPPED_BEFORE_PROVIDER_AND_UPLOADED_NO_ARTIFACT; PREVIOUS_PINWHEEL_FINAL_ARTIFACT_RECHECKED_AND_ALREADY_ACCEPTED_ON_ALL_PLATFORMS; SECOND_DISTINCT_VIDEO_BLOCKED_BY_SCENE_REFERENCE_EXHAUSTION; NO_QUOTA_ERROR_OBSERVED",
+    "review_id": "2026-11-22-run-44953971112-recheck-0726",
+    "checked_at": "2026-11-22T07:26:16+05:00",
+    "result": "NO_PENDING_DRAFT; LATEST_DAILY_RUN_392_STOPPED_BEFORE_PROVIDER_WITH_NO_ARTIFACT; PREVIOUS_EXACT_PINWHEEL_ARTIFACT_DOWNLOADED_AND_RECHECKED; ALREADY_ACCEPTED_ON_ALL_PLATFORMS; SECOND_DISTINCT_VIDEO_BLOCKED_BY_SCENE_REFERENCE_EXHAUSTION; NO_QUOTA_ERROR_OBSERVED",
     "episode": 40522242,
     "title": "Bobo's Pinwheel Surprise",
     "final_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
-    "artifact_downloads": {
-      "latest_nonempty_daily_artifact_id": 14650383562,
-      "final_reviewed_artifact_id": 14654803280,
-      "final_reviewed_artifact_zip_sha256": "b56077e9eb09b736b3a0a68388f72e48e53c29971734d270f702071e2ddeb8b4",
-      "final_video_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
-      "exact_final_sha256_verified": true
-    },
-    "final_file_review": {
-      "duration_seconds": 11,
-      "full_render_sample_fps": 4,
-      "full_render_sample_count": 44,
-      "transition_sample_fps": 8,
-      "transition_samples": 24,
-      "speech_asr": "It spins.",
-      "subjective_listening_performed": false,
-      "effects_naturalness_listening_verified": false
-    },
+    "artifact_id": 14654803280,
+    "artifact_zip_sha256": "b56077e9eb09b736b3a0a68388f72e48e53c29971734d270f702071e2ddeb8b4",
+    "exact_final_sha256_verified": true,
+    "full_render_sample_fps": 4,
+    "full_render_sample_count": 44,
+    "transition_sample_fps": 8,
+    "transition_sample_count": 24,
+    "duration_seconds": 11,
+    "final_mix_rms_dbfs": -18.2599,
+    "final_mix_peak_dbfs": -1.4581,
+    "speech_asr": "It spins.",
+    "subjective_listening_performed": false,
+    "effect_naturalness_listening_verified": false,
     "publication_status": "published_all_platforms_accepted",
     "pending_gate": "cleared",
     "daily_count": {
       "2026-11-21": 1,
       "2026-11-22": 0,
-      "target": 2,
-      "second_video_status": "not generated; no current draft"
+      "target": 2
     },
-    "provider_quota_status": "unverified_for_latest_run; provider not called and no quota error observed",
-    "generation_blocker": "Add a new original matching scene reference and matching fresh_bobo.py SCENES plus bobo_scene_policy.py entry before the next zero-cost generation request. Do not reuse historical footage or infer quota availability from the old retry_after timestamp.",
-    "audit_record": "bobo_review_history/2026-11-22-run-44953971112-recheck-0607.json"
+    "provider_quota_status": "unverified; provider not called and no quota error observed",
+    "generation_blocker": "Add a new original matching scene reference plus matching fresh_bobo.py SCENES and bobo_scene_policy.py entry before another zero-cost generation request.",
+    "audit_record": "bobo_review_history/2026-11-22-run-44953971112-recheck-0726.json"
   },
   "provider_quota_status": "Daily Fresh Bobo #381 successfully used free Hugging Face ZeroGPU on 20 November 2026. Latest Daily Fresh Bobo #392 on 22 November Pakistan time did not contact the provider because all eligible original scene references were used/reserved; no quota error was observed. Current free quota availability remains unverified.",
   "latest_nonempty_artifact": {
