@@ -1,0 +1,241 @@
+{
+  "review_id": "2026-11-23-run-45142549810-recheck-2300",
+  "completed_at": "2026-11-23T23:00:41+05:00",
+  "status": "NO_NEW_DRAFT_LATEST_DAILY_RUN_395_NO_ARTIFACT_SCENE_GUARD; PRIOR_FINAL_ARTIFACT_REDOWNLOADED_AND_RECHECKED_ALREADY_PUBLISHED",
+  "latest_daily_run": {
+    "workflow": ".github/workflows/daily.yml",
+    "run_number": 395,
+    "run_id": 45142549810,
+    "job_id": 137583838740,
+    "conclusion": "success",
+    "created_at": "2026-11-23T08:55:35Z",
+    "created_at_pakistan": "2026-11-23T13:55:35+05:00",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "log_verified": true,
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45142549810"
+  },
+  "schedule_check": {
+    "checked_at": "2026-11-23T23:00:41+05:00",
+    "latest_daily_run_visible": 395,
+    "later_daily_run_visible": false,
+    "note": "No later Daily Fresh Bobo run was visible by 23:00 Pakistan time. The workflow YAML still contains its scheduled trigger; this run does not establish whether a later scheduled event will be delayed."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_episode": 40522242,
+    "approval_status": "published_all_platforms_accepted",
+    "publish_intent_status": "accepted",
+    "cleared_at": "2026-11-21T14:55:22.746982+05:00",
+    "no_gate_mutation": true
+  },
+  "latest_daily_artifact": {
+    "run_number": 395,
+    "run_id": 45142549810,
+    "artifact_count": 0,
+    "conclusion": "No artifact was created; upload-artifact log says fresh_output was absent."
+  },
+  "latest_nonempty_daily_source_artifact": {
+    "workflow_run_number": 381,
+    "workflow_run_id": 44777648478,
+    "artifact_id": 14650383562,
+    "artifact_name": "fresh-bobo-video",
+    "zip_file": "bobo-source-run381.zip",
+    "zip_bytes": 12523127,
+    "zip_sha256": "d734b8f68d288d6d836d5fd4c4d2ea25aed718a815f073289f4aefb8b04616c5",
+    "source_video_file": "bobo_fresh.mp4",
+    "source_video_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
+    "downloaded_via": "GitHub Actions workflow artifact download tool",
+    "zip_sha256_verified": true,
+    "video_sha256_verified": true
+  },
+  "final_reviewed_artifact": {
+    "workflow_run_id": 44788765258,
+    "artifact_id": 14654803280,
+    "artifact_name": "fresh-bobo-video",
+    "zip_file": "bobo-final-reviewed-run382.zip",
+    "zip_bytes": 12563824,
+    "zip_sha256": "b56077e9eb09b736b3a0a68388f72e48e53c29971734d270f702071e2ddeb8b4",
+    "video_file": "bobo_fresh.mp4",
+    "final_video_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+    "duration_seconds": 11,
+    "downloaded_via": "GitHub Actions workflow artifact download tool",
+    "zip_sha256_verified": true,
+    "video_sha256_verified": true,
+    "classification": "Previously approved and already published; not a new draft and not eligible for another upload."
+  },
+  "exact_file_recheck": {
+    "reviewed_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+    "duration_seconds": 11,
+    "technical": {
+      "playable": true,
+      "video": "H.264 720x1280 30fps",
+      "audio": "AAC stereo 96kHz",
+      "full_decode_passed": true,
+      "final_encoded_mix_rms_dbfs": -18.263106,
+      "final_encoded_mix_peak_dbfs": -1.439652
+    },
+    "visual": {
+      "full_render_sample_fps": 4,
+      "full_render_sample_count": 44,
+      "transition_sample_fps": 8,
+      "transition_sample_count": 24,
+      "observed_actions": {
+        "title_card": [
+          0,
+          1.5
+        ],
+        "opening_puff": [
+          0.125,
+          1.375
+        ],
+        "pinwheel_rotation_and_bobo_tracking": [
+          1.5,
+          8
+        ],
+        "handle_adjustment": [
+          8.5,
+          8.75
+        ],
+        "mouth_window": [
+          8.5,
+          9.25
+        ],
+        "presentation_and_pointing": [
+          8.25,
+          10.75
+        ],
+        "ending_reaction": [
+          9.25,
+          10.75
+        ]
+      },
+      "notes": "This check extracted and inspected 44 actual frames across the full 11-second MP4 at 4fps, plus 24 frames at 8fps across title and spoken-subtitle/action transitions. Original 3D brown monkey Bobo in the red shirt and rainbow pinwheel remain recognizable. One visibly noisy first frame at 0.0s clears by 0.125s. Purposeful puff/pinwheel action is visible by 0.125s; the pinwheel rotates while Bobo tracks it through 1.5-8.0s, followed by prop handling, presentation, pointing and reaction. Middle movement is restrained but not frozen. The brief opening artifact is cosmetic and confined to one sampled frame; no sustained corruption."
+    },
+    "captions": [
+      {
+        "text": "Bobo's Pinwheel Surprise",
+        "start": 0,
+        "end": 1.5,
+        "kind": "action",
+        "observed_action": "title_card"
+      },
+      {
+        "text": "It spins!",
+        "start": 8.5,
+        "end": 9.2584,
+        "kind": "spoken",
+        "observed_action": "mouth_window",
+        "subtitle_exact": true
+      }
+    ],
+    "voice": {
+      "text": "It spins!",
+      "start": 8.5,
+      "end": 9.2584,
+      "engine": "Piper local CPU",
+      "cost": 0,
+      "track_present": true,
+      "subtitle_exact": true,
+      "artifact_asr_evidence": "Systran/faster-whisper-base.en transcript 'It spins.' from the entire final encoded mix",
+      "asr_evidence_rechecked_from_artifact": true,
+      "asr_rerun_in_this_check": false,
+      "subjective_listening_performed": false,
+      "lip_sync_verified": false,
+      "note": "The embedded ASR evidence was re-read; this run did not have an ASR package available and did not rerun recognition or perform subjective listening. Approximate open-mouth timing overlap only."
+    },
+    "effects": {
+      "complete": true,
+      "cues": [
+        {
+          "type": "wood",
+          "start": 8.57,
+          "duration": 0.18,
+          "observed_action": "handle_adjustment",
+          "source": "Kenney Impact Sounds / impactWood_light_000.ogg",
+          "license": "CC0-1.0",
+          "source_sha256": "eb45e35b4bed784d3f120de4afec4b0d6ac09d9e143cce8cfcb7d739e1b1f3c3",
+          "peak_dbfs_in_effect_stem": -13.24,
+          "fade_in_ms": 10,
+          "fade_out_ms": 10,
+          "material_matched": true,
+          "listening_verified": false
+        }
+      ],
+      "removed_unverified_generic_air_pop_effects": true,
+      "splash": "None; no water action in this story.",
+      "perceptual_naturalness_claimed": false
+    },
+    "music": {
+      "variant": 20,
+      "style": "gentle bell waltz",
+      "preserved_from_source": true,
+      "measured_ducking_db_from_review_metadata": 5.52,
+      "subjective_audibility_verified": false,
+      "note": "No subjective listening performed; waveform and stem measurements do not establish perceptual audibility."
+    },
+    "duplicate_check": {
+      "episode": 40522242,
+      "story_id": "bobo-original-pinwheel-20261119",
+      "episode_already_in_published_ledger": true,
+      "final_sha_already_published": true,
+      "conclusion": "Do not count the repaired/rechecked artifact as a new distinct daily video."
+    },
+    "source_preservation": {
+      "generated_mp4_sha256": "b18f030193398ff2dba6cf461425f15ce316554283c5f40a6bfde1ce826195d4",
+      "generated_footage_preserved_in_final_artifact": true,
+      "classification": "Same previously published episode; no new generation or repair in this run."
+    }
+  },
+  "publication_status": {
+    "episode": 40522242,
+    "title": "Bobo's Pinwheel Surprise",
+    "published_at": "2026-11-21T14:55:22.746982+05:00",
+    "reviewed_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+    "facebook_video": {
+      "status": "accepted",
+      "id": "2143383803215254"
+    },
+    "instagram_reel": {
+      "status": "accepted",
+      "media_id": "18135447925755686",
+      "permalink": "https://www.instagram.com/reel/Df_9RbeAAYV/"
+    },
+    "instagram_story": {
+      "status": "accepted",
+      "media_id": "18152414131561566",
+      "permalink": "https://www.instagram.com/stories/bobogigglegrove/4035213599726115308"
+    },
+    "facebook_story": {
+      "status": "accepted",
+      "video_id": "3351153948428426",
+      "post_id": "1819762365731527"
+    },
+    "latest_publish_run": {
+      "workflow": ".github/workflows/publish-reviewed-bobo.yml",
+      "run_number": 121,
+      "run_id": 45192737299,
+      "conclusion": "success",
+      "publication_steps": "all skipped",
+      "reason": "No unpublished approved episode; no upload attempted.",
+      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45192737299"
+    },
+    "videos_published_on_2026_11_21": 1,
+    "videos_published_on_2026_11_22": 0,
+    "videos_published_on_2026_11_23": 0,
+    "daily_target": 2
+  },
+  "generation_blocker": {
+    "primary": "All eligible distinct original scene references are already used/recent/reserved; no new matching original 3D Bobo scene reference is installed.",
+    "provider": "Daily Fresh Bobo #395 stopped before any Hugging Face request; free quota availability remains unverified.",
+    "provider_called": false,
+    "quota_error_observed": false,
+    "next_step": "Install a new original matching 3D Bobo scene reference and add its distinct storyboard/scene eligibility before the next zero-cost provider attempt. Do not reuse historical footage or force a queued story into a mismatched scene.",
+    "paid_generation_allowed": false
+  },
+  "decision": "No new draft exists to repair or publish. The latest Daily Fresh run #395 created no fresh_output and no artifact because the distinct-scene guard stopped before provider contact. The only nonempty source and final artifacts downloaded in this check are for episode 40522242, already accepted on all four surfaces. The pending gate is already clear. No upload, regeneration, approval change, or secret access was performed.",
+  "cost": 0
+}
