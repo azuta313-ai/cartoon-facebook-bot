@@ -1,0 +1,233 @@
+{
+  "review_id": "2026-11-23-run-45047254055-recheck-0631",
+  "checked_at": "2026-11-23T06:31:24.751009+05:00",
+  "status": "no_new_draft_latest_daily_run_no_artifact; previously_published_final_artifact_rechecked",
+  "latest_daily_run": {
+    "workflow": ".github/workflows/daily.yml",
+    "run_number": 394,
+    "run_id": 45047254055,
+    "job_id": 137284437739,
+    "conclusion": "success",
+    "created_at": "2026-11-22T17:03:22Z",
+    "created_at_pakistan": "2026-11-22T22:03:22+05:00",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "log_verified": true,
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45047254055"
+  },
+  "latest_publish_run": {
+    "workflow": ".github/workflows/publish-reviewed-bobo.yml",
+    "run_number": 120,
+    "run_id": 45063675800,
+    "conclusion": "success",
+    "publish_steps": "all artifact download and platform publication steps skipped; no unpublished approved episode"
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_episode": 40522242,
+    "approval_status": "published_all_platforms_accepted",
+    "cleared_at": "2026-11-21T14:55:22.746982+05:00"
+  },
+  "latest_nonempty_daily_source_artifact": {
+    "workflow_run_number": 381,
+    "workflow_run_id": 44777648478,
+    "artifact_id": 14650383562,
+    "artifact_name": "fresh-bobo-video",
+    "zip_sha256": "d734b8f68d288d6d836d5fd4c4d2ea25aed718a815f073289f4aefb8b04616c5",
+    "source_video_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
+    "downloaded_and_verified": true
+  },
+  "final_reviewed_artifact": {
+    "workflow_run_id": 44788765258,
+    "artifact_id": 14654803280,
+    "artifact_name": "fresh-bobo-video",
+    "zip_sha256": "b56077e9eb09b736b3a0a68388f72e48e53c29971734d270f702071e2ddeb8b4",
+    "file": "bobo_fresh.mp4",
+    "final_video_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+    "duration_seconds": 11,
+    "downloaded_and_sha_verified": true,
+    "source_video_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe"
+  },
+  "visual_recheck": {
+    "full_render_sample_fps": 4,
+    "full_render_sample_count": 44,
+    "opening_transition_sample_fps": 8,
+    "opening_transition_sample_count": 14,
+    "spoken_transition_sample_fps": 8,
+    "spoken_transition_sample_count": 14,
+    "observed_actions": {
+      "title_card": [
+        0,
+        1.5
+      ],
+      "opening_puff": [
+        0.125,
+        1.375
+      ],
+      "pinwheel_rotation_and_tracking": [
+        1.5,
+        8
+      ],
+      "handle_adjustment": [
+        8.5,
+        8.75
+      ],
+      "mouth_window": [
+        8.5,
+        9.25
+      ],
+      "presentation_and_pointing": [
+        8.25,
+        10.75
+      ],
+      "ending_reaction": [
+        9.25,
+        10.75
+      ]
+    },
+    "notes": "Downloaded exact final artifact and inspected all 44 samples across 11 seconds at 4 fps, plus opening and spoken-caption/action windows at 8 fps. Original 3D brown monkey Bobo in red shirt and rainbow pinwheel remain recognizable. A brief opening compression/pixelation artifact is visible in the first frame and clears by about 0.25s; no sustained corruption. The pinwheel visibly rotates while Bobo tracks it during 1.5–8.0s; movement is restrained but not frozen. Bobo presents and points from 8.25–10.75s. Minor cosmetic glitch/brief pauses are within the 17 October tolerance."
+  },
+  "captions": [
+    {
+      "text": "Bobo's Pinwheel Surprise",
+      "start": 0,
+      "end": 1.5,
+      "kind": "action",
+      "observed_action": "title_card"
+    },
+    {
+      "text": "It spins!",
+      "start": 8.5,
+      "end": 9.2584,
+      "kind": "spoken",
+      "observed_action": "mouth_window",
+      "subtitle_exact": true
+    }
+  ],
+  "voice": {
+    "text": "It spins!",
+    "start": 8.5,
+    "end": 9.2584,
+    "engine": "Piper local CPU",
+    "cost": 0,
+    "verification_method": "independent_asr",
+    "asr_model": "Systran/faster-whisper-base.en",
+    "final_encoded_mix_transcript": "It spins.",
+    "transcript_matches": true,
+    "asr_input": "final encoded mix from bobo_fresh.mp4 decoded to mono 16kHz",
+    "subjective_listening_performed": false,
+    "lip_sync_verified": false,
+    "note": "ASR verified the words in the exact final encoded mix. The mouth window approximately overlaps the line; no subjective listening or phoneme-level lip-sync claim."
+  },
+  "effects": {
+    "complete": true,
+    "cues": [
+      {
+        "type": "wood",
+        "start": 8.57,
+        "duration": 0.18,
+        "observed_action": "handle_adjustment",
+        "source": "Kenney Impact Sounds impactWood_light_000.ogg",
+        "license": "CC0-1.0",
+        "source_sha256": "eb45e35b4bed784d3f120de4afec4b0d6ac09d9e143cce8cfcb7d739e1b1f3c3",
+        "peak_dbfs_in_effect_stem": -13.24,
+        "fade_in_ms": 10,
+        "fade_out_ms": 10,
+        "material_matched": true,
+        "listening_verified": false
+      }
+    ],
+    "removed_unverified_generic_air_pop_effects": true,
+    "splash": "none; no water action in this story",
+    "perceptual_naturalness_claimed": false
+  },
+  "music": {
+    "variant": 20,
+    "style": "gentle bell waltz",
+    "preserved_from_source": true,
+    "measured_dbfs": -15.46,
+    "duck_gain": 0.22,
+    "duck_db": -13.15,
+    "duck_window": [
+      8.4,
+      9.4184
+    ],
+    "subjective_audibility_verified": false
+  },
+  "technical": {
+    "playable": true,
+    "duration_seconds": 11,
+    "video": "H.264 720x1280 30fps",
+    "audio": "AAC stereo 96kHz",
+    "full_decode_passed": true,
+    "final_mix_peak_dbfs": -1.44,
+    "final_video_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd"
+  },
+  "source_preservation": {
+    "generated_mp4_sha256_identical_before_after": true,
+    "shot0_sha256_identical": true,
+    "shot1_sha256_identical": true,
+    "shot2_sha256_identical": true,
+    "original_music_wav_sha256_identical": true,
+    "conclusion": "The existing generated video and music were preserved; only local Piper line/subtitle timing and the verified wood foley were repaired. No different video was regenerated and called reviewed."
+  },
+  "publication_status": {
+    "episode": 40522242,
+    "title": "Bobo's Pinwheel Surprise",
+    "published_at": "2026-11-21T14:55:22.746982+05:00",
+    "facebook_video": {
+      "status": "accepted",
+      "id": "2143383803215254"
+    },
+    "instagram_reel": {
+      "status": "accepted",
+      "media_id": "18135447925755686",
+      "permalink": "https://www.instagram.com/reel/Df_9RbeAAYV/"
+    },
+    "instagram_story": {
+      "status": "accepted",
+      "media_id": "18152414131561566",
+      "permalink": "https://www.instagram.com/stories/bobogigglegrove/4035213599726115308"
+    },
+    "facebook_story": {
+      "status": "accepted",
+      "video_id": "3351153948428426",
+      "post_id": "1819762365731527"
+    },
+    "videos_published_on_2026_11_21": 1,
+    "videos_published_on_2026_11_22": 0,
+    "videos_published_on_2026_11_23_as_of_check": 0,
+    "daily_target": 2
+  },
+  "generation_blocker": {
+    "primary": "All eligible original scene references are already used/recent/reserved; no new matching scene reference is installed.",
+    "provider": "Not contacted by latest Daily Fresh run #394; no quota error observed. Free quota availability remains unverified.",
+    "candidate_scene_ids": [
+      8,
+      7,
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "used_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7,
+      8
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "next_step": "Add one new original matching 3D Bobo scene reference plus its fresh_bobo.py SCENES/storyboard and bobo_scene_policy.py eligibility entry before the next zero-cost provider attempt. Do not reuse historical/queued plots or use an unrelated-scene fallback."
+  },
+  "decision": "No new draft exists to repair or publish. Do not republish the already accepted episode. Keep the pending gate clear and the recurring review/publication workflows configured."
+}
