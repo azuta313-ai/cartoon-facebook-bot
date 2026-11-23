@@ -39,7 +39,7 @@
     "artifact_id": 14650383562,
     "artifact_name": "fresh-bobo-video",
     "zip_file": "bobo-source-run-381.zip",
-    "zip_bytes": 12000000,
+    "zip_bytes": 12523127,
     "zip_sha256": "d734b8f68d288d6d836d5fd4c4d2ea25aed718a815f073289f4aefb8b04616c5",
     "video_file": "bobo_fresh.mp4",
     "video_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
@@ -58,7 +58,8 @@
     "downloaded_via": "GitHub Actions artifact download tool",
     "zip_sha256_verified": true,
     "video_sha256_verified": true,
-    "duration_seconds": 11
+    "duration_seconds": 11,
+    "zip_bytes": 12563824
   },
   "exact_file_recheck": {
     "reviewed_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
