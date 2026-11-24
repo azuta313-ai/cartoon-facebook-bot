@@ -287,5 +287,177 @@
     "no_publication_attempt_needed_this_check": true
   },
   "cost": 0,
-  "outcome": "No new draft exists. Latest Daily Fresh Bobo run #396 uploaded no artifact and stopped at the distinct-scene guard before provider contact. The last nonempty Daily Fresh artifact and its exact repaired final were downloaded and rechecked; that final was already published and must not be reposted. No repair, new approval, publication, or pending-gate mutation was performed."
+  "outcome": "No new draft exists. Latest Daily Fresh Bobo run #396 uploaded no artifact and stopped at the distinct-scene guard before provider contact. The last nonempty Daily Fresh artifact and its exact repaired final were downloaded and rechecked; that final was already published and must not be reposted. No repair, new approval, publication, or pending-gate mutation was performed.",
+  "independent_recheck": {
+    "checked_at": "2026-11-24T15:20:43+05:00",
+    "status": "NO_PENDING_DRAFT; LATEST_DAILY_RUN_HAS_NO_ARTIFACT; PREVIOUS_FINAL_RECHECKED_ONLY",
+    "downloaded_artifacts": [
+      {
+        "purpose": "latest_nonempty_Daily_Fresh_Bobo_source",
+        "run_number": 381,
+        "run_id": 44777648478,
+        "artifact_id": 14650383562,
+        "zip_sha256": "d734b8f68d288d6d836d5fd4c4d2ea25aed718a815f073289f4aefb8b04616c5",
+        "source_video_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
+        "classification": "Source draft subsequently repaired; not a pending publication."
+      },
+      {
+        "purpose": "exact_repaired_final_already_published",
+        "run_id": 44788765258,
+        "artifact_id": 14654803280,
+        "zip_sha256": "b56077e9eb09b736b3a0a68388f72e48e53c29971734d270f702071e2ddeb8b4",
+        "video_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+        "sha256_matches_approval_and_ledger": true,
+        "classification": "Previously published; not eligible for another upload."
+      }
+    ],
+    "exact_final_visual_recheck": {
+      "full_render_sample_fps": 4,
+      "full_render_sample_count": 44,
+      "transition_sample_fps": 8,
+      "spoken_caption_window_sample_count": 10,
+      "duration_seconds": 11,
+      "observed_actions": {
+        "title_card": [
+          0,
+          1.5
+        ],
+        "opening_puff": [
+          0.125,
+          1.375
+        ],
+        "pinwheel_rotation_and_tracking": [
+          1.5,
+          8
+        ],
+        "handle_adjustment": [
+          8.5,
+          8.75
+        ],
+        "mouth_window": [
+          8.5,
+          9.25
+        ],
+        "presentation_and_pointing": [
+          8.25,
+          10.75
+        ],
+        "ending_reaction": [
+          9.25,
+          10.75
+        ]
+      },
+      "purposeful_action_by": 0.125,
+      "notes": "44 frames sampled over the exact final render at 4 fps; 10 additional 8-fps samples bracket the spoken-subtitle/mouth window. Original 3D Bobo/red shirt and rainbow pinwheel remain recognizable. Initial compression/pixelation is confined to approximately 0.0-0.125s and clears by 0.25s. Pinwheel rotation continues while Bobo tracks it; body movement in 1.5-8.0s is restrained but not frozen. Final presentation and pointing remain visible. No new visual repair was performed."
+    },
+    "exact_final_caption_and_speech_recheck": {
+      "captions": [
+        {
+          "text": "Bobo's Pinwheel Surprise",
+          "start": 0,
+          "end": 1.5,
+          "kind": "action",
+          "observed_action": "title_card"
+        },
+        {
+          "text": "It spins!",
+          "start": 8.5,
+          "end": 9.2584,
+          "kind": "spoken",
+          "observed_action": "mouth_window"
+        }
+      ],
+      "piper_text": "It spins!",
+      "piper_start": 8.5,
+      "piper_end": 9.2584,
+      "subtitle_exact": true,
+      "final_mix_asr_artifact_report": "passed",
+      "asr_model": "Systran/faster-whisper-base.en",
+      "asr_transcript": "It spins.",
+      "asr_input": "entire final encoded mix decoded to mono 16kHz",
+      "asr_rerun_during_this_check": false,
+      "subjective_listening_performed": false,
+      "lip_sync_claimed": false
+    },
+    "sound_and_mix_measurements": {
+      "music": {
+        "variant": 20,
+        "style": "gentle bell waltz",
+        "stem_rms_dbfs": -27.65,
+        "stem_peak_dbfs": -13.1,
+        "duck_gain": 0.22,
+        "duck_db": -13.15,
+        "subjective_audibility_verified": false
+      },
+      "effects": [
+        {
+          "type": "wood",
+          "start": 8.57,
+          "duration": 0.18,
+          "observed_action": "handle_adjustment",
+          "source": "Kenney Impact Sounds impactWood_light_000.ogg",
+          "license": "CC0-1.0",
+          "source_sha256": "eb45e35b4bed784d3f120de4afec4b0d6ac09d9e143cce8cfcb7d739e1b1f3c3",
+          "source_hash_verified": true,
+          "stem_peak_dbfs": -13.24,
+          "material_matched": true,
+          "restrained": true,
+          "subjective_naturalness_verified": false
+        }
+      ],
+      "scene_effects_stem_rms_dbfs": -46.94,
+      "final_encoded_mix_decoded_rms_dbfs": -18.263,
+      "final_encoded_mix_decoded_peak_dbfs": -1.458,
+      "speech_window_rms_dbfs": -15.66,
+      "speech_window_peak_dbfs": -1.46,
+      "note": "Measured stems and final decoded mix only; no subjective listening was available, so music audibility and foley naturalness are not claimed."
+    },
+    "technical_recheck": {
+      "video_codec": "H.264",
+      "audio_codec": "AAC",
+      "dimensions": "720x1280",
+      "fps": 30,
+      "video_duration_seconds": 11,
+      "decoded_audio_duration_seconds": 11.008,
+      "audio_sample_rate_hz": 96000,
+      "channels": 2,
+      "full_decode_passed": true
+    },
+    "platform_recheck": {
+      "new_publication": false,
+      "facebook_video_status": "accepted",
+      "instagram_reel_status": "accepted",
+      "instagram_reel_permalink": "https://www.instagram.com/reel/Df_9RbeAAYV/",
+      "instagram_story_status": "accepted",
+      "facebook_story_status": "accepted",
+      "pending_gate_cleared_at": "2026-11-21T14:55:22.746982+05:00"
+    },
+    "generation_blocker_reconfirmed": {
+      "latest_daily_run_number": 396,
+      "latest_daily_run_id": 45267553797,
+      "latest_daily_run_artifact_count": 0,
+      "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+      "provider_called": false,
+      "quota_error_observed": false,
+      "free_zerogpu_availability": "unverified because provider was not contacted",
+      "eligible_scene_ids": [],
+      "retired_scene_ids": [
+        5,
+        6
+      ],
+      "next_step": "Install a new original matching 3D Bobo scene reference and add its matching generator/storyboard/policy entry before another generation attempt.",
+      "paid_generation_allowed": false
+    },
+    "publication_target_status": {
+      "daily_target": 2,
+      "accepted_videos": {
+        "2026-11-21": 1,
+        "2026-11-22": 0,
+        "2026-11-23": 0,
+        "2026-11-24": 0
+      },
+      "no_new_publication_attempt": true
+    },
+    "outcome": "No pending draft or unpublished approved reserve exists. Latest Daily Fresh run #396 has no artifact and stopped before provider contact due to scene exhaustion, not a quota error. The latest nonempty source artifact and exact repaired final were downloaded and rechecked; the final already has platform acceptance. No regeneration, repair, approval, publication, or gate mutation was performed."
+  }
 }
