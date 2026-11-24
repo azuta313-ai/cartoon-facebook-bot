@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-24T06:31:07+05:00",
+  "last_observed_at": "2026-11-24T14:59:23+05:00",
   "last_generation_run_id": 45267553797,
-  "last_provider_result": "Daily Fresh Bobo #396 on 24 November 2026 produced no artifact. The distinct-scene guard stopped before Hugging Face contact because all eligible original scene references were already used/recent/reserved. No quota error was observed; free quota availability remains unverified. No pending review gate exists. The previously approved Pinwheel Surprise remains accepted on Facebook video, Instagram Reel, Instagram Story and Facebook Story.",
+  "last_provider_result": "Daily Fresh Bobo #396 on 24 November 2026 produced no artifact; the distinct-scene guard stopped before Hugging Face contact because all eligible original scene references were used/recent/reserved. No quota error was observed and free ZeroGPU availability remains unverified. No pending review gate or unpublished approved reserve exists. The previously approved Pinwheel Surprise remains accepted on Facebook video, Instagram Reel, Instagram Story and Facebook Story.",
   "latest_check": {
-    "checked_at": "2026-11-24T06:31:07+05:00",
+    "checked_at": "2026-11-24T14:59:23+05:00",
     "latest_daily_run": {
       "workflow": ".github/workflows/daily.yml",
       "run_number": 396,
@@ -18,7 +18,7 @@
       "artifact_count": 0,
       "provider_called": false,
       "quota_error_observed": false,
-      "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+      "generator_message": "All eligible original scene references are already used/recent/reserved; hold rather than duplicate.",
       "upload_artifact_step": "No files were found in fresh_output; no artifact uploaded.",
       "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45267553797"
     },
@@ -33,7 +33,7 @@
     },
     "pending_gate": {
       "bobo_review_pending_json_present": false,
-      "bobo_pending_directory_present": false,
+      "bobo_pending_unpublished_entries": 0,
       "approval_episode": 40522242,
       "approval_title": "Bobo's Pinwheel Surprise",
       "approval_status": "published_all_platforms_accepted",
@@ -93,20 +93,51 @@
         5,
         6
       ],
-      "provider": "Not contacted by Daily Fresh Bobo #396; no quota error observed. Free quota availability remains unverified.",
-      "next_step": "Install one new original matching 3D Bobo scene reference, corresponding fresh_bobo.py SCENES/storyboard, and bobo_scene_policy.py eligibility before the next zero-cost provider attempt. Do not reuse historical/queued plots or use an unrelated-scene fallback.",
+      "provider": "Not contacted by Daily Fresh Bobo #396; no quota error observed. Free ZeroGPU quota availability remains unverified.",
+      "next_step": "Install one new original matching 3D Bobo scene reference, then add its matching fresh_bobo.py SCENES/storyboard and bobo_scene_policy.py eligibility. Do not reuse historical/queued plots or use an unrelated-scene fallback.",
       "paid_generation_allowed": false
     },
     "publication_workflow_inspection": {
-      "reviewed_file": ".github/workflows/publish-reviewed-bobo.yml",
-      "exact_sha256_assertion_present": true,
-      "published_episode_duplicate_guard_present": true,
+      "file": ".github/workflows/publish-reviewed-bobo.yml",
+      "existing_secret_names_used_as_environment_variables": true,
+      "secret_values_read_or_printed": false,
+      "exact_reviewed_sha256_assertion_present": true,
+      "published_episode_and_generated_sha_duplicate_guards_present": true,
       "unknown_upload_outcome_duplicate_guard_present": true,
-      "pending_gate_removed_only_after_facebook_acceptance": true,
-      "no_publish_triggered_this_run": true
+      "pending_gate_cleared_only_after_facebook_acceptance": true,
+      "no_publication_attempt_needed_this_check": true
     },
-    "audit_record": "bobo_review_history/2026-11-24-run-45267553797-recheck-0631.json",
-    "status": "no_new_draft_latest_daily_run_no_artifact_scene_guard"
+    "downloaded_artifacts": {
+      "source": {
+        "run_id": 44777648478,
+        "artifact_id": 14650383562,
+        "zip_sha256": "d734b8f68d288d6d836d5fd4c4d2ea25aed718a815f073289f4aefb8b04616c5",
+        "video_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe"
+      },
+      "final": {
+        "run_id": 44788765258,
+        "artifact_id": 14654803280,
+        "zip_sha256": "b56077e9eb09b736b3a0a68388f72e48e53c29971734d270f702071e2ddeb8b4",
+        "video_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd"
+      }
+    },
+    "final_artifact_recheck": {
+      "duration_seconds": 11,
+      "full_render_sample_fps": 4,
+      "full_render_sample_count": 44,
+      "transition_sample_fps": 8,
+      "transition_sample_count": 26,
+      "asr_transcript": "It spins.",
+      "subjective_listening_performed": false,
+      "effect_naturalness_listening_verified": false,
+      "reviewed_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd"
+    },
+    "reserve": {
+      "approved_entries": 4,
+      "unpublished_approved_entries": 0
+    },
+    "audit_record": "bobo_review_history/2026-11-24-run-45267553797-recheck-1459.json",
+    "status": "no_new_draft_latest_daily_run_no_artifact_scene_guard; last_nonempty_and_published_final_artifacts_rechecked"
   },
   "recent_daily_runs_artifact_scan": [
     {
@@ -352,9 +383,9 @@
     }
   ],
   "latest_manual_recheck": {
-    "review_id": "2026-11-23-run-45142549810-recheck-2300",
-    "checked_at": "2026-11-23T23:00:41+05:00",
-    "result": "NO_NEW_DRAFT_DAILY_FRESH_395_SCENE_GUARD_NO_PROVIDER_CALL; LATEST_NONEMPTY_SOURCE_AND_FINAL_ARTIFACTS_DOWNLOADED_AND_SHA_VERIFIED; FINAL_VISUALS_RECHECKED_4FPS_AND_CAPTION_TRANSITIONS_8FPS; ASR_EVIDENCE_RECHECKED_NOT_RERUN; SUBJECTIVE_LISTENING_NOT_PERFORMED; PREVIOUSLY_ACCEPTED_ALL_FOUR_SURFACES; NO_UNPUBLISHED_RESERVE; NEW_SCENE_REFERENCE_REQUIRED; QUOTA_UNVERIFIED",
+    "review_id": "2026-11-24-run-45267553797-recheck-1459",
+    "checked_at": "2026-11-24T14:59:23+05:00",
+    "result": "NO_NEW_DRAFT_DAILY_396_NO_ARTIFACT_SCENE_GUARD; LAST_NONEMPTY_DAILY_ARTIFACT_AND_EXACT_PUBLISHED_FINAL_DOWNLOADED_SHA_VERIFIED; FINAL_VISUALS_RECHECKED_4FPS_AND_CAPTION_TRANSITIONS_8FPS; ASR_EVIDENCE_INSPECTED_NOT_RERUN; SUBJECTIVE_LISTENING_NOT_PERFORMED; ALL_FOUR_SURFACES_PREVIOUSLY_ACCEPTED; NO_UNPUBLISHED_RESERVE; NEW_SCENE_REFERENCE_REQUIRED; QUOTA_UNVERIFIED",
     "source_artifact_id": 14650383562,
     "final_artifact_id": 14654803280,
     "source_video_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
@@ -363,7 +394,7 @@
     "full_render_sample_fps": 4,
     "full_render_sample_count": 44,
     "transition_sample_fps": 8,
-    "transition_sample_count": 24,
+    "transition_sample_count": 26,
     "duration_seconds": 11,
     "speech_asr_evidence": "It spins.",
     "asr_rerun": false,
@@ -371,17 +402,19 @@
     "effect_naturalness_listening_verified": false,
     "publication_status": "previously_accepted_all_four_surfaces",
     "pending_gate": "cleared",
+    "unpublished_approved_reserve_entries": 0,
     "daily_count": {
       "2026-11-21": 1,
       "2026-11-22": 0,
       "2026-11-23": 0,
+      "2026-11-24": 0,
       "target": 2
     },
     "provider_quota_status": "unverified; provider not called and no quota error observed",
-    "generation_blocker": "All eligible original scene references are already used/recent/reserved; no new matching scene reference is installed.",
-    "audit_record": "bobo_review_history/2026-11-23-run-45142549810-recheck-2300.json"
+    "generation_blocker": "All eligible original scene references are already used/recent/reserved; no new matching 3D Bobo scene reference is installed.",
+    "audit_record": "bobo_review_history/2026-11-24-run-45267553797-recheck-1459.json"
   },
-  "provider_quota_status": "Free Hugging Face ZeroGPU availability remains unverified. Daily Fresh Bobo #395 on 23 November 2026 stopped before provider contact because all eligible distinct original scene references are already used/recent/reserved; no quota error was observed.",
+  "provider_quota_status": "Free Hugging Face ZeroGPU availability remains unverified. Daily Fresh Bobo #396 stopped before provider contact due to no unused matching 3D Bobo scene reference; no quota error was observed.",
   "latest_nonempty_artifact": {
     "run_number": 381,
     "run_id": 44777648478,
@@ -396,16 +429,16 @@
     "classification": "Latest nonempty Daily Fresh Bobo source artifact; repaired final artifact is separately recorded below."
   },
   "latest_publish_workflow": {
-    "run_number": 120,
-    "run_id": 45063675800,
-    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45063675800",
+    "run_number": 121,
+    "run_id": 45192737299,
     "conclusion": "success",
     "approval_validation": "passed",
     "facebook_video_step": "skipped",
     "instagram_reel_step": "skipped",
     "instagram_story_step": "skipped",
     "facebook_story_step": "skipped",
-    "reason": "No unpublished approved episode."
+    "reason": "No unpublished approved episode; no upload attempted.",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45192737299"
   },
   "publication_status": {
     "new_publication_this_check": false,
@@ -418,13 +451,14 @@
     "facebook_story_video_id": "3351153948428426",
     "videos_published_on_2026_11_21": 1,
     "videos_published_on_2026_11_22": 0,
-    "videos_published_on_2026_11_23_as_of_check": 0,
+    "videos_published_on_2026_11_23": 0,
+    "videos_published_on_2026_11_24": 0,
     "daily_target": 2
   },
   "review_record": "bobo_review_history/2026-11-19-run-379-recheck-2342.json",
   "cost": 0,
   "generation_blockers": {
-    "primary": "All eligible original scene references are already used/recent/reserved; no new matching scene reference is installed.",
+    "primary": "All eligible original scene references are already used/recent/reserved; no new matching 3D Bobo scene reference is installed.",
     "candidate_scene_ids": [
       8,
       7,
@@ -447,11 +481,11 @@
       5,
       6
     ],
-    "provider": "Not contacted by Daily Fresh Bobo #395; no quota error observed. Free quota availability remains unverified.",
-    "next_step": "Add one new original matching 3D Bobo scene reference plus its fresh_bobo.py SCENES/storyboard and bobo_scene_policy.py eligibility before the next zero-cost provider attempt. Do not reuse historical/queued plots or use an unrelated-scene fallback.",
+    "provider": "Not contacted by Daily Fresh Bobo #396; no quota error observed. Free ZeroGPU quota availability remains unverified.",
+    "next_step": "Install one new original matching 3D Bobo scene reference, then add its matching fresh_bobo.py SCENES/storyboard and bobo_scene_policy.py eligibility. Do not reuse historical/queued plots or use an unrelated-scene fallback.",
     "paid_generation_allowed": false
   },
-  "latest_manual_recheck_result": "NO_NEW_DRAFT_DAILY_FRESH_395_SCENE_GUARD_NO_PROVIDER_CALL; EVENING_DAILY_RUN_NOT_VISIBLE; SOURCE_AND_FINAL_ARTIFACTS_DOWNLOADED_AND_HASH_VERIFIED; FINAL_VISUALS_RECHECKED_4FPS_AND_CAPTION_TRANSITIONS_8FPS; ASR_EVIDENCE_RECHECKED_NOT_RERUN; SUBJECTIVE_LISTENING_NOT_PERFORMED; PREVIOUSLY_ACCEPTED_ALL_FOUR_SURFACES; NO_UNPUBLISHED_RESERVE; NEW_SCENE_REFERENCE_REQUIRED; QUOTA_UNVERIFIED",
+  "latest_manual_recheck_result": "NO_NEW_DRAFT_DAILY_396_NO_ARTIFACT_SCENE_GUARD; LAST_NONEMPTY_DAILY_ARTIFACT_AND_EXACT_PUBLISHED_FINAL_DOWNLOADED_SHA_VERIFIED; FINAL_VISUALS_RECHECKED_4FPS_AND_CAPTION_TRANSITIONS_8FPS; ASR_EVIDENCE_INSPECTED_NOT_RERUN; SUBJECTIVE_LISTENING_NOT_PERFORMED; ALL_FOUR_SURFACES_PREVIOUSLY_ACCEPTED; NO_UNPUBLISHED_RESERVE; NEW_SCENE_REFERENCE_REQUIRED; QUOTA_UNVERIFIED",
   "previous_manual_recheck": {
     "review_id": "2026-11-20-run-44788765258-review-2322",
     "completed_at": "2026-11-20T23:22:21+05:00",
