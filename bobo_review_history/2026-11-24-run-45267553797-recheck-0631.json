@@ -1,0 +1,112 @@
+{
+  "review_id": "2026-11-24-run-45267553797-recheck-0631",
+  "checked_at": "2026-11-24T06:31:07+05:00",
+  "status": "NO_NEW_DRAFT_LATEST_DAILY_RUN_396_NO_ARTIFACT_SCENE_GUARD",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "latest_daily_run": {
+    "workflow": ".github/workflows/daily.yml",
+    "run_number": 396,
+    "run_id": 45267553797,
+    "job_id": 138018375757,
+    "conclusion": "success",
+    "created_at": "2026-11-23T21:14:03Z",
+    "created_at_pakistan": "2026-11-24T02:14:03+05:00",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "upload_artifact_step": "No files were found in fresh_output; no artifact uploaded.",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45267553797"
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "approval_episode": 40522242,
+    "approval_title": "Bobo's Pinwheel Surprise",
+    "approval_status": "published_all_platforms_accepted",
+    "cleared_at": "2026-11-21T14:55:22.746982+05:00",
+    "no_gate_mutation": true
+  },
+  "latest_publish_run": {
+    "workflow": ".github/workflows/publish-reviewed-bobo.yml",
+    "run_number": 121,
+    "run_id": 45192737299,
+    "conclusion": "success",
+    "publication_steps": "all skipped",
+    "reason": "No unpublished approved episode; no upload attempted.",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45192737299"
+  },
+  "previous_final_artifact": {
+    "workflow_run_id": "44788765258",
+    "artifact_id": 14654803280,
+    "final_video_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+    "duration_seconds": 11,
+    "classification": "Previously approved and published; not a new draft and not eligible for another upload."
+  },
+  "publication_status": {
+    "episode": 40522242,
+    "title": "Bobo's Pinwheel Surprise",
+    "published_at": "2026-11-21T14:55:22.746982+05:00",
+    "facebook_video": {
+      "status": "accepted",
+      "id": "2143383803215254"
+    },
+    "instagram_reel": {
+      "status": "accepted",
+      "media_id": "18135447925755686",
+      "permalink": "https://www.instagram.com/reel/Df_9RbeAAYV/"
+    },
+    "instagram_story": {
+      "status": "accepted",
+      "media_id": "18152414131561566",
+      "permalink": "https://www.instagram.com/stories/bobogigglegrove/4035213599726115308"
+    },
+    "facebook_story": {
+      "status": "accepted",
+      "video_id": "3351153948428426",
+      "post_id": "1819762365731527"
+    },
+    "videos_published_on_2026_11_21": 1,
+    "videos_published_on_2026_11_22": 0,
+    "videos_published_on_2026_11_23": 0,
+    "videos_published_on_2026_11_24": 0,
+    "daily_target": 2
+  },
+  "generation_blockers": {
+    "primary": "All eligible original scene references are already used/recent/reserved; no new matching 3D Bobo scene reference is installed.",
+    "candidate_scene_ids": [
+      8,
+      7,
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "used_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7,
+      8
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "provider": "Not contacted by Daily Fresh Bobo #396; no quota error observed. Free quota availability remains unverified.",
+    "next_step": "Install one new original matching 3D Bobo scene reference, corresponding fresh_bobo.py SCENES/storyboard, and bobo_scene_policy.py eligibility before the next zero-cost provider attempt. Do not reuse historical/queued plots or use an unrelated-scene fallback.",
+    "paid_generation_allowed": false
+  },
+  "publication_workflow_inspection": {
+    "reviewed_file": ".github/workflows/publish-reviewed-bobo.yml",
+    "exact_sha256_assertion_present": true,
+    "published_episode_duplicate_guard_present": true,
+    "unknown_upload_outcome_duplicate_guard_present": true,
+    "pending_gate_removed_only_after_facebook_acceptance": true,
+    "no_publish_triggered_this_run": true
+  },
+  "outcome": "No new artifact to download or inspect. No repair, approval, publication, or pending-gate mutation performed. Latest run stopped before provider contact because no distinct eligible scene reference remained."
+}
