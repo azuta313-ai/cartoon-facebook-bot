@@ -1,0 +1,291 @@
+{
+  "review_id": "2026-11-24-run-45267553797-recheck-1459",
+  "checked_at": "2026-11-24T14:59:23+05:00",
+  "status": "NO_NEW_DRAFT_DAILY_RUN_396_NO_ARTIFACT_SCENE_GUARD; RECHECKED_LATEST_NONEMPTY_AND_PUBLISHED_FINAL_ARTIFACT",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "latest_daily_run": {
+    "workflow": ".github/workflows/daily.yml",
+    "run_number": 396,
+    "run_id": 45267553797,
+    "job_id": 138018375757,
+    "conclusion": "success",
+    "created_at": "2026-11-23T21:14:03Z",
+    "created_at_pakistan": "2026-11-24T02:14:03+05:00",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "upload_step": "No files were found in fresh_output; no artifact uploaded.",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45267553797"
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_unpublished_entries": 0,
+    "current_approval_episode": 40522242,
+    "current_approval_title": "Bobo's Pinwheel Surprise",
+    "current_approval_publication_status": "published_all_platforms_accepted",
+    "cleared_at": "2026-11-21T14:55:22.746982+05:00",
+    "gate_mutated": false
+  },
+  "latest_nonempty_daily_artifact": {
+    "workflow_run_number": 381,
+    "workflow_run_id": 44777648478,
+    "artifact_id": 14650383562,
+    "artifact_name": "fresh-bobo-video",
+    "created_at": "2026-11-20T16:54:38Z",
+    "downloaded_via": "GitHub Actions workflow artifact download tool",
+    "artifact_zip_sha256": "d734b8f68d288d6d836d5fd4c4d2ea25aed718a815f073289f4aefb8b04616c5",
+    "video_file": "bobo_fresh.mp4",
+    "video_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
+    "classification": "Latest nonempty Daily Fresh Bobo source artifact; this source was repaired in a separate finishing run."
+  },
+  "exact_repaired_final_artifact": {
+    "workflow": "Finish Observed Bobo",
+    "workflow_run_id": 44788765258,
+    "artifact_id": 14654803280,
+    "downloaded_via": "GitHub Actions workflow artifact download tool",
+    "artifact_zip_sha256": "b56077e9eb09b736b3a0a68388f72e48e53c29971734d270f702071e2ddeb8b4",
+    "video_file": "bobo_fresh.mp4",
+    "video_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+    "episode": 40522242,
+    "title": "Bobo's Pinwheel Surprise",
+    "duration_seconds": 11,
+    "width": 720,
+    "height": 1280,
+    "fps": 30,
+    "video_codec": "H.264",
+    "audio_codec": "AAC",
+    "audio_sample_rate": 96000,
+    "audio_channels": 2,
+    "full_decode": "passed",
+    "classification": "Previously approved and published; not a new draft and not eligible for another upload."
+  },
+  "exact_file_visual_review": {
+    "reviewed_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+    "full_render_sample_fps": 4,
+    "full_render_sample_count": 44,
+    "transition_sample_fps": 8,
+    "transition_samples": {
+      "title_card_frames": 14,
+      "spoken_subtitle_and_mouth_window_frames": 12
+    },
+    "observed_actions": {
+      "title_card": [
+        0,
+        1.5
+      ],
+      "opening_puff": [
+        0.125,
+        1.375
+      ],
+      "pinwheel_rotation_and_tracking": [
+        1.5,
+        8
+      ],
+      "handle_adjustment": [
+        8.5,
+        8.75
+      ],
+      "mouth_window": [
+        8.5,
+        9.25
+      ],
+      "presentation_and_pointing": [
+        8.25,
+        10.75
+      ],
+      "ending_reaction": [
+        9.25,
+        10.75
+      ]
+    },
+    "purposeful_action_by": 0.125,
+    "visual_notes": "Bobo remains recognizable as the original 3D brown monkey in the red shirt. The rainbow pinwheel rotates visibly; Bobo tracks it, then presents and points at it. One brief initial compression/pixelation glitch is visible at approximately 0.0-0.125s and clears by 0.25s; no sustained corruption. Movement is restrained in the tracking section but not frozen. Minor pauses and mouth-sync imperfections remain within the user's 17 October tolerance."
+  },
+  "caption_review": {
+    "captions": [
+      {
+        "text": "Bobo's Pinwheel Surprise",
+        "start": 0,
+        "end": 1.5,
+        "kind": "action",
+        "observed_action": "title_card"
+      },
+      {
+        "text": "It spins!",
+        "start": 8.5,
+        "end": 9.2584,
+        "kind": "spoken",
+        "observed_action": "mouth_window"
+      }
+    ],
+    "result": "Title text remains within the visible title card. Spoken subtitle matches the exact Piper line and observed brief open-mouth reaction; no claim of phoneme-level lip synchronization."
+  },
+  "speech_review": {
+    "engine": "Piper local CPU",
+    "exact_text": "It spins!",
+    "start": 8.5,
+    "end": 9.2584,
+    "subtitle_exact": true,
+    "track_present": true,
+    "final_mix_independent_asr": "passed",
+    "asr_model": "Systran/faster-whisper-base.en",
+    "asr_transcript": "It spins.",
+    "asr_input": "entire final encoded mix decoded to mono 16 kHz",
+    "asr_verified_at": "2026-11-20T23:03:15.038095+05:00",
+    "subjective_listening_performed": false,
+    "lip_sync_verified": false,
+    "note": "ASR evidence is from the artifact and was inspected; it was not rerun during this recheck. No subjective listening or phoneme-level lip synchronization is claimed."
+  },
+  "sound_review": {
+    "music": {
+      "variant": 20,
+      "style": "gentle bell waltz",
+      "preserved": true,
+      "metadata_music_check_dbfs": -15.46,
+      "original_music_stem_rms_dbfs": -27.65,
+      "original_music_stem_peak_dbfs": -13.1,
+      "duck_gain": 0.22,
+      "duck_db": -13.15,
+      "duck_window": [
+        8.4,
+        9.4184
+      ],
+      "subjective_audibility_verified": false
+    },
+    "effects": [
+      {
+        "type": "wood",
+        "start": 8.57,
+        "duration": 0.18,
+        "observed_action": "handle_adjustment",
+        "source": "Kenney Impact Sounds / impactWood_light_000.ogg",
+        "license": "CC0-1.0",
+        "source_sha256": "eb45e35b4bed784d3f120de4afec4b0d6ac09d9e143cce8cfcb7d739e1b1f3c3",
+        "scene_effects_stem_peak_dbfs": -13.24,
+        "fade_in_ms": 10,
+        "fade_out_ms": 10,
+        "material_matched": true,
+        "restrained": true,
+        "subjective_naturalness_verified": false
+      }
+    ],
+    "scene_effects_stem_rms_dbfs": -46.94,
+    "note": "One recorded wooden-handle tap is aligned to the observed grip adjustment. No water action/splash is present, and no synthetic pitch sweep or arbitrary celebration effect is recorded. Music/effect/voice stems and ducking are present in metadata and waveform measurements; subjective music audibility and effect naturalness were not verified by listening."
+  },
+  "technical_audio_review": {
+    "final_decoded_mix_rms_dbfs": -18.26,
+    "final_decoded_mix_peak_dbfs": -1.46,
+    "speech_window_rms_dbfs": -15.66,
+    "speech_window_peak_dbfs": -1.46,
+    "voice_line_duration_seconds": 0.758375,
+    "voice_line_stem_rms_dbfs": -21.49,
+    "voice_line_stem_peak_dbfs": -6.31,
+    "aac_decoded_audio_duration_seconds": 11.008,
+    "note": "AAC decode includes approximately 8 ms encoder padding; video/container duration is exactly 11.000 seconds."
+  },
+  "latest_publish_workflow": {
+    "run_number": 121,
+    "run_id": 45192737299,
+    "conclusion": "success",
+    "approval_validation": "passed",
+    "facebook_video_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "No unpublished approved episode; no upload attempted.",
+    "run_url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45192737299"
+  },
+  "publication_status": {
+    "new_publication_this_check": false,
+    "episode": 40522242,
+    "title": "Bobo's Pinwheel Surprise",
+    "published_at": "2026-11-21T14:55:22.746982+05:00",
+    "facebook_video": {
+      "status": "accepted",
+      "video_id": "2143383803215254"
+    },
+    "instagram_reel": {
+      "status": "accepted",
+      "media_id": "18135447925755686",
+      "permalink": "https://www.instagram.com/reel/Df_9RbeAAYV/"
+    },
+    "instagram_story": {
+      "status": "accepted",
+      "media_id": "18152414131561566",
+      "permalink": "https://www.instagram.com/stories/bobogigglegrove/4035213599726115308"
+    },
+    "facebook_story": {
+      "status": "accepted",
+      "video_id": "3351153948428426",
+      "post_id": "1819762365731527"
+    },
+    "daily_video_counts": {
+      "2026-11-21": 1,
+      "2026-11-22": 0,
+      "2026-11-23": 0,
+      "2026-11-24": 0,
+      "target_per_day": 2
+    }
+  },
+  "reserve_check": {
+    "reserve_entries": [
+      {
+        "episode": 40522030,
+        "published": true
+      },
+      {
+        "episode": 40522032,
+        "published": true
+      },
+      {
+        "episode": 40522037,
+        "published": true
+      },
+      {
+        "episode": 40522242,
+        "published": true
+      }
+    ],
+    "unpublished_approved_reserve_entries": 0
+  },
+  "generation_blocker": {
+    "primary": "All eligible original scene references are already used/recent/reserved; no new matching 3D Bobo scene reference is installed.",
+    "candidate_scene_ids": [
+      8,
+      7,
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "used_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7,
+      8
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "provider": "Not contacted by Daily Fresh Bobo #396; no quota error observed. Free ZeroGPU quota availability remains unverified.",
+    "next_step": "Install one new original matching 3D Bobo scene reference, then add its matching fresh_bobo.py SCENES/storyboard and bobo_scene_policy.py eligibility. Do not reuse historical/queued plots or use an unrelated-scene fallback.",
+    "paid_generation_allowed": false
+  },
+  "publication_workflow_inspection": {
+    "file": ".github/workflows/publish-reviewed-bobo.yml",
+    "existing_secret_names_used_as_environment_variables": true,
+    "secret_values_read_or_printed": false,
+    "exact_reviewed_sha256_assertion_present": true,
+    "published_episode_and_generated_sha_duplicate_guards_present": true,
+    "unknown_upload_outcome_duplicate_guard_present": true,
+    "pending_gate_cleared_only_after_facebook_acceptance": true,
+    "no_publication_attempt_needed_this_check": true
+  },
+  "cost": 0,
+  "outcome": "No new draft exists. Latest Daily Fresh Bobo run #396 uploaded no artifact and stopped at the distinct-scene guard before provider contact. The last nonempty Daily Fresh artifact and its exact repaired final were downloaded and rechecked; that final was already published and must not be reposted. No repair, new approval, publication, or pending-gate mutation was performed."
+}
