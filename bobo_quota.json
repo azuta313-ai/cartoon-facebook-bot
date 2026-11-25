@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-25T22:23:46+05:00",
+  "last_observed_at": "2026-11-25T23:29:42+05:00",
   "last_generation_run_id": 45588437318,
-  "last_provider_result": "Daily Fresh Bobo #399 completed successfully but generated no draft and uploaded no artifact: the distinct-scene guard stopped before any Hugging Face request. No provider quota error was observed; free ZeroGPU availability remains unverified. Publish Reviewed Bobo #123 completed successfully but skipped download/publication because all approved reserve entries were already published. No new Facebook/Instagram video or Story was accepted.",
+  "last_provider_result": "Daily Fresh Bobo #399 completed successfully but stopped before contacting Hugging Face because every eligible original scene reference was already used/recent/reserved. No provider quota error was observed; free ZeroGPU availability remains unverified.",
   "latest_check": {
-    "checked_at": "2026-11-25T22:23:46+05:00",
+    "checked_at": "2026-11-25T23:29:42+05:00",
     "latest_daily_run": {
       "workflow": ".github/workflows/daily.yml",
       "run_number": 399,
@@ -16,6 +16,7 @@
       "conclusion": "success",
       "created_at_pakistan": "2026-11-25T14:45:32+05:00",
       "artifact_count": 0,
+      "artifact_download": "not possible; GitHub returned an empty artifact list",
       "provider_called": false,
       "quota_error_observed": false,
       "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
@@ -102,32 +103,21 @@
         5,
         6
       ],
-      "existing_scene_files": [
-        "scene0.jpg",
-        "scene1.jpg",
-        "scene2.jpg",
-        "scene3.jpg",
-        "scene4.jpg",
-        "scene5.jpg",
-        "scene6.jpg",
-        "scene7.jpg",
-        "scene8.jpg"
-      ],
       "provider": "Not contacted by Daily Fresh Bobo #399; no quota error observed. Free Hugging Face ZeroGPU availability remains unverified.",
       "next_step": "Install a new original matching 3D Bobo scene reference and matching fresh_bobo.py scene/story entry plus bobo_scene_policy.py eligibility before another free generation attempt. Do not reuse historical footage or use an unrelated-scene fallback.",
       "paid_generation_allowed": false
     },
     "scheduler_observation": {
       "expected_slot": "2026-11-25T21:50:00+05:00",
-      "checked_at": "2026-11-25T22:23:46+05:00",
+      "checked_at": "2026-11-25T23:29:42+05:00",
       "no_newer_daily_run_seen": true,
-      "note": "No Daily Fresh Bobo run after #399 was visible in Actions at this check; the 21:50 PK schedule may be delayed, but a delay is not confirmed."
+      "note": "No Daily Fresh Bobo run after #399 was visible in Actions at this check; scheduler delay is possible but unconfirmed."
     },
     "artifact_result": "Latest Daily Fresh Bobo run #399 has zero artifacts; there is no draft ZIP to download or inspect. No historical artifact was substituted.",
-    "status": "No pending draft and no new publication. Run #399 stopped before provider contact because all eligible original scenes are used/recent/reserved. The expected 21:50 PK run was not visible at 22:23 PK; scheduler delay is possible but unconfirmed. No quota error observed; free provider availability unverified.",
+    "status": "No pending draft and no new publication. Run #399 stopped before provider contact because all eligible original scenes are used/recent/reserved. No quota error observed; free provider availability unverified. The expected 21:50 PK run was not visible by 23:29 PK; scheduler delay is possible but unconfirmed.",
     "no_gate_mutation": true,
     "cost": 0,
-    "audit_record": "bobo_review_history/2026-11-25-run-45588437318-recheck-2223.json"
+    "audit_record": "bobo_review_history/2026-11-25-run-45588437318-recheck-2329.json"
   },
   "recent_daily_runs_artifact_scan": [
     {
@@ -507,7 +497,7 @@
     },
     "audit_record": "bobo_review_history/2026-11-25-run-45588437318-recheck-1510.json"
   },
-  "provider_quota_status": "Free Hugging Face ZeroGPU availability remains unverified. Daily Fresh Bobo #398 stopped before provider contact due to the distinct-scene guard; no quota error was observed.",
+  "provider_quota_status": "Free Hugging Face ZeroGPU availability remains unverified. Daily Fresh Bobo #399 stopped before provider contact due to the distinct-scene guard; no quota error was observed.",
   "latest_nonempty_artifact": {
     "run_number": 381,
     "run_id": 44777648478,
@@ -801,5 +791,12 @@
     "generated_mp4_sha256_verified": true,
     "classification": "Historical intermediate only; incomplete, no final audio/video export, not publishable."
   },
-  "audit_record": "bobo_review_history/2026-11-25-run-45588437318-recheck-1510.json"
+  "audit_record": "bobo_review_history/2026-11-25-run-45588437318-recheck-2329.json",
+  "scheduler_observation": {
+    "expected_slot": "2026-11-25T21:50:00+05:00",
+    "checked_at": "2026-11-25T23:29:42+05:00",
+    "no_newer_daily_run_seen": true,
+    "note": "No Daily Fresh Bobo run after #399 was visible in Actions at this check; scheduler delay is possible but unconfirmed."
+  },
+  "status": "No pending draft and no new publication. Run #399 stopped before provider contact because all eligible original scenes are used/recent/reserved. No quota error observed; free provider availability unverified. The expected 21:50 PK run was not visible by 23:29 PK; scheduler delay is possible but unconfirmed."
 }
