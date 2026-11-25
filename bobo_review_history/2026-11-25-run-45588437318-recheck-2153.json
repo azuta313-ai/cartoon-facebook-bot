@@ -48,7 +48,7 @@
       "workflow_run_number": 381,
       "workflow_run_id": 44777648478,
       "artifact_id": 14650383562,
-      "artifact_zip_sha256": "d734b8f68d288d6d836f7d3d9b71b18eab8a68b0",
+      "artifact_zip_sha256": "d734b8f68d288d6d836d5fd4c4d2ea25aed718a815f073289f4aefb8b04616c5",
       "video_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe"
     },
     "repaired_final_artifact": {
