@@ -197,7 +197,7 @@
     "exact_video_sha256_gate": true,
     "duration_gate": true,
     "duplicate_ledger_and_upload_intent": true,
-    "platform_steps_not_invoked": false,
+    "platform_steps_not_invoked": true,
     "action": "No approval update or publication trigger was sent because there is no new reviewed artifact."
   },
   "cost": 0,
