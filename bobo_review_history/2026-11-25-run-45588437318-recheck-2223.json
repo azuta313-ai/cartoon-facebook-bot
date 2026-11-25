@@ -1,0 +1,125 @@
+{
+  "checked_at": "2026-11-25T22:23:46+05:00",
+  "kind": "scheduled_no_draft_recheck",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "result": "no_pending_draft; no_new_publication",
+  "latest_daily_run": {
+    "workflow": ".github/workflows/daily.yml",
+    "run_number": 399,
+    "run_id": 45588437318,
+    "job_id": 139115956816,
+    "event": "schedule",
+    "conclusion": "success",
+    "created_at_pakistan": "2026-11-25T14:45:32+05:00",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "artifact_upload": "fresh_output/ was empty; GitHub uploaded no artifact.",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45588437318"
+  },
+  "latest_publish_run": {
+    "workflow": ".github/workflows/publish-reviewed-bobo.yml",
+    "run_number": 123,
+    "run_id": 45630235769,
+    "job_id": 139261132911,
+    "created_at_pakistan": "2026-11-25T19:05:16+05:00",
+    "conclusion": "success",
+    "pipeline_step": "success",
+    "download_and_publication_steps": "skipped",
+    "reason": "No unpublished approved reserve item; no upload attempted.",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45630235769"
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "unpublished_approved_reserve_entries": 0,
+    "reserve_entries": 4,
+    "all_reserve_entries_already_in_published_ledger": true,
+    "current_approval_episode": 40522242,
+    "current_approval_title": "Bobo's Pinwheel Surprise",
+    "current_approval_status": "published_all_platforms_accepted",
+    "gate_cleared_at": "2026-11-21T14:55:22.746982+05:00",
+    "gate_mutated": false
+  },
+  "publication_status": {
+    "new_publication_this_check": false,
+    "episode": 40522242,
+    "title": "Bobo's Pinwheel Surprise",
+    "published_at": "2026-11-21T14:55:22.746982+05:00",
+    "facebook_video": {
+      "status": "accepted",
+      "video_id": "2143383803215254"
+    },
+    "instagram_reel": {
+      "status": "accepted",
+      "media_id": "18135447925755686",
+      "permalink": "https://www.instagram.com/reel/Df_9RbeAAYV/"
+    },
+    "instagram_story": {
+      "status": "accepted",
+      "media_id": "18152414131561566",
+      "permalink": "https://www.instagram.com/stories/bobogigglegrove/4035213599726115308"
+    },
+    "facebook_story": {
+      "status": "accepted",
+      "video_id": "3351153948428426",
+      "post_id": "1819762365731527"
+    }
+  },
+  "daily_target": {
+    "distinct_videos_per_day": 2,
+    "videos_published_on_2026_11_22": 0,
+    "videos_published_on_2026_11_23": 0,
+    "videos_published_on_2026_11_24": 0,
+    "videos_published_on_2026_11_25": 0
+  },
+  "generation_blockers": {
+    "primary": "All eligible original scene references are already used/recent/reserved; no new matching 3D Bobo scene reference is installed.",
+    "candidate_scene_ids": [
+      8,
+      7,
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "used_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7,
+      8
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "existing_scene_files": [
+      "scene0.jpg",
+      "scene1.jpg",
+      "scene2.jpg",
+      "scene3.jpg",
+      "scene4.jpg",
+      "scene5.jpg",
+      "scene6.jpg",
+      "scene7.jpg",
+      "scene8.jpg"
+    ],
+    "provider": "Not contacted by Daily Fresh Bobo #399; no quota error observed. Free Hugging Face ZeroGPU availability remains unverified.",
+    "next_step": "Install a new original matching 3D Bobo scene reference and matching fresh_bobo.py scene/story entry plus bobo_scene_policy.py eligibility before another free generation attempt. Do not reuse historical footage or use an unrelated-scene fallback.",
+    "paid_generation_allowed": false
+  },
+  "scheduler_observation": {
+    "expected_slot": "2026-11-25T21:50:00+05:00",
+    "checked_at": "2026-11-25T22:23:46+05:00",
+    "no_newer_daily_run_seen": true,
+    "note": "No Daily Fresh Bobo run after #399 was visible in Actions at this check; the 21:50 PK schedule may be delayed, but a delay is not confirmed."
+  },
+  "artifact_result": "Latest Daily Fresh Bobo run #399 has zero artifacts; there is no draft ZIP to download or inspect. No historical artifact was substituted.",
+  "no_gate_mutation": true,
+  "cost": 0
+}
