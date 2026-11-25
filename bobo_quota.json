@@ -121,9 +121,16 @@
       "next_step": "Install a new original matching 3D Bobo scene reference and matching fresh_bobo.py scene/story entry plus bobo_scene_policy.py eligibility before another free generation attempt.",
       "paid_generation_allowed": false
     },
-    "status": "No pending draft. Latest Daily Fresh Bobo #399 produced no artifact because all eligible original scene references are used/recent/reserved; provider was not contacted and no quota error was observed. Latest nonempty source #381 and exact repaired final #382 are historical and already published. Publish Reviewed Bobo #123 skipped all publication steps because no unpublished approved reserve item existed. No new publication; zero spending; free provider quota unverified.",
+    "status": "No pending draft; latest completed Daily Fresh run #399 stopped before provider contact because all eligible original scene references are used/recent/reserved. The expected 21:50 PK scheduled run was not yet visible in Actions at 21:53 PK, so a scheduler delay is possible but unconfirmed. No quota error has been observed and free provider availability is unverified. Latest repaired historical video is already published; no new upload.",
     "no_gate_mutation": true,
-    "audit_record": "bobo_review_history/2026-11-25-run-45588437318-recheck-2153.json"
+    "audit_record": "bobo_review_history/2026-11-25-run-45588437318-recheck-2153.json",
+    "scheduler_observation": {
+      "latest_daily_run_number": 399,
+      "checked_at": "2026-11-25T21:53:34+05:00",
+      "no_newer_daily_run_seen": true,
+      "scheduled_2150_slot": "No corresponding Daily Fresh Bobo run was visible in Actions at this check; possible GitHub schedule delay, not confirmed.",
+      "completed_run_399_reason": "The distinct-scene guard stopped before any Hugging Face request; no provider quota error was observed."
+    }
   },
   "recent_daily_runs_artifact_scan": [
     {
