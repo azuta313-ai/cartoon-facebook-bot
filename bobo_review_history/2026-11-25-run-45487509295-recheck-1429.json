@@ -1,0 +1,202 @@
+{
+  "review_id": "2026-11-25-run-45487509295-recheck-1429",
+  "completed_at": "2026-11-25T14:29:24+05:00",
+  "result": "NO_PENDING_DRAFT; DAILY_FRESH_RUN_398_NO_ARTIFACT; DISTINCT_SCENE_GUARD_STOPPED_BEFORE_PROVIDER; NO_QUOTA_ERROR_OBSERVED; FREE_ZEROGPU_AVAILABILITY_UNVERIFIED",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "latest_daily_run": {
+    "run_number": 398,
+    "run_id": 45487509295,
+    "event": "schedule",
+    "conclusion": "success",
+    "created_at_pakistan": "2026-11-25T02:05:30+05:00",
+    "artifact_count": 0,
+    "provider_called": false,
+    "quota_error_observed": false,
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45487509295"
+  },
+  "actions_history": {
+    "checked_at": "2026-11-25T14:29:24+05:00",
+    "latest_daily_run_seen": 398,
+    "no_newer_daily_fresh_run_seen": true,
+    "reason_for_gap": "Not established from available Actions history."
+  },
+  "artifacts_downloaded": {
+    "latest_daily_run": "No artifact exists for run 398.",
+    "latest_nonempty_daily_source": {
+      "run_number": 381,
+      "run_id": 44777648478,
+      "artifact_id": 14650383562,
+      "zip_sha256": "d734b8f68d288d6d836d5fd4c4d2ea25aed718a815f073289f4aefb8b04616c5",
+      "video_sha256": "c15c8750aa3168aad0d86251727efeb82c7e4dc5b055f9617bc0ceeabfac4cfe",
+      "classification": "Historical provisional source; not a pending draft."
+    },
+    "exact_repaired_final": {
+      "run_id": 44788765258,
+      "artifact_id": 14654803280,
+      "zip_sha256": "b56077e9eb09b736b3a0a68388f72e48e53c29971734d270f702071e2ddeb8b4",
+      "video_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+      "classification": "Exact repaired Pinwheel file; already published on all four platform surfaces on 21 November."
+    }
+  },
+  "exact_final_review": {
+    "duration_seconds": 11,
+    "full_render_sample_fps": 4,
+    "full_render_sample_count": 44,
+    "transition_sample_fps": 8,
+    "transition_sample_count": 25,
+    "observed_actions": {
+      "pinwheel_rotation_and_tracking": [
+        1.5,
+        8
+      ],
+      "handle_adjustment": [
+        8.5,
+        8.75
+      ],
+      "presentation_and_pointing": [
+        8.25,
+        10.75
+      ],
+      "ending_reaction": [
+        9.25,
+        10.75
+      ]
+    },
+    "visual_finding": "Recognizable original 3D Bobo in red shirt with rainbow pinwheel. My sampled opening recheck does not clearly substantiate the earlier recorded purposeful_action_by=0.125s: 0.0-0.25s are visibly degraded and no distinct purposeful action is clear before 0.5s; the pose remains nearly static into the first second. This is a retrospective note on an already published artifact, not a new draft decision; no approval or gate status was changed.",
+    "captions": [
+      {
+        "text": "Bobo's Pinwheel Surprise",
+        "start": 0,
+        "end": 1.5,
+        "kind": "action"
+      },
+      {
+        "text": "It spins!",
+        "start": 8.5,
+        "end": 9.2584,
+        "kind": "spoken"
+      }
+    ],
+    "voice": {
+      "text": "It spins!",
+      "start": 8.5,
+      "end": 9.2584,
+      "verification_method": "independent_asr",
+      "asr_model": "Systran/faster-whisper-base.en",
+      "transcript": "It spins.",
+      "evidence_status": "Bundled final-mix ASR evidence inspected; not rerun in this session.",
+      "listening_verified": false,
+      "lip_sync_verified": false
+    },
+    "effects": {
+      "type": "wooden handle tap",
+      "start": 8.57,
+      "duration": 0.18,
+      "source": "Kenney Impact Sounds impactWood_light_000.ogg; CC0-1.0",
+      "source_sha256": "eb45e35b4bed784d3f120de4afec4b0d6ac09d9e143cce8cfcb7d739e1b1f3c3",
+      "peak_dbfs": -13.24,
+      "material_matched": true,
+      "restrained": true,
+      "listening_verified": false,
+      "note": "No water action, so no splash cue; no pitch sweep or celebration chime."
+    },
+    "music": {
+      "variant": 20,
+      "style": "gentle bell waltz",
+      "source_music_rms_dbfs": -27.65,
+      "source_music_peak_dbfs": -13.1,
+      "estimated_mixed_music_rms_pre_duck_dbfs": -20.26,
+      "estimated_mixed_music_rms_during_speech_dbfs": -28.92,
+      "estimated_duck_reduction_db": 7.7,
+      "subjective_audibility_verified": false
+    },
+    "final_mix": {
+      "speech_window_rms_dbfs": -15.66,
+      "speech_window_peak_dbfs": -1.46,
+      "peak_dbfs": -1.46,
+      "full_decode_passed": true,
+      "subjective_listening_performed": false
+    }
+  },
+  "latest_publish_run": {
+    "run_number": 122,
+    "run_id": 45417223876,
+    "conclusion": "success",
+    "publication_steps": "all skipped",
+    "reason": "No unpublished approved episode; no upload attempted.",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45417223876"
+  },
+  "publication_status": {
+    "new_publication_this_check": false,
+    "title": "Bobo's Pinwheel Surprise",
+    "published_at": "2026-11-21T14:55:22.746982+05:00",
+    "facebook_video": {
+      "status": "accepted",
+      "video_id": "2143383803215254"
+    },
+    "instagram_reel": {
+      "status": "accepted",
+      "media_id": "18135447925755686",
+      "permalink": "https://www.instagram.com/reel/Df_9RbeAAYV/"
+    },
+    "instagram_story": {
+      "status": "accepted",
+      "media_id": "18152414131561566",
+      "permalink": "https://www.instagram.com/stories/bobogigglegrove/4035213599726115308"
+    },
+    "facebook_story": {
+      "status": "accepted",
+      "video_id": "3351153948428426",
+      "post_id": "1819762365731527"
+    },
+    "videos_published_on_2026_11_22": 0,
+    "videos_published_on_2026_11_23": 0,
+    "videos_published_on_2026_11_24": 0,
+    "videos_published_on_2026_11_25": 0,
+    "daily_target": 2
+  },
+  "pending_gate": {
+    "pending_json_present": false,
+    "pending_directory_present": false,
+    "reserve_entries": 4,
+    "unpublished_approved_reserve_entries": 0,
+    "current_approval_status": "published_all_platforms_accepted",
+    "gate_mutated": false
+  },
+  "generation_blocker": {
+    "primary": "All eligible distinct original scene references are used/recent/reserved; no new matching 3D Bobo scene reference is installed.",
+    "used_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7,
+      8
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "provider_called": false,
+    "quota_error_observed": false,
+    "free_zerogpu_availability": "unverified",
+    "paid_generation_allowed": false,
+    "next_step": "Install a new original matching 3D Bobo scene reference and corresponding fresh_bobo.py story/scene entry plus bobo_scene_policy.py eligibility before another free generation attempt."
+  },
+  "publication_workflow_review": {
+    "path": ".github/workflows/publish-reviewed-bobo.yml",
+    "exact_sha_gate": true,
+    "duration_gate": true,
+    "speech_and_subtitle_gate": true,
+    "visual_review_gates": "4fps full render and 8fps transitions",
+    "duplicate_ledger_and_upload_intent": true,
+    "uses_existing_github_secrets": true,
+    "secret_values_exposed": false,
+    "platform_steps_invoked": false
+  },
+  "cost": 0,
+  "no_gate_mutation": true,
+  "secrets_values_accessed_or_printed_by_review": false
+}
