@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-26T06:47:18.657+05:00",
+  "checked_at": "2026-11-26T06:47:43.642+05:00",
   "latest_daily_run": {
     "workflow": ".github/workflows/daily.yml",
     "run_number": 400,
@@ -227,5 +227,15 @@
   "artifact_result": "Latest Daily Fresh Bobo run #400 has zero artifacts and no draft ZIP. The newest actual Daily Fresh artifact is run #381; its exact final repaired artifact was downloaded and inspected, but it was already approved and published. No historical artifact was substituted as a current draft.",
   "status": "No current pending draft and no new publication. Latest Daily Fresh run #400 stopped before contacting the provider because all eligible original scene references are used/recent/reserved. No quota error observed; free provider availability remains unverified.",
   "no_gate_mutation": true,
-  "cost": 0
+  "cost": 0,
+  "scheduler_observation": {
+    "latest_daily_run_created_at": "2026-11-26T00:36:46+05:00",
+    "expected_slots_not_observed": [
+      "2026-11-26T06:10:00+05:00",
+      "2026-11-26T06:30:00+05:00"
+    ],
+    "next_configured_slot": "2026-11-26T06:50:00+05:00",
+    "checked_at": "2026-11-26T06:47:43.642+05:00",
+    "note": "No Daily Fresh Bobo run newer than #400 is visible in Actions as of this check. The 06:10 and 06:30 configured slots are not visible; a scheduler delay is possible but unconfirmed. The last completed run independently stopped at the distinct-scene guard before provider contact."
+  }
 }
