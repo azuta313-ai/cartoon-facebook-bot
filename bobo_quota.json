@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-26T21:08:59+05:00",
+  "last_observed_at": "2026-11-26T22:57:02+05:00",
   "last_generation_run_id": 45791597228,
-  "last_provider_result": "Daily Fresh Bobo #401 produced no artifact because all eligible original scene references were used/recent/reserved; provider was not contacted and no quota error was observed. No later Daily Fresh run is visible as of 21:08 PK; free ZeroGPU availability remains unverified.",
+  "last_provider_result": "Daily Fresh Bobo #401 still has no artifact; artifact tool returned an empty list. The generator stopped at the distinct-scene guard before provider contact. No quota error observed; free ZeroGPU availability remains unverified. No newer Daily Fresh run was visible by 22:57 PKT, including after the configured 21:50 slot; scheduler delay/missed dispatch is possible, cause unconfirmed.",
   "latest_check": {
-    "checked_at": "2026-11-26T14:54:35+05:00",
+    "checked_at": "2026-11-26T22:57:02+05:00",
     "latest_daily_run": {
       "workflow": ".github/workflows/daily.yml",
       "run_number": 401,
@@ -17,28 +17,27 @@
       "created_at_utc": "2026-11-26T09:23:59Z",
       "created_at_pakistan": "2026-11-26T14:23:59+05:00",
       "artifact_count": 0,
-      "artifact_download": "not possible; GitHub Actions returned an empty artifact list",
+      "artifact_download": "fetch_workflow_run_artifacts returned empty list; no artifact ID to download",
       "provider_called": false,
       "quota_error_observed": false,
       "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
-      "artifact_upload": "fresh_output/ was empty; upload-artifact reported no files found.",
       "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45791597228"
     },
     "latest_publish_run": {
       "workflow": ".github/workflows/publish-reviewed-bobo.yml",
-      "run_number": 123,
-      "run_id": 45630235769,
-      "job_id": 139261132911,
-      "created_at_pakistan": "2026-11-25T19:05:16+05:00",
+      "run_number": 124,
+      "run_id": 45831806061,
+      "job_id": 139950209856,
+      "created_at_pakistan": "2026-11-26T18:42:45+05:00",
       "conclusion": "success",
-      "approval_validation": "passed",
+      "approval_validation": "completed",
       "artifact_download": "skipped",
       "facebook_video_step": "skipped",
       "instagram_reel_step": "skipped",
       "instagram_story_step": "skipped",
       "facebook_story_step": "skipped",
-      "reason": "No unpublished approved episode; no upload attempted.",
-      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45630235769"
+      "reason": "No unpublished approved episode selected; no upload attempted.",
+      "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45831806061"
     },
     "pending_gate": {
       "bobo_review_pending_json_present": false,
@@ -84,7 +83,7 @@
       "daily_target": 2
     },
     "generation_blockers": {
-      "primary": "All eligible original scene references are used/recent/reserved; no new matching 3D Bobo scene reference is installed.",
+      "primary": "All eligible original scene references are used/recent/reserved; no new matching original 3D Bobo reference is installed.",
       "candidate_scene_ids": [
         8,
         7,
@@ -108,27 +107,24 @@
         6
       ],
       "provider": "Not contacted by Daily Fresh Bobo #401; no quota error observed. Free Hugging Face ZeroGPU availability remains unverified.",
-      "next_step": "Install a new original matching 3D Bobo scene reference with a matching fresh_bobo.py scene/story entry and bobo_scene_policy.py eligibility before the next free generation attempt. Do not reuse historical footage or use an unrelated-scene fallback.",
+      "next_step": "Install a genuinely new matching 3D Bobo scene reference with a matching fresh_bobo.py story entry and bobo_scene_policy.py eligibility. Do not reuse story02.jpg or historical footage.",
       "paid_generation_allowed": false
     },
     "scheduler_observation": {
-      "latest_daily_run_created_at": "2026-11-26T00:36:46+05:00",
+      "workflow_cron": "10,30,50 6,7,8,9,14,15,16,17,21 * * *",
+      "timezone": "Asia/Karachi",
+      "latest_daily_run_created_at": "2026-11-26T14:23:59+05:00",
       "no_newer_daily_run_seen": true,
-      "expected_slots_not_observed": [
-        "2026-11-26T06:50:00+05:00",
-        "2026-11-26T07:10:00+05:00",
-        "2026-11-26T07:30:00+05:00",
-        "2026-11-26T07:50:00+05:00"
-      ],
-      "next_configured_slot": "2026-11-26T08:10:00+05:00",
-      "checked_at": "2026-11-26T07:51:33+05:00",
-      "note": "No Daily Fresh Bobo run newer than #400 is visible in Actions. Scheduler delay or missed scheduled dispatches are possible; cause is unconfirmed. Independently, run #400 stopped at the distinct-scene guard before contacting the provider."
+      "last_expected_evening_slot": "2026-11-26T21:50:00+05:00",
+      "checked_at": "2026-11-26T22:57:02+05:00",
+      "note": "No Daily Fresh Bobo run newer than #401 is visible, including after the configured 21:50 slot. Scheduler delay or missed dispatch is possible; cause is unconfirmed."
     },
-    "artifact_result": "No current artifact exists to download or inspect. The last nonempty Daily Fresh source artifact was run #381; its finished exact file was reviewed and published on 21 November. It was not substituted as a current draft.",
-    "status": "No pending draft and no new publication. Latest Daily Fresh Bobo #401 produced no artifact because all eligible original scene references are used/recent/reserved. Provider was not contacted; quota status is unverified rather than blocked.",
+    "artifact_result": "No current artifact exists to download or inspect. The only additional story_queue image found depicts Bobo with an umbrella and overlaps the already-published Upside-Down Umbrella story; it was not reused. Historical published artifacts were not substituted.",
+    "status": "No pending draft and no new publication. Generation stopped before provider contact because no eligible new matching scene reference exists; quota status unverified.",
     "no_gate_mutation": true,
     "cost": 0,
-    "audit_record": "bobo_review_history/2026-11-26-run-45791597228-recheck-1454.json"
+    "audit_record": "bobo_review_history/2026-11-26-run-45791597228-recheck-1454.json",
+    "review_history_record": "bobo_review_history/2026-11-26-run-45791597228-recheck-2257.json"
   },
   "recent_daily_runs_artifact_scan": [
     {
