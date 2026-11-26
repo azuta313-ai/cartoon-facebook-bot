@@ -2,11 +2,11 @@
   "retry_after": "2026-10-18T16:30:58.401196+05:00",
   "reason": "Historical 18 October backoff. On 4 November, runs #340 and #341 each reached free Hugging Face ZeroGPU and generated three clips before local finishing failures (CC0 foley checksum in #340; FFmpeg voice-mix failure in #341). No provider quota error was reported.",
   "retry_is_backoff_not_reset": true,
-  "last_observed_at": "2026-11-26T06:47:18.657+05:00",
+  "last_observed_at": "2026-11-26T06:47:43.642+05:00",
   "last_generation_run_id": 45686917279,
   "last_provider_result": "Daily Fresh Bobo #400 completed successfully but stopped before contacting Hugging Face because every eligible original scene reference was already used/recent/reserved. No provider quota error was observed; free ZeroGPU availability remains unverified.",
   "latest_check": {
-    "checked_at": "2026-11-26T06:47:18.657+05:00",
+    "checked_at": "2026-11-26T06:47:43.642+05:00",
     "latest_daily_run": {
       "workflow": ".github/workflows/daily.yml",
       "run_number": 400,
@@ -107,12 +107,17 @@
       "paid_generation_allowed": false
     },
     "scheduler_observation": {
-      "next_cron_slot_after_check": "2026-11-26T06:50:00+05:00",
-      "checked_at": "2026-11-26T06:47:18.657+05:00",
-      "note": "The next configured schedule slot had not yet occurred at the time of this check; no upload time is guaranteed."
+      "latest_daily_run_created_at": "2026-11-26T00:36:46+05:00",
+      "expected_slots_not_observed": [
+        "2026-11-26T06:10:00+05:00",
+        "2026-11-26T06:30:00+05:00"
+      ],
+      "next_configured_slot": "2026-11-26T06:50:00+05:00",
+      "checked_at": "2026-11-26T06:47:43.642+05:00",
+      "note": "No Daily Fresh Bobo run newer than #400 is visible in Actions as of this check. The 06:10 and 06:30 configured slots are not visible; a scheduler delay is possible but unconfirmed. The last completed run independently stopped at the distinct-scene guard before provider contact."
     },
     "artifact_result": "Latest Daily Fresh Bobo run #400 has zero artifacts and no draft ZIP. The newest actual Daily Fresh artifact is run #381; its exact final repaired artifact was downloaded and inspected, but it was already approved and published. No historical artifact was substituted as a current draft.",
-    "status": "No current pending draft and no new publication. Latest Daily Fresh run #400 stopped before contacting the provider because all eligible original scene references are used/recent/reserved. No quota error observed; free provider availability remains unverified.",
+    "status": "No current pending draft and no new publication. Latest Daily Fresh run #400 stopped before contacting the provider because all eligible original scene references are used/recent/reserved. No quota error observed; free provider availability remains unverified. The next expected schedule slot is 06:50 PK; earlier 06:10 and 06:30 slots are not visible, so scheduler delay is possible but unconfirmed.",
     "no_gate_mutation": true,
     "cost": 0,
     "audit_record": "bobo_review_history/2026-11-26-run-45686917279-recheck-0642.json"
