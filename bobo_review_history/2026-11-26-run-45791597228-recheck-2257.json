@@ -1,0 +1,170 @@
+{
+  "review_id": "2026-11-26-run-45791597228-recheck-2257",
+  "completed_at": "2026-11-26T22:57:02+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "result": "NO_PENDING_DRAFT_NO_NEW_ARTIFACT; latest Daily Fresh Bobo #401 stopped at the distinct-scene guard before provider contact; latest publish workflow #124 skipped all upload steps; zero cost.",
+  "latest_daily_run": {
+    "workflow": ".github/workflows/daily.yml",
+    "run_number": 401,
+    "run_id": 45791597228,
+    "job_id": 139811721638,
+    "event": "schedule",
+    "conclusion": "success",
+    "created_at_utc": "2026-11-26T09:23:59Z",
+    "created_at_pakistan": "2026-11-26T14:23:59+05:00",
+    "artifact_count": 0,
+    "artifact_tool_result": "fetch_workflow_run_artifacts returned an empty artifacts array; no artifact ID exists to download.",
+    "provider_called": false,
+    "quota_error_observed": false,
+    "credential_preflight": "Passed: configured Facebook Page and Instagram connection accessible; secret values not printed.",
+    "direct_publication": "PUBLISH_FACEBOOK=false",
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "upload_artifact_log": "fresh_output/ was empty; upload-artifact reported no files found.",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45791597228"
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "reserve_entries": 4,
+    "reserve_episode_ids": [
+      40522030,
+      40522032,
+      40522037,
+      40522242
+    ],
+    "all_reserve_entries_already_in_published_ledger": true,
+    "unpublished_approved_reserve_entries": 0,
+    "current_approval_episode": 40522242,
+    "current_approval_title": "Bobo's Pinwheel Surprise",
+    "current_approval_publication_status": "published_all_platforms_accepted",
+    "gate_cleared_at": "2026-11-21T14:55:22.746982+05:00",
+    "gate_mutated": false
+  },
+  "scene_reference_inventory": {
+    "assets_scenes": [
+      "scene0.jpg",
+      "scene1.jpg",
+      "scene2.jpg",
+      "scene3.jpg",
+      "scene4.jpg",
+      "scene5.jpg",
+      "scene6.jpg",
+      "scene7.jpg",
+      "scene8.jpg"
+    ],
+    "eligible_candidates": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7,
+      8
+    ],
+    "used_recent_or_reserved": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7,
+      8
+    ],
+    "retired": [
+      5,
+      6
+    ],
+    "only_additional_story_queue_asset": {
+      "path": "assets/story_queue/story02.jpg",
+      "git_blob_sha": "c557610b95c59eca717d407db43d5b7051771dcb",
+      "visual_observation": "Bobo in red shirt holding a yellow umbrella in an autumn setting.",
+      "duplicate_check": "Matches/overlaps the already-published Bobo's Upside-Down Umbrella premise (episode 40522037); not eligible as a fresh distinct story reference.",
+      "reused": false
+    },
+    "blocker": "No unused matching original 3D Bobo scene reference and corresponding new plot/story-policy entry is present."
+  },
+  "latest_publish_run": {
+    "workflow": ".github/workflows/publish-reviewed-bobo.yml",
+    "run_number": 124,
+    "run_id": 45831806061,
+    "job_id": 139950209856,
+    "event": "schedule",
+    "conclusion": "success",
+    "created_at_utc": "2026-11-26T13:42:45Z",
+    "created_at_pakistan": "2026-11-26T18:42:45+05:00",
+    "approval_validation": "completed",
+    "artifact_download": "skipped",
+    "facebook_video_step": "skipped",
+    "instagram_reel_step": "skipped",
+    "instagram_story_step": "skipped",
+    "facebook_story_step": "skipped",
+    "reason": "No unpublished approved episode selected; no upload attempted.",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45831806061"
+  },
+  "last_accepted_publication": {
+    "episode": 40522242,
+    "title": "Bobo's Pinwheel Surprise",
+    "published_at": "2026-11-21T14:55:22.746982+05:00",
+    "facebook_video": {
+      "status": "accepted",
+      "video_id": "2143383803215254"
+    },
+    "instagram_reel": {
+      "status": "accepted",
+      "media_id": "18135447925755686",
+      "permalink": "https://www.instagram.com/reel/Df_9RbeAAYV/"
+    },
+    "instagram_story": {
+      "status": "accepted",
+      "media_id": "18152414131561566",
+      "permalink": "https://www.instagram.com/stories/bobogigglegrove/4035213599726115308"
+    },
+    "facebook_story": {
+      "status": "accepted",
+      "video_id": "3351153948428426",
+      "post_id": "1819762365731527"
+    }
+  },
+  "scheduler_observation": {
+    "workflow_cron": "10,30,50 6,7,8,9,14,15,16,17,21 * * *",
+    "timezone": "Asia/Karachi",
+    "latest_daily_run_created_at": "2026-11-26T14:23:59+05:00",
+    "no_newer_daily_run_visible_as_of": "2026-11-26T22:57:02+05:00",
+    "last_expected_evening_slot": "2026-11-26T21:50:00+05:00",
+    "note": "No Daily Fresh Bobo run newer than #401 was present at this check, including after the configured 21:50 slot. Scheduler delay or missed dispatch is possible; cause is unconfirmed."
+  },
+  "publication_workflow_inspection": {
+    "path": ".github/workflows/publish-reviewed-bobo.yml",
+    "inspected": true,
+    "checks_observed": [
+      "approval episode and artifact binding",
+      "exact final SHA256 verification",
+      "reviewed SHA equality",
+      "11-second duration gate",
+      "duplicate episode and generated-hash checks",
+      "upload intent state to avoid blind retries"
+    ],
+    "secrets": "FB_PAGE_ID and FB_PAGE_ACCESS_TOKEN referenced through GitHub Secrets; values were not read or printed.",
+    "triggered_for_new_video": false
+  },
+  "review_limits": {
+    "actual_video_downloaded": false,
+    "visual_review_performed": false,
+    "audio_review_performed": false,
+    "reason": "Latest run has no artifact; historical published artifacts were not substituted as a new draft."
+  },
+  "generation_blocker": {
+    "provider": "Not contacted by run #401; no quota error observed. Free Hugging Face ZeroGPU availability remains unverified.",
+    "paid_generation_allowed": false,
+    "next_step": "Add a genuinely new original 3D Bobo scene reference, matching original story/three-shot storyboard, and scene-policy eligibility. Do not reuse the umbrella queue image or historical scene footage."
+  },
+  "daily_target": {
+    "videos_published_on_2026_11_22": 0,
+    "videos_published_on_2026_11_23": 0,
+    "videos_published_on_2026_11_24": 0,
+    "videos_published_on_2026_11_25": 0,
+    "videos_published_on_2026_11_26": 0,
+    "target_per_day": 2
+  },
+  "cost": 0
+}
