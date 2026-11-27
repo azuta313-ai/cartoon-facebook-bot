@@ -1,0 +1,166 @@
+{
+  "checked_at": "2026-11-27T15:30:43+05:00",
+  "completed_at": "2026-11-27T15:30:43+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "result": "no_pending_draft_no_new_daily_artifact",
+  "latest_daily_fresh_run": {
+    "workflow": ".github/workflows/daily.yml",
+    "run_number": 403,
+    "run_id": 45975185168,
+    "job_id": 140425047655,
+    "event": "schedule",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at_utc": "2026-11-27T09:36:59Z",
+    "created_at_pakistan": "2026-11-27T14:36:59+05:00",
+    "completed_at_utc": "2026-11-27T09:37:24Z",
+    "completed_at_pakistan": "2026-11-27T14:37:24+05:00",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45975185168",
+    "steps": {
+      "scene_policy_validation": "passed",
+      "free_tools_and_piper_setup": "passed",
+      "facebook_instagram_credential_preflight": "passed_without_exposing_credentials",
+      "generation": "stopped_before_provider_contact_by_distinct_scene_guard",
+      "artifact_upload": "fresh_output empty; no artifact uploaded"
+    },
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "artifact_count": 0,
+    "artifact_download": "not possible; GitHub returned no artifact ID"
+  },
+  "artifact_review": {
+    "status": "not_applicable_no_artifact",
+    "visual_frames_reviewed": false,
+    "caption_timing_reviewed": false,
+    "speech_reviewed": false,
+    "sound_effects_reviewed": false,
+    "music_audibility_reviewed": false,
+    "technical_file_reviewed": false,
+    "reason": "No MP4 artifact exists in the latest run. No historical or published video was substituted."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "reserve_entries": 4,
+    "unpublished_approved_reserve_entries": 0,
+    "reserve_episode_ids": [
+      40522030,
+      40522032,
+      40522037,
+      40522242
+    ],
+    "all_reserve_episode_ids_present_in_published_ledger": true,
+    "current_approval": {
+      "episode": 40522242,
+      "title": "Bobo's Pinwheel Surprise",
+      "status": "approved",
+      "publication_status": "published_all_platforms_accepted",
+      "reviewed_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd",
+      "pending_gate_cleared_at": "2026-11-21T14:55:22.746982+05:00"
+    },
+    "gate_mutated": false
+  },
+  "latest_publication": {
+    "workflow": ".github/workflows/publish-reviewed-bobo.yml",
+    "run_number": 124,
+    "run_id": 45831806061,
+    "created_at_utc": "2026-11-26T13:42:45Z",
+    "created_at_pakistan": "2026-11-26T18:42:45+05:00",
+    "conclusion": "success",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45831806061",
+    "approval_validation": "completed",
+    "artifact_download": "skipped",
+    "facebook_video": "skipped",
+    "instagram_reel": "skipped",
+    "instagram_story": "skipped",
+    "facebook_story": "skipped",
+    "reason": "No unpublished approved episode; no upload attempted."
+  },
+  "last_accepted_publication": {
+    "episode": 40522242,
+    "title": "Bobo's Pinwheel Surprise",
+    "published_at": "2026-11-21T14:55:22.746982+05:00",
+    "facebook_video": "accepted",
+    "instagram_reel": "accepted",
+    "instagram_story": "accepted",
+    "facebook_story": "accepted",
+    "facebook_reel_url": "https://www.facebook.com/reel/2143383803215254/",
+    "instagram_reel_url": "https://www.instagram.com/reel/Df_9RbeAAYV/",
+    "instagram_story_url": "https://www.instagram.com/stories/bobogigglegrove/4035213599726115308"
+  },
+  "publication_workflow_review": {
+    "path": ".github/workflows/publish-reviewed-bobo.yml",
+    "exists": true,
+    "trigger": "push to main changing bobo_review_approval.json; workflow_dispatch; scheduled checks",
+    "exact_artifact_download_by_run_id": true,
+    "final_sha256_verification": true,
+    "duration_gate_seconds": [
+      10.95,
+      11.05
+    ],
+    "mandatory_piper_and_spoken_subtitle_gate": true,
+    "final_mix_speech_evidence_gate": "independent ASR matching exact line or documented actual listening; waveform-only is rejected",
+    "visual_review_gate": "4 fps full render and 8 fps transitions with observed action timestamps",
+    "caption_and_effect_mapping_gate": true,
+    "duplicate_ledger_and_upload_intent_protection": true,
+    "pending_gate_clearance": "after Facebook acceptance",
+    "result": "Existing publication path is present and was inspected; no change was needed or made because there is no approved unpublished artifact."
+  },
+  "scene_inventory": {
+    "existing_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "candidate_order": [
+      8,
+      7,
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "used_or_reserved_scene_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7,
+      8
+    ],
+    "retired_scene_ids": [
+      5,
+      6
+    ],
+    "eligible_unused_scene_ids": [],
+    "blocker": "No unused matching original 3D Bobo scene reference/story/policy entry is installed."
+  },
+  "provider_status": {
+    "provider": "Hugging Face ZeroGPU",
+    "contacted": false,
+    "quota_error_observed": false,
+    "availability": "unverified",
+    "paid_generation_allowed": false,
+    "cost": 0
+  },
+  "scheduler_observation": {
+    "timezone": "Asia/Karachi",
+    "configured_cron": "10,30,50 6,7,8,9,14,15,16,17,21 * * *",
+    "latest_daily_run": 45975185168,
+    "latest_daily_run_pakistan": "2026-11-27T14:36:59+05:00",
+    "newer_daily_run_found_by": "2026-11-27T15:30:43+05:00",
+    "newer_daily_run_found": false,
+    "cause": "unconfirmed"
+  },
+  "next_step": "Install a genuinely new original 3D Bobo scene reference with a matching fresh_bobo.py story entry and bobo_scene_policy.py eligibility before another free provider attempt. Do not reuse the umbrella, pinwheel, retired scenes, or historical footage.",
+  "decision": "Hold. No draft exists to repair, review, approve, or publish. Do not change the existing approved/published gate.",
+  "no_gate_mutation": true,
+  "cost": 0
+}
