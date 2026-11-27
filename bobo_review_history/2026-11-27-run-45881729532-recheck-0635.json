@@ -1,0 +1,123 @@
+{
+  "checked_at": "2026-11-27T06:35:58+05:00",
+  "repository": "azuta313-ai/cartoon-facebook-bot",
+  "result": "no_pending_draft_no_artifact",
+  "latest_daily_fresh_run": {
+    "run_number": 402,
+    "run_id": 45881729532,
+    "job_id": 140122448387,
+    "event": "schedule",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at_utc": "2026-11-26T19:11:12Z",
+    "created_at_pakistan": "2026-11-27T00:11:12+05:00",
+    "completed_at_pakistan": "2026-11-27T00:11:42+05:00",
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45881729532",
+    "steps": {
+      "validation": "passed",
+      "free_tools_and_piper_setup": "passed",
+      "facebook_instagram_credential_preflight": "passed_without_exposing_credentials",
+      "generation": "stopped_before_provider_contact_by_distinct_scene_guard",
+      "artifact_upload": "no files found in fresh_output; no artifact uploaded"
+    },
+    "generator_message": "All distinct original scene references are in the recent/reserve set; hold rather than duplicate.",
+    "artifact_count": 0,
+    "artifact_download": "not possible; artifact listing is empty and there is no artifact ID",
+    "provider_contacted": false,
+    "quota_error_observed": false,
+    "zero_cost": true
+  },
+  "artifact_review": {
+    "status": "not_applicable_no_artifact",
+    "visual_frames_reviewed": false,
+    "caption_timing_reviewed": false,
+    "speech_reviewed": false,
+    "sound_effects_reviewed": false,
+    "music_audibility_reviewed": false,
+    "technical_file_reviewed": false,
+    "reason": "The latest run uploaded no fresh_output files. No historical or already-published video was substituted."
+  },
+  "pending_gate": {
+    "bobo_review_pending_json_present": false,
+    "bobo_pending_directory_present": false,
+    "current_approval": {
+      "status": "approved",
+      "episode": 40522242,
+      "title": "Bobo's Pinwheel Surprise",
+      "publication_status": "published_all_platforms_accepted",
+      "reviewed_sha256": "a09bb888e980d63a43de6312a0993263b27e3d42e9419b58d1575bf51bccd6fd"
+    },
+    "gate_mutated": false
+  },
+  "latest_publication": {
+    "workflow_run": 124,
+    "run_id": 45831806061,
+    "job_id": 139950209856,
+    "url": "https://github.com/azuta313-ai/cartoon-facebook-bot/actions/runs/45831806061",
+    "conclusion": "success",
+    "approval_validation": "completed",
+    "artifact_download": "skipped",
+    "facebook_video": "skipped",
+    "instagram_reel": "skipped",
+    "instagram_story": "skipped",
+    "facebook_story": "skipped",
+    "reason": "No unpublished approved episode; no upload attempted."
+  },
+  "last_accepted_publication": {
+    "episode": 40522242,
+    "title": "Bobo's Pinwheel Surprise",
+    "published_at": "2026-11-21T14:55:22.746982+05:00",
+    "facebook_video": "accepted",
+    "instagram_reel": "accepted",
+    "instagram_story": "accepted",
+    "facebook_story": "accepted"
+  },
+  "scene_inventory": {
+    "files": [
+      "scene0.jpg",
+      "scene1.jpg",
+      "scene2.jpg",
+      "scene3.jpg",
+      "scene4.jpg",
+      "scene5.jpg",
+      "scene6.jpg",
+      "scene7.jpg",
+      "scene8.jpg"
+    ],
+    "candidate_order": [
+      8,
+      7,
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    "recent_or_reserved": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7,
+      8
+    ],
+    "retired": [
+      5,
+      6
+    ],
+    "story_queue": [
+      "story02.jpg"
+    ],
+    "story_queue_note": "story02.jpg depicts the already-published upside-down umbrella plot; it is not eligible as a distinct story.",
+    "missing": "A genuinely new original 3D Bobo scene reference plus matching story/scene entry and scene-policy eligibility."
+  },
+  "scheduler_observation": {
+    "configured_timezone": "Asia/Karachi",
+    "configured_daily_cron": "10,30,50 6,7,8,9,14,15,16,17,21 * * *",
+    "latest_run_created_at_pakistan": "2026-11-27T00:11:12+05:00",
+    "note": "The only latest Daily Fresh run appeared at 00:11 PKT, after the configured final 21:50 slot; this is consistent with scheduler delay, but the original scheduled timestamp is not exposed in the run record. No newer Daily Fresh run was visible by 06:35 PKT, including the 06:10 and 06:30 slots. A missed/delayed dispatch remains possible; cause is unconfirmed."
+  },
+  "decision": "Hold. No draft exists to repair, review, approve, or publish. Do not reuse the historical Pinwheel artifact or umbrella image.",
+  "cost": 0
+}
